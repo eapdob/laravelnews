@@ -21,4 +21,4 @@ services:
       - '3360:3306'
     volumes:
       - './mysql:/var/lib/mysql'
-    image: 'mysql:8.0.34'
+    image: 'mysql:8.1.0'
