@@ -60,8 +60,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('login', [AdminController::class, 'index'])->name('login.index');
+    Route::get('login', [AdminController::class, 'showLogin'])->name('login.show');
     Route::post('login', [AdminController::class, 'login'])->name('login');
-    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard')->middleware('admin');
+    Route::get('dashboard', [AdminController::class, 'showDashboard'])->name('dashboard.show')->middleware('admin');
     Route::post('logout', [AdminController::class, 'logout'])->name('logout')->middleware('admin');
+    Route::get('register', [AdminController::class, 'showRegister'])->name('register.show');
+    Route::post('register', [AdminController::class, 'register'])->name('register')->middleware('admin');
 });
