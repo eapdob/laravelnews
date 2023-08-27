@@ -11,10 +11,10 @@
                     </div>
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>Forgot password</h4>
+                            <h4>{{ __('admin.forgot_password') }}</h4>
                         </div>
                         <div class="card-body">
-                            <p>Forgot your password? No problem. We got you</p>
+                            <p>{{ __('admin.forgot_password_content') }}</p>
                             @if (session()->has('success'))
                                 <br>
                                 <i><b style="color:green;">{{ session()->get('success') }}</b></i>
@@ -24,30 +24,24 @@
                                   novalidate="">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">{{ __('admin.email') }}</label>
                                     <input id="email" type="email" class="form-control" name="email" tabindex="1"
                                            required autofocus>
                                     @error('email')
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        Please fill in your email
+                                        {{ __('admin.invalid_email') }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                        Send Link
+                                        {{ __('admin.send_link') }}
                                     </button>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="mt-5 text-muted text-center">
-                        Don't have an account? <a href="auth-register.html">Create One</a>
-                    </div>
-                    <div class="simple-footer">
-                        Copyright &copy; Stisla 2018
                     </div>
                 </div>
             </div>

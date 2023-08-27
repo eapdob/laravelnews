@@ -11,7 +11,7 @@
                     </div>
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>Reset password</h4>
+                            <h4>{{ __('admin.reset_password') }}</h4>
                         </div>
                         <div class="card-body">
                             <form method="POST" action="{{ route('admin.reset-password.send') }}"
@@ -20,19 +20,19 @@
                                 @csrf
                                 <input type="hidden" name="token" value="{{ $token }}">
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">{{ __('admin.email') }}</label>
                                     <input id="email" type="email" class="form-control" name="email" tabindex="1"
                                            required autofocus value="{{ request()->email }}">
                                     @error('email')
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        Please fill in your email
+                                        {{ __('admin.invalid_email') }}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="d-block">
-                                        <label for="password" class="control-label">New Password</label>
+                                        <label for="password" class="control-label">{{ __('admin.new_password') }}</label>
                                     </div>
                                     <input id="password" type="password" class="form-control" name="password"
                                            tabindex="2" required>
@@ -40,12 +40,12 @@
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        please fill in your password
+                                        {{ __('admin.invalid_password') }}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="d-block">
-                                        <label for="password" class="control-label">Confirmation Password</label>
+                                        <label for="password" class="control-label">{{ __('admin.confirm_password') }}</label>
                                     </div>
                                     <input id="password" type="password" class="form-control"
                                            name="password_confirmation"
@@ -54,22 +54,16 @@
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        Confirm in your password
+                                        {{ __('admin.invalid_confirm_password') }}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                        Send Link
+                                        {{ __('admin.send_link') }}
                                     </button>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="mt-5 text-muted text-center">
-                        Don't have an account? <a href="auth-register.html">Create One</a>
-                    </div>
-                    <div class="simple-footer">
-                        Copyright &copy; Stisla 2018
                     </div>
                 </div>
             </div>

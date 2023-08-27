@@ -10,7 +10,7 @@
                              class="shadow-light rounded-circle">
                     </div>
                     <div class="card card-primary">
-                        <div class="card-header"><h4>Login</h4></div>
+                        <div class="card-header"><h4>{{ __('admin.login') }}</h4></div>
                         <div class="card-body">
                             @if (session()->has('success'))
                                 <i><b style="color:green;">{{ session()->get('success') }}</b></i>
@@ -19,22 +19,22 @@
                                   novalidate="">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">{{ __('admin.email') }}</label>
                                     <input id="email" type="email" class="form-control" name="email" tabindex="1"
                                            required autofocus>
                                     @error('email')
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        Please fill in your email
+                                        {{ __('admin.invalid_email') }}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="d-block">
-                                        <label for="password" class="control-label">Password</label>
+                                        <label for="password" class="control-label">{{ __('admin.password') }}</label>
                                         <div class="float-right">
                                             <a href="{{ route('admin.forgot-password') }}" class="text-small">
-                                                Forgot Password?
+                                                {{ __('admin.forgot_password') }}
                                             </a>
                                         </div>
                                     </div>
@@ -44,29 +44,23 @@
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        please fill in your password
+                                        {{ __('admin.invalid_password') }}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" name="remember" class="custom-control-input" tabindex="3"
                                                id="remember-me">
-                                        <label class="custom-control-label" for="remember-me">Remember Me</label>
+                                        <label class="custom-control-label" for="remember-me">{{ __('admin.remember_me') }}</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                        Login
+                                        {{ __('admin.login') }}
                                     </button>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="mt-5 text-muted text-center">
-                        Don't have an account? <a href="auth-register.html">Create One</a>
-                    </div>
-                    <div class="simple-footer">
-                        Copyright &copy; Stisla 2018
                     </div>
                 </div>
             </div>
