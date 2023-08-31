@@ -15,6 +15,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/components.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/css/custom.css') }}">
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
@@ -53,9 +54,21 @@
 
 <!-- JS Libraies -->
 <script src="{{ asset('admin/modules/summernote/summernote-bs4.js') }}"></script>
+<script src="{{ asset('admin/modules/upload-preview/assets/js/jquery.uploadPreview.js') }}"></script>
 
 <!-- Template JS File -->
 <script src="{{ asset('admin/js/scripts.js') }}"></script>
-<script src="{{ asset('admin/js/custom.js') }}></script>
+<script src="{{ asset('admin/js/custom.js') }}"></script>
+<script>
+    $.uploadPreview({
+        input_field: "#image-upload",   // Default: .image-upload
+        preview_box: "#image-preview",  // Default: .image-preview
+        label_field: "#image-label",    // Default: .image-label
+        label_default: "Choose File",   // Default: Choose File
+        label_selected: "Change File",  // Default: Change File
+        no_label: false,                // Default: false
+        success_callback: null          // Default: null
+    });
+</script>
 </body>
 </html>

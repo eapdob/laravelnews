@@ -28,6 +28,8 @@ return [
     'invalid_email' => 'Please fill in your email',
     'new_password' => 'New Password',
     'invalid_password' => 'please fill in your password',
+    'invalid_old_password' => 'please fill in your new password',
+    'invalid_new_password' => 'please fill in your confirmation password',
     'confirm_password' => 'Confirmation Password',
     'invalid_confirm_password' => 'Confirm in your password',
     'send_link' => 'Send Link',
@@ -39,4 +41,13 @@ return [
 
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'name' => 'Name',
+    'save_changes' => 'Save Changes',
+    'change_some_information' => 'Change information about yourself on this page.',
+    'profile' => 'Profile',
+    'dashboard' => 'Dashboard',
+    'edit_profile' => 'Edit Profile',
+    'hi' => 'Hi, ',
+    'choose_file' => 'Choose File',
+    'update_password' => 'Update password',
 ];
