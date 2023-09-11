@@ -49,5 +49,9 @@ return [
     'edit_profile' => 'Edit Profile',
     'hi' => 'Hi, ',
     'choose_file' => 'Choose File',
+    'old_password' => 'Old password',
+    'old_password_doesnt_match' => 'Old password doesn\'t match',
     'update_password' => 'Update password',
+    'password' => 'Password',
+    'updated_successfully' => 'Updated Successfully'
 ];
