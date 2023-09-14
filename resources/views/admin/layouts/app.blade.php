@@ -11,6 +11,7 @@
 
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('admin/modules/summernote/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/modules/select2/dist/css/select2.min.css') }}">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
@@ -54,6 +55,7 @@
 
 <!-- JS Libraies -->
 <script src="{{ asset('admin/modules/summernote/summernote-bs4.js') }}"></script>
+<script src="{{ asset('admin/modules/select2/dist/js/select2.full.js') }}"></script>
 @include('sweetalert::alert')
 
 <!-- Template JS File -->
