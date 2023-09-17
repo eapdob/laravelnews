@@ -53,5 +53,18 @@ return [
     'old_password_doesnt_match' => 'Old password doesn\'t match',
     'update_password' => 'Update password',
     'password' => 'Password',
-    'updated_successfully' => 'Updated Successfully'
+    'updated_successfully' => 'Updated Successfully',
+    'language' => 'Language',
+    'all_languages' => 'All Languages',
+    'create_new' => 'Create new',
+
+    'language_name' => 'Language Name',
+    'language_code' => 'Language Code',
+    'language_default' => 'Default',
+    'language_status' => 'Status',
+    'language_action' => 'Action',
+    'yes' => 'Yes',
+    'no' => 'No',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
 ];
