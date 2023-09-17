@@ -68,4 +68,6 @@ return [
     'is_it_default' => 'Is it default?',
     'select' => '--Select--',
     'update' => 'Update',
+    'deleted_successfully' => 'Deleted Successfully!',
+    'something_went_wrong' => 'something went wrong!',
 ];

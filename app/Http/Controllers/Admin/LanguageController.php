@@ -84,6 +84,12 @@ class LanguageController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $language = Language::findOrFail($id);
+            $language->delete();
+            return response(['status' => 'success', 'message' => __('admin.deleted_successfully')]);
+        } catch (\Throwable $th) {
+            return response(['status' => 'error', 'message' => __('admin.something_went_wrong')]);
+        }
     }
 }
