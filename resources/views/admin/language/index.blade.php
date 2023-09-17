@@ -22,11 +22,11 @@
                             <th class="text-center">
                                 #
                             </th>
-                            <th>{{ __('admin.language_name') }}</th>
-                            <th>{{ __('admin.language_code') }}</th>
-                            <th>{{ __('admin.language_default') }}</th>
-                            <th>{{ __('admin.language_status') }}</th>
-                            <th>{{ __('admin.language_action') }}</th>
+                            <th>{{ __('admin.name') }}</th>
+                            <th>{{ __('admin.code') }}</th>
+                            <th>{{ __('admin.default') }}</th>
+                            <th>{{ __('admin.status') }}</th>
+                            <th>{{ __('admin.action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -40,7 +40,7 @@
 
                                 <td>
                                     @if ($language->default == 1)
-                                        <span class="badge badge-primary">{{ __('admin.yes') }}</span>
+                                        <span class="badge badge-primary">{{ __('admin.default') }}</span>
                                     @else
                                         <span class="badge badge-warning">{{ __('admin.no') }}</span>
                                     @endif
@@ -55,8 +55,10 @@
                                 </td>
 
                                 <td>
-                                    <a href="#" class="btn btn-secondary">Detail</a>
-                                    <a href="#" class="btn btn-secondary">Detail</a>
+                                    <a href="{{ route('admin.language.edit', $language->id) }}" class="btn btn-primary"><i
+                                            class="fas fa-edit"></i></a>
+                                    <a href="{{ route('admin.language.destroy', $language->id) }}"
+                                       class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         @endforeach

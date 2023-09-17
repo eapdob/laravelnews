@@ -19,7 +19,6 @@ return [
     'success_reset_password' => 'Password reset successfully',
     'error_login' => 'Please login first',
     'admin_send_link_title' => 'Admin Password Reset Notification',
-
     'dashboard_title' => 'General Dashboard',
     'auth_title' => 'Login',
     'logout' => 'Logout',
@@ -37,10 +36,7 @@ return [
     'forgot_password_content' => 'Forgot your password? No problem. We got you',
     'forgot_password_question' => 'Forgot Password?',
     'remember_me' => 'Remember Me',
-
-
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-
     'name' => 'Name',
     'save_changes' => 'Save Changes',
     'change_some_information' => 'Change information about yourself on this page.',
@@ -57,14 +53,19 @@ return [
     'language' => 'Language',
     'all_languages' => 'All Languages',
     'create_new' => 'Create new',
-
-    'language_name' => 'Language Name',
-    'language_code' => 'Language Code',
-    'language_default' => 'Default',
-    'language_status' => 'Status',
-    'language_action' => 'Action',
+    'create_language' => 'Create Language',
+    'create' => 'Create',
+    'code' => 'Code',
+    'slug' => 'Slug',
+    'status' => 'Status',
+    'action' => 'Action',
+    'default' => 'Default',
     'yes' => 'Yes',
     'no' => 'No',
     'active' => 'Active',
     'inactive' => 'Inactive',
+    'edit_language' => 'Edit Language',
+    'is_it_default' => 'Is it default?',
+    'select' => '--Select--',
+    'update' => 'Update',
 ];
