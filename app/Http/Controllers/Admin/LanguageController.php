@@ -74,7 +74,7 @@ class LanguageController extends Controller
         $language->status = $request->status;
         $language->save();
 
-        toast(__('Updated Successfully'),'success')->width('400');
+        toast(__('Updated Successfully'), 'success')->width('400');
 
         return redirect()->route('admin.language.index');
     }
@@ -86,6 +86,9 @@ class LanguageController extends Controller
     {
         try {
             $language = Language::findOrFail($id);
+            if ($language->lang === 'en') {
+                return response(['status' => 'error', 'message' => __('admin.cant_delete_this_one')]);
+            }
             $language->delete();
             return response(['status' => 'success', 'message' => __('admin.deleted_successfully')]);
         } catch (\Throwable $th) {

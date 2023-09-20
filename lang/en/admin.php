@@ -70,4 +70,5 @@ return [
     'update' => 'Update',
     'deleted_successfully' => 'Deleted Successfully!',
     'something_went_wrong' => 'something went wrong!',
+    'cant_delete_this_one' => 'Can\'t Delete This One!'
 ];
