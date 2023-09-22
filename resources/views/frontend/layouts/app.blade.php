@@ -23,7 +23,6 @@
 
 <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
 
-<script type="text/javascript" src="js/index.bundle.js"></script>
 <script src="{{ asset('frontend/assets/js/index.bundle.js') }}"></script>
 </body>
 

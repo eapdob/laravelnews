@@ -3,7 +3,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Simple Transactional Email</title>
     <style>
         /* -------------------------------------
             GLOBAL RESETS
@@ -348,8 +347,8 @@
                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <p>Hi there,</p>
-                                        <p>Here is your password reset link</p>
+                                        <p>{{ __('admin.hi_there') }}</p>
+                                        <p>{{ __('admin.here_is_your_password_link') }}</p>
                                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                                             <tbody>
                                             <tr>
@@ -358,7 +357,7 @@
                                                         <tbody>
                                                         <tr>
                                                             <td>
-                                                                <a href="{{ route('admin.reset-password', ['token' => $token, 'email' => $email]) }}" target="_blank">Click here to reset</a>
+                                                                <a href="{{ route('admin.reset-password', ['token' => $token, 'email' => $email]) }}" target="_blank">{{ __('admin.click_here_to_reset') }}</a>
                                                             </td>
                                                         </tr>
                                                         </tbody>

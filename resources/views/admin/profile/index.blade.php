@@ -17,7 +17,7 @@
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-6">
                     <div class="card">
-                        <form method="post" action="{{ route('admin.profile.update', auth()->guard('admin')->user()->id) }}" class="needs-validation" novalidate="" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.profile.update', auth()->guard('admin')->user()->id) }}" class="needs-validation" novalidate="" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card-header">

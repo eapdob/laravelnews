@@ -83,39 +83,35 @@
         $('.delete-item').on('click', function (e) {
             e.preventDefault();
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: '{{ __('admin.are_you_sure') }}',
+                text: '{{ __('admin.you_wont_be_able_to_revert_this') }}',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{{ __('admin.yes_delete_it') }}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     let url = $(this).attr('href');
                     console.log(url);
-                    debugger;
                     $.ajax({
                         method: 'DELETE',
                         url: url,
                         success: function (data) {
                             if (data.status === 'success') {
-                                debugger;
                                 Swal.fire(
-                                    'Deleted!',
+                                    '{{ __('admin.deleted') }}',
                                     data.message,
                                     'success'
                                 )
                                 window.location.reload();
                             } else if (data.status === 'error') {
-                                debugger;
                                 Swal.fire(
-                                    'Error!',
+                                    '{{ __('admin.error') }}',
                                     data.message,
                                     'error'
                                 )
                             }
-                            debugger;
                         },
                         error: function (xhr, status, error) {
                             console.error(error);

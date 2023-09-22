@@ -74,7 +74,7 @@ class LanguageController extends Controller
         $language->status = $request->status;
         $language->save();
 
-        toast(__('Updated Successfully'), 'success')->width('400');
+        toast(__('admin.updated_successfully'), 'success')->width('400');
 
         return redirect()->route('admin.language.index');
     }
