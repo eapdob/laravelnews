@@ -89,4 +89,6 @@ return [
     'click_here_to_reset' => 'Click here to reset',
     'admin_dashboard' => 'Admin Dashboard',
     'you_re_logged_in_to_admin_dashboard' => 'You\'re logged in to admin dashboard!',
+    'categories' => 'Categories',
+    'all_categories' => 'All Categories',
 ];
