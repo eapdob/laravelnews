@@ -91,4 +91,7 @@ return [
     'you_re_logged_in_to_admin_dashboard' => 'You\'re logged in to admin dashboard!',
     'categories' => 'Categories',
     'all_categories' => 'All Categories',
+    'category' => 'Category',
+    'create_category' => 'Create Category',
+    'show_at_nav' => 'Show at Nav',
 ];
