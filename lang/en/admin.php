@@ -94,4 +94,6 @@ return [
     'category' => 'Category',
     'create_category' => 'Create Category',
     'show_at_nav' => 'Show at Nav',
+    'created_successfully' => 'Created Successfully',
+    'in_nav' => 'In Nav'
 ];

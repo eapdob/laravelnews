@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminCategoryCreateRequest;
+use App\Models\Category;
 use App\Models\Language;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index');
+        $languages = Language::all();
+        return view('admin.category.index', compact('languages'));
     }
 
     /**
@@ -27,9 +30,19 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AdminCategoryCreateRequest $request)
     {
-        //
+        $category = new Category();
+        $category->name = $request->name;
+        $category->slug = \Str::slug($request->name);
+        $category->language = $request->language;
+        $category->show_at_nav = $request->show_at_nav;
+        $category->status = $request->status;
+        $category->save();
+
+        toast(__('admin.created_successfully'), 'success')->width('400');
+
+        return redirect()->route('admin.category.index');
     }
 
     /**
