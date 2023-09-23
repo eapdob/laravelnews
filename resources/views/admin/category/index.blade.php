@@ -30,7 +30,7 @@
                 <div class="tab-content tab-bordered">
                     @foreach ($languages as $language)
                         @php
-                            $categories = \App\Models\Category::where('language',$language->lang)->get();
+                            $categories = \App\Models\Category::where('language', $language->lang)->orderByDesc('id')->get();
                         @endphp
                         <div class="tab-pane fade show {{ $loop->index === 0 ? 'active' : ''}}"
                              id="home-{{ $language->lang }}"
@@ -72,7 +72,7 @@
                                                 </td>
                                                 <td>
                                                     <a href="" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                    <a href="" class="btn btn-danger delete-item"><i
+                                                    <a href="{{ route('admin.category.destroy', $category->id) }}" class="btn btn-danger delete-item"><i
                                                             class="fas fa-trash-alt"></i></a>
                                                 </td>
                                             </tr>
