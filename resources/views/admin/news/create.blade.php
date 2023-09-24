@@ -10,7 +10,7 @@
                 <h4>{{ __('admin.create_news') }}</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.news.store') }}" method="POST">
+                <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="">{{ __('admin.language') }}</label>
@@ -52,9 +52,23 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="slug">{{ __('admin.slug') }}</label>
+                        <input name="slug" type="text" class="form-control" id="slug">
+                        @error('slug')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="content">{{ __('admin.content') }}</label>
                         <textarea name="content" class="summernote-simple" id="content"></textarea>
                         @error('content')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="tags">{{ __('admin.tags') }}</label>
+                        <input name="tags" type="text" id="tags" class="form-control inputtags">
+                        @error('tags')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
@@ -77,7 +91,7 @@
                             <div class="form-group">
                                 <div class="control-label">{{ __('admin.status') }}</div>
                                 <label class="custom-switch mt-2">
-                                    <input type="checkbox" name="status" class="custom-switch-input">
+                                    <input type="checkbox" name="status" class="custom-switch-input" value="1" checked>
                                     <span class="custom-switch-indicator"></span>
                                 </label>
                             </div>
@@ -86,7 +100,8 @@
                             <div class="form-group">
                                 <div class="control-label">{{ __('admin.is_breaking_news') }}</div>
                                 <label class="custom-switch mt-2">
-                                    <input type="checkbox" name="is_breaking_news" class="custom-switch-input">
+                                    <input type="checkbox" name="is_breaking_news" class="custom-switch-input" value="1"
+                                           checked>
                                     <span class="custom-switch-indicator"></span>
                                 </label>
                             </div>
@@ -95,7 +110,8 @@
                             <div class="form-group">
                                 <div class="control-label">{{ __('admin.show_at_slider') }}</div>
                                 <label class="custom-switch mt-2">
-                                    <input type="checkbox" name="show_at_slider" class="custom-switch-input">
+                                    <input type="checkbox" name="show_at_slider" class="custom-switch-input" value="1"
+                                           checked>
                                     <span class="custom-switch-indicator"></span>
                                 </label>
                             </div>
@@ -104,7 +120,8 @@
                             <div class="form-group">
                                 <div class="control-label">{{ __('admin.show_at_popular') }}</div>
                                 <label class="custom-switch mt-2">
-                                    <input type="checkbox" name="show_at_popular" class="custom-switch-input">
+                                    <input type="checkbox" name="show_at_popular" class="custom-switch-input" value="1"
+                                           checked>
                                     <span class="custom-switch-indicator"></span>
                                 </label>
                             </div>
@@ -154,5 +171,3 @@
         </script>
     @endpush
 @endsection
-
-

@@ -109,4 +109,5 @@ return [
     'is_breaking_news' => 'Is Breaking News',
     'show_at_slider' => 'Show At Slider',
     'show_at_popular' => 'Show At Popular',
+    'tags' => 'Tags',
 ];
