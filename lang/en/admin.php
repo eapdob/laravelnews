@@ -110,4 +110,8 @@ return [
     'show_at_slider' => 'Show At Slider',
     'show_at_popular' => 'Show At Popular',
     'tags' => 'Tags',
+    'in_breaking' => 'In Breaking',
+    'in_slider' => 'In Slider',
+    'in_popular' => 'In Popular',
+    'id' => 'ID',
 ];

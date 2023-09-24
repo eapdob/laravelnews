@@ -19,9 +19,7 @@
                     <table class="table table-striped" id="table-1">
                         <thead>
                         <tr>
-                            <th class="text-center">
-                                #
-                            </th>
+                            <th class="text-center">{{ __('admin.id') }}</th>
                             <th>{{ __('admin.name') }}</th>
                             <th>{{ __('admin.code') }}</th>
                             <th>{{ __('admin.default') }}</th>
