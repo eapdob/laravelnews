@@ -97,5 +97,7 @@ return [
     'created_successfully' => 'Created Successfully',
     'in_nav' => 'In Nav',
     'update_successfully' => 'Update Successfully',
-    'update_category' => 'Update Category'
+    'update_category' => 'Update Category',
+    'news' => 'News',
+    'all_news' => 'All News'
 ];

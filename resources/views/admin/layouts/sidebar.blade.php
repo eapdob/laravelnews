@@ -18,8 +18,17 @@
                 <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>{{ __('admin.dashboard') }}</span></a>
             </li>
             <li class="menu-header">Starter</li>
-            <li><a class="nav-link" href="{{ route('admin.category.index') }}"><i class="far fa-square"></i> <span>{{ __('admin.categories') }}</span></a></li>
-            <li><a class="nav-link" href="{{ route('admin.language.index') }}"><i class="far fa-square"></i> <span>{{ __('admin.languages') }}</span></a></li>
+            <li><a class="nav-link" href="{{ route('admin.category.index') }}"><i class="far fa-square"></i>
+                    <span>{{ __('admin.categories') }}</span></a></li>
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i>
+                    <span>{{ __('admin.news') }}</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{ route('admin.news.index') }}">{{ __('admin.all_news') }}</a></li>
+                </ul>
+            </li>
+            <li><a class="nav-link" href="{{ route('admin.language.index') }}"><i class="far fa-square"></i>
+                    <span>{{ __('admin.languages') }}</span></a></li>
         </ul>
     </aside>
 </div>
