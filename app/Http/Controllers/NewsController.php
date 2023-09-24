@@ -115,4 +115,20 @@ class NewsController extends Controller
         $categories = Category::where('language', $request->lang)->get();
         return $categories;
     }
+
+    /**
+     * Change toggle status of news
+     */
+    public function toggleNewsStatus(Request $request)
+    {
+        try {
+            $news = News::findOrFail($request->id);
+            $news->{$request->name} = $request->status;
+            $news->save();
+
+            return response(['status' => 'success', 'message' => __('admin.updated_successfully')]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

@@ -68,39 +68,55 @@
                                                 <td>
                                                     <label class="custom-switch mt-2">
                                                         <input
-                                                            {{ $item->is_breaking_news === 1 ? 'checked' : '' }} value="1"
-                                                            type="checkbox" class="custom-switch-input">
+                                                            {{ $item->is_breaking_news === 1 ? 'checked' : '' }}
+                                                            value="1"
+                                                            data-id="{{ $item->id }}"
+                                                            data-name="is_breaking_news"
+                                                            type="checkbox"
+                                                            class="custom-switch-input toggle-status">
                                                         <span class="custom-switch-indicator"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="custom-switch mt-2">
                                                         <input
-                                                            {{ $item->show_at_slider === 1 ? 'checked' : '' }} value="1"
-                                                            type="checkbox" class="custom-switch-input">
+                                                            {{ $item->show_at_slider === 1 ? 'checked' : '' }}
+                                                            value="1"
+                                                            data-id="{{ $item->id }}"
+                                                            data-name="show_at_slider"
+                                                            type="checkbox"
+                                                            class="custom-switch-input toggle-status">
                                                         <span class="custom-switch-indicator"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="custom-switch mt-2">
                                                         <input
-                                                            {{ $item->show_at_popular === 1 ? 'checked' : '' }} value="1"
-                                                            type="checkbox" class="custom-switch-input">
+                                                            {{ $item->show_at_popular === 1 ? 'checked' : '' }}
+                                                            value="1"
+                                                            data-id="{{ $item->id }}"
+                                                            data-name="show_at_popular"
+                                                            type="checkbox"
+                                                            class="custom-switch-input toggle-status">
                                                         <span class="custom-switch-indicator"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="custom-switch mt-2">
-                                                        <input {{ $item->status === 1 ? 'checked' : '' }} value="1"
-                                                               type="checkbox" class="custom-switch-input">
+                                                        <input {{ $item->status === 1 ? 'checked' : '' }}
+                                                               value="1"
+                                                               data-id="{{ $item->id }}"
+                                                               data-name="status"
+                                                               type="checkbox"
+                                                               class="custom-switch-input toggle-status">
                                                         <span class="custom-switch-indicator"></span>
                                                     </label>
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.category.edit', $item->id) }}"
+                                                    <a href="{{ route('admin.news.edit', $item->id) }}"
                                                        class="btn btn-primary"><i
                                                             class="fas fa-edit"></i></a>
-                                                    <a href="{{ route('admin.category.destroy', $item->id) }}"
+                                                    <a href="{{ route('admin.news.destroy', $item->id) }}"
                                                        class="btn btn-danger delete-item"><i
                                                             class="fas fa-trash-alt"></i></a>
                                                 </td>
@@ -129,5 +145,33 @@
             "order": [[0, 'desc']]
         });
         @endforeach
+
+        $(document).ready(function () {
+            $('.toggle-status').on('click', function () {
+                let id = $(this).data('id');
+                let name = $(this).data('name');
+                let status = $(this).prop('checked') ? 1 : 0;
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('admin.toggle-news-status') }}",
+                    data: {
+                        id: id,
+                        name: name,
+                        status: status
+                    },
+                    success: function (data) {
+                        if (data.status === 'success') {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.message
+                            })
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                })
+            })
+        })
     </script>
 @endpush
