@@ -99,5 +99,14 @@ return [
     'update_successfully' => 'Update Successfully',
     'update_category' => 'Update Category',
     'news' => 'News',
-    'all_news' => 'All News'
+    'all_news' => 'All News',
+    'create_news' => 'Create News',
+    'image' => 'Image',
+    'title' => 'Title',
+    'content' => 'Content',
+    'meta_title' => 'Meta Title',
+    'meta_description' => 'Meta Description',
+    'is_breaking_news' => 'Is Breaking News',
+    'show_at_slider' => 'Show At Slider',
+    'show_at_popular' => 'Show At Popular',
 ];
