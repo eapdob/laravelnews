@@ -29,4 +29,11 @@ trait FileUploadTrait
 
         return $dir . '/' . $updatedFileName;
     }
+
+    public function deleteFile(string $path): void
+    {
+        if ($path && File::exists(public_path($path))) {
+            File::delete(public_path($path));
+        }
+    }
 }

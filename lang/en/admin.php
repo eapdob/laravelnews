@@ -114,4 +114,5 @@ return [
     'in_popular' => 'In Popular',
     'id' => 'ID',
     'update_news' => 'Update News',
+    'copied_successfully' => 'Copied Successfully!'
 ];
