@@ -76,7 +76,7 @@ class CategoryController extends Controller
         $category->status = $request->status;
         $category->save();
 
-        toast(__('admin.update_successfully'),'success')->width('400');
+        toast(__('admin.updated_successfully'),'success')->width('400');
 
         return redirect()->route('admin.category.index');
     }

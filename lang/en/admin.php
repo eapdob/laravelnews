@@ -96,7 +96,6 @@ return [
     'show_at_nav' => 'Show at Nav',
     'created_successfully' => 'Created Successfully',
     'in_nav' => 'In Nav',
-    'update_successfully' => 'Update Successfully',
     'update_category' => 'Update Category',
     'news' => 'News',
     'all_news' => 'All News',
@@ -114,4 +113,5 @@ return [
     'in_slider' => 'In Slider',
     'in_popular' => 'In Popular',
     'id' => 'ID',
+    'update_news' => 'Update News',
 ];
