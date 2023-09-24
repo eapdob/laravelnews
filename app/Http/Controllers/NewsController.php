@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Language;
 use Illuminate\Http\Request;
 
@@ -63,5 +64,14 @@ class NewsController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Fetch category depending on language
+     */
+    public function fetchCategory(Request $request)
+    {
+        $categories = Category::where('language', $request->lang)->get();
+        return $categories;
     }
 }

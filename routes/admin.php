@@ -25,4 +25,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
     Route::resource('language', LanguageController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('news', NewsController::class);
+    Route::get('fetch-news-category', [NewsController::class, 'fetchCategory'])->name('fetch-news-category');
 });

@@ -128,12 +128,29 @@
                 no_label: false,                // Default: false
                 success_callback: null          // Default: null
             });
-            $(document).ready(function() {
-                $('#image-preview').css({
-                    "background-image": "url({{ asset($user->image) }})",
-                    "background-size": "cover"
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('#language-select').on('change', function () {
+                    let lang = $(this).val();
+                    $.ajax({
+                        method: 'GET',
+                        url: '{{ route('admin.fetch-news-category') }}',
+                        data: {lang: lang},
+                        success: function (data) {
+                            $('#category').html('');
+                            $('#category').html('<option value="">{{ __('admin.select') }}</option>');
+                            $.each(data, function (index, data) {
+                                $('#category').append(`<option value="${data.id}">${data.name}</option>`);
+                            });
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    })
                 })
-            });
+            })
         </script>
     @endpush
 @endsection
