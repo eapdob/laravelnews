@@ -1,24 +1,31 @@
 version: '3'
 services:
-  php-apache-dev:
-    image: 'webdevops/php-apache-dev:8.2'
-    ports:
-      - '80:80'
-      - '443:443'
-    links:
-      - 'mysql:db'
-    depends_on: []
-    environment:
-      - WEB_DOCUMENT_ROOT=/app/public
-    volumes:
-      - './php:/app'
-    working_dir: /app
-  mysql:
-    command: --default-authentication-plugin=mysql_native_password
-    environment:
-      - MYSQL_ROOT_PASSWORD=demo1234
-    ports:
-      - '3360:3306'
-    volumes:
-      - './mysql:/var/lib/mysql'
-    image: 'mysql:8.1.0'
+    php-apache-dev:
+        image: 'webdevops/php-apache-dev:8.2'
+        ports:
+            - '80:80'
+            - '443:443'
+        user: ${CURRENT_UID}
+        links:
+            - 'mysql:db'
+        depends_on: []
+        environment:
+            - WEB_DOCUMENT_ROOT=/app/public
+            - php.post_max_size=900M
+            - php.upload_max_filesize=900M
+            - php.max_execution_time=9999
+            - php.memory_limit=4G
+            - XDEBUG_IDE_KEY=PHPSTORM
+            - XDEBUG_REMOTE_AUTOSTART=on
+        volumes:
+            - './php:/app'
+        working_dir: /app
+    mysql:
+        image: 'mysql:latest'
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            - MYSQL_ROOT_PASSWORD=demo1234
+        ports:
+            - '3307:3306'
+        volumes:
+            - './mysql:/var/lib/mysql'
