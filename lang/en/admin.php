@@ -58,6 +58,7 @@ return [
     'code' => 'Code',
     'slug' => 'Slug',
     'status' => 'Status',
+    'is_approved' => 'Is Approved',
     'action' => 'Action',
     'default' => 'Default',
     'yes' => 'Yes',

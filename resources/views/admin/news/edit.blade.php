@@ -108,6 +108,16 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
+                                <div class="control-label">{{ __('admin.is_approved') }}</div>
+                                <label class="custom-switch mt-2">
+                                    <input {{ $news->is_approved === 1 ? 'checked' : '' }} value="1" type="checkbox"
+                                           name="is_approved" class="custom-switch-input">
+                                    <span class="custom-switch-indicator"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
                                 <div class="control-label">{{ __('admin.is_breaking_news') }}</div>
                                 <label class="custom-switch mt-2">
                                     <input {{ $news->is_breaking_news == 1 ? 'checked' : '' }} value="1" type="checkbox"

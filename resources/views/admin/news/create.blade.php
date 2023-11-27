@@ -98,6 +98,15 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
+                                <div class="control-label">{{ __('admin.is_approved') }}</div>
+                                <label class="custom-switch mt-2">
+                                    <input type="checkbox" name="is_approved" class="custom-switch-input" value="1" checked>
+                                    <span class="custom-switch-indicator"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
                                 <div class="control-label">{{ __('admin.is_breaking_news') }}</div>
                                 <label class="custom-switch mt-2">
                                     <input type="checkbox" name="is_breaking_news" class="custom-switch-input" value="1"

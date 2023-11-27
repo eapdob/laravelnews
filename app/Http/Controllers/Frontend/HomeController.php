@@ -15,6 +15,6 @@ class HomeController extends Controller
             'is_breaking_news' => 1
         ])->get();
 
-        return view('frontend.home', compact('breakingNews'));
+        return view('frontend.home.index', compact('breakingNews'));
     }
 }
