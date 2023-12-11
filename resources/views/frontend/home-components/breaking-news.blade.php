@@ -8,7 +8,7 @@
                             <!-- Post Article -->
                             <div class="card__post card__post-list">
                                 <div class="image-sm">
-                                    <a href="{{ $news->slug }}">
+                                    <a href="{{ route('news-details', $news->slug) }}">
                                         <img src="{{ asset($news->image) }}" class="img-fluid" alt="">
                                     </a>
                                 </div>
@@ -33,7 +33,7 @@
                                         </div>
                                         <div class="card__post__title">
                                             <h6>
-                                                <a href="{{ $news->slug }}">
+                                                <a href="{{ route('news-details', $news->slug) }}">
                                                     {!! truncate($news->title) !!}
                                                 </a>
                                             </h6>
