@@ -1,11 +1,10 @@
 version: '3'
 services:
-    php-apache-dev:
+    apache:
         image: 'webdevops/php-apache-dev:8.2'
         ports:
             - '80:80'
             - '443:443'
-        user: ${CURRENT_UID}
         links:
             - 'mysql:db'
         depends_on: []
@@ -20,8 +19,8 @@ services:
         volumes:
             - './php:/app'
         working_dir: /app
+        user: ${CURRENT_UID}
     mysql:
-        image: 'mysql:latest'
         command: --default-authentication-plugin=mysql_native_password
         environment:
             - MYSQL_ROOT_PASSWORD=demo1234
@@ -29,3 +28,4 @@ services:
             - '3307:3306'
         volumes:
             - './mysql:/var/lib/mysql'
+        image: 'mysql:8.1.0'
