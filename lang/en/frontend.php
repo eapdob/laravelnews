@@ -18,5 +18,6 @@ return [
     'home' => 'Home',
     'news' => 'News',
     'in' => 'In',
-    'read_more' => 'Read More'
+    'read_more' => 'Read More',
+    'tags' => 'Tags'
 ];
