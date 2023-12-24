@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+@extends('frontend.layouts.app')
 
 @section('content')
     <section class="pb-80">
@@ -34,7 +34,7 @@
                                 <li class="list-inline-item">
                                     {{ __('By') }}
                                     <a href="#">
-                                        {{ $news->auther->name }}
+                                        {{ $news->author->name }}
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
@@ -64,9 +64,9 @@
                         <div class="wrap__article-detail-content">
                             <div class="total-views">
                                 <div class="total-views-read">
-                                    15.k
+                                    {{ $news->views }}
                                     <span>
-                                    views
+                                    {{ __('frontend.views') }}
                                 </span>
                                 </div>
 

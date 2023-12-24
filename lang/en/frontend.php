@@ -13,5 +13,6 @@ return [
     |
     */
 
-    'by' => 'By'
+    'by' => 'By',
+    'views' => 'views'
 ];
