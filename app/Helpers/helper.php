@@ -34,7 +34,19 @@ function setLanguage(string $code): void
     session(['language' => $code]);
 }
 
-function truncate(string $text, int $limit = 50): String
+function truncate(string $text, int $limit = 50): string
 {
     return \Str::limit($text, $limit, '...');
+}
+
+/** Convert a number in K format */
+function convertToKFormat(int $number): string
+{
+    if ($number < 1000) {
+        return $number;
+    } elseif ($number < 1000000) {
+        return round($number / 1000, 1) . 'K';
+    } else {
+        return round($number / 1000000, 1) . 'M';
+    }
 }
