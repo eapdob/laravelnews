@@ -14,5 +14,9 @@ return [
     */
 
     'by' => 'By',
-    'views' => 'views'
+    'views' => 'Views',
+    'home' => 'Home',
+    'news' => 'News',
+    'in' => 'In',
+    'read_more' => 'Read More'
 ];
