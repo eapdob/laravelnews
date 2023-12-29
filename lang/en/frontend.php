@@ -20,5 +20,6 @@ return [
     'in' => 'In',
     'read_more' => 'Read More',
     'tags' => 'Tags',
-    'comment_unlogged_text' => 'Please <a href=":route">Login</a> to comment in the post!'
+    'comment_unlogged_text' => 'Please <a href=":route">Login</a> to comment in the post!',
+    'says' => 'says:'
 ];

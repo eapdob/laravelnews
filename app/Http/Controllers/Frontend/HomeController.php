@@ -21,7 +21,7 @@ class HomeController extends Controller
 
     public function showNews(string $slug)
     {
-        $news = News::with(['author', 'tags'])->where('slug', $slug)
+        $news = News::with(['author', 'tags', 'comments'])->where('slug', $slug)
             ->activeEntries()->withLocalize()
             ->first();
 
@@ -45,7 +45,6 @@ class HomeController extends Controller
                 $news->increment('views');
             }
             session(['viewed_posts' => $postIds]);
-
         } else {
             session(['viewed_posts' => [$news->id]]);
 

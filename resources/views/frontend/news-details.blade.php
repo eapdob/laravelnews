@@ -127,7 +127,8 @@
                     <div class="wrap__profile">
                         <div class="wrap__profile-author">
                             <figure>
-                                <img style="width: 200px;height: 200px;object-fit: cover;" src="{{ asset($news->author->image) }}" alt="" class="img-fluid rounded-circle">
+                                <img style="width: 200px;height: 200px;object-fit: cover;"
+                                     src="{{ asset($news->author->image) }}" alt="" class="img-fluid rounded-circle">
                             </figure>
                             <div class="wrap__profile-author-detail">
                                 <div class="wrap__profile-author-detail-name">author</div>
@@ -168,96 +169,101 @@
                     <!-- end author-->
                     <!-- Comment  -->
                     @auth
-                    <div id="comments" class="comments-area">
-                        <h3 class="comments-title">2 Comments:</h3>
-                        <ol class="comment-list">
-                            <li class="comment">
-                                <aside class="comment-body">
-                                    <div class="comment-meta">
-                                        <div class="comment-author vcard">
-                                            <img src="images/news2.jpg" class="avatar" alt="image">
-                                            <b class="fn">Sinmun</b>
-                                            <span class="says">says:</span>
-                                        </div>
-
-                                        <div class="comment-metadata">
-                                            <a href="#">
-                                                <span>April 24, 2019 at 10:59 am</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="comment-content">
-                                        <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
-                                            when an unknown
-                                            printer took a galley of type and scrambled it to make a type specimen book.
-                                        </p>
-                                    </div>
-                                    <div class="reply">
-                                        <a href="#" class="comment-reply-link" data-toggle="modal"
-                                           data-target="#exampleModal">Reply</a>
-                                        <span>
-                                        <i class="fa fa-trash"></i>
-                                    </span>
-                                    </div>
-                                </aside>
-                                <ol class="children">
+                        <div id="comments" class="comments-area">
+                            <h3 class="comments-title">2 Comments:</h3>
+                            <ol class="comment-list">
+                                @foreach ($news->comments as $comment)
                                     <li class="comment">
                                         <aside class="comment-body">
                                             <div class="comment-meta">
                                                 <div class="comment-author vcard">
-                                                    <img src="images/news3.jpg" class="avatar" alt="image">
-                                                    <b class="fn">Sinmun</b>
-                                                    <span class="says">says:</span>
+                                                    <img src="{{ asset('frontend/assets/images/avatar.png') }}"
+                                                         class="avatar" alt="image">
+                                                    <b class="fn">{{ $comment->user->name }}</b>
+                                                    <span class="says">{{ __('says') }}</span>
                                                 </div>
+
                                                 <div class="comment-metadata">
-                                                    <a href="#">
-                                                        <span>April 24, 2019 at 10:59 am</span>
+                                                    <a href="javascript:void(0);">
+                                                        <span>{{ date('M, d, Y H:i', strtotime($comment->created_at)) }}</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="comment-content">
-                                                <p>Lorem Ipsum has been the industry’s standard dummy text ever since
-                                                    the 1500s, when an
-                                                    unknown printer took a galley of type and scrambled it to make a
-                                                    type specimen book.</p>
+                                                <p>
+                                                    {{ $comment->comment }}
+                                                </p>
                                             </div>
                                             <div class="reply">
                                                 <a href="#" class="comment-reply-link" data-toggle="modal"
                                                    data-target="#exampleModal">Reply</a>
                                                 <span>
-                                                <i class="fa fa-trash"></i>
-                                            </span>
+                                        <i class="fa fa-trash"></i>
+                                    </span>
                                             </div>
                                         </aside>
+                                        <ol class="children">
+                                            <li class="comment">
+                                                <aside class="comment-body">
+                                                    <div class="comment-meta">
+                                                        <div class="comment-author vcard">
+                                                            <img src="images/news3.jpg" class="avatar" alt="image">
+                                                            <b class="fn">Sinmun</b>
+                                                            <span class="says">says:</span>
+                                                        </div>
+                                                        <div class="comment-metadata">
+                                                            <a href="#">
+                                                                <span>April 24, 2019 at 10:59 am</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="comment-content">
+                                                        <p>Lorem Ipsum has been the industry’s standard dummy text ever
+                                                            since
+                                                            the 1500s, when an
+                                                            unknown printer took a galley of type and scrambled it to
+                                                            make a
+                                                            type specimen book.</p>
+                                                    </div>
+                                                    <div class="reply">
+                                                        <a href="#" class="comment-reply-link" data-toggle="modal"
+                                                           data-target="#exampleModal">Reply</a>
+                                                        <span>
+                                                <i class="fa fa-trash"></i>
+                                            </span>
+                                                    </div>
+                                                </aside>
+                                            </li>
+                                        </ol>
                                     </li>
-                                </ol>
-                            </li>
-                        </ol>
-                        <div class="comment-respond">
-                            <h3 class="comment-reply-title">Leave a Reply</h3>
-                            <form action="{{ route('news-comment') }}" method="POST" class="comment-form">
-                                @csrf
-                                <p class="comment-notes">
-                                    <span id="email-notes">Your email address will not be published.</span>
-                                    Required fields are marked
-                                    <span class="required">*</span>
-                                </p>
-                                <p class="comment-form-comment">
-                                    <label for="comment">Comment</label>
-                                    <textarea name="comment" id="comment" cols="45" rows="5" maxlength="65525"
-                                              required="required"></textarea>
-                                </p>
-                                <input type="hidden" name="news_id" value="{{ $news->id }}">
-                                <input type="hidden" name="parent_id" value="">
-                                @error('comment')
+                                @endforeach
+                            </ol>
+                            <div class="comment-respond">
+                                <h3 class="comment-reply-title">Leave a Reply</h3>
+                                <form action="{{ route('news-comment') }}" method="POST" class="comment-form">
+                                    @csrf
+                                    <p class="comment-notes">
+                                        <span id="email-notes">Your email address will not be published.</span>
+                                        Required fields are marked
+                                        <span class="required">*</span>
+                                    </p>
+                                    <p class="comment-form-comment">
+                                        <label for="comment">Comment</label>
+                                        <textarea name="comment" id="comment" cols="45" rows="5" maxlength="65525"
+                                                  required="required"></textarea>
+                                    </p>
+                                    <input type="hidden" name="news_id" value="{{ $news->id }}">
+                                    <input type="hidden" name="parent_id" value="">
+                                    @error('comment')
                                     <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                                <p class="form-submit mb-0">
-                                    <input type="submit" name="submit" id="submit" class="submit" value="Post Comment">
-                                </p>
-                            </form>
+                                    @enderror
+                                    <p class="form-submit mb-0">
+                                        <input type="submit" name="submit" id="submit" class="submit"
+                                               value="Post Comment">
+                                    </p>
+                                </form>
+                            </div>
                         </div>
-                    </div>
                     @else
                         <div class="card my-5">
                             <div class="card-body">
