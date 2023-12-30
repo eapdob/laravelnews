@@ -25,7 +25,7 @@ class HomeController extends Controller
             ->activeEntries()->withLocalize()
             ->first();
 
-        $recentNews = News::with(['category', 'author'])->where('slug','!=', $news->slug)
+        $recentNews = News::with(['category', 'author'])->where('slug', '!=', $news->slug)
             ->activeEntries()->withLocalize()->orderBy('id', 'DESC')->take(4)->get();
 
         $mostCommonTags = $this->mostCommonTags();
@@ -73,6 +73,22 @@ class HomeController extends Controller
         $comment->user_id = Auth::user()->id;
         $comment->parent_id = $request->parent_id;
         $comment->comment = $request->comment;
+        $comment->save();
+
+        return redirect()->back();
+    }
+
+    public function handleReplay(Request $request)
+    {
+        $request->validate([
+            'replay' => ['required', 'string', 'max:1000']
+        ]);
+
+        $comment = new Comment();
+        $comment->news_id = $request->news_id;
+        $comment->user_id = Auth::user()->id;
+        $comment->parent_id = $request->parent_id;
+        $comment->comment = $request->replay;
         $comment->save();
 
         return redirect()->back();
