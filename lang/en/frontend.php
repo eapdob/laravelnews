@@ -24,4 +24,6 @@ return [
     'says' => 'says:',
     'deleted_successfully' => 'Deleted Successfully!',
     'cant_delete_not_your_own_comment' => 'Error You cannot delete a comment that is not your own!',
+    'previous_post' => 'Previous post',
+    'next_post' => 'Next post',
 ];
