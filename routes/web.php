@@ -33,4 +33,5 @@ require __DIR__ . '/auth.php';
 Route::get('language', LanguageController::class)->name('language');
 Route::get('news-details/{slug}', [HomeController::class, 'showNews'])->name('news-details');
 Route::post('news-comment', [HomeController::class, 'handleComment'])->name('news-comment');
-Route::post('news-comment-replay', [HomeController::class, 'handleReplay'])->name('news-comment-replay');
+Route::post('news-comment-reply', [HomeController::class, 'handleReply'])->name('news-comment-reply');
+Route::delete('news-comment-destroy', [HomeController::class, 'commentDestroy'])->name('news-comment-destroy');

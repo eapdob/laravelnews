@@ -70,7 +70,7 @@ return [
     'select' => '--Select--',
     'update' => 'Update',
     'deleted_successfully' => 'Deleted Successfully!',
-    'something_went_wrong' => 'something went wrong!',
+    'something_went_wrong' => 'Something went wrong!',
     'cant_delete_this_one' => 'Can\'t Delete This One!',
     'confirm_password_alt' => 'Confirm Password',
     'are_you_sure' => 'Are you sure?',

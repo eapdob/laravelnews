@@ -196,14 +196,14 @@
                                             </div>
                                             <div class="reply">
                                                 <a href="#" class="comment-reply-link" data-toggle="modal"
-                                                   data-target="#exampleModal-{{ $comment->id }}">Reply</a>
-                                                <span>
-                                        <i class="fa fa-trash"></i>
-                                    </span>
+                                                   data-target="#exampleModal-{{ $comment->id }}">Reply
+                                                </a>
+                                                <span class="delete-msg" data-id="{{ $comment->id }}"><i
+                                                        class="fa fa-trash"></i></span>
                                             </div>
                                         </aside>
-                                        @if ($comment->replay()->count() > 0)
-                                            @foreach ($comment->replay as $replay)
+                                        @if ($comment->reply()->count() > 0)
+                                            @foreach ($comment->reply as $reply)
                                                 <ol class="children">
                                                     <li class="comment">
                                                         <aside class="comment-body">
@@ -212,27 +212,30 @@
                                                                     <img
                                                                         src="{{ asset('frontend/assets/images/avatar.png') }}"
                                                                         class="avatar" alt="image">
-                                                                    <b class="fn">{{ $replay->user->name }}</b>
+                                                                    <b class="fn">{{ $reply->user->name }}</b>
                                                                     <span class="says">{{ __('frontend.says') }}</span>
                                                                 </div>
                                                                 <div class="comment-metadata">
                                                                     <a href="javascript:void(0);">
-                                                                        <span>{{ date('M, d, Y H:i', strtotime($replay->created_at)) }}</span>
+                                                                        <span>{{ date('M, d, Y H:i', strtotime($reply->created_at)) }}</span>
                                                                     </a>
                                                                 </div>
                                                             </div>
                                                             <div class="comment-content">
-                                                                <p>{{ $replay->comment }}</p>
+                                                                <p>{{ $reply->comment }}</p>
                                                             </div>
                                                             <div class="reply">
-                                                                <a href="#" class="comment-reply-link"
-                                                                   data-toggle="modal"
-                                                                   data-target="#exampleModal-{{ $comment->id }}">
-                                                                    Reply
-                                                                </a>
-                                                                <span>
-                                                    <i class="fa fa-trash"></i>
-                                                </span>
+                                                                @if ($loop->last)
+                                                                    <a href="#" class="comment-reply-link"
+                                                                       data-toggle="modal"
+                                                                       data-target="#exampleModal-{{ $comment->id }}">
+                                                                        Reply
+                                                                    </a>
+                                                                @endif
+                                                                <span class="delete-msg" style="margin-left: auto;"
+                                                                      data-id="{{ $reply->id }}">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </span>
                                                             </div>
                                                         </aside>
                                                     </li>
@@ -256,9 +259,9 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="{{ route('news-comment-replay') }}" method="POST">
+                                                        <form action="{{ route('news-comment-reply') }}" method="POST">
                                                             @csrf
-                                                            <textarea name="replay" cols="30" rows="7"
+                                                            <textarea name="reply" cols="30" rows="7"
                                                                       placeholder="Type. . ."></textarea>
                                                             <input type="hidden" name="news_id" value="{{ $news->id }}">
                                                             <input type="hidden" name="parent_id"
@@ -672,3 +675,50 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('.delete-msg').on('click', function (e) {
+                e.preventDefault();
+                let id = $(this).data('id');
+                Swal.fire({
+                    title: 'Are you sure to delete comment?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            method: 'DELETE',
+                            url: "{{ route('news-comment-destroy') }}",
+                            data: {id: id},
+                            success: function (data) {
+                                if (data.status === 'success') {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        data.message,
+                                        'success'
+                                    );
+                                    window.location.reload();
+                                } else if (data.status === 'error') {
+                                    Swal.fire(
+                                        'Error!',
+                                        data.message,
+                                        'error'
+                                    );
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.error(error);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

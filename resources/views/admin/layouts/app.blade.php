@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <title>{{ __('admin.dashboard_title') }}</title>
 
     <!-- General CSS Files -->
@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="{{ asset('admin/modules/summernote/summernote-bs4.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/modules/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/modules/datatables/datatables.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('admin/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
 
     <!-- Template CSS -->
@@ -94,7 +95,7 @@
         }
     })
 
-    /** Handle Dynamic delete **/
+    // Handle Dynamic delete
     $(document).ready(function () {
         $('.delete-item').on('click', function (e) {
             e.preventDefault();

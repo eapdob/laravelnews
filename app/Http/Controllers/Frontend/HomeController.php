@@ -78,7 +78,7 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function handleReplay(Request $request)
+    public function handleReply(Request $request)
     {
         $request->validate([
             'replay' => ['required', 'string', 'max:1000']
@@ -88,9 +88,20 @@ class HomeController extends Controller
         $comment->news_id = $request->news_id;
         $comment->user_id = Auth::user()->id;
         $comment->parent_id = $request->parent_id;
-        $comment->comment = $request->replay;
+        $comment->comment = $request->reply;
         $comment->save();
 
         return redirect()->back();
+    }
+
+    public function commentDestroy(Request $request)
+    {
+        $comment = Comment::findOrFail($request->id);
+        if (Auth::user()->id === $comment->user_id) {
+            $comment->delete();
+            return response(['status' => 'success', 'message' => __('frontend.deleted_successfully')]);
+        }
+
+        return response(['status' => 'error', 'message' => __('frontend.cant_delete_not_your_own_comment')]);
     }
 }

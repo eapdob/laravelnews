@@ -21,5 +21,7 @@ return [
     'read_more' => 'Read More',
     'tags' => 'Tags',
     'comment_unlogged_text' => 'Please <a href=":route">Login</a> to comment in the post!',
-    'says' => 'says:'
+    'says' => 'says:',
+    'deleted_successfully' => 'Deleted Successfully!',
+    'cant_delete_not_your_own_comment' => 'Error You cannot delete a comment that is not your own!',
 ];
