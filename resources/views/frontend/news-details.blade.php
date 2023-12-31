@@ -16,7 +16,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- breaddcrumb -->
                     <!-- Breadcrumb -->
                     <ul class="breadcrumbs bg-light mb-4">
                         <li class="breadcrumbs__item">
@@ -24,13 +23,12 @@
                                 <i class="fa fa-home"></i> {{ __('frontend.home') }}</a>
                         </li>
                         <li class="breadcrumbs__item">
-                            <a href="javascript:;" class="breadcrumbs__url">{{ __('frontend.views') }}</a>
+                            <a href="javascript:void(0);" class="breadcrumbs__url">{{ __('frontend.views') }}</a>
                         </li>
                     </ul>
                     <!-- end breadcrumb -->
                 </div>
                 <div class="col-md-8">
-                    <!-- content article detail -->
                     <!-- Article Detail -->
                     <div class="wrap__article-detail">
                         <div class="wrap__article-detail-title">
@@ -76,35 +74,35 @@
                                 </span>
                                 </div>
                                 <ul class="list-inline">
-                                    <span class="share">share on:</span>
+                                    <span class="share">{{ __('frontend.share_on') }}</span>
                                     <li class="list-inline-item">
                                         <a class="btn btn-social-o facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" target="_blank">
                                             <i class="fa fa-facebook-f"></i>
-                                            <span>facebook</span>
+                                            <span>{{ __('frontend.facebook') }}</span>
                                         </a>
                                     </li>
                                     <li class="list-inline-item">
                                         <a class="btn btn-social-o twitter" href="https://twitter.com/intent/tweet?text={{ $news->title }}&url={{ url()->current() }}" target="_blank">
                                             <i class="fa fa-twitter"></i>
-                                            <span>twitter</span>
+                                            <span>{{ __('frontend.twitter') }}</span>
                                         </a>
                                     </li>
                                     <li class="list-inline-item">
                                         <a class="btn btn-social-o whatsapp" href="https://wa.me/?text={{ $news->title }}%20{{ url()->current() }}" target="_blank">
                                             <i class="fa fa-whatsapp"></i>
-                                            <span>whatsapp</span>
+                                            <span>{{ __('frontend.whatsapp') }}</span>
                                         </a>
                                     </li>
                                     <li class="list-inline-item">
                                         <a class="btn btn-social-o telegram" href="https://t.me/share/url?url={{ url()->current() }}&text={{ $news->title }}" target="_blank">
                                             <i class="fa fa-telegram"></i>
-                                            <span>telegram</span>
+                                            <span>{{ __('frontend.telegram') }}</span>
                                         </a>
                                     </li>
                                     <li class="list-inline-item">
                                         <a class="btn btn-linkedin-o linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{ url()->current() }}&title={{ $news->title }}" target="_blank">
                                             <i class="fa fa-linkedin"></i>
-                                            <span>linkedin</span>
+                                            <span>{{ __('frontend.linkedin') }}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -181,7 +179,7 @@
                     <!-- Comment  -->
                     @auth
                         <div id="comments" class="comments-area">
-                            <h3 class="comments-title">2 Comments:</h3>
+                            <h3 class="comments-title">{{ $news->comments()->count() }} {{ __('frontend.comments') }}</h3>
                             <ol class="comment-list">
                                 @foreach ($news->comments()->whereNull('parent_id')->get() as $comment)
                                     <li class="comment">
@@ -207,7 +205,7 @@
                                             </div>
                                             <div class="reply">
                                                 <a href="#" class="comment-reply-link" data-toggle="modal"
-                                                   data-target="#exampleModal-{{ $comment->id }}">Reply
+                                                   data-target="#exampleModal-{{ $comment->id }}">{{ __('frontend.reply') }}
                                                 </a>
                                                 <span class="delete-msg" data-id="{{ $comment->id }}"><i
                                                         class="fa fa-trash"></i></span>
@@ -240,7 +238,7 @@
                                                                     <a href="#" class="comment-reply-link"
                                                                        data-toggle="modal"
                                                                        data-target="#exampleModal-{{ $comment->id }}">
-                                                                        Reply
+                                                                        {{ __('frontend.reply') }}
                                                                     </a>
                                                                 @endif
                                                                 <span class="delete-msg" style="margin-left: auto;"
@@ -262,8 +260,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Write Your
-                                                            Comment</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">{{ __('frontend.write_your_comment') }}</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -273,12 +270,12 @@
                                                         <form action="{{ route('news-comment-reply') }}" method="POST">
                                                             @csrf
                                                             <textarea name="reply" cols="30" rows="7"
-                                                                      placeholder="Type. . ."></textarea>
+                                                                      placeholder="{{ __('frontend.type') }}"></textarea>
                                                             <input type="hidden" name="news_id" value="{{ $news->id }}">
                                                             <input type="hidden" name="parent_id"
                                                                    value="{{ $comment->id }}">
 
-                                                            <button type="submit">submit</button>
+                                                            <button type="submit">{{ __('frontend.submit') }}</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -288,16 +285,16 @@
                                 @endforeach
                             </ol>
                             <div class="comment-respond">
-                                <h3 class="comment-reply-title">Leave a Reply</h3>
+                                <h3 class="comment-reply-title">{{ __('frontend.leave_a_reply') }}</h3>
                                 <form action="{{ route('news-comment') }}" method="POST" class="comment-form">
                                     @csrf
                                     <p class="comment-notes">
-                                        <span id="email-notes">Your email address will not be published.</span>
-                                        Required fields are marked
+                                        <span id="email-notes">{{ __('frontend.your_email_address_will_not_be_published') }}</span>
+                                        {{ __('frontend.required_fields_are_marked') }}
                                         <span class="required">*</span>
                                     </p>
                                     <p class="comment-form-comment">
-                                        <label for="comment">Comment</label>
+                                        <label for="comment">{{ __('frontend.comment') }}</label>
                                         <textarea name="comment" id="comment" cols="45" rows="5" maxlength="65525"
                                                   required="required"></textarea>
                                     </p>
@@ -308,7 +305,7 @@
                                     @enderror
                                     <p class="form-submit mb-0">
                                         <input type="submit" name="submit" id="submit" class="submit"
-                                               value="Post Comment">
+                                               value="{{ __('frontend.post_comment') }}">
                                     </p>
                                 </form>
                             </div>
@@ -351,7 +348,7 @@
                     @if (count($relatedPosts) > 0)
                         <div class="related-article">
                             <h4>
-                                you may also like
+                                {{ __('frontend.you_may_also_like') }}
                             </h4>
                             <div class="article__entry-carousel-three">
                                 @foreach ($relatedPosts as $post)

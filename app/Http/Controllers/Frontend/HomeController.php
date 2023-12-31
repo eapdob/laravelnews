@@ -95,6 +95,8 @@ class HomeController extends Controller
         $comment->comment = $request->comment;
         $comment->save();
 
+        toast(__('frontend.comment_added_successfully'), 'success');
+
         return redirect()->back();
     }
 
@@ -110,6 +112,8 @@ class HomeController extends Controller
         $comment->parent_id = $request->parent_id;
         $comment->comment = $request->reply;
         $comment->save();
+
+        toast(__('frontend.comment_added_successfully'), 'success');
 
         return redirect()->back();
     }
