@@ -140,11 +140,9 @@
                                      src="{{ asset($news->author->image) }}" alt="" class="img-fluid rounded-circle">
                             </figure>
                             <div class="wrap__profile-author-detail">
-                                <div class="wrap__profile-author-detail-name">author</div>
+                                <div class="wrap__profile-author-detail-name">{{ $news->author->name }}</div>
                                 <h4>{{ $news->author->name }}</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis laboriosam ad
-                                    beatae itaque ea non
-                                    placeat officia ipsum praesentium! Ullam?</p>
+                                <p></p>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
                                         <a href="#" class="btn btn-social btn-social-o facebook ">
@@ -301,7 +299,7 @@
                                     <input type="hidden" name="news_id" value="{{ $news->id }}">
                                     <input type="hidden" name="parent_id" value="">
                                     @error('comment')
-                                    <p class="text-danger">{{ $message }}</p>
+                                        <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                     <p class="form-submit mb-0">
                                         <input type="submit" name="submit" id="submit" class="submit"
@@ -388,8 +386,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="sticky-top">
-                        <aside class="wrapper__list__article ">
-                            <!-- <h4 class="border_section">Sidebar</h4> -->
+                        <aside class="wrapper__list__article">
                             <div class="mb-4">
                                 <div class="widget__form-search-bar  ">
                                     <div class="row no-gutters">
@@ -488,7 +485,7 @@
                         </aside>
                         <!-- social media -->
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">stay conected</h4>
+                            <h4 class="border_section">{{ __('frontend.stay_connected') }}</h4>
                             <!-- widget Social media -->
                             <div class="wrap__social__media">
                                 <a href="#" target="_blank">
@@ -546,23 +543,23 @@
                             </div>
                         </aside>
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">newsletter</h4>
+                            <h4 class="border_section">{{ __('frontend.newsletter') }}</h4>
                             <!-- Form Subscribe -->
                             <div class="widget__form-subscribe bg__card-shadow">
                                 <h6>
-                                    The most important world news and events of the day.
+                                    {{ __('frontend.the_most_important_world_news') }}
                                 </h6>
-                                <p><small>Get magzrenvi daily newsletter on your inbox.</small></p>
+                                <p><small>{{ __('frontend.get_daily_newsletter_on_your_inbox') }}</small></p>
                                 <div class="input-group ">
                                     <input type="text" class="form-control" placeholder="Your email address">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">sign up</button>
+                                        <button class="btn btn-primary" type="button">{{ __('frontend.sign_up') }}</button>
                                     </div>
                                 </div>
                             </div>
                         </aside>
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">Advertise</h4>
+                            <h4 class="border_section">{{ __('frontend.advertise') }}</h4>
                             <a href="#">
                                 <figure>
                                     <img src="images/news6.jpg" alt="" class="img-fluid">
@@ -583,13 +580,13 @@
                 e.preventDefault();
                 let id = $(this).data('id');
                 Swal.fire({
-                    title: 'Are you sure to delete comment?',
-                    text: "You won't be able to revert this!",
+                    title: '{{ __('frontend.are_you_sure_to_delete_comment') }}',
+                    text: '{{ __('frontend.you_wont_be_able_to_revert_this') }}',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: '{{ __('frontend.yes_delete_it') }}'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
@@ -599,14 +596,14 @@
                             success: function (data) {
                                 if (data.status === 'success') {
                                     Swal.fire(
-                                        'Deleted!',
+                                        '{{ __('frontend.deleted') }}',
                                         data.message,
                                         'success'
                                     );
                                     window.location.reload();
                                 } else if (data.status === 'error') {
                                     Swal.fire(
-                                        'Error!',
+                                        '{{ __('frontend.error') }}',
                                         data.message,
                                         'error'
                                     );
