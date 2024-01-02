@@ -27,7 +27,62 @@
                         @endphp
                         <div class="tab-pane fade show {{ $loop->index === 0 ? 'active' : '' }}"
                              id="home-{{ $language->lang }}" role="tabpanel" aria-labelledby="home-tab2">
-                            <div class="card-body"></div>
+                            <div class="card-body">
+                                <form action="{{ route('admin.home-section-setting') }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-group">
+                                        <label for="">{{ __('admin.category_section_one') }}</label>
+                                        <input type="hidden" name="language" value="{{ $language->lang }}">
+                                        <select name="category_section_one" id="" class="form-control select2">
+                                            <option value="">{{ __('admin.select') }}</option>
+                                            @foreach ( $categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category_section_one')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">{{ __('admin.category_section_two') }}</label>
+                                        <select name="category_section_two" id="" class="form-control select2">
+                                            <option value="">{{ __('admin.select') }}</option>
+                                            @foreach ( $categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category_section_two')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">{{ __('admin.category_section_three') }}</label>
+                                        <select name="category_section_three" id="" class="form-control select2">
+                                            <option value="">{{ __('admin.select') }}</option>
+                                            @foreach ( $categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category_section_three')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">{{ __('admin.category_section_four') }}</label>
+                                        <select name="category_section_four" id="" class="form-control select2">
+                                            <option value="">{{ __('admin.select') }}</option>
+                                            @foreach ( $categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category_section_four')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">{{ __('admin.save') }}</button>
+                                </form>
+                            </div>
                         </div>
                     @endforeach
                 </div>
@@ -37,5 +92,14 @@
 @endsection
 
 @push('scripts')
-
+    <script>
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        Toast.fire({
+            icon: 'error',
+            title: "{{ $error }}"
+        });
+        @endforeach
+        @endif
+    </script>
 @endpush

@@ -116,5 +116,10 @@ return [
     'id' => 'ID',
     'update_news' => 'Update News',
     'copied_successfully' => 'Copied Successfully!',
-    'home_section_setting' => 'Home Section Setting'
+    'home_section_setting' => 'Home Section Setting',
+    'category_section_one' => 'Category Section one',
+    'category_section_two' => 'Category Section two',
+    'category_section_three' => 'Category Section three',
+    'category_section_four' => 'Category Section four',
+    'save' => 'Save'
 ];
