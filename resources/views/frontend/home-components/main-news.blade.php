@@ -31,7 +31,7 @@
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item">
                                                             <a href="blog_details.html">
-                                                                {{ __('frontend.by') }} {{ $news->auther->name }}
+                                                                {{ __('frontend.by') }} {{ $news->author->name }}
                                                             </a>
                                                         </li>
                                                         <li class="list-inline-item">
@@ -49,7 +49,6 @@
                                 </div>
                             @endif
                         @endforeach
-
                     </div>
                     <div class="row ">
                         <div class="col-sm-12 col-md-6">
@@ -64,8 +63,6 @@
                                                         <img src="{{ asset($news->image) }}" class="img-fluid" alt="">
                                                     </a>
                                                 </div>
-
-
                                                 <div class="card__post__body ">
                                                     <div class="card__post__content">
 
@@ -73,7 +70,7 @@
                                                             <ul class="list-inline">
                                                                 <li class="list-inline-item">
                                                             <span class="text-primary">
-                                                                {{ __('frontend.by') }} {{ $news->auther->name }}
+                                                                {{ __('frontend.by') }} {{ $news->author->name }}
                                                             </span>
                                                                 </li>
                                                                 <li class="list-inline-item">
@@ -111,8 +108,6 @@
                                                         <img src="{{ asset($news->image) }}" class="img-fluid" alt="">
                                                     </a>
                                                 </div>
-
-
                                                 <div class="card__post__body ">
                                                     <div class="card__post__content">
 
@@ -120,7 +115,7 @@
                                                             <ul class="list-inline">
                                                                 <li class="list-inline-item">
                                                             <span class="text-primary">
-                                                                {{ __('frontend.by') }} {{ $news->auther->name }}
+                                                                {{ __('frontend.by') }} {{ $news->author->name }}
                                                             </span>
                                                                 </li>
                                                                 <li class="list-inline-item">
@@ -128,7 +123,6 @@
                                                                 {{ date('M d, Y', strtotime($news->created_at)) }}
                                                             </span>
                                                                 </li>
-
                                                             </ul>
                                                         </div>
                                                         <div class="card__post__title">
@@ -148,112 +142,38 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="col-md-12 col-lg-4">
                     <aside class="wrapper__list__article">
-                        <h4 class="border_section">popular post</h4>
+                        <h4 class="border_section">{{ __('frontend.popular_post') }}</h4>
                         <div class="wrapper__list-number">
-
                             <!-- List Article -->
-                            <div class="card__post__list">
-                                <div class="list-number">
-                                    <span>
-                                        1
-                                    </span>
+                            @foreach ($popularNews  as $popularNews)
+                                <div class="card__post__list">
+                                    <div class="list-number">
+                                        <span>
+                                            {{ ++$loop->index }}
+                                        </span>
+                                    </div>
+                                    <a href="#" class="category">
+                                        {{ $popularNews->category->name }}
+                                    </a>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <h5>
+                                                <a href="{{ route('news-details', $popularNews->slug) }}">
+                                                    {!! truncate($popularNews->title) !!}
+                                                </a>
+                                            </h5>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <a href="#" class="category">
-                                    covid-19
-                                </a>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <h5>
-                                            <a href="#">
-                                                Gegera Corona, Kekayaan Bos Zoom Nambah Rp 64 T dalam 3 Bulan - CNBC
-                                                Indonesia
-
-                                            </a>
-                                        </h5>
-                                    </li>
-                                </ul>
-                            </div>
-
-
-                            <div class="card__post__list">
-                                <div class="list-number">
-                                    <span>
-                                        2
-                                    </span>
-                                </div>
-                                <a href="#" class="category">
-                                    Startup
-                                </a>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <h5>
-                                            <a href="#">
-                                                Gegera Corona, Kekayaan Bos Zoom Nambah Rp 64 T dalam 3 Bulan - CNBC
-                                                Indonesia
-
-                                            </a>
-                                        </h5>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- List Article -->
-                            <div class="card__post__list">
-                                <div class="list-number">
-                                    <span>
-                                        1
-                                    </span>
-                                </div>
-                                <a href="#" class="category">
-                                    covid-19
-                                </a>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-
-                                        <h5>
-                                            <a href="#">
-                                                Gegera Corona, Kekayaan Bos Zoom Nambah Rp 64 T dalam 3 Bulan - CNBC
-                                                Indonesia
-
-                                            </a>
-                                        </h5>
-                                    </li>
-                                </ul>
-
-                            </div>
-
-
-                            <div class="card__post__list">
-                                <div class="list-number">
-                                    <span>
-                                        2
-                                    </span>
-                                </div>
-                                <a href="#" class="category">
-                                    Startup
-                                </a>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <h5>
-                                            <a href="#">
-                                                Gegera Corona, Kekayaan Bos Zoom Nambah Rp 64 T dalam 3 Bulan - CNBC
-                                                Indonesia
-
-                                            </a>
-                                        </h5>
-                                    </li>
-                                </ul>
-                            </div>
+                            @endforeach
                         </div>
                     </aside>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Post news carousel -->
     <div class="container">
         <div class="row">
@@ -263,7 +183,6 @@
                 </aside>
             </div>
             <div class="col-md-12">
-
                 <div class="article__entry-carousel">
                     <div class="item">
                         <!-- Post Article -->
@@ -285,14 +204,12 @@
                                             descember 09, 2016
                                         </span>
                                     </li>
-
                                 </ul>
                                 <h5>
                                     <a href="#">
                                         Maecenas accumsan tortor ut velit pharetra mollis.
                                     </a>
                                 </h5>
-
                             </div>
                         </div>
                     </div>
@@ -316,14 +233,12 @@
                                             descember 09, 2016
                                         </span>
                                     </li>
-
                                 </ul>
                                 <h5>
                                     <a href="#">
                                         Maecenas accumsan tortor ut velit pharetra mollis.
                                     </a>
                                 </h5>
-
                             </div>
                         </div>
                     </div>
@@ -347,14 +262,12 @@
                                             descember 09, 2016
                                         </span>
                                     </li>
-
                                 </ul>
                                 <h5>
                                     <a href="#">
                                         Maecenas accumsan tortor ut velit pharetra mollis.
                                     </a>
                                 </h5>
-
                             </div>
                         </div>
                     </div>
@@ -378,14 +291,12 @@
                                             descember 09, 2016
                                         </span>
                                     </li>
-
                                 </ul>
                                 <h5>
                                     <a href="#">
                                         Maecenas accumsan tortor ut velit pharetra mollis.
                                     </a>
                                 </h5>
-
                             </div>
                         </div>
                     </div>
@@ -409,14 +320,12 @@
                                             descember 09, 2016
                                         </span>
                                     </li>
-
                                 </ul>
                                 <h5>
                                     <a href="#">
                                         Maecenas accumsan tortor ut velit pharetra mollis.
                                     </a>
                                 </h5>
-
                             </div>
                         </div>
                     </div>
@@ -425,8 +334,6 @@
         </div>
     </div>
     <!-- End Popular news category -->
-
-
     <!-- Popular news category -->
     <div class="mt-4">
         <div class="container">
@@ -456,14 +363,12 @@
                                                         descember 09, 2016
                                                     </span>
                                                 </li>
-
                                             </ul>
                                             <h5>
                                                 <a href="#">
                                                     Maecenas accumsan tortor ut velit pharetra mollis.
                                                 </a>
                                             </h5>
-
                                         </div>
                                     </div>
                                 </div>
@@ -494,7 +399,6 @@
                                                     Maecenas accumsan tortor ut velit pharetra mollis.
                                                 </a>
                                             </h5>
-
                                         </div>
                                     </div>
                                 </div>
@@ -518,14 +422,12 @@
                                                         descember 09, 2016
                                                     </span>
                                                 </li>
-
                                             </ul>
                                             <h5>
                                                 <a href="#">
                                                     Maecenas accumsan tortor ut velit pharetra mollis.
                                                 </a>
                                             </h5>
-
                                         </div>
                                     </div>
                                 </div>
@@ -551,14 +453,12 @@
                                                         descember 09, 2016
                                                     </span>
                                                 </li>
-
                                             </ul>
                                             <h5>
                                                 <a href="#">
                                                     Maecenas accumsan tortor ut velit pharetra mollis.
                                                 </a>
                                             </h5>
-
                                         </div>
                                     </div>
                                 </div>
@@ -582,14 +482,12 @@
                                                         descember 09, 2016
                                                     </span>
                                                 </li>
-
                                             </ul>
                                             <h5>
                                                 <a href="#">
                                                     Maecenas accumsan tortor ut velit pharetra mollis.
                                                 </a>
                                             </h5>
-
                                         </div>
                                     </div>
                                 </div>
@@ -613,30 +511,25 @@
                                                         descember 09, 2016
                                                     </span>
                                                 </li>
-
                                             </ul>
                                             <h5>
                                                 <a href="#">
                                                     Maecenas accumsan tortor ut velit pharetra mollis.
                                                 </a>
                                             </h5>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </aside>
-
                     <div class="small_add_banner">
                         <div class="small_add_banner_img">
                             <img src="images/placeholder_large.jpg" alt="adds">
                         </div>
                     </div>
-
                     <aside class="wrapper__list__article mt-5">
                         <h4 class="border_section">technology</h4>
-
                         <div class="wrapp__list__article-responsive">
                             <!-- Post Article List -->
                             <div class="card__post card__post-list card__post__transition mt-30">
@@ -683,7 +576,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <!-- Post Article List -->
@@ -831,14 +723,12 @@
                         </div>
                     </aside>
                 </div>
-
                 <div class="col-md-4">
                     <div class="sticky-top">
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">
                                 Latest post</h4>
                             <div class="wrapper__list__article-small">
-
                                 <!-- Post Article -->
                                 <div class="article__entry">
                                     <div class="article__image">
@@ -861,7 +751,6 @@
                                                     descember 09, 2016
                                                 </span>
                                             </li>
-
                                         </ul>
                                         <h5>
                                             <a href="#">
@@ -885,7 +774,6 @@
                                                 <img src="images/news1.jpg" class="img-fluid" alt="">
                                             </a>
                                         </div>
-
                                         <div class="card__post__body ">
                                             <div class="card__post__content">
                                                 <div class="card__post__author-info mb-2">
@@ -900,7 +788,6 @@
                                                                 descember 09, 2016
                                                             </span>
                                                         </li>
-
                                                     </ul>
                                                 </div>
                                                 <div class="card__post__title">
@@ -925,7 +812,6 @@
 
                                         <div class="card__post__body ">
                                             <div class="card__post__content">
-
                                                 <div class="card__post__author-info mb-2">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item">
@@ -938,7 +824,6 @@
                                                                 descember 09, 2016
                                                             </span>
                                                         </li>
-
                                                     </ul>
                                                 </div>
                                                 <div class="card__post__title">
@@ -954,7 +839,6 @@
                                 </div>
                             </div>
                         </aside>
-
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">stay conected</h4>
                             <!-- widget Social media -->
@@ -998,15 +882,12 @@
                                         </span>
                                     </div>
                                 </a>
-
                             </div>
                         </aside>
-
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">tags</h4>
                             <div class="blog-tags p-0">
                                 <ul class="list-inline">
-
                                     <li class="list-inline-item">
                                         <a href="#">
                                             #property
@@ -1082,11 +963,9 @@
                                             #framework
                                         </a>
                                     </li>
-
                                 </ul>
                             </div>
                         </aside>
-
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">Advertise</h4>
                             <a href="#">
@@ -1095,7 +974,6 @@
                                 </figure>
                             </a>
                         </aside>
-
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">newsletter</h4>
                             <!-- Form Subscribe -->
@@ -1144,7 +1022,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="clearfix"></div>
             </div>
         </div>

@@ -55,4 +55,5 @@ return [
     'deleted' => 'Deleted!',
     'error' => 'Error!',
     'recent_post' => 'recent post',
+    'popular_post' => 'popular post',
 ];
