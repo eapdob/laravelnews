@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\HomeSectionSetting;
 use App\Models\News;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -26,8 +27,42 @@ class HomeController extends Controller
         $popularNews = News::with(['category'])->where('show_at_popular', 1)
             ->activeEntries()->withLocalize()
             ->orderBy('updated_at', 'DESC')->take(4)->get();
+        $homeSectionSetting = HomeSectionSetting::where('language', getLanguage())->first();
+        $categorySectionOne = News::where('category_id', $homeSectionSetting->category_section_one)
+            ->activeEntries()->withLocalize()
+            ->orderBy('id', 'DESC')
+            ->take(8)
+            ->get();
+        $categorySectionTwo = News::where('category_id', $homeSectionSetting->category_section_two)
+            ->activeEntries()->withLocalize()
+            ->orderBy('id', 'DESC')
+            ->take(8)
+            ->get();
+        $categorySectionThree = News::where('category_id', $homeSectionSetting->category_section_three)
+            ->activeEntries()->withLocalize()
+            ->orderBy('id', 'DESC')
+            ->take(6)
+            ->get();
+        $categorySectionFour = News::where('category_id', $homeSectionSetting->category_section_four)
+            ->activeEntries()->withLocalize()
+            ->orderBy('id', 'DESC')
+            ->take(6)
+            ->get();
 
-        return view('frontend.home.index', compact('breakingNews', 'heroSlider', 'recentNews', 'popularNews'));
+        return view(
+            'frontend.home.index',
+            compact(
+                'breakingNews',
+                'heroSlider',
+                'recentNews',
+                'popularNews',
+                'categorySectionOne',
+                'categorySectionTwo',
+                'categorySectionThree',
+                'categorySectionFour'
+
+            )
+        );
     }
 
     public function showNews(string $slug)
