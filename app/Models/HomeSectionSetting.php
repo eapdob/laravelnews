@@ -9,6 +9,8 @@ class HomeSectionSetting extends Model
 {
     use HasFactory;
 
+    protected $table = 'home_section_settings';
+
     protected $fillable = [
         'category_section_one',
         'category_section_two',
