@@ -54,4 +54,5 @@ return [
     'yes_delete_it' => 'Yes, delete it',
     'deleted' => 'Deleted!',
     'error' => 'Error!',
+    'recent_post' => 'recent post',
 ];

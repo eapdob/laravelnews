@@ -21,10 +21,10 @@ class HomeController extends Controller
             ->withLocalize()
             ->orderBy('id', 'DESC')->take(7)
             ->get();
+        $recentNews = News::with(['category', 'author'])->activeEntries()->withLocalize()
+            ->orderBy('id', 'DESC')->take(6)->get();
 
-//        dd($heroSlider);
-
-        return view('frontend.home.index', compact('breakingNews', 'heroSlider'));
+        return view('frontend.home.index', compact('breakingNews', 'heroSlider', 'recentNews'));
     }
 
     public function showNews(string $slug)
