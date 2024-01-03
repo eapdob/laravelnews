@@ -56,4 +56,5 @@ return [
     'error' => 'Error!',
     'recent_post' => 'recent post',
     'popular_post' => 'popular post',
+    'most_viewed' => 'Most Viewed'
 ];
