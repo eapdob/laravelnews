@@ -27,6 +27,11 @@
                     <li><a class="nav-link" href="{{ route('admin.news.index') }}">{{ __('admin.all_news') }}</a></li>
                 </ul>
             </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.social-count.index') }}"><i class="far fa-square"></i>
+                    <span>{{ __('admin.social_count') }}</span>
+                </a>
+            </li>
             <li><a class="nav-link" href="{{ route('admin.home-section-setting') }}"><i class="far fa-square"></i>
                     <span>{{ __('admin.home_section_setting') }}</span></a></li>
             <li><a class="nav-link" href="{{ route('admin.language.index') }}"><i class="far fa-square"></i>

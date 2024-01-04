@@ -121,5 +121,6 @@ return [
     'category_section_two' => 'Category Section two',
     'category_section_three' => 'Category Section three',
     'category_section_four' => 'Category Section four',
-    'save' => 'Save'
+    'save' => 'Save',
+    'social_count' => 'Social Count'
 ];
