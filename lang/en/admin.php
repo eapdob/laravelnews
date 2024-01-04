@@ -122,5 +122,11 @@ return [
     'category_section_three' => 'Category Section three',
     'category_section_four' => 'Category Section four',
     'save' => 'Save',
-    'social_count' => 'Social Count'
+    'social_count' => 'Social Count',
+    'create_social_link' => 'Create Social Link',
+    'fan_count' => 'Fan Count',
+    'icon' => 'Icon',
+    'fan_type' => 'Fan Type',
+    'button_text' => 'Button Text',
+    'pick_your_color' => 'Pick Your Color',
 ];
