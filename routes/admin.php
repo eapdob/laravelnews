@@ -5,9 +5,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeSectionSettingController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SocialCountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
-use App\Http\Controllers\SocialCountController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
