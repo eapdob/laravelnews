@@ -53,6 +53,8 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
+        $socialCounts = SocialCount::where(['status' => 1, 'language' => getLanguage()])->get();
+
         return view(
             'frontend.home.index',
             compact(
@@ -64,7 +66,8 @@ class HomeController extends Controller
                 'categorySectionTwo',
                 'categorySectionThree',
                 'categorySectionFour',
-                'mostViewedPosts'
+                'mostViewedPosts',
+                'socialCounts'
             )
         );
     }
