@@ -19,7 +19,6 @@
                         </li>
                     </ul>
                 </div>
-
             </div>
         </div>
         <div class="container">
@@ -29,7 +28,8 @@
                         <form action="{{ route('news') }}" method="GET">
                             <div class="row">
                                 <div class="col-lg-5">
-                                    <input type="text" placeholder="{{ __('frontend.type_here') }}" value="{{ request()->search }}" name="search">
+                                    <input type="text" placeholder="{{ __('frontend.type_here') }}"
+                                           value="{{ request()->search }}" name="search">
                                 </div>
                                 <div class="col-lg-4">
                                     <select>
@@ -48,10 +48,8 @@
                             </div>
                         </form>
                     </div>
-
                     <aside class="wrapper__list__article ">
                         <h4 class="border_section">Category title</h4>
-
                         <div class="row">
                             @foreach ($news as $new)
                                 <div class="col-lg-6">
@@ -77,7 +75,6 @@
                                                 {{ date('M d, Y', strtotime($new->created_at)) }}
                                             </span>
                                                 </li>
-
                                             </ul>
                                             <h5>
                                                 <a href="{{ route('news-details', $new->slug) }}">
@@ -87,18 +84,22 @@
                                             <p>
                                                 {!! truncate($new->content, 100) !!}
                                             </p>
-                                            <a href="{{ route('news-details', $new->slug) }}" class="btn btn-outline-primary mb-4 text-capitalize">{{ __('frontend.read_more') }}</a>
+                                            <a href="{{ route('news-details', $new->slug) }}"
+                                               class="btn btn-outline-primary mb-4 text-capitalize">{{ __('frontend.read_more') }}</a>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
                             @if (count($news) === 0)
                                 <div class="text-center w-100">
-                                    <h4 >{{ __('frontend.no_news_found') }}</h4>
+                                    <h4>{{ __('frontend.no_news_found') }}</h4>
                                 </div>
                             @endif
                         </div>
                     </aside>
+                    <div class="text-center" style="display: flex; justify-content: center;">
+                        {{ $news->appends(request()->query())->links() }}
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="sidebar-sticky">
@@ -113,11 +114,8 @@
                                                 <img src="images/news1.jpg" class="img-fluid" alt="">
                                             </a>
                                         </div>
-
-
                                         <div class="card__post__body ">
                                             <div class="card__post__content">
-
                                                 <div class="card__post__author-info mb-2">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item">
@@ -152,11 +150,8 @@
                                                 <img src="images/news2.jpg" class="img-fluid" alt="">
                                             </a>
                                         </div>
-
-
                                         <div class="card__post__body ">
                                             <div class="card__post__content">
-
                                                 <div class="card__post__author-info mb-2">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item">
@@ -194,7 +189,6 @@
 
                                         <div class="card__post__body ">
                                             <div class="card__post__content">
-
                                                 <div class="card__post__author-info mb-2">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item">
@@ -207,7 +201,6 @@
                                                             descember 09, 2016
                                                         </span>
                                                         </li>
-
                                                     </ul>
                                                 </div>
                                                 <div class="card__post__title">
@@ -221,7 +214,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <!-- Post Article -->
                                 <div class="article__entry">
                                     <div class="article__image">
@@ -244,7 +236,6 @@
                                                 descember 09, 2016
                                             </span>
                                             </li>
-
                                         </ul>
                                         <h5>
                                             <a href="#">
@@ -261,12 +252,10 @@
                                 </div>
                             </div>
                         </aside>
-
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">tags</h4>
                             <div class="blog-tags p-0">
                                 <ul class="list-inline">
-
                                     <li class="list-inline-item">
                                         <a href="#">
                                             #property
@@ -342,11 +331,9 @@
                                             #framework
                                         </a>
                                     </li>
-
                                 </ul>
                             </div>
                         </aside>
-
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">newsletter</h4>
                             <!-- Form Subscribe -->
@@ -363,7 +350,6 @@
                                 </div>
                             </div>
                         </aside>
-
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">Advertise</h4>
                             <a href="#">
@@ -374,36 +360,7 @@
                         </aside>
                     </div>
                 </div>
-
                 <div class="clearfix"></div>
-            </div>
-            <!-- Pagination -->
-            <div class="pagination-area">
-                <div class="pagination wow fadeIn animated" data-wow-duration="2s" data-wow-delay="0.5s"
-                     style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeIn;">
-                    <a href="#">
-                        «
-                    </a>
-                    <a href="#">
-                        1
-                    </a>
-                    <a class="active" href="#">
-                        2
-                    </a>
-                    <a href="#">
-                        3
-                    </a>
-                    <a href="#">
-                        4
-                    </a>
-                    <a href="#">
-                        5
-                    </a>
-
-                    <a href="#">
-                        »
-                    </a>
-                </div>
             </div>
         </div>
         <div class="large_add_banner mb-4">
