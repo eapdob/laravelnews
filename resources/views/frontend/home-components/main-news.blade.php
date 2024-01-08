@@ -10,7 +10,6 @@
                         @foreach ($recentNews as $news)
                             @if ($loop->index <= 1)
                                 <div class="col-sm-12 col-md-6 mb-4">
-                                    <!-- Post Article -->
                                     <div class="card__post ">
                                         <div class="card__post__body card__post__transition">
                                             <a href="{{ route('news-details', $news->slug) }}">
@@ -30,13 +29,12 @@
                                                 <div class="card__post__author-info">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item">
-                                                            <a href="blog_details.html">
+                                                            <a href="{{ route('news-details', $news->slug) }}">
                                                                 {{ __('frontend.by') }} {{ $news->author->name }}
                                                             </a>
                                                         </li>
                                                         <li class="list-inline-item">
                                                     <span>
-
                                                         {{ date('M d, Y', strtotime($news->create_at)) }}
                                                     </span>
                                                         </li>
@@ -44,7 +42,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             @endif
@@ -56,7 +53,6 @@
                                 @foreach ($recentNews as $news)
                                     @if ($loop->index > 1 && $loop->index <= 3)
                                         <div class="mb-3">
-                                            <!-- Post Article -->
                                             <div class="card__post card__post-list">
                                                 <div class="image-sm">
                                                     <a href="{{ route('news-details', $news->slug) }}">
@@ -65,7 +61,6 @@
                                                 </div>
                                                 <div class="card__post__body ">
                                                     <div class="card__post__content">
-
                                                         <div class="card__post__author-info mb-2">
                                                             <ul class="list-inline">
                                                                 <li class="list-inline-item">
@@ -78,7 +73,6 @@
                                                                 {{ date('M d, Y', strtotime($news->created_at)) }}
                                                             </span>
                                                                 </li>
-
                                                             </ul>
                                                         </div>
                                                         <div class="card__post__title">
@@ -101,7 +95,6 @@
                                 @foreach ($recentNews as $news)
                                     @if ($loop->index > 3 && $loop->index <= 5)
                                         <div class="mb-3">
-                                            <!-- Post Article -->
                                             <div class="card__post card__post-list">
                                                 <div class="image-sm">
                                                     <a href="{{ route('news-details', $news->slug) }}">
@@ -110,7 +103,6 @@
                                                 </div>
                                                 <div class="card__post__body ">
                                                     <div class="card__post__content">
-
                                                         <div class="card__post__author-info mb-2">
                                                             <ul class="list-inline">
                                                                 <li class="list-inline-item">
@@ -146,7 +138,6 @@
                     <aside class="wrapper__list__article">
                         <h4 class="border_section">{{ __('frontend.popular_post') }}</h4>
                         <div class="wrapper__list-number">
-                            <!-- List Article -->
                             @foreach ($popularNews as $popularNew)
                                 <div class="card__post__list">
                                     <div class="list-number">
@@ -186,7 +177,6 @@
                 <div class="article__entry-carousel">
                     @foreach ($categorySectionOne as $sectionOneNews)
                         <div class="item">
-                            <!-- Post Article -->
                             <div class="article__entry">
                                 <div class="article__image">
                                     <a href="{{ route('news-details', $sectionOneNews->slug) }}">
@@ -205,14 +195,12 @@
                                             {{ date('M d, Y', strtotime($sectionOneNews->created_at)) }}
                                         </span>
                                         </li>
-
                                     </ul>
                                     <h5>
                                         <a href="{{ route('news-details', $sectionOneNews->slug) }}">
                                             {!! truncate($sectionOneNews->title, 40) !!}
                                         </a>
                                     </h5>
-
                                 </div>
                             </div>
                         </div>
@@ -234,7 +222,6 @@
                 <div class="article__entry-carousel">
                     @foreach ($categorySectionTwo as $sectionTwoNews)
                         <div class="item">
-                            <!-- Post Article -->
                             <div class="article__entry">
                                 <div class="article__image">
                                     <a href="{{ route('news-details', $sectionTwoNews->slug) }}">
@@ -253,7 +240,6 @@
                                             {{ date('M d, Y', strtotime($sectionTwoNews->created_at)) }}
                                         </span>
                                         </li>
-
                                     </ul>
                                     <h5>
                                         <a href="{{ route('news-details', $sectionTwoNews->slug) }}">
@@ -281,47 +267,6 @@
                                 @foreach ($categorySectionThree as $sectionThreeNews)
                                     @if($loop->index <= 2)
                                         <div class="mb-4">
-                                            <!-- Post Article -->
-                                            <div class="article__entry">
-                                                <div class="article__image">
-                                                    <a href="{{ route('news-details', $sectionThreeNews->slug) }}">
-                                                        <img src="{{ asset($sectionThreeNews->image) }}" alt=""
-                                                             class="img-fluid">
-                                                    </a>
-                                                </div>
-                                                <div class="article__content">
-                                                    <ul class="list-inline">
-                                                        <li class="list-inline-item">
-                                                    <span class="text-primary">
-                                                        {{ __('by') }} {{ $sectionThreeNews->author->name }}
-                                                    </span>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                    <span>
-
-                                                        {{ date('M d, Y', strtotime($sectionThreeNews->created_at)) }}
-                                                    </span>
-                                                        </li>
-
-                                                    </ul>
-                                                    <h5>
-                                                        <a href="{{ route('news-details', $sectionThreeNews->slug) }}">
-                                                            {!! truncate($sectionThreeNews->title) !!}
-                                                        </a>
-                                                    </h5>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endforeach
-
-                            </div>
-                            <div class="col-md-6">
-                                @foreach ($categorySectionThree as $sectionThreeNews)
-                                    @if($loop->index > 2 && $loop->index <= 5)
-                                        <div class="mb-4">
-                                            <!-- Post Article -->
                                             <div class="article__entry">
                                                 <div class="article__image">
                                                     <a href="{{ route('news-details', $sectionThreeNews->slug) }}">
@@ -342,7 +287,42 @@
                                                         {{ date('M d, Y', strtotime($sectionThreeNews->created_at)) }}
                                                     </span>
                                                         </li>
+                                                    </ul>
+                                                    <h5>
+                                                        <a href="{{ route('news-details', $sectionThreeNews->slug) }}">
+                                                            {!! truncate($sectionThreeNews->title) !!}
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <div class="col-md-6">
+                                @foreach ($categorySectionThree as $sectionThreeNews)
+                                    @if($loop->index > 2 && $loop->index <= 5)
+                                        <div class="mb-4">
+                                            <div class="article__entry">
+                                                <div class="article__image">
+                                                    <a href="{{ route('news-details', $sectionThreeNews->slug) }}">
+                                                        <img src="{{ asset($sectionThreeNews->image) }}" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                                <div class="article__content">
+                                                    <ul class="list-inline">
+                                                        <li class="list-inline-item">
+                                                    <span class="text-primary">
+                                                        {{ __('frontend.by') }} {{ $sectionThreeNews->author->name }}
+                                                    </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                    <span>
 
+                                                        {{ date('M d, Y', strtotime($sectionThreeNews->created_at)) }}
+                                                    </span>
+                                                        </li>
                                                     </ul>
                                                     <h5>
                                                         <a href="{{ route('news-details', $sectionThreeNews->slug) }}">
@@ -366,7 +346,6 @@
                         <h4 class="border_section">{{ $categorySectionFour->first()->category->name }}</h4>
                         <div class="wrapp__list__article-responsive">
                             @foreach ($categorySectionFour as $sectionFourNews)
-                                <!-- Post Article List -->
                                 <div class="card__post card__post-list card__post__transition mt-30">
                                     <div class="row ">
                                         <div class="col-md-5">
@@ -422,7 +401,6 @@
                             <h4 class="border_section">{{ __('frontend.most_viewed') }}</h4>
                             <div class="wrapper__list__article-small">
                                 @foreach ($mostViewedPosts as $mostViewedPost)
-                                    <!-- Post Article -->
                                     @if ($loop->index === 0)
                                         <div class="article__entry">
                                             <div class="article__image">
@@ -446,7 +424,6 @@
                                                             {{ date('M d, Y', strtotime($mostViewedPost->created_at)) }}
                                                         </span>
                                                     </li>
-
                                                 </ul>
                                                 <h5>
                                                     <a href="{{ route('news-details', $mostViewedPost->slug) }}">
@@ -465,7 +442,6 @@
                                 @foreach ($mostViewedPosts as $mostViewedPost)
                                     @if ($loop->index > 0)
                                         <div class="mb-3">
-                                            <!-- Post Article -->
                                             <div class="card__post card__post-list">
                                                 <div class="image-sm">
                                                     <a href="{{ route('news-details', $mostViewedPost->slug) }}">
@@ -502,6 +478,134 @@
                                         </div>
                                     @endif
                                 @endforeach
+                            </div>
+                        </aside>
+                        <aside class="wrapper__list__article">
+                            <h4 class="border_section">{{ __('frontend.stay_connected') }}</h4>
+                            <div class="wrap__social__media">
+                                @foreach ($socialCounts as $socialCount)
+                                    <a href="{{ $socialCount->url }}" target="_blank">
+                                        <div class="social__media__widget mt-2"
+                                             style="background-color:{{ $socialCount->color }}">
+                                            <span class="social__media__widget-icon">
+                                                <i class="{{ $socialCount->icon }}"></i>
+                                            </span>
+                                            <span class="social__media__widget-counter">
+                                                {{ $socialCount->fan_count }} {{ $socialCount->fan_type }}
+                                            </span>
+                                            <span class="social__media__widget-name">
+                                                {{ $socialCount->button_text }}
+                                            </span>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
+                        </aside>
+                        <aside class="wrapper__list__article">
+                            <h4 class="border_section">tags</h4>
+                            <div class="blog-tags p-0">
+                                <ul class="list-inline">
+
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #property
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #sea
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #programming
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #sea
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #property
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #life style
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #technology
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #framework
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #sport
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #game
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #wfh
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #sport
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #game
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #wfh
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            #framework
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </aside>
+                        <aside class="wrapper__list__article">
+                            <h4 class="border_section">Advertise</h4>
+                            <a href="#">
+                                <figure>
+                                    <img src="images/newsimage3.png" alt="" class="img-fluid">
+                                </figure>
+                            </a>
+                        </aside>
+                        <aside class="wrapper__list__article">
+                            <h4 class="border_section">newsletter</h4>
+                            <div class="widget__form-subscribe bg__card-shadow">
+                                <h6>
+                                    The most important world news and events of the day.
+                                </h6>
+                                <p><small>Get magzrenvi daily newsletter on your inbox.</small></p>
+                                <div class="input-group ">
+                                    <input type="text" class="form-control" placeholder="Your email address">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">sign up</button>
+                                    </div>
+                                </div>
                             </div>
                         </aside>
                     </div>
