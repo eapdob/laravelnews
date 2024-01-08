@@ -124,7 +124,11 @@ class HomeController extends Controller
             })->activeEntries()->withLocalize()->paginate(20);
         }
 
-        return view('frontend.news', compact('news'));
+        $recentNews = News::with(['category', 'author'])
+            ->activeEntries()->withLocalize()->orderBy('id', 'DESC')->take(4)->get();
+        $mostCommonTags = $this->mostCommonTags();
+
+        return view('frontend.news', compact('news', 'recentNews', 'mostCommonTags'));
     }
 
     public function countView($news)
