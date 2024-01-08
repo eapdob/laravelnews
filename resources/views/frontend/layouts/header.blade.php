@@ -9,7 +9,6 @@
             <div class="row">
                 <div class="col-sm-6 col-md-8">
                     <div class="topbar-left topbar-right d-flex">
-
                         <ul class="topbar-sosmed p-0">
                             <li>
                                 <a href="#"><i class="fa fa-facebook"></i></a>
@@ -31,11 +30,11 @@
                         <div class="topbar_language">
                             <select id="site-language">
                                 @foreach ($languages as $language)
-                                    <option value="{{ $language->lang }}" {{ getLanguage() === $language->lang ? 'selected' : '' }}>{{ $language->name }}</option>
+                                    <option
+                                        value="{{ $language->lang }}" {{ getLanguage() === $language->lang ? 'selected' : '' }}>{{ $language->name }}</option>
                                 @endforeach
                             </select>
                         </div>
-
                         <ul class="topbar-link">
                             <li><a href="login.html">Login</a></li>
                             <li><a href="register.html">Register</a></li>
@@ -46,8 +45,6 @@
         </div>
     </div>
     <!-- End Navbar Top  -->
-
-
     <!-- Navbar  -->
     <!-- Navbar menu  -->
     <div class="navigation-wrap navigation-shadow bg-white">
@@ -85,36 +82,30 @@
                         </li>
                         <li class="nav-item"><a class="nav-link" href="contact.html"> contact </a></li>
                     </ul>
-
-
                     <!-- Search bar.// -->
                     <ul class="navbar-nav ">
-                        <li class="nav-item search hidden-xs hidden-sm "> <a class="nav-link" href="#">
+                        <li class="nav-item search hidden-xs hidden-sm "><a class="nav-link" href="#">
                                 <i class="fa fa-search"></i>
                             </a>
                         </li>
                     </ul>
-
                     <!-- Search content bar.// -->
                     <div class="top-search navigation-shadow">
                         <div class="container">
                             <div class="input-group ">
-                                <form action="#">
-
+                                <form action="{{ route('news') }}" method="GET">
                                     <div class="row no-gutters mt-3">
                                         <div class="col">
                                             <input class="form-control border-secondary border-right-0 rounded-0"
-                                                   type="search" value="" placeholder="Search "
+                                                   type="search" value="" placeholder="Search " name="search"
                                                    id="example-search-input4">
                                         </div>
                                         <div class="col-auto">
-                                            <a class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right"
-                                               href="/search-result.html">
-                                                <i class="fa fa-search"></i>
-                                            </a>
+                                            <button type="submit"
+                                                    class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right">
+                                                <i class="fa fa-search"></i></button>
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -125,8 +116,6 @@
         </nav>
     </div>
     <!-- End Navbar menu  -->
-
-
     <!-- Navbar sidebar menu  -->
     <div id="modal_aside_right" class="modal fixed-left fade" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-aside" role="document">
@@ -167,13 +156,11 @@
                                 <ul class="dropdown-menu dropdown-menu-left">
                                     <li><a class="dropdown-item" href="blog_details.html">Blog details</a></li>
                                     <li><a class="dropdown-item" href="404.html"> 404 Error</a></li>
-
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link  text-dark" href="contact.html"> Contact </a>
                             </li>
                         </ul>
-
                     </nav>
                 </div>
                 <div class="modal-footer">
