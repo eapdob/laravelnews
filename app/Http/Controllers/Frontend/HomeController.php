@@ -56,6 +56,8 @@ class HomeController extends Controller
 
         $socialCounts = SocialCount::where(['status' => 1, 'language' => getLanguage()])->get();
 
+        $mostCommonTags = $this->mostCommonTags();
+
         return view(
             'frontend.home.index',
             compact(
@@ -68,7 +70,8 @@ class HomeController extends Controller
                 'categorySectionThree',
                 'categorySectionFour',
                 'mostViewedPosts',
-                'socialCounts'
+                'socialCounts',
+                'mostCommonTags'
             )
         );
     }
