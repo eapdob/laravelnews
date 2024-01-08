@@ -56,5 +56,7 @@ return [
     'error' => 'Error!',
     'recent_post' => 'recent post',
     'popular_post' => 'popular post',
-    'most_viewed' => 'Most Viewed'
+    'most_viewed' => 'Most Viewed',
+    'type_here' => 'Type here',
+    'no_news_found' => 'No News Found :('
 ];
