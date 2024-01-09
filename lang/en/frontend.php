@@ -59,5 +59,6 @@ return [
     'most_viewed' => 'Most Viewed',
     'type_here' => 'Type here',
     'no_news_found' => 'No News Found :(',
-    'all' => 'All'
+    'all' => 'All',
+    'category' => 'Category'
 ];

@@ -118,18 +118,18 @@ class HomeController extends Controller
 
         $news = News::query();
 
+        $news->when($request->has('category') && !empty($request->category), function($query) use ($request) {
+            $query->whereHas('category', function($query) use ($request) {
+                $query->where('slug', $request->category);
+            });
+        });
+
         $news->when($request->has('search'), function ($query) use ($request) {
             $query->where(function ($query) use ($request) {
                 $query->where('title', 'like', '%' . $request->search . '%')
                     ->orWhere('content', 'like', '%' . $request->search . '%');
             })->orWhereHas('category', function ($query) use ($request) {
                 $query->where('name', 'like', '%' . $request->search . '%');
-            });
-        });
-
-        $news->when($request->has('category'), function ($query) use ($request) {
-            $query->whereHas('category', function ($query) use ($request) {
-                $query->where('slug', $request->category);
             });
         });
 
