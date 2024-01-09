@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <select name="category">
-                                        <option value="">{{ __('All') }}</option>
+                                        <option value="">{{ __('frontend.all') }}</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->slug }}">{{ $category->name }}</option>
                                         @endforeach
