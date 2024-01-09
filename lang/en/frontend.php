@@ -47,6 +47,9 @@ return [
     'newsletter' => 'newsletter',
     'the_most_important_world_news' => 'The most important world news and events of the day.',
     'get_daily_newsletter_on_your_inbox' => 'Get daily newsletter on your inbox.',
+    'newsletter_text' => 'The most important world news and events of the day',
+    'newsletter_text_alt' => 'Get magzrenvi daily newsletter on your inbox.',
+    'your_email_address' => 'Your email address',
     'sign_up' => 'sign up',
     'advertise' => 'Advertise',
     'are_you_sure_to_delete_comment' => 'Are you sure to delete comment?',
@@ -60,5 +63,6 @@ return [
     'type_here' => 'Type here',
     'no_news_found' => 'No News Found :(',
     'all' => 'All',
-    'category' => 'Category'
+    'category' => 'Category',
+    'search' => 'Search'
 ];

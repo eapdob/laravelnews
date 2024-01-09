@@ -103,13 +103,15 @@ class HomeController extends Controller
             ->take(5)
             ->get();
 
+        $socialCounts = SocialCount::where(['status' => 1, 'language' => getLanguage()])->get();
+
         $mostCommonTags = $this->mostCommonTags();
 
         $this->countView($news);
 
         return view(
             'frontend.news-details',
-            compact('news', 'recentNews', 'mostCommonTags', 'nextPost', 'previousPost', 'relatedPosts')
+            compact('news', 'recentNews', 'mostCommonTags', 'nextPost', 'previousPost', 'relatedPosts', 'socialCounts')
         );
     }
 
