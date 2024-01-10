@@ -12,32 +12,74 @@
             <div class="card-body">
                 <form action="{{ route('admin.category.store') }}" method="POST">
                     @csrf
+                    <h5 class="text-primary">{{ __('admin.home_page_ads') }}</h5>
                     <div class="form-group">
-                        <label for="">{{ __('admin.name') }}</label>
-                        <input name="name" type="text" class="form-control" id="name">
+                        <label for="">{{ __('admin.top_bar_ad') }}</label>
+                        <input name="home_top_bar_ad" type="file" class="form-control">
+                        @error('home_top_bar_ad')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                        <label class="custom-switch mt-2">
+                            <input
+                                name="home_top_bar_ad_status"
+                                value="1" type="checkbox" class="custom-switch-input toggle-status">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="">{{ __('admin.middle_ad') }}</label>
+                        <input name="home_middle_ad" type="file" class="form-control">
+                        @error('home_middle_ad')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                        <label class="custom-switch mt-2">
+                            <input
+                                name="home_middle_ad_status"
+                                value="1" type="checkbox" class="custom-switch-input toggle-status">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
+                    </div>
+                    <h5 class="text-primary">{{ __('admin.news_view_page_ads') }}</h5>
+                    <div class="form-group">
+                        <label for="">{{ __('admin.bottom_ad') }}</label>
+                        <input name="view_page_ad" type="file" class="form-control">
                         @error('name')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
+                        <label class="custom-switch mt-2">
+                            <input
+                                name="view_page_ad_status"
+                                value="1" type="checkbox" class="custom-switch-input toggle-status">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
                     </div>
+                    <h5 class="text-primary">{{ __('admin.news_page_ads') }}</h5>
                     <div class="form-group">
-                        <label for="">{{ __('admin.show_at_nav') }} </label>
-                        <select name="show_at_nav" id="" class="form-control">
-                            <option value="0">{{ __('admin.no') }}</option>
-                            <option value="1">{{ __('admin.yes') }}</option>
-                        </select>
-                        @error('show_at_nav')
+                        <label for="">{{ __('admin.bottom_ad') }}</label>
+                        <input name="news_page_ad" type="file" class="form-control">
+                        @error('news_page_ad')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
+                        <label class="custom-switch mt-2">
+                            <input
+                                name="news_page_ad_status"
+                                value="1" type="checkbox" class="custom-switch-input toggle-status">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
                     </div>
+                    <h5 class="text-primary">{{ __('admin.sidebar_ad') }}</h5>
                     <div class="form-group">
-                        <label for="">{{ __('admin.status') }}</label>
-                        <select name="status" id="" class="form-control">
-                            <option value="1">{{ __('admin.active') }}</option>
-                            <option value="0">{{ __('admin.inactive') }}</option>
-                        </select>
-                        @error('status')
+                        <label for="">{{ __('admin.sidebar_ad') }}</label>
+                        <input name="side_bar_ad" type="file" class="form-control">
+                        @error('side_bar_ad')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
+                        <label class="custom-switch mt-2">
+                            <input
+                                name="side_bar_ad_status"
+                                value="1" type="checkbox" class="custom-switch-input toggle-status">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
                     </div>
                     <button type="submit" class="btn btn-primary">{{ __('admin.create') }}</button>
                 </form>

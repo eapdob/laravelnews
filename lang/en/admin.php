@@ -133,5 +133,12 @@ return [
     'link' => 'Url',
     'ads' => 'Ads',
     'advertisement' => 'Advertisement',
-    'update_ads' => 'Update Ads'
+    'update_ads' => 'Update Ads',
+    'home_page_ads' => 'Home Page Ads',
+    'top_bar_ad' => 'Top bar ad',
+    'middle_ad' => 'Middle Ad',
+    'bottom_ad' => 'Bottom Ad',
+    'news_view_page_ads' => 'News View Page Ads',
+    'news_page_ads' => 'News Page Ads',
+    'sidebar_ad' => 'Sidebar Ad',
 ];
