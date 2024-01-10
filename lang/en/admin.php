@@ -130,5 +130,8 @@ return [
     'fan_type' => 'Fan Type',
     'button_text' => 'Button Text',
     'pick_your_color' => 'Pick Your Color',
-    'link' => 'Url'
+    'link' => 'Url',
+    'ads' => 'Ads',
+    'advertisement' => 'Advertisement',
+    'update_ads' => 'Update Ads'
 ];

@@ -15,27 +15,54 @@
         <ul class="sidebar-menu">
             <li class="menu-header">{{ __('admin.dashboard') }}</li>
             <li class="active">
-                <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>{{ __('admin.dashboard') }}</span></a>
+                <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                    <i class="fas fa-fire"></i><span>{{ __('admin.dashboard') }}</span>
+                </a>
             </li>
             <li class="menu-header">Starter</li>
-            <li><a class="nav-link" href="{{ route('admin.category.index') }}"><i class="far fa-square"></i>
-                    <span>{{ __('admin.categories') }}</span></a></li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.category.index') }}">
+                    <i class="far fa-square"></i>
+                    <span>{{ __('admin.categories') }}</span>
+                </a>
+            </li>
             <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i>
-                    <span>{{ __('admin.news') }}</span></a>
+                <a href="#" class="nav-link has-dropdown">
+                    <i class="far fa-file-alt"></i>
+                    <span>{{ __('admin.news') }}</span>
+                </a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('admin.news.index') }}">{{ __('admin.all_news') }}</a></li>
+                    <li>
+                        <a class="nav-link" href="{{ route('admin.news.index') }}">
+                            {{ __('admin.all_news') }}
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li>
-                <a class="nav-link" href="{{ route('admin.social-count.index') }}"><i class="far fa-square"></i>
+                <a class="nav-link" href="{{ route('admin.social-count.index') }}">
+                    <i class="far fa-square"></i>
                     <span>{{ __('admin.social_count') }}</span>
                 </a>
             </li>
-            <li><a class="nav-link" href="{{ route('admin.home-section-setting') }}"><i class="far fa-square"></i>
-                    <span>{{ __('admin.home_section_setting') }}</span></a></li>
-            <li><a class="nav-link" href="{{ route('admin.language.index') }}"><i class="far fa-square"></i>
-                    <span>{{ __('admin.languages') }}</span></a></li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.ad.index') }}">
+                    <i class="far fa-square"></i>
+                    <span>{{ __('admin.advertisement') }}</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.home-section-setting') }}">
+                    <i class="far fa-square"></i>
+                    <span>{{ __('admin.home_section_setting') }}</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.language.index') }}">
+                    <i class="far fa-square"></i>
+                    <span>{{ __('admin.languages') }}</span>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>

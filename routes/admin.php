@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdController;
 use App\Http\Controllers\Admin\AdminAuthenticationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeSectionSettingController;
@@ -41,4 +42,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
     Route::get('home-section-setting', [HomeSectionSettingController::class, 'index'])->name('home-section-setting');
     Route::put('home-section-setting', [HomeSectionSettingController::class, 'update'])->name('home-section-setting');
     Route::resource('social-count', SocialCountController::class);
+    Route::resource('ad', AdController::class);
 });
