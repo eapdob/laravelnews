@@ -336,11 +336,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="small_add_banner mb-5 pb-4">
-                        <div class="small_add_banner_img">
-                            <img src="images/placeholder_large.jpg" alt="adds">
+                    @if ($ad->view_page_ad_status == 1)
+                        <div class="small_add_banner mb-5 pb-4">
+                            <div class="small_add_banner_img">
+                                <img src="{{ asset($ad->view_page_ad) }}" alt="adds">
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="clearfix"></div>
                     @if (count($relatedPosts) > 0)
                         <div class="related-article">
@@ -405,7 +407,6 @@
                                 @foreach ($recentNews as $news)
                                     @if ($loop->index <= 2)
                                         <div class="mb-3">
-                                            <!-- Post Article -->
                                             <div class="card__post card__post-list">
                                                 <div class="image-sm">
                                                     <a href="{{ route('news-details', $news->slug) }}">
@@ -529,14 +530,16 @@
                                 </div>
                             </div>
                         </aside>
-                        <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.advertise') }}</h4>
-                            <a href="#">
-                                <figure>
-                                    <img src="images/news6.jpg" alt="" class="img-fluid">
-                                </figure>
-                            </a>
-                        </aside>
+                        @if ($ad->side_bar_ad_status == 1)
+                            <aside class="wrapper__list__article">
+                                <h4 class="border_section">{{ __('frontend.advertise') }}</h4>
+                                <a href="#">
+                                    <figure>
+                                        <img src="{{ asset($ad->side_bar_ad) }}" alt="" class="img-fluid">
+                                    </figure>
+                                </a>
+                            </aside>
+                        @endif
                     </div>
                 </div>
             </div>
