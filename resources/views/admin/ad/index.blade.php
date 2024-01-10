@@ -10,8 +10,9 @@
                 <h4>{{ __('admin.update_ads') }}</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.category.store') }}" method="POST">
+                <form action="{{ route('admin.ad.update', 1) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <h5 class="text-primary">{{ __('admin.home_page_ads') }}</h5>
                     <div class="form-group">
                         <label for="">{{ __('admin.top_bar_ad') }}</label>
@@ -81,7 +82,7 @@
                             <span class="custom-switch-indicator"></span>
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-primary">{{ __('admin.create') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('admin.update') }}</button>
                 </form>
             </div>
         </div>
