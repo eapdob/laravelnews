@@ -141,4 +141,8 @@ return [
     'news_view_page_ads' => 'News View Page Ads',
     'news_page_ads' => 'News Page Ads',
     'sidebar_ad' => 'Sidebar Ad',
+    'top_bar_ad_url' => 'Top Bar Ad Url',
+    'middle_ad_url' => 'Middle Ad Url',
+    'bottom_ad_url' => 'Bottom Ad Url',
+    'sidebar_ad_url' => 'Sidebar Ad Url',
 ];
