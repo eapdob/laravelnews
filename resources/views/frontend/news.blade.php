@@ -9,7 +9,8 @@
                     <ul class="breadcrumbs bg-light mb-4">
                         <li class="breadcrumbs__item">
                             <a href="{{ url('/') }}" class="breadcrumbs__url">
-                                <i class="fa fa-home"></i> {{ __('frontend.home') }}</a>
+                                <i class="fa fa-home"></i> {{ __('frontend.home') }}
+                            </a>
                         </li>
                         <li class="breadcrumbs__item">
                             <a href="javascript:void(0);" class="breadcrumbs__url"> {{ __('frontend.news') }}</a>
@@ -35,7 +36,9 @@
                                     <select name="category">
                                         <option value="">{{ __('frontend.all') }}</option>
                                         @foreach ($categories as $category)
-                                            <option {{ $category->slug === request()->category ? 'selected' : '' }} value="{{ $category->slug }}">{{ $category->name }}</option>
+                                            <option
+                                                {{ $category->slug === request()->category ? 'selected' : '' }} value="{{ $category->slug }}">{{ $category->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -52,7 +55,6 @@
                         <div class="row">
                             @foreach ($news as $new)
                                 <div class="col-lg-6">
-                                    <!-- Post Article -->
                                     <div class="article__entry">
                                         <div class="article__image">
                                             <a href="{{ route('news-details', $new->slug) }}">
@@ -108,7 +110,6 @@
                                 @foreach ($recentNews as $new)
                                     @if ($loop->index <= 2)
                                         <div class="mb-3">
-                                            <!-- Post Article -->
                                             <div class="card__post card__post-list">
                                                 <div class="image-sm">
                                                     <a href="{{ route('news-details', $new->slug) }}">
@@ -120,16 +121,15 @@
                                                         <div class="card__post__author-info mb-2">
                                                             <ul class="list-inline">
                                                                 <li class="list-inline-item">
-                                                        <span class="text-primary">
-                                                            {{ __('frontend.by') }} {{ $new->author->name }}
-                                                        </span>
+                                                                    <span class="text-primary">
+                                                                        {{ __('frontend.by') }} {{ $new->author->name }}
+                                                                    </span>
                                                                 </li>
                                                                 <li class="list-inline-item">
-                                                        <span class="text-dark text-capitalize">
-                                                            {{ date('M d, Y', strtotime($new->created_at)) }}
-                                                        </span>
+                                                                    <span class="text-dark text-capitalize">
+                                                                        {{ date('M d, Y', strtotime($new->created_at)) }}
+                                                                    </span>
                                                                 </li>
-
                                                             </ul>
                                                         </div>
                                                         <div class="card__post__title">
@@ -177,7 +177,10 @@
                                                 <p>
                                                     {!! truncate($new->content, 100) !!}
                                                 </p>
-                                                <a href="{{ route('news-details', $new->slug) }}" class="btn btn-outline-primary mb-4 text-capitalize"> {{ __('frontend.read_more') }}</a>
+                                                <a href="{{ route('news-details', $new->slug) }}"
+                                                   class="btn btn-outline-primary mb-4 text-capitalize">
+                                                    {{ __('frontend.read_more') }}
+                                                </a>
                                             </div>
                                         </div>
                                     @endif
@@ -200,16 +203,19 @@
                         </aside>
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">{{ __('frontend.newsletter') }}</h4>
-                            <!-- Form Subscribe -->
                             <div class="widget__form-subscribe bg__card-shadow">
                                 <h6>
                                     {{ __('frontend.newsletter_text') }}
                                 </h6>
                                 <p><small>{{ __('frontend.newsletter_text_alt') }}</small></p>
                                 <div class="input-group ">
-                                    <input type="text" class="form-control" placeholder="{{ __('frontend.your_email_address') }}">
+                                    <input type="text" class="form-control"
+                                           placeholder="{{ __('frontend.your_email_address') }}">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">{{ __('frontend.sign_up') }}</button>
+                                        <button class="btn btn-primary"
+                                                type="button">
+                                            {{ __('frontend.sign_up') }}
+                                        </button>
                                     </div>
                                 </div>
                             </div>

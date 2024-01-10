@@ -1,6 +1,5 @@
 @extends('frontend.layouts.app')
 
-<!-- metas -->
 @section('title', $news->title)
 @section('meta_description', $news->meta_description)
 @section('meta_og_title', $news->meta_title)
@@ -9,27 +8,24 @@
 @section('meta_tw_title', $news->meta_title)
 @section('meta_tw_description', $news->meta_description)
 @section('meta_tw_image', asset($news->image))
-<!-- End metas -->
 
 @section('content')
     <section class="pb-80">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- Breadcrumb -->
                     <ul class="breadcrumbs bg-light mb-4">
                         <li class="breadcrumbs__item">
                             <a href="{{ url('/') }}" class="breadcrumbs__url">
-                                <i class="fa fa-home"></i> {{ __('frontend.home') }}</a>
+                                <i class="fa fa-home"></i> {{ __('frontend.home') }}
+                            </a>
                         </li>
                         <li class="breadcrumbs__item">
                             <a href="javascript:void(0);" class="breadcrumbs__url">{{ __('frontend.views') }}</a>
                         </li>
                     </ul>
-                    <!-- end breadcrumb -->
                 </div>
                 <div class="col-md-8">
-                    <!-- Article Detail -->
                     <div class="wrap__article-detail">
                         <div class="wrap__article-detail-title">
                             <h1>
@@ -70,37 +66,47 @@
                                 <div class="total-views-read">
                                     {{ convertToKFormat($news->views) }}
                                     <span>
-                                    {{ __('frontend.views') }}
-                                </span>
+                                        {{ __('frontend.views') }}
+                                    </span>
                                 </div>
                                 <ul class="list-inline">
                                     <span class="share">{{ __('frontend.share_on') }}</span>
                                     <li class="list-inline-item">
-                                        <a class="btn btn-social-o facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" target="_blank">
+                                        <a class="btn btn-social-o facebook"
+                                           href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}"
+                                           target="_blank">
                                             <i class="fa fa-facebook-f"></i>
                                             <span>{{ __('frontend.facebook') }}</span>
                                         </a>
                                     </li>
                                     <li class="list-inline-item">
-                                        <a class="btn btn-social-o twitter" href="https://twitter.com/intent/tweet?text={{ $news->title }}&url={{ url()->current() }}" target="_blank">
+                                        <a class="btn btn-social-o twitter"
+                                           href="https://twitter.com/intent/tweet?text={{ $news->title }}&url={{ url()->current() }}"
+                                           target="_blank">
                                             <i class="fa fa-twitter"></i>
                                             <span>{{ __('frontend.twitter') }}</span>
                                         </a>
                                     </li>
                                     <li class="list-inline-item">
-                                        <a class="btn btn-social-o whatsapp" href="https://wa.me/?text={{ $news->title }}%20{{ url()->current() }}" target="_blank">
+                                        <a class="btn btn-social-o whatsapp"
+                                           href="https://wa.me/?text={{ $news->title }}%20{{ url()->current() }}"
+                                           target="_blank">
                                             <i class="fa fa-whatsapp"></i>
                                             <span>{{ __('frontend.whatsapp') }}</span>
                                         </a>
                                     </li>
                                     <li class="list-inline-item">
-                                        <a class="btn btn-social-o telegram" href="https://t.me/share/url?url={{ url()->current() }}&text={{ $news->title }}" target="_blank">
+                                        <a class="btn btn-social-o telegram"
+                                           href="https://t.me/share/url?url={{ url()->current() }}&text={{ $news->title }}"
+                                           target="_blank">
                                             <i class="fa fa-telegram"></i>
                                             <span>{{ __('frontend.telegram') }}</span>
                                         </a>
                                     </li>
                                     <li class="list-inline-item">
-                                        <a class="btn btn-linkedin-o linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{ url()->current() }}&title={{ $news->title }}" target="_blank">
+                                        <a class="btn btn-linkedin-o linkedin"
+                                           href="https://www.linkedin.com/shareArticle?mini=true&url={{ url()->current() }}&title={{ $news->title }}"
+                                           target="_blank">
                                             <i class="fa fa-linkedin"></i>
                                             <span>{{ __('frontend.linkedin') }}</span>
                                         </a>
@@ -112,9 +118,6 @@
                             </p>
                         </div>
                     </div>
-                    <!-- end content article detail -->
-                    <!-- tags -->
-                    <!-- News Tags -->
                     <div class="blog-tags">
                         <ul class="list-inline">
                             <li class="list-inline-item">
@@ -123,16 +126,13 @@
                             </li>
                             @foreach ($news->tags as $tag)
                                 <li class="list-inline-item">
-                                    <a href="#">
-                                        #{{ $tag->name }}
+                                    <a href="{{ route('news', ['tag' => $tag->name]) }}">
+                                        #{{ $tag->name }} ({{ $tag->count }})
                                     </a>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
-                    <!-- end tags-->
-                    <!-- authors-->
-                    <!-- Profile author -->
                     <div class="wrap__profile">
                         <div class="wrap__profile-author">
                             <figure>
@@ -173,8 +173,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- end author-->
-                    <!-- Comment  -->
                     @auth
                         <div id="comments" class="comments-area">
                             <h3 class="comments-title">{{ $news->comments()->count() }} {{ __('frontend.comments') }}</h3>
@@ -205,8 +203,9 @@
                                                 <a href="#" class="comment-reply-link" data-toggle="modal"
                                                    data-target="#exampleModal-{{ $comment->id }}">{{ __('frontend.reply') }}
                                                 </a>
-                                                <span class="delete-msg" data-id="{{ $comment->id }}"><i
-                                                        class="fa fa-trash"></i></span>
+                                                <span class="delete-msg" data-id="{{ $comment->id }}">
+                                                    <i class="fa fa-trash"></i>
+                                                </span>
                                             </div>
                                         </aside>
                                         @if ($comment->reply()->count() > 0)
@@ -250,7 +249,6 @@
                                             @endforeach
                                         @endif
                                     </li>
-                                    <!-- Modal -->
                                     <div class="comment_modal">
                                         <div class="modal fade" id="exampleModal-{{ $comment->id }}" tabindex="-1"
                                              aria-labelledby="exampleModalLabel"
@@ -258,7 +256,8 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">{{ __('frontend.write_your_comment') }}</h5>
+                                                        <h5 class="modal-title"
+                                                            id="exampleModalLabel">{{ __('frontend.write_your_comment') }}</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -272,7 +271,6 @@
                                                             <input type="hidden" name="news_id" value="{{ $news->id }}">
                                                             <input type="hidden" name="parent_id"
                                                                    value="{{ $comment->id }}">
-
                                                             <button type="submit">{{ __('frontend.submit') }}</button>
                                                         </form>
                                                     </div>
@@ -287,7 +285,8 @@
                                 <form action="{{ route('news-comment') }}" method="POST" class="comment-form">
                                     @csrf
                                     <p class="comment-notes">
-                                        <span id="email-notes">{{ __('frontend.your_email_address_will_not_be_published') }}</span>
+                                        <span
+                                            id="email-notes">{{ __('frontend.your_email_address_will_not_be_published') }}</span>
                                         {{ __('frontend.required_fields_are_marked') }}
                                         <span class="required">*</span>
                                     </p>
@@ -299,7 +298,7 @@
                                     <input type="hidden" name="news_id" value="{{ $news->id }}">
                                     <input type="hidden" name="parent_id" value="">
                                     @error('comment')
-                                        <p class="text-danger">{{ $message }}</p>
+                                    <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                     <p class="form-submit mb-0">
                                         <input type="submit" name="submit" id="submit" class="submit"
@@ -351,7 +350,6 @@
                             <div class="article__entry-carousel-three">
                                 @foreach ($relatedPosts as $post)
                                     <div class="item">
-                                        <!-- Post Article -->
                                         <div class="article__entry">
                                             <div class="article__image">
                                                 <a href="{{ route('news-details', $post->slug) }}">
@@ -444,7 +442,6 @@
                                         </div>
                                     @endif
                                     @if ($loop->index === 3)
-                                        <!-- Post Article -->
                                         <div class="article__entry">
                                             <div class="article__image">
                                                 <a href="{{ route('news-details', $news->slug) }}">
@@ -483,14 +480,13 @@
                                 @endforeach
                             </div>
                         </aside>
-                        <!-- social media -->
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">{{ __('frontend.stay_connected') }}</h4>
-                            <!-- widget Social media -->
                             <div class="wrap__social__media">
                                 @foreach ($socialCounts as $socialCount)
                                     <a href="{{ $socialCount->url }}" target="_blank">
-                                        <div class="social__media__widget mt-2" style="background-color:{{ $socialCount->color }}">
+                                        <div class="social__media__widget mt-2"
+                                             style="background-color:{{ $socialCount->color }}">
                                             <span class="social__media__widget-icon">
                                                 <i class="{{ $socialCount->icon }}"></i>
                                             </span>
@@ -505,7 +501,6 @@
                                 @endforeach
                             </div>
                         </aside>
-                        <!-- End social media -->
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">{{ __('frontend.tags') }}</h4>
                             <div class="blog-tags p-0">
@@ -520,7 +515,6 @@
                         </aside>
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">{{ __('frontend.newsletter') }}</h4>
-                            <!-- Form Subscribe -->
                             <div class="widget__form-subscribe bg__card-shadow">
                                 <h6>
                                     {{ __('frontend.the_most_important_world_news') }}
@@ -529,7 +523,8 @@
                                 <div class="input-group ">
                                     <input type="text" class="form-control" placeholder="Your email address">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">{{ __('frontend.sign_up') }}</button>
+                                        <button class="btn btn-primary"
+                                                type="button">{{ __('frontend.sign_up') }}</button>
                                     </div>
                                 </div>
                             </div>

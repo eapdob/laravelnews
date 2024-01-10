@@ -34,9 +34,9 @@
                                                             </a>
                                                         </li>
                                                         <li class="list-inline-item">
-                                                    <span>
-                                                        {{ date('M d, Y', strtotime($news->create_at)) }}
-                                                    </span>
+                                                            <span>
+                                                                {{ date('M d, Y', strtotime($news->create_at)) }}
+                                                            </span>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -64,14 +64,14 @@
                                                         <div class="card__post__author-info mb-2">
                                                             <ul class="list-inline">
                                                                 <li class="list-inline-item">
-                                                            <span class="text-primary">
-                                                                {{ __('frontend.by') }} {{ $news->author->name }}
-                                                            </span>
+                                                                    <span class="text-primary">
+                                                                        {{ __('frontend.by') }} {{ $news->author->name }}
+                                                                    </span>
                                                                 </li>
                                                                 <li class="list-inline-item">
-                                                            <span class="text-dark text-capitalize">
-                                                                {{ date('M d, Y', strtotime($news->created_at)) }}
-                                                            </span>
+                                                                    <span class="text-dark text-capitalize">
+                                                                        {{ date('M d, Y', strtotime($news->created_at)) }}
+                                                                    </span>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -106,14 +106,14 @@
                                                         <div class="card__post__author-info mb-2">
                                                             <ul class="list-inline">
                                                                 <li class="list-inline-item">
-                                                            <span class="text-primary">
-                                                                {{ __('frontend.by') }} {{ $news->author->name }}
-                                                            </span>
+                                                                    <span class="text-primary">
+                                                                        {{ __('frontend.by') }} {{ $news->author->name }}
+                                                                    </span>
                                                                 </li>
                                                                 <li class="list-inline-item">
-                                                            <span class="text-dark text-capitalize">
-                                                                {{ date('M d, Y', strtotime($news->created_at)) }}
-                                                            </span>
+                                                                    <span class="text-dark text-capitalize">
+                                                                        {{ date('M d, Y', strtotime($news->created_at)) }}
+                                                                    </span>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -434,7 +434,9 @@
                                                     {!! truncate($mostViewedPost->content, 100) !!}
                                                 </p>
                                                 <a href="{{ route('news-details', $mostViewedPost->slug) }}"
-                                                   class="btn btn-outline-primary mb-4 text-capitalize"> {{ __('frontend.read_more') }}</a>
+                                                   class="btn btn-outline-primary mb-4 text-capitalize">
+                                                    {{ __('frontend.read_more') }}
+                                                </a>
                                             </div>
                                         </div>
                                     @endif
@@ -516,7 +518,7 @@
                             </div>
                         </aside>
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">Advertise</h4>
+                            <h4 class="border_section">{{ __('frontend.advertise') }}</h4>
                             <a href="#">
                                 <figure>
                                     <img src="images/newsimage3.png" alt="" class="img-fluid">
@@ -524,16 +526,18 @@
                             </a>
                         </aside>
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">newsletter</h4>
+                            <h4 class="border_section">{{ __('frontend.newsletter') }}</h4>
                             <div class="widget__form-subscribe bg__card-shadow">
                                 <h6>
-                                    The most important world news and events of the day.
+                                    {{ __('frontend.the_most_important_world_news') }}
                                 </h6>
-                                <p><small>Get magzrenvi daily newsletter on your inbox.</small></p>
+                                <p><small>{{ __('frontend.newsletter_text_alt') }}</small></p>
                                 <div class="input-group ">
-                                    <input type="text" class="form-control" placeholder="Your email address">
+                                    <input type="text" class="form-control"
+                                           placeholder="{{ __('frontend.your_email_address') }}">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">sign up</button>
+                                        <button class="btn btn-primary"
+                                                type="button">{{ __('frontend.sign_up') }}</button>
                                     </div>
                                 </div>
                             </div>
