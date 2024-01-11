@@ -68,6 +68,35 @@
                 }
             });
         });
+
+        // Subscribe Newsletter
+        $('.newsletter-form').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('subscribe-newsletter') }}",
+                data: $(this).serialize(),
+                beforeSend: function () {
+                    $('.newsletter-button').text('{{ __('frontend.loading') }}');
+                    $('.newsletter-button').attr('disabled', true);
+                },
+                success: function (data) {
+                },
+                error: function (data) {
+                    $('.newsletter-button').text('{{ __('frontend.sign_up') }}');
+                    $('.newsletter-button').attr('disabled', false);
+                    if (data.status === 422) {
+                        let errors = data.responseJSON.errors;
+                        $.each(errors, function (index, value) {
+                            Toast.fire({
+                                icon: 'error',
+                                title: value[0]
+                            })
+                        });
+                    }
+                }
+            });
+        });
     });
 
     // Add csrf token in ajax request
@@ -75,35 +104,6 @@
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-    });
-
-    // Subscribe Newsletter
-    $('.newsletter-form').on('submit', function (e) {
-        e.preventDefault();
-        $.ajax({
-            method: 'POST',
-            url: "{{ route('subscribe-newsletter') }}",
-            data: $(this).serialize(),
-            beforeSend: function () {
-                $('.newsletter-button').text('{{ __('frontend.loading') }}');
-                $('.newsletter-button').attr('disabled', true);
-            },
-            success: function (data) {
-            },
-            error: function (data) {
-                $('.newsletter-button').text('{{ __('frontend.sign_up') }}');
-                $('.newsletter-button').attr('disabled', false);
-                if (data.status === 422) {
-                    let errors = data.responseJSON.errors;
-                    $.each(errors, function (index, value) {
-                        Toast.fire({
-                            icon: 'error',
-                            title: value[0]
-                        })
-                    });
-                }
-            }
-        });
     });
 </script>
 
