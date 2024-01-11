@@ -64,5 +64,6 @@ return [
     'no_news_found' => 'No News Found :(',
     'all' => 'All',
     'category' => 'Category',
-    'search' => 'Search'
+    'search' => 'Search',
+    'loading' => 'loading...'
 ];

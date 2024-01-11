@@ -251,4 +251,15 @@ class HomeController extends Controller
 
         return response(['status' => 'error', 'message' => __('frontend.cant_delete_not_your_own_comment')]);
     }
+
+    public function SubscribeNewsletter(Request $request)
+    {
+        $request->validate([
+            'email' => [
+                'required',
+                'email',
+                'max:255'
+            ]
+        ]);
+    }
 }

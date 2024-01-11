@@ -37,6 +37,19 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+    // Toast
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+    });
+
     // Handle language
     $(document).ready(function () {
         $('#site-language').on('change', function () {
@@ -62,6 +75,35 @@
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
+    });
+
+    // Subscribe Newsletter
+    $('.newsletter-form').on('submit', function (e) {
+        e.preventDefault();
+        $.ajax({
+            method: 'POST',
+            url: "{{ route('subscribe-newsletter') }}",
+            data: $(this).serialize(),
+            beforeSend: function () {
+                $('.newsletter-button').text('{{ __('frontend.loading') }}');
+                $('.newsletter-button').attr('disabled', true);
+            },
+            success: function (data) {
+            },
+            error: function (data) {
+                $('.newsletter-button').text('{{ __('frontend.sign_up') }}');
+                $('.newsletter-button').attr('disabled', false);
+                if (data.status === 422) {
+                    let errors = data.responseJSON.errors;
+                    $.each(errors, function (index, value) {
+                        Toast.fire({
+                            icon: 'error',
+                            title: value[0]
+                        })
+                    });
+                }
+            }
+        });
     });
 </script>
 
