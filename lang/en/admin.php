@@ -152,4 +152,7 @@ return [
     'subject' => 'Subject',
     'message' => 'Message',
     'send' => 'Send',
+    'footer_setting' => 'Footer Setting',
+    'social_links' => 'Social Links',
+    'all_links' => 'All links',
 ];

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="">
-
 <head>
     <meta charset="utf-8">
     <title>@yield('title')</title>
@@ -13,29 +12,17 @@
     <meta name="twitter:description" content="@yield('meta_tw_description')">
     <meta name="twitter:image" content="@yield('meta_tw_image')">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('frontend/assets/css/styles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link href="{{ asset('frontend/assets/css/styles.css') }}" rel="stylesheet">
 </head>
-
 <body>
-
-<!-- Header section -->
 @include('frontend.layouts.header')
-<!-- End Header section -->
-
 @yield('content')
-
-<!-- Footer section -->
 @include('frontend.layouts.footer')
-<!-- End Footer section -->
-
-<a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-
+<a href="javascript:void(0);" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
 @include('sweetalert::alert')
-
 <script src="{{ asset('frontend/assets/js/index.bundle.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
     // Toast
     const Toast = Swal.mixin({
@@ -80,7 +67,7 @@
                     $('.newsletter-button').text('{{ __('frontend.loading') }}');
                     $('.newsletter-button').attr('disabled', true);
                 },
-                success: function(data) {
+                success: function (data) {
                     if (data.status === 'success') {
                         Toast.fire({
                             icon: 'success',
@@ -115,9 +102,6 @@
         }
     });
 </script>
-
 @stack('scripts')
-
 </body>
-
 </html>

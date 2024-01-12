@@ -68,6 +68,17 @@
                     <i class="far fa-square"></i>
                     <span>{{ __('admin.subscribers') }}</span></a>
             </li>
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i>
+                    <span>{{ __('admin.footer_setting') }}</span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="nav-link" href="{{ route('admin.social-link.index') }}">
+                            {{ __('admin.social_links') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </aside>
 </div>
