@@ -7,6 +7,31 @@
         </div>
         <div class="card card-primary">
             <div class="card-header">
+                <h4>{{ __('admin.send_mail_to_subscribers') }}</h4>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('admin.subscriber.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="">{{ __('admin.subject') }}</label>
+                        <input type="text" class="form-control" name="subject">
+                        @error('subject')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="">{{ __('admin.message') }}</label>
+                        <textarea name="message" class="summernote" id="" cols="30" rows="10"></textarea>
+                        @error('message')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary">{{ __('admin.send') }}</button>
+                </form>
+            </div>
+        </div>
+        <div class="card card-primary">
+            <div class="card-header">
                 <h4>{{ __('admin.all_subscribers') }}</h4>
                 <div class="card-header-action">
                     <a href="{{ route('admin.subscriber.create') }}" class="btn btn-primary">
@@ -27,17 +52,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($subscribers as $subscriber)
-                                <tr>
-                                    <td>{{ $subscriber->id }}</td>
-                                    <td>{{ $subscriber->email }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.subscriber.destroy', $subscriber->id) }}" class="btn btn-danger delete-item">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach ($subscribers as $subscriber)
+                            <tr>
+                                <td>{{ $subscriber->id }}</td>
+                                <td>{{ $subscriber->email }}</td>
+                                <td>
+                                    <a href="{{ route('admin.subscriber.destroy', $subscriber->id) }}"
+                                       class="btn btn-danger delete-item">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -147,4 +147,9 @@ return [
     'sidebar_ad_url' => 'Sidebar Ad Url',
     'all_subscribers' => 'All Subscribers',
     'subscribers' => 'Subscribers',
+    'mail_sended_successfully' => 'Mail sended successfully!',
+    'send_mail_to_subscribers' => 'Send mail to subscribers',
+    'subject' => 'Subject',
+    'message' => 'Message',
+    'send' => 'Send',
 ];
