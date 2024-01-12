@@ -65,5 +65,7 @@ return [
     'all' => 'All',
     'category' => 'Category',
     'search' => 'Search',
-    'loading' => 'loading...'
+    'loading' => 'loading...',
+    'email_is_already_subscribed' => 'Email is already subscribed',
+    'subscribed_successfully' => 'Subscribed successfully!'
 ];
