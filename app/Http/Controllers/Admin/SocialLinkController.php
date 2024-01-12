@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminSocialLinkStoreRequest;
 use App\Models\SocialLink;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class SocialLinkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AdminSocialLinkStoreRequest $request)
     {
         $social = new SocialLink();
         $social->icon = $request->icon;
@@ -54,15 +55,24 @@ class SocialLinkController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $socialLink = SocialLink::findOrFail($id);
+        return view('admin.social-link.edit', compact('socialLink'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AdminSocialLinkStoreRequest $request, string $id)
     {
-        //
+        $social = SocialLink::findOrFail($id);
+        $social->icon = $request->icon;
+        $social->url = $request->url;
+        $social->status = $request->status;
+        $social->save();
+
+        toast(__('admin.updated_successfully'), 'success');
+
+        return redirect()->route('admin.social-link.index');
     }
 
     /**
@@ -70,6 +80,10 @@ class SocialLinkController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        SocialLink::findOrFail($id)->delete();
+
+        toast(__('admin.deleted_successfully'), 'success');
+
+        return response(['status' => 'success', 'message' => __('admin.deleted_successfully')]);
     }
 }
