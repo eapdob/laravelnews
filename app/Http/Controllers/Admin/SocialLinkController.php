@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SocialLink;
 use Illuminate\Http\Request;
 
 class SocialLinkController extends Controller
@@ -20,7 +21,7 @@ class SocialLinkController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.social-link.create');
     }
 
     /**
@@ -28,7 +29,15 @@ class SocialLinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $social = new SocialLink();
+        $social->icon = $request->icon;
+        $social->url = $request->url;
+        $social->status = $request->status;
+        $social->save();
+
+        toast(__('admin.created_successfully'), 'success');
+
+        return redirect()->route('admin.social-link.index');
     }
 
     /**
