@@ -13,7 +13,8 @@ class SocialLinkController extends Controller
      */
     public function index()
     {
-        return view('admin.social-link.index');
+        $socialLinks = SocialLink::all();
+        return view('admin.social-link.index', compact('socialLinks'));
     }
 
     /**
