@@ -523,13 +523,15 @@
                                     {{ __('frontend.the_most_important_world_news') }}
                                 </h6>
                                 <p><small>{{ __('frontend.get_daily_newsletter_on_your_inbox') }}</small></p>
-                                <div class="input-group ">
-                                    <input type="text" class="form-control" placeholder="Your email address">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary"
-                                                type="button">{{ __('frontend.sign_up') }}</button>
+                                <form action="" class="newsletter-form">
+                                    <div class="input-group ">
+                                        <input type="text" name="email" class="form-control" placeholder="Your email address">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary"
+                                                    type="submit">{{ __('frontend.sign_up') }}</button>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </aside>
                         @if ($ad->side_bar_ad_status == 1)

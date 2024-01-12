@@ -208,16 +208,18 @@
                                     {{ __('frontend.newsletter_text') }}
                                 </h6>
                                 <p><small>{{ __('frontend.newsletter_text_alt') }}</small></p>
-                                <div class="input-group ">
-                                    <input type="text" class="form-control"
-                                           placeholder="{{ __('frontend.your_email_address') }}">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary"
-                                                type="button">
-                                            {{ __('frontend.sign_up') }}
-                                        </button>
+                                <form action="" class="newsletter-form">
+                                    <div class="input-group ">
+                                        <input type="text" name="email" class="form-control"
+                                               placeholder="{{ __('frontend.your_email_address') }}">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary"
+                                                    type="submit">
+                                                {{ __('frontend.sign_up') }}
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </aside>
                         @if ($ad->side_bar_ad_status == 1)
