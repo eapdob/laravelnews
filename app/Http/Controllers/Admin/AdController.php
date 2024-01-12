@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminAdUpdateRequest;
 use App\Models\Ad;
 use App\Traits\FileUploadTrait;

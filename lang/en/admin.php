@@ -145,4 +145,6 @@ return [
     'middle_ad_url' => 'Middle Ad Url',
     'bottom_ad_url' => 'Bottom Ad Url',
     'sidebar_ad_url' => 'Sidebar Ad Url',
+    'all_subscribers' => 'All Subscribers',
+    'subscribers' => 'Subscribers',
 ];

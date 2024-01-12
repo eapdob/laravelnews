@@ -63,6 +63,11 @@
                     <span>{{ __('admin.languages') }}</span>
                 </a>
             </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.subscriber.index') }}">
+                    <i class="far fa-square"></i>
+                    <span>{{ __('admin.subscribers') }}</span></a>
+            </li>
         </ul>
     </aside>
 </div>
