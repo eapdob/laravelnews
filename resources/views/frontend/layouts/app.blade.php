@@ -16,6 +16,9 @@
     <link href="{{ asset('frontend/assets/css/styles.css') }}" rel="stylesheet">
 </head>
 <body>
+@php
+    $socialLinks = \App\Models\SocialLink::where('status', 1)->get();
+@endphp
 @include('frontend.layouts.header')
 @yield('content')
 @include('frontend.layouts.footer')
