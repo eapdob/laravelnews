@@ -156,4 +156,9 @@ return [
     'footer_setting' => 'Footer Setting',
     'social_links' => 'Social Links',
     'all_links' => 'All links',
+    'footer_info' => 'Footer Info',
+    'logo' => 'Logo',
+    'short_description' => 'Short Description',
+    'copyright_text' => 'Copyright text',
+
 ];

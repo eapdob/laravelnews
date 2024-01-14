@@ -77,6 +77,11 @@
                             {{ __('admin.social_links') }}
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('admin.footer-info.index') }}">
+                            {{ __('admin.footer_info') }}
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
