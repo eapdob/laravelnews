@@ -22,6 +22,9 @@
                 </ul>
                 <div class="tab-content tab-bordered" id="myTab3Content">
                     @foreach ($languages as $language)
+                        @php
+                            $footerInfo = \App\Models\FooterInfo::where('language', $language->lang)->first();
+                        @endphp
                         <div class="tab-pane fade show {{ $loop->index === 0 ? 'active' : '' }}"
                              id="home-{{ $language->lang }}" role="tabpanel" aria-labelledby="home-tab2">
                             <div class="card-body">
@@ -29,6 +32,7 @@
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
+                                        <img src="{{ asset($footerInfo->logo ?? '') }}" width="100px" alt=""><br>
                                         <label for="">{{ __('admin.logo') }}</label>
                                         <input type="file" name="logo" class="form-control">
                                         <input type="hidden" name="language" value="{{ $language->lang }}"
@@ -37,11 +41,11 @@
                                     <div class="form-group">
                                         <label for="">{{ __('admin.short_description') }}</label>
                                         <textarea name="description" class="form-control" id="" cols="30"
-                                                  rows="10"></textarea>
+                                                  rows="10">{{ $footerInfo->description ?? '' }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="">{{ __('admin.copyright_text') }}</label>
-                                        <input type="text" name="copyright" class="form-control">
+                                        <input type="text" name="copyright" class="form-control" value="{{ $footerInfo->copyright ?? '' }}">
                                     </div>
                                     <button type="submit" class="btn btn-primary">{{ __('admin.save') }}</button>
                                 </form>

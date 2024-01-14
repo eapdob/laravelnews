@@ -36,7 +36,7 @@ class FooterInfoController extends Controller
     {
         $request->validate([
             'logo' => [
-                'required',
+                'nullable',
                 'image',
                 'max:3000'
             ],

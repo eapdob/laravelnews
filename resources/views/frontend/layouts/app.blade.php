@@ -18,6 +18,7 @@
 <body>
 @php
     $socialLinks = \App\Models\SocialLink::where('status', 1)->get();
+    $footerInfo = \App\Models\FooterInfo::where('language', getLanguage())->first();
 @endphp
 @include('frontend.layouts.header')
 @yield('content')
