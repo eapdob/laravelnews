@@ -52,21 +52,11 @@
                                     </h4>
                                 </div>
                                 <ul class="list-unstyled option-content is-hidden">
-                                    <li>
-                                        <a href="#">medical research</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">healthy living</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">mental health</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">virus corona</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">children's health</a>
-                                    </li>
+                                    @foreach ($footerGridTwos as $footerGridTwo)
+                                        <li>
+                                            <a href="{{ $footerGridTwo->url }}">{{ $footerGridTwo->name }}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

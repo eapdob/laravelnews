@@ -20,6 +20,7 @@
     $socialLinks = \App\Models\SocialLink::where('status', 1)->get();
     $footerInfo = \App\Models\FooterInfo::where('language', getLanguage())->first();
     $footerGridOnes = \App\Models\FooterGridOne::where(['status' => 1, 'language' => getLanguage()])->get();
+    $footerGridTwos = \App\Models\FooterGridTwo::where(['status' => 1, 'language' => getLanguage()])->get();
 @endphp
 @include('frontend.layouts.header')
 @yield('content')

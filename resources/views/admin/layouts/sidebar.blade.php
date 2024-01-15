@@ -84,7 +84,12 @@
                     </li>
                     <li>
                         <a class="nav-link" href="{{ route('admin.footer-grid-one.index') }}">
-                            Footer Grid One
+                            {{ __('admin.footer_grid_one') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('admin.footer-grid-two.index') }}">
+                            {{ __('admin.footer_grid_two') }}
                         </a>
                     </li>
                 </ul>

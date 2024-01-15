@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\FooterGridOneSaveRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminFooterGridOneSaveRequest;
 use App\Models\FooterGridOne;
 use App\Models\Language;
-use Illuminate\Http\Request;
 
 class FooterGridOneController extends Controller
 {
@@ -30,7 +30,7 @@ class FooterGridOneController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(FooterGridOneSaveRequest $request)
+    public function store(AdminFooterGridOneSaveRequest $request)
     {
         $footer = new FooterGridOne();
         $footer->language = $request->language;
@@ -65,7 +65,7 @@ class FooterGridOneController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(FooterGridOneSaveRequest $request, string $id)
+    public function update(AdminFooterGridOneSaveRequest $request, string $id)
     {
         $footerGridOne = FooterGridOne::findOrFail($id);
         $footerGridOne->language = $request->language;

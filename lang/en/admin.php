@@ -161,5 +161,10 @@ return [
     'short_description' => 'Short Description',
     'copyright_text' => 'Copyright text',
     'footer' => 'Footer',
-    'footer_grid_one' => 'Footer Grid One'
+    'footer_grid_one' => 'Footer Grid One',
+    'all_footer_grid_one' => 'All Footer Grid One',
+    'all_footer_grid_one_links' => 'All Footer Grid One links',
+    'footer_grid_two' => 'Footer Grid Two',
+    'all_footer_grid_two' => 'All Footer Grid Two',
+    'all_footer_grid_two_links' => 'All Footer Grid Two links',
 ];
