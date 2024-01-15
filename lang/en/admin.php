@@ -167,4 +167,7 @@ return [
     'footer_grid_two' => 'Footer Grid Two',
     'all_footer_grid_two' => 'All Footer Grid Two',
     'all_footer_grid_two_links' => 'All Footer Grid Two links',
+    'footer_grid_three' => 'Footer Grid Three',
+    'all_footer_grid_three' => 'All Footer Grid Three',
+    'all_footer_grid_three_links' => 'All Footer Grid Three links'
 ];
