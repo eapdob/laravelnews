@@ -22,6 +22,7 @@
     $footerGridOnes = \App\Models\FooterGridOne::where(['status' => 1, 'language' => getLanguage()])->get();
     $footerGridTwos = \App\Models\FooterGridTwo::where(['status' => 1, 'language' => getLanguage()])->get();
     $footerGridThrees = \App\Models\FooterGridThree::where(['status' => 1, 'language' => getLanguage()])->get();
+    $footerGridOneTitle = \App\Models\FooterTitle::where(['key' => 'grid_one_title', 'language' => getLanguage()])->first();
 @endphp
 @include('frontend.layouts.header')
 @yield('content')
