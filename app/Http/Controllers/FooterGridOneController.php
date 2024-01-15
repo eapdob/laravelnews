@@ -57,15 +57,26 @@ class FooterGridOneController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $languages = Language::all();
+        $footerGridOne = FooterGridOne::findOrFail($id);
+        return view('admin.footer-grid-one.edit', compact('footerGridOne', 'languages'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(FooterGridOneSaveRequest $request, string $id)
     {
-        //
+        $footerGridOne = FooterGridOne::findOrFail($id);
+        $footerGridOne->language = $request->language;
+        $footerGridOne->name = $request->name;
+        $footerGridOne->url = $request->url;
+        $footerGridOne->status = $request->status;
+        $footerGridOne->save();
+
+        toast(__('admin.updated_successfully'), 'success');
+
+        return redirect()->route('admin.footer-grid-one.index');
     }
 
     /**
@@ -73,6 +84,7 @@ class FooterGridOneController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        FooterGridOne::findOrFail($id)->delete();
+        return response(['status' => 'success', 'message' => __('admin.deleted_successfully')]);
     }
 }
