@@ -53,7 +53,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
     Route::resource('social-link', SocialLinkController::class);
     Route::resource('footer-info', FooterInfoController::class);
     Route::resource('footer-grid-one', FooterGridOneController::class);
-    Route::resource('footer-grid-two', FooterGridTwoController::class);
-    Route::resource('footer-grid-three', FooterGridThreeController::class);
     Route::post('footer-grid-one-title', [FooterGridOneController::class, 'handleTitle'])->name('footer-grid-one-title');
+    Route::resource('footer-grid-two', FooterGridTwoController::class);
+    Route::post('footer-grid-two-title', [FooterGridTwoController::class, 'handleTitle'])->name('footer-grid-two-title');
+    Route::resource('footer-grid-three', FooterGridThreeController::class);
+    Route::post('footer-grid-three-title', [FooterGridThreeController::class, 'handleTitle'])->name('footer-grid-three-title');
 });
