@@ -82,6 +82,11 @@
                             {{ __('admin.footer_info') }}
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('admin.footer-grid-one.index') }}">
+                            Footer Grid One
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

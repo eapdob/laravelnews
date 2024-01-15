@@ -160,5 +160,6 @@ return [
     'logo' => 'Logo',
     'short_description' => 'Short Description',
     'copyright_text' => 'Copyright text',
-
+    'footer' => 'Footer',
+    'footer_grid_one' => 'Footer Grid One'
 ];
