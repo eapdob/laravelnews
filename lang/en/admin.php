@@ -170,5 +170,8 @@ return [
     'footer_grid_three' => 'Footer Grid Three',
     'all_footer_grid_three' => 'All Footer Grid Three',
     'all_footer_grid_three_links' => 'All Footer Grid Three links',
-    'footer_title' => 'Footer Title'
+    'footer_title' => 'Footer Title',
+    'about_page' => 'About Page',
+    'about_content' => 'About Content',
+    'pages' => 'Pages'
 ];

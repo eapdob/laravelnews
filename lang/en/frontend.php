@@ -67,5 +67,6 @@ return [
     'search' => 'Search',
     'loading' => 'loading...',
     'email_is_already_subscribed' => 'Email is already subscribed',
-    'subscribed_successfully' => 'Subscribed successfully!'
+    'subscribed_successfully' => 'Subscribed successfully!',
+    'about' => 'About'
 ];

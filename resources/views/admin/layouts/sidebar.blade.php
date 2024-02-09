@@ -39,6 +39,14 @@
                     </li>
                 </ul>
             </li>
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>{{ __('admin.pages') }}</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{ route('admin.about.index') }}">{{ __('admin.about_page') }}</a></li>
+                    <li><a class="nav-link" href="forms-editor.html">Editor</a></li>
+                    <li><a class="nav-link" href="forms-validation.html">Validation</a></li>
+                </ul>
+            </li>
             <li>
                 <a class="nav-link" href="{{ route('admin.social-count.index') }}">
                     <i class="far fa-square"></i>
