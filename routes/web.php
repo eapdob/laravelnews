@@ -38,3 +38,5 @@ Route::post('news-comment-reply', [HomeController::class, 'handleReply'])->name(
 Route::delete('news-comment-destroy', [HomeController::class, 'commentDestroy'])->name('news-comment-destroy');
 Route::post('subscribe-newsletter', [HomeController::class, 'SubscribeNewsletter'])->name('subscribe-newsletter');
 Route::get('about', [HomeController::class, 'about'])->name('about');
+Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+Route::post('contact', [HomeController::class, 'handleContact'])->name('contact.submit');

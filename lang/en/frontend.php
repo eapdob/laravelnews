@@ -68,5 +68,12 @@ return [
     'loading' => 'loading...',
     'email_is_already_subscribed' => 'Email is already subscribed',
     'subscribed_successfully' => 'Subscribed successfully!',
-    'about' => 'About'
+    'about' => 'About',
+    'contact' => 'Contact',
+    'contact_us' => 'Contact Us',
+    'your_email' => 'Your email',
+    'subject' => 'Subject',
+    'message' => 'Message',
+    'find_us' => 'find us',
+    'message_sent_successfully' => 'Message sent successfully!',
 ];

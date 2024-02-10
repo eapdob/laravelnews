@@ -7,7 +7,7 @@
                         <div class="col-md-4">
                             <div class="widget__footer">
                                 <figure class="image-logo">
-                                    <img src="{{ asset($footerInfo->logo) }}" alt="" class="logo-footer">
+                                    <img src="{{ asset($footerInfo->logo??'') }}" alt="" class="logo-footer">
                                 </figure>
                                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius magnam harum iure
                                     officia laudantium impedit voluptatem.</p>
@@ -86,7 +86,7 @@
                         <div class="col-md-12">
                             <div class="border-top-1 bg__footer-bottom-section">
                                 <p class="text-white text-center">
-                                    {{ $footerInfo->copyright }}
+                                    {{ $footerInfo->copyright??'' }}
                                 </p>
                             </div>
                         </div>
