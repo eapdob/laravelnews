@@ -173,5 +173,8 @@ return [
     'footer_title' => 'Footer Title',
     'about_page' => 'About Page',
     'about_content' => 'About Content',
-    'pages' => 'Pages'
+    'pages' => 'Pages',
+    'contact_page' => 'Contact Page',
+    'address' => 'Address',
+    'phone' => 'Phone'
 ];
