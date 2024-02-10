@@ -306,9 +306,13 @@ class HomeController extends Controller
         try {
             $toMail = Contact::where('language', 'en')->first();
 
-            /** Send Mail */
             Mail::to($toMail->email)->send(new ContactMail($request->subject, $request->message, $request->email));
 
+            $mail = new RecivedMail();
+            $mail->email = $request->email;
+            $mail->subject = $request->subject;
+            $mail->message = $request->message;
+            $mail->save();
         } catch (\Exception $e) {
             toast(__($e->getMessage()));
         }
