@@ -148,7 +148,7 @@ return [
     'sidebar_ad_url' => 'Sidebar Ad Url',
     'all_subscribers' => 'All Subscribers',
     'subscribers' => 'Subscribers',
-    'mail_sended_successfully' => 'Mail sended successfully!',
+    'mail_sent_successfully' => 'Mail sent successfully!',
     'send_mail_to_subscribers' => 'Send mail to subscribers',
     'subject' => 'Subject',
     'message' => 'Message',
@@ -177,5 +177,8 @@ return [
     'contact_page' => 'Contact Page',
     'address' => 'Address',
     'phone' => 'Phone',
-    'contact_messages' => 'Contact Messages'
+    'contact_messages' => 'Contact Messages',
+    'reply_to' => 'Reply to',
+    'close' => 'Close',
+    'all_messages' => 'All Messages'
 ];
