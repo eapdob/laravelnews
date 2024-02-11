@@ -176,5 +176,6 @@ return [
     'pages' => 'Pages',
     'contact_page' => 'Contact Page',
     'address' => 'Address',
-    'phone' => 'Phone'
+    'phone' => 'Phone',
+    'contact_messages' => 'Contact Messages'
 ];
