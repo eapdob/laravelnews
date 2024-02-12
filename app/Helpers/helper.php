@@ -50,3 +50,13 @@ function convertToKFormat(int $number): string
         return round($number / 1000000, 1) . 'M';
     }
 }
+
+function setSidebarActive(array $routes): ?string
+{
+    foreach ($routes as $route) {
+        if (request()->routeIs($route)) {
+            return 'active';
+        }
+    }
+    return '';
+}
