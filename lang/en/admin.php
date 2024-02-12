@@ -180,5 +180,7 @@ return [
     'contact_messages' => 'Contact Messages',
     'reply_to' => 'Reply to',
     'close' => 'Close',
-    'all_messages' => 'All Messages'
+    'all_messages' => 'All Messages',
+    'admin_title' => 'Stisla',
+    'admin_title_short' => 'St'
 ];

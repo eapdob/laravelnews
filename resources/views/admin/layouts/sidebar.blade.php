@@ -5,10 +5,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <a href="{{ route('admin.dashboard') }}">{{ __('admin.admin_title') }}</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="{{ route('admin.dashboard') }}">{{ __('admin.admin_title_short') }}</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">{{ __('admin.dashboard') }}</li>
@@ -17,7 +17,6 @@
                     <i class="fas fa-fire"></i><span>{{ __('admin.dashboard') }}</span>
                 </a>
             </li>
-            <li class="menu-header">Starter</li>
             <li class="{{ setSidebarActive(['admin.category.*']) }}">
                 <a class="nav-link" href="{{ route('admin.category.index') }}">
                     <i class="far fa-square"></i>
