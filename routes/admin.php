@@ -69,4 +69,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
     Route::get('contact-message', [ContactMessageController::class, 'index'])->name('contact-message.index');
     Route::post('contact-send-reply', [ContactMessageController::class, 'sendReply'])->name('contact.send-reply');
     Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
+    Route::put('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('general-setting.update');
 });

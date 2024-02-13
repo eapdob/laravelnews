@@ -62,4 +62,9 @@ class SettingController extends Controller
     {
         //
     }
+
+    function updateGeneralSetting(Request $request): RedirectResponse
+    {
+        dd($request->all());
+    }
 }

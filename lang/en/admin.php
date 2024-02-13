@@ -185,5 +185,8 @@ return [
     'admin_title_short' => 'St',
     'setting' => 'Setting',
     'general_settings' => 'General Settings',
-    'contact' => 'Contact'
+    'contact' => 'Contact',
+    'site_name' => 'Site Name',
+    'site_logo' => 'Site Logo',
+    'site_favicon' => 'Site Favicon'
 ];
