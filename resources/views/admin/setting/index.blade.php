@@ -40,13 +40,18 @@
                                             <div class="form-group">
                                                 <input type="text" class="form-control">
                                                 <label for="">{{ __('admin.site_name') }}</label>
-                                                <input type="text" name="site_name" class="form-control">
+                                                <input type="text" name="site_name" class="form-control"
+                                                       value="{{ $settings['site_name']??'' }}">
                                             </div>
                                             <div class="form-group">
+                                                <img src="{{ asset($settings['site_logo']??'') }}" alt="" width="150px">
+                                                <br>
                                                 <label for="">{{ __('admin.site_logo') }}</label>
                                                 <input type="file" name="site_logo" class="form-control">
                                             </div>
                                             <div class="form-group">
+                                                <img src="{{ asset($settings['site_favicon']??'') }}" alt=""
+                                                     width="150px"> <br>
                                                 <label for="">{{ __('admin.site_favicon') }}</label>
                                                 <input type="file" name="site_favicon" class="form-control">
                                             </div>
