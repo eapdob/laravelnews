@@ -128,6 +128,11 @@
                     </li>
                 </ul>
             </li>
+            <li class="{{ setSidebarActive(['admin.setting.*']) }}" >
+                <a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="far fa-square"></i>
+                    <span>{{ __('admin.settings') }}</span>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>

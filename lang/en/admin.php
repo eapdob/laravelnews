@@ -182,5 +182,8 @@ return [
     'close' => 'Close',
     'all_messages' => 'All Messages',
     'admin_title' => 'Stisla',
-    'admin_title_short' => 'St'
+    'admin_title_short' => 'St',
+    'setting' => 'Setting',
+    'general_settings' => 'General Settings',
+    'contact' => 'Contact'
 ];
