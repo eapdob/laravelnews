@@ -188,5 +188,9 @@ return [
     'contact' => 'Contact',
     'site_name' => 'Site Name',
     'site_logo' => 'Site Logo',
-    'site_favicon' => 'Site Favicon'
+    'site_favicon' => 'Site Favicon',
+    'site_seo_title' => 'Site Seo Title',
+    'site_seo_description' => 'Site Seo Description',
+    'site_seo_keywords' => 'Site Seo Keywords',
+    'seo_settings' => 'Seo Settings'
 ];
