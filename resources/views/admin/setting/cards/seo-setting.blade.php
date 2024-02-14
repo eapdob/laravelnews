@@ -14,7 +14,7 @@
                           rows="10">{{ $settings['site_seo_description'] ?? '' }}</textarea>
             </div>
             <div class="form-group">
-                <label for="">{{ __('admin.site_seo_title') }}</label>
+                <label for="">{{ __('admin.site_seo_keywords') }}</label>
                 <input name="site_seo_keywords" type="text" class="form-control inputtags"
                        value="{{ $settings['site_seo_keywords'] ?? '' }}">
             </div>
