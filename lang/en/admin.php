@@ -192,5 +192,7 @@ return [
     'site_seo_title' => 'Site Seo Title',
     'site_seo_description' => 'Site Seo Description',
     'site_seo_keywords' => 'Site Seo Keywords',
-    'seo_settings' => 'Seo Settings'
+    'seo_settings' => 'Seo Settings',
+    'appearance' => 'Appearance',
+    'pick_your_color' => 'Pick Your Color'
 ];

@@ -15,6 +15,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link href="{{ asset('frontend/assets/css/styles.css') }}" rel="stylesheet">
+    <style>
+        :root {
+            --colorPrimary: {{ $settings['site_color'] }};
+        }
+    </style>
 </head>
 <body>
 @php

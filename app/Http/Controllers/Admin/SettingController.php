@@ -122,4 +122,19 @@ class SettingController extends Controller
 
         return redirect()->back();
     }
+
+    function updateAppearanceSetting(Request $request): RedirectResponse {
+        $request->validate([
+            'site_color' => ['required', 'max:200']
+        ]);
+
+        Setting::updateOrCreate(
+            ['key' => 'site_color'],
+            ['value' => $request->site_color]
+        );
+
+        toast(__('admin.updated_successfully'), 'success');
+
+        return redirect()->back();
+    }
 }
