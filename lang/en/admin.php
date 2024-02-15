@@ -194,5 +194,8 @@ return [
     'site_seo_keywords' => 'Site Seo Keywords',
     'seo_settings' => 'Seo Settings',
     'appearance' => 'Appearance',
-    'pick_your_color' => 'Pick Your Color'
+    'pick_your_color' => 'Pick Your Color',
+    'roles_and_permissions' => 'Roles and Permissions',
+    'roles_and_permission' => 'Roles and Permission',
+    'access_management' => 'Access Management',
 ];
