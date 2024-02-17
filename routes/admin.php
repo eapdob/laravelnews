@@ -74,4 +74,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
     Route::put('seo-setting', [SettingController::class, 'updateSeoSetting'])->name('seo-setting.update');
     Route::put('appearance-setting', [SettingController::class, 'updateAppearanceSetting'])->name('appearance-setting.update');
     Route::get('role', [RolePermisionController::class, 'index'])->name('role.index');
+    Route::get('role/create', [RolePermisionController::class, 'create'])->name('role.create');
+    Route::post('role/create', [RolePermisionController::class, 'store'])->name('role.store');
+    Route::put('role/{id}/edit', [RolePermisionController::class, 'update'])->name('role.update');
 });

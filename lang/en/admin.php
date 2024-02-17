@@ -198,4 +198,13 @@ return [
     'roles_and_permissions' => 'Roles and Permissions',
     'roles_and_permission' => 'Roles and Permission',
     'access_management' => 'Access Management',
+    'create_role' => 'Create Role',
+    'role_name' => 'Role Name',
+    'category_permissions' => 'Category Permissions',
+    'category_index' => 'Category Index',
+    'category_create' => 'Category Create',
+    'category_update' => 'Category Update',
+    'category_delete' => 'Category Delete',
+
+
 ];
