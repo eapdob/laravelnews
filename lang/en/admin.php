@@ -196,15 +196,16 @@ return [
     'appearance' => 'Appearance',
     'pick_your_color' => 'Pick Your Color',
     'roles_and_permissions' => 'Roles and Permissions',
-    'roles_and_permission' => 'Roles and Permission',
+    'permissions' => 'Permissions',
     'access_management' => 'Access Management',
     'create_role' => 'Create Role',
+    'update_role' => 'Update Role',
     'role_name' => 'Role Name',
     'category_permissions' => 'Category Permissions',
     'category_index' => 'Category Index',
     'category_create' => 'Category Create',
     'category_update' => 'Category Update',
     'category_delete' => 'Category Delete',
-
+    'cant_delete_the_super_admin' => 'Can\'t Delete the Super Admin',
 
 ];

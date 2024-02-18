@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Models\Role;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;;
+use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
-class RolePermisionController extends Controller
+class RolePermissionController extends Controller
 {
     function index() : View
     {
@@ -17,8 +20,8 @@ class RolePermisionController extends Controller
 
     function create() : View
     {
-        $premissions = Permission::all()->groupBy('group_name');
-        return view('admin.role.create', compact('premissions'));
+        $permissions = Permission::all()->groupBy('group_name');
+        return view('admin.role.create', compact('permissions'));
     }
 
     function store(Request $request) : RedirectResponse
@@ -38,11 +41,11 @@ class RolePermisionController extends Controller
 
     function edit(string $id) : View
     {
-        $premissions = Permission::all()->groupBy('group_name');
+        $permissions = Permission::all()->groupBy('group_name');
         $role = Role::findOrFail($id);
         $rolesPermissions = $role->permissions;
         $rolesPermissions = $rolesPermissions->pluck('name')->toArray();
-        return view('admin.role.edit', compact('premissions', 'role', 'rolesPermissions'));
+        return view('admin.role.edit', compact('permissions', 'role', 'rolesPermissions'));
     }
 
     function update(Request $request, string $id) : RedirectResponse {
@@ -58,5 +61,20 @@ class RolePermisionController extends Controller
         toast(__('admin.update_successfully'), 'success');
 
         return redirect()->route('admin.role.index');
+    }
+
+    function destroy(string $id) : Response {
+        $role = Role::findOrFail($id);
+
+        if($role->name === 'Super Admin'){
+            return response([
+                'status' => 'error',
+                'message' => __('admin.cant_delete_the_super_admin')
+            ]);
+        }
+
+        $role->delete();
+
+        return response(['status' => 'success', 'message' => __('admin.deleted_successfully')]);
     }
 }

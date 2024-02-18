@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.role_and_permissions') }}</h1>
+            <h1>{{ __('admin.roles_and_permissions') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
@@ -13,8 +13,8 @@
                 <form action="{{ route('admin.role.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="">{{__('admin.role_name')}}</label>
-                        <input type="text" class="form-control" name="role">
+                        <label for="role">{{__('admin.role_name')}}</label>
+                        <input type="text" class="form-control" name="role" id="role">
                         @error('role')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -23,11 +23,11 @@
                     <div class="form-group">
                         <h6>{{ __('admin.category_permissions') }}</h6>
                         <div class="row">
-                            @foreach ($premissions as $groupName => $premission)
+                            @foreach ($permissions as $groupName => $permission)
                                 <div class="form-group">
                                     <h6>{{ $groupName }}</h6>
                                     <div class="row">
-                                        @foreach ($premission as $item)
+                                        @foreach ($permission as $item)
                                             <div class="col-md-2">
                                                 <label class="custom-switch mt-2">
                                                     <input value="{{ $item->name }}" type="checkbox" name="permissions[]" class="custom-switch-input">

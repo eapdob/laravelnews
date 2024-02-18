@@ -1,34 +1,31 @@
-@extends('admin.layouts.master')
+@extends('admin.layouts.app')
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('Role And Permissions') }}</h1>
+            <h1>{{ __('admin.roles_and_permissions') }}</h1>
         </div>
-
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('Update Role') }}</h4>
-
+                <h4>{{ __('admin.update_role') }}</h4>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.role.update', $role->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="">{{__('Role Name')}}</label>
-                        <input type="text" class="form-control" name="role" value="{{ $role->name }}">
+                        <label for="role">{{__('admin.role_name')}}</label>
+                        <input type="text" class="form-control" name="role" value="{{ $role->name }}" id="role">
                         @error('role')
-                        <p class="text-danger">{{ $message }}</p>
+                            <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
-
                     <hr>
-                    @foreach ($premissions as $groupName => $premission)
+                    @foreach ($permissions as $groupName => $permission)
                         <div class="form-group">
                             <h6>{{ $groupName }}</h6>
                             <div class="row">
-                                @foreach ($premission as $item)
+                                @foreach ($permission as $item)
                                     <div class="col-md-2">
                                         <label class="custom-switch mt-2">
                                             <input
@@ -43,8 +40,7 @@
                             </div>
                         </div>
                     @endforeach
-
-                    <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('admin.update') }}</button>
                 </form>
             </div>
         </div>
