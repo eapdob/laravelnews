@@ -134,6 +134,7 @@
                     <span>{{ __('admin.access_management') }}</span>
                 </a>
                 <ul class="dropdown-menu">
+                    <li class="{{ setSidebarActive(['admin.role-user.*']) }}"><a class="nav-link" href="{{ route('admin.role-users.index') }}">{{ __('admin.role_users') }}</a></li>
                     <li class="{{ setSidebarActive(['admin.role.*']) }}">
                         <a class="nav-link" href="{{ route('admin.role.index') }}">{{ __('admin.roles_and_permissions') }}</a>
                     </li>

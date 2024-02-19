@@ -207,5 +207,7 @@ return [
     'category_update' => 'Category Update',
     'category_delete' => 'Category Delete',
     'cant_delete_the_super_admin' => 'Can\'t Delete the Super Admin',
+    'role_users' => 'Role Users',
+    'all_roles_users' => 'All Roles Users'
 
 ];
