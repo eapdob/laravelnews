@@ -22,13 +22,21 @@
                             <th class="text-center">
                                 #
                             </th>
-                            <th>{{ __('admin.role_name') }}</th>
-                            <th>{{ __('admin.permissions') }}</th>
+                            <th>{{ __('admin.name') }}</th>
+                            <th>{{ __('admin.email') }}</th>
+                            <th>{{ __('admin.role') }}</th>
                             <th>{{ __('admin.action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
-
+                            @foreach ($admins as $admin)
+                                <tr>
+                                    <td>{{ $admin->id }}</td>
+                                    <td>{{ $admin->name }}</td>
+                                    <td>{{ $admin->email }}</td>
+                                    <td><span class="badge bg-primary text-light">{{ $admin->getRoleNames()->first() }}</span></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
