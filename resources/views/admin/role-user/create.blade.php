@@ -3,11 +3,11 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.roles_and_permissions') }}</h1>
+            <h1>{{ __('admin.role_user') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.create_role') }}</h4>
+                <h4>{{ __('admin.create_user_with_role') }}</h4>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.role-users.store') }}" method="POST">

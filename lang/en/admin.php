@@ -208,7 +208,11 @@ return [
     'category_delete' => 'Category Delete',
     'cant_delete_the_super_admin' => 'Can\'t Delete the Super Admin',
     'role_users' => 'Role Users',
+    'role_user' => 'Role User',
     'all_role_users' => 'All Role Users',
     'user_name' => 'User Name',
-    'role' => 'Role'
+    'role' => 'Role',
+    'create_user_with_role' => 'Create User with Role',
+    'hey_there' => 'Hey There,',
+    'this_is_your_login_credentials' => 'This is your login Credentials'
 ];

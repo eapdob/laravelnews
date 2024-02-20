@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Language;
+use App\Models\Setting;
 
 /** format news tags */
 
@@ -59,4 +60,9 @@ function setSidebarActive(array $routes): ?string
         }
     }
     return '';
+}
+
+function getSetting($key){
+    $data = Setting::where('key', $key)->first();
+    return $data->value;
 }
