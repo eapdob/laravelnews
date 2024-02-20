@@ -208,6 +208,7 @@ return [
     'category_delete' => 'Category Delete',
     'cant_delete_the_super_admin' => 'Can\'t Delete the Super Admin',
     'role_users' => 'Role Users',
-    'all_roles_users' => 'All Roles Users'
-
+    'all_role_users' => 'All Role Users',
+    'user_name' => 'User Name',
+    'role' => 'Role'
 ];

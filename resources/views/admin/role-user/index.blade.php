@@ -7,9 +7,9 @@
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.all_roles_users') }}</h4>
+                <h4>{{ __('admin.all_role_users') }}</h4>
                 <div class="card-header-action">
-                    <a href="{{ route('admin.role.create') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.role-users.create') }}" class="btn btn-primary">
                         <i class="fas fa-plus"></i> {{ __('admin.create_new') }}
                     </a>
                 </div>
@@ -28,6 +28,7 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         </tbody>
                     </table>
                 </div>
