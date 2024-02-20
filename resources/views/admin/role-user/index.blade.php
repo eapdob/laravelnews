@@ -29,14 +29,24 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($admins as $admin)
-                                <tr>
-                                    <td>{{ $admin->id }}</td>
-                                    <td>{{ $admin->name }}</td>
-                                    <td>{{ $admin->email }}</td>
-                                    <td><span class="badge bg-primary text-light">{{ $admin->getRoleNames()->first() }}</span></td>
-                                </tr>
-                            @endforeach
+                        @foreach ($admins as $admin)
+                            <tr>
+                                <td>{{ $admin->id }}</td>
+                                <td>{{ $admin->name }}</td>
+                                <td>{{ $admin->email }}</td>
+                                <td><span
+                                        class="badge bg-primary text-light">{{ $admin->getRoleNames()->first() }}</span>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.role-users.edit', $admin->id) }}"
+                                       class="btn btn-primary"><i class="fas fa-edit"></i></a>
+
+                                    <a href="{{ route('admin.role.destroy', $admin->id) }}"
+                                       class="btn btn-danger delete-item"><i
+                                            class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
