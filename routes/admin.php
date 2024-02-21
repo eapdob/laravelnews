@@ -51,6 +51,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
     Route::get('fetch-news-category', [NewsController::class, 'fetchCategory'])->name('fetch-news-category');
     Route::get('toggle-news-status', [NewsController::class, 'toggleNewsStatus'])->name('toggle-news-status');
     Route::get('news-copy/{id}', [NewsController::class, 'copyNews'])->name('news-copy');
+    Route::get('pending-news', [NewsController::class, 'pendingNews'])->name('pending.news');
     Route::get('home-section-setting', [HomeSectionSettingController::class, 'index'])->name('home-section-setting');
     Route::put('home-section-setting', [HomeSectionSettingController::class, 'update'])->name('home-section-setting');
     Route::resource('social-count', SocialCountController::class);

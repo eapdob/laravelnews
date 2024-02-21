@@ -33,7 +33,9 @@
                         @php
                             $news = \App\Models\News::with('category')
                                 ->where('language', $language->lang)
-                                ->orderBy('id', 'DESC')->get();
+                                ->where('is_approved', 1)
+                                ->orderBy('id', 'DESC')
+                                ->get();
                         @endphp
                         <div class="tab-pane fade show {{ $loop->index === 0 ? 'active' : '' }}"
                              id="home-{{ $language->lang }}"

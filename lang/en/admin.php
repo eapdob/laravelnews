@@ -216,5 +216,8 @@ return [
     'hey_there' => 'Hey There,',
     'this_is_your_login_credentials' => 'This is your login Credentials',
     'update_user' => 'Update User',
-    'all_permissions' => 'All Permissions'
+    'all_permissions' => 'All Permissions',
+    'pending_news' => 'Pending News',
+    'all_pending' => 'All Pending',
+    'approve' => 'Approve'
 ];
