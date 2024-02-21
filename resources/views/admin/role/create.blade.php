@@ -21,7 +21,7 @@
                     </div>
                     <hr>
                     <div class="form-group">
-                        <h6>{{ __('admin.category_permissions') }}</h6>
+                        <h6 class="text-primary">{{ __('admin.category_permissions') }}</h6>
                         <div class="row">
                             @foreach ($permissions as $groupName => $permission)
                                 <div class="form-group">
@@ -32,7 +32,7 @@
                                                 <label class="custom-switch mt-2">
                                                     <input value="{{ $item->name }}" type="checkbox" name="permissions[]" class="custom-switch-input">
                                                     <span class="custom-switch-indicator"></span>
-                                                    <span class="custom-switch-description">{{ $item->name }}</span>
+                                                    <span class="custom-switch-description text-primary">{{ $item->name }}</span>
                                                 </label>
                                             </div>
                                         @endforeach

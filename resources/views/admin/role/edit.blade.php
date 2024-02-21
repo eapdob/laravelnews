@@ -23,7 +23,7 @@
                     <hr>
                     @foreach ($permissions as $groupName => $permission)
                         <div class="form-group">
-                            <h6>{{ $groupName }}</h6>
+                            <h6 class="text-primary">{{ $groupName }}</h6>
                             <div class="row">
                                 @foreach ($permission as $item)
                                     <div class="col-md-2">
@@ -32,7 +32,7 @@
                                                 {{ in_array($item->name, $rolesPermissions) ? 'checked' : '' }}
                                                 value="{{ $item->name }}" type="checkbox" name="permissions[]" class="custom-switch-input">
                                             <span class="custom-switch-indicator"></span>
-                                            <span class="custom-switch-description">{{ $item->name }}</span>
+                                            <span class="custom-switch-description text-primary">{{ $item->name }}</span>
                                         </label>
 
                                     </div>
