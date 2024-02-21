@@ -42,7 +42,7 @@
                             @foreach ($news as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td >
+                                    <td>
                                         <img src="{{ asset($item->image) }}" width="100" alt="">
                                     </td>
                                     <td>{{ $item->title }}</td>
@@ -101,8 +101,8 @@
                     method: 'PUT',
                     url: "{{ route('admin.approve.news') }}",
                     data: data,
-                    success: function(data){
-                        if(data.status === 'success'){
+                    success: function (data) {
+                        if (data.status === 'success') {
                             Toast.fire({
                                 icon: 'success',
                                 title: data.message
@@ -110,11 +110,11 @@
                             window.location.reload();
                         }
                     },
-                    error: function(error){
+                    error: function (error) {
                         console.log(error);
                     }
-                });
-            });
-        });
+                })
+            })
+        })
     </script>
 @endpush

@@ -80,11 +80,13 @@ function canAccess(array $permissions)
     }
 }
 
-function getRole(){
+function getRole()
+{
     $role = auth()->guard('admin')->user()->getRoleNames();
     return $role->first();
 }
 
-function checkPermission(string $permission){
+function checkPermission(string $permission)
+{
     return auth()->guard('admin')->user()->hasPermissionTo($permission);
 }
