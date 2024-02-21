@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
 
 class SocialCountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:social count index,admin'])->only(['index']);
+        $this->middleware(['permission:social count create,admin'])->only(['create', 'store']);
+        $this->middleware(['permission:social count update,admin'])->only(['edit', 'update']);
+        $this->middleware(['permission:social count delete,admin'])->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -49,14 +57,6 @@ class SocialCountController extends Controller
 
         return redirect()->route('admin.social-count.index');
 
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

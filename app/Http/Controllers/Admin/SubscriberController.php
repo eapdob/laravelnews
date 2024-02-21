@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Mail;
 
 class SubscriberController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:subscribers index,admin'])->only(['index', 'store']);
+        $this->middleware(['permission:subscribers delete,admin'])->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -33,7 +39,7 @@ class SubscriberController extends Controller
 
         Mail::to($subscribers)->send(new Newsletter($request->subject, $request->message));
 
-        toast(__('admin.mail_sended_successfully'), 'success');
+        toast(__('admin.mail_sent_successfully'), 'success');
 
         return redirect()->back();
     }

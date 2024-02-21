@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
 
 class FooterGridThreeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:footer index,admin'])->only(['index']);
+        $this->middleware(['permission:footer create,admin'])->only(['create', 'store']);
+        $this->middleware(['permission:footer update,admin'])->only(['edit', 'update', 'handleTitle']);
+        $this->middleware(['permission:footer destroy,admin'])->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -110,6 +118,5 @@ class FooterGridThreeController extends Controller
         toast(__('admin.updated_successfully'), 'success');
 
         return redirect()->back();
-
     }
 }

@@ -25,129 +25,168 @@
                     </a>
                 </li>
             @endif
-            <li class="dropdown {{ setSidebarActive(['admin.news.*']) }}">
-                <a href="#" class="nav-link has-dropdown">
-                    <i class="far fa-file-alt"></i>
-                    <span>{{ __('admin.news') }}</span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="{{ setSidebarActive(['admin.news.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.news.index') }}">
-                            {{ __('admin.all_news') }}
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="dropdown {{ setSidebarActive(['admin.about.*', 'admin.contact.*']) }}">
-                <a href="#" class="nav-link has-dropdown">
-                    <i class="far fa-file-alt"></i>
-                    <span>{{ __('admin.pages') }}</span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="{{ setSidebarActive(['admin.about.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.about.index') }}">
-                            {{ __('admin.about_page') }}
-                        </a>
-                    </li>
-                    <li class="{{ setSidebarActive(['admin.contact.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.contact.index') }}">
-                            {{ __('admin.contact_page') }}
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="{{ setSidebarActive(['admin.social-count.*']) }}">
-                <a class="nav-link" href="{{ route('admin.social-count.index') }}">
-                    <i class="far fa-square"></i>
-                    <span>{{ __('admin.social_count') }}</span>
-                </a>
-            </li>
-            <li class="{{ setSidebarActive(['admin.contact-message.*']) }}">
-                <a class="nav-link" href="{{ route('admin.contact-message.index') }}">
-                    <i class="far fa-square"></i>
-                    <span>{{ __('admin.contact_messages') }}</span>
-                </a>
-            </li>
-            <li class="{{ setSidebarActive(['admin.ad.*']) }}">
-                <a class="nav-link" href="{{ route('admin.ad.index') }}">
-                    <i class="far fa-square"></i>
-                    <span>{{ __('admin.advertisement') }}</span>
-                </a>
-            </li>
-            <li class="{{ setSidebarActive(['admin.home-section-setting']) }}">
-                <a class="nav-link" href="{{ route('admin.home-section-setting') }}">
-                    <i class="far fa-square"></i>
-                    <span>{{ __('admin.home_section_setting') }}</span>
-                </a>
-            </li>
-            <li class="{{ setSidebarActive(['admin.language.*']) }}">
-                <a class="nav-link" href="{{ route('admin.language.index') }}">
-                    <i class="far fa-square"></i>
-                    <span>{{ __('admin.languages') }}</span>
-                </a>
-            </li>
-            <li class="{{ setSidebarActive(['admin.subscriber.*']) }}">
-                <a class="nav-link" href="{{ route('admin.subscriber.index') }}">
-                    <i class="far fa-square"></i>
-                    <span>{{ __('admin.subscribers') }}</span>
-                </a>
-            </li>
-            <li class="dropdown {{ setSidebarActive([
-                    'admin.social-link.*',
-                    'admin.footer-info.*',
-                    'admin.footer-grid-one.*',
-                    'admin.footer-grid-two.*',
-                    'admin.footer-grid-three.*'
-                    ]) }}">
-                <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i>
-                    <span>{{ __('admin.footer_setting') }}</span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="{{ setSidebarActive(['admin.social-link.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.social-link.index') }}">
-                            {{ __('admin.social_links') }}
-                        </a>
-                    </li>
-                    <li class="{{ setSidebarActive(['admin.footer-info.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.footer-info.index') }}">
-                            {{ __('admin.footer_info') }}
-                        </a>
-                    </li>
-                    <li class="{{ setSidebarActive(['admin.footer-grid-one.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.footer-grid-one.index') }}">
-                            {{ __('admin.footer_grid_one') }}
-                        </a>
-                    </li>
-                    <li class="{{ setSidebarActive(['admin.footer-grid-two.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.footer-grid-two.index') }}">
-                            {{ __('admin.footer_grid_two') }}
-                        </a>
-                    </li>
-                    <li class="{{ setSidebarActive(['admin.footer-grid-three.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.footer-grid-three.index') }}">
-                            {{ __('admin.footer_grid_three') }}
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="dropdown {{ setSidebarActive(['admin.role.*']) }}">
-                <a href="#" class="nav-link has-dropdown">
-                    <i class="far fa-file-alt"></i>
-                    <span>{{ __('admin.access_management') }}</span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="{{ setSidebarActive(['admin.role-user.*']) }}"><a class="nav-link" href="{{ route('admin.role-users.index') }}">{{ __('admin.role_users') }}</a></li>
-                    <li class="{{ setSidebarActive(['admin.role.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.role.index') }}">{{ __('admin.roles_and_permissions') }}</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="{{ setSidebarActive(['admin.setting.*']) }}" >
-                <a class="nav-link" href="{{ route('admin.setting.index') }}">
-                    <i class="far fa-square"></i>
-                    <span>{{ __('admin.settings') }}</span>
-                </a>
-            </li>
+            @if (canAccess(['news index']))
+                <li class="dropdown {{ setSidebarActive(['admin.news.*']) }}">
+                    <a href="#" class="nav-link has-dropdown">
+                        <i class="far fa-file-alt"></i>
+                        <span>{{ __('admin.news') }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ setSidebarActive(['admin.news.*']) }}">
+                            <a class="nav-link" href="{{ route('admin.news.index') }}">
+                                {{ __('admin.all_news') }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+            @if (canAccess(['about index', 'contact index']))
+                <li class="dropdown {{ setSidebarActive(['admin.about.*', 'admin.contact.*']) }}">
+                    <a href="#" class="nav-link has-dropdown">
+                        <i class="far fa-file-alt"></i>
+                        <span>{{ __('admin.pages') }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @if (canAccess(['about index']))
+                            <li class="{{ setSidebarActive(['admin.about.*']) }}">
+                                <a class="nav-link" href="{{ route('admin.about.index') }}">
+                                    {{ __('admin.about_page') }}
+                                </a>
+                            </li>
+                        @endif
+                        @if (canAccess(['contact index']))
+                            <li class="{{ setSidebarActive(['admin.contact.*']) }}">
+                                <a class="nav-link" href="{{ route('admin.contact.index') }}">
+                                    {{ __('admin.contact_page') }}
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
+            @if (canAccess(['social count index']))
+                <li class="{{ setSidebarActive(['admin.social-count.*']) }}">
+                    <a class="nav-link" href="{{ route('admin.social-count.index') }}">
+                        <i class="far fa-square"></i>
+                        <span>{{ __('admin.social_count') }}</span>
+                    </a>
+                </li>
+            @endif
+            @if (canAccess(['contact message index']))
+                <li class="{{ setSidebarActive(['admin.contact-message.*']) }}">
+                    <a class="nav-link" href="{{ route('admin.contact-message.index') }}">
+                        <i class="far fa-square"></i>
+                        <span>{{ __('admin.contact_messages') }}</span>
+                    </a>
+                </li>
+            @endif
+            @if (canAccess(['advertisement index']))
+                <li class="{{ setSidebarActive(['admin.ad.*']) }}">
+                    <a class="nav-link" href="{{ route('admin.ad.index') }}">
+                        <i class="far fa-square"></i>
+                        <span>{{ __('admin.advertisement') }}</span>
+                    </a>
+                </li>
+            @endif
+            @if (canAccess(['home section index']))
+                <li class="{{ setSidebarActive(['admin.home-section-setting']) }}">
+                    <a class="nav-link" href="{{ route('admin.home-section-setting') }}">
+                        <i class="far fa-square"></i>
+                        <span>{{ __('admin.home_section_setting') }}</span>
+                    </a>
+                </li>
+            @endif
+            @if (canAccess(['languages index']))
+                <li class="{{ setSidebarActive(['admin.language.*']) }}">
+                    <a class="nav-link" href="{{ route('admin.language.index') }}">
+                        <i class="far fa-square"></i>
+                        <span>{{ __('admin.languages') }}</span>
+                    </a>
+                </li>
+            @endif
+            @if (canAccess(['subscribers index']))
+                <li class="{{ setSidebarActive(['admin.subscriber.*']) }}">
+                    <a class="nav-link" href="{{ route('admin.subscriber.index') }}">
+                        <i class="far fa-square"></i>
+                        <span>{{ __('admin.subscribers') }}</span>
+                    </a>
+                </li>
+            @endif
+            @if (canAccess(['footer index']))
+                <li class="dropdown {{ setSidebarActive([
+                        'admin.social-link.*',
+                        'admin.footer-info.*',
+                        'admin.footer-grid-one.*',
+                        'admin.footer-grid-two.*',
+                        'admin.footer-grid-three.*'
+                        ]) }}">
+                    <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i>
+                        <span>{{ __('admin.footer_setting') }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @if (canAccess(['footer index', 'footer create', 'footer update', 'footer delete']))
+                            <li class="{{ setSidebarActive(['admin.social-link.*']) }}">
+                                <a class="nav-link" href="{{ route('admin.social-link.index') }}">
+                                    {{ __('admin.social_links') }}
+                                </a>
+                            </li>
+                        @endif
+                        @if (canAccess(['footer index', 'footer create']))
+                            <li class="{{ setSidebarActive(['admin.footer-info.*']) }}">
+                                <a class="nav-link" href="{{ route('admin.footer-info.index') }}">
+                                    {{ __('admin.footer_info') }}
+                                </a>
+                            </li>
+                        @endif
+                        @if (canAccess(['footer index', 'footer create', 'footer update', 'footer delete']))
+                            <li class="{{ setSidebarActive(['admin.footer-grid-one.*']) }}">
+                                <a class="nav-link" href="{{ route('admin.footer-grid-one.index') }}">
+                                    {{ __('admin.footer_grid_one') }}
+                                </a>
+                            </li>
+                        @endif
+                        @if (canAccess(['footer index', 'footer create', 'footer update', 'footer delete']))
+                            <li class="{{ setSidebarActive(['admin.footer-grid-two.*']) }}">
+                                <a class="nav-link" href="{{ route('admin.footer-grid-two.index') }}">
+                                    {{ __('admin.footer_grid_two') }}
+                                </a>
+                            </li>
+                        @endif
+                        @if (canAccess(['footer index', 'footer create', 'footer update', 'footer delete']))
+                            <li class="{{ setSidebarActive(['admin.footer-grid-three.*']) }}">
+                                <a class="nav-link" href="{{ route('admin.footer-grid-three.index') }}">
+                                    {{ __('admin.footer_grid_three') }}
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
+            @if (canAccess(['access management index']))
+                <li class="dropdown {{ setSidebarActive(['admin.role.*']) }}">
+                    <a href="#" class="nav-link has-dropdown">
+                        <i class="far fa-file-alt"></i>
+                        <span>{{ __('admin.access_management') }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ setSidebarActive(['admin.role-user.*']) }}"><a class="nav-link"
+                                                                                     href="{{ route('admin.role-users.index') }}">{{ __('admin.role_users') }}</a>
+                        </li>
+                        <li class="{{ setSidebarActive(['admin.role.*']) }}">
+                            <a class="nav-link"
+                               href="{{ route('admin.role.index') }}">{{ __('admin.roles_and_permissions') }}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+            @if (canAccess(['setting index']))
+                <li class="{{ setSidebarActive(['admin.setting.*']) }}">
+                    <a class="nav-link" href="{{ route('admin.setting.index') }}">
+                        <i class="far fa-square"></i>
+                        <span>{{ __('admin.settings') }}</span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </aside>
 </div>

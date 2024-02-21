@@ -6,10 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminContactUpdateRequest;
 use App\Models\Contact;
 use App\Models\Language;
-use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:contact index,admin'])->only(['index']);
+        $this->middleware(['permission:contact update,admin'])->only(['update']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -17,38 +22,6 @@ class ContactController extends Controller
     {
         $languages = Language::all();
         return view('admin.contact-page.index', compact('languages'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**
@@ -70,13 +43,5 @@ class ContactController extends Controller
         toast(__('admin.updated_successfully'), 'success');
 
         return redirect()->back();
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

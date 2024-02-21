@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:about index,admin'])->only(['index']);
+        $this->middleware(['permission:about update,admin'])->only(['update']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -16,38 +22,6 @@ class AboutController extends Controller
     {
         $languages = Language::all();
         return view('admin.about-page.index', compact('languages'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**
@@ -71,13 +45,5 @@ class AboutController extends Controller
         toast(__('admin.updated_successfully'), 'success');
 
         return redirect()->back();
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
