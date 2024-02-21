@@ -215,5 +215,6 @@ return [
     'create_user_with_role' => 'Create User with Role',
     'hey_there' => 'Hey There,',
     'this_is_your_login_credentials' => 'This is your login Credentials',
-    'update_user' => 'Update User'
+    'update_user' => 'Update User',
+    'all_permissions' => 'All Permissions'
 ];

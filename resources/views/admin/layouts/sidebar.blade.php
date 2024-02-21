@@ -17,12 +17,14 @@
                     <i class="fas fa-fire"></i><span>{{ __('admin.dashboard') }}</span>
                 </a>
             </li>
-            <li class="{{ setSidebarActive(['admin.category.*']) }}">
-                <a class="nav-link" href="{{ route('admin.category.index') }}">
-                    <i class="far fa-square"></i>
-                    <span>{{ __('admin.categories') }}</span>
-                </a>
-            </li>
+            @if (canAccess(['category index', 'category create', 'category update', 'category delete']))
+                <li class="{{ setSidebarActive(['admin.category.*']) }}">
+                    <a class="nav-link" href="{{ route('admin.category.index') }}">
+                        <i class="far fa-square"></i>
+                        <span>{{ __('admin.categories') }}</span>
+                    </a>
+                </li>
+            @endif
             <li class="dropdown {{ setSidebarActive(['admin.news.*']) }}">
                 <a href="#" class="nav-link has-dropdown">
                     <i class="far fa-file-alt"></i>
