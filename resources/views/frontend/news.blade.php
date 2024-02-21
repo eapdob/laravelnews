@@ -15,9 +15,6 @@
                         <li class="breadcrumbs__item">
                             <a href="javascript:void(0);" class="breadcrumbs__url"> {{ __('frontend.news') }}</a>
                         </li>
-                        <li class="breadcrumbs__item breadcrumbs__item--current">
-                            World
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -105,7 +102,7 @@
                 <div class="col-md-4">
                     <div class="sidebar-sticky">
                         <aside class="wrapper__list__article ">
-                            <h4 class="border_section">Sidebar</h4>
+                            <h4 class="border_section">{{ __('admin.sidebar') }}</h4>
                             <div class="wrapper__list__article-small">
                                 @foreach ($recentNews as $new)
                                     @if ($loop->index <= 2)

@@ -219,5 +219,6 @@ return [
     'all_permissions' => 'All Permissions',
     'pending_news' => 'Pending News',
     'all_pending' => 'All Pending',
-    'approve' => 'Approve'
+    'approve' => 'Approve',
+    'sidebar' => 'Sidebar'
 ];
