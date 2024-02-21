@@ -15,20 +15,17 @@
                 </div>
             </div>
             <div class="card-body">
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-tabs" id="myTab2" role="tablist">
                     @foreach ($languages as $language)
                         <li class="nav-item">
-                            <a class="nav-link {{ $loop->index === 0 ? 'active' : '' }}"
+                            <a class="nav-link {{ $loop->index === 0 ? 'active' : '' }}" id="home-tab2"
                                data-toggle="tab"
-                               href="#home-{{ $language->lang }}" role="tab"
-                               aria-controls="home"
-                               aria-selected="true">
-                                {{ $language->name }}
-                            </a>
+                               href="#home-{{ $language->lang }}" role="tab" aria-controls="home"
+                               aria-selected="true">{{ $language->name }}</a>
                         </li>
                     @endforeach
                 </ul>
-                <div class="tab-content tab-bordered">
+                <div class="tab-content tab-bordered" id="myTab3Content">
                     @foreach ($languages as $language)
                         @php
                             if (canAccess(['news all-access'])) {
@@ -47,21 +44,23 @@
                             }
                         @endphp
                         <div class="tab-pane fade show {{ $loop->index === 0 ? 'active' : '' }}"
-                             id="home-{{ $language->lang }}"
-                             role="tabpanel"
-                             aria-labelledby="home-{{ $language->lang }}">
+                             id="home-{{ $language->lang }}" role="tabpanel" aria-labelledby="home-tab2">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="table-{{ $language->lang }}">
                                         <thead>
                                         <tr>
-                                            <th class="text-center">{{ __('admin.id') }}</th>
+                                            <th class="text-center">
+                                                #
+                                            </th>
                                             <th>{{ __('admin.image') }}</th>
                                             <th>{{ __('admin.title') }}</th>
                                             <th>{{ __('admin.category') }}</th>
-                                            <th>{{ __('admin.in_breaking') }}</th>
-                                            <th>{{ __('admin.in_slider') }}</th>
-                                            <th>{{ __('admin.in_popular') }}</th>
+                                            @if (canAccess(['news status', 'news all-access']))
+                                                <th>{{ __('admin.in_breaking') }}</th>
+                                                <th>{{ __('admin.in_slider') }}</th>
+                                                <th>{{ __('admin.in_popular') }}</th>
+                                            @endif
                                             <th>{{ __('admin.status') }}</th>
                                             <th>{{ __('admin.action') }}</th>
                                         </tr>
@@ -71,67 +70,57 @@
                                             <tr>
                                                 <td>{{ $item->id }}</td>
                                                 <td>
-                                                    <img src="{{ asset($item->image) }}" width="100"
-                                                         alt="{{ $item->title }}">
+                                                    <img src="{{ asset($item->image) }}" width="100" alt="">
                                                 </td>
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ $item->category->name }}</td>
-                                                <td>
-                                                    <label class="custom-switch mt-2">
-                                                        <input
-                                                            {{ $item->is_breaking_news === 1 ? 'checked' : '' }}
-                                                            value="1"
-                                                            data-id="{{ $item->id }}"
-                                                            data-name="is_breaking_news"
-                                                            type="checkbox"
-                                                            class="custom-switch-input toggle-status">
-                                                        <span class="custom-switch-indicator"></span>
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label class="custom-switch mt-2">
-                                                        <input
-                                                            {{ $item->show_at_slider === 1 ? 'checked' : '' }}
-                                                            value="1"
-                                                            data-id="{{ $item->id }}"
-                                                            data-name="show_at_slider"
-                                                            type="checkbox"
-                                                            class="custom-switch-input toggle-status">
-                                                        <span class="custom-switch-indicator"></span>
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label class="custom-switch mt-2">
-                                                        <input
-                                                            {{ $item->show_at_popular === 1 ? 'checked' : '' }}
-                                                            value="1"
-                                                            data-id="{{ $item->id }}"
-                                                            data-name="show_at_popular"
-                                                            type="checkbox"
-                                                            class="custom-switch-input toggle-status">
-                                                        <span class="custom-switch-indicator"></span>
-                                                    </label>
-                                                </td>
+                                                @if (canAccess(['news status', 'news all-access']))
+                                                    <td>
+                                                        <label class="custom-switch mt-2">
+                                                            <input {{ $item->is_breaking_news === 1 ? 'checked' : '' }}
+                                                                   data-id="{{ $item->id }}"
+                                                                   data-name="is_breaking_news"
+                                                                   value="1" type="checkbox"
+                                                                   class="custom-switch-input toggle-status">
+                                                            <span class="custom-switch-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="custom-switch mt-2">
+                                                            <input {{ $item->show_at_slider === 1 ? 'checked' : '' }}
+                                                                   data-id="{{ $item->id }}" data-name="show_at_slider"
+                                                                   value="1" type="checkbox"
+                                                                   class="custom-switch-input toggle-status">
+                                                            <span class="custom-switch-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="custom-switch mt-2">
+                                                            <input {{ $item->show_at_popular === 1 ? 'checked' : '' }}
+                                                                   data-id="{{ $item->id }}" data-name="show_at_popular"
+                                                                   value="1" type="checkbox"
+                                                                   class="custom-switch-input toggle-status">
+                                                            <span class="custom-switch-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                @endif
                                                 <td>
                                                     <label class="custom-switch mt-2">
                                                         <input {{ $item->status === 1 ? 'checked' : '' }}
-                                                               value="1"
-                                                               data-id="{{ $item->id }}"
-                                                               data-name="status"
-                                                               type="checkbox"
+                                                               data-id="{{ $item->id }}" data-name="status"
+                                                               value="1" type="checkbox"
                                                                class="custom-switch-input toggle-status">
                                                         <span class="custom-switch-indicator"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('admin.news.edit', $item->id) }}"
-                                                       class="btn btn-primary"><i
-                                                            class="fas fa-edit"></i></a>
+                                                       class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                                     <a href="{{ route('admin.news.destroy', $item->id) }}"
                                                        class="btn btn-danger delete-item"><i
                                                             class="fas fa-trash-alt"></i></a>
                                                     <a href="{{ route('admin.news-copy', $item->id) }}"
-                                                       class="btn btn-primary"><i class="fas fa-copy"></i></a>
+                                                       class="btn btn-primary"><i class="fas fa-copy"></i></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -151,14 +140,17 @@
     <script>
         @foreach ($languages as $language)
         $("#table-{{ $language->lang }}").dataTable({
-            "columnDefs": [{
-                "sortable": false,
-                "targets": [2, 3]
-            }],
-            "order": [[0, 'desc']]
+            "columnDefs": [
+                {
+                    "sortable": false,
+                    "targets": [2, 3]
+                }
+            ],
+            "order": [
+                [0, 'desc']
+            ]
         });
         @endforeach
-
         $(document).ready(function () {
             $('.toggle-status').on('click', function () {
                 let id = $(this).data('id');
@@ -183,8 +175,8 @@
                     error: function (error) {
                         console.log(error);
                     }
-                })
-            })
-        })
+                });
+            });
+        });
     </script>
 @endpush

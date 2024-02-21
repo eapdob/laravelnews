@@ -14,14 +14,14 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="">{{ __('admin.language') }}</label>
-                        <select name="language"
-                                id="language-select"
-                                class="form-control select2">
+                        <label for="language-select">{{ __('admin.language') }}</label>
+                        <select name="language" id="language-select" class="form-control select2">
                             <option value="">{{ __('admin.select') }}</option>
                             @foreach ($languages as $lang)
                                 <option
-                                    {{ $lang->lang === $news->language ? 'selected' : '' }} value="{{ $lang->lang }}">{{ $lang->name }}</option>
+                                    {{ $lang->lang === $news->language ? 'selected' : '' }} value="{{ $lang->lang }}">
+                                    {{ $lang->name }}
+                                </option>
                             @endforeach
                         </select>
                         @error('language')
@@ -34,7 +34,9 @@
                             <option value="">{{ __('admin.select') }}</option>
                             @foreach ($categories as $category)
                                 <option
-                                    {{ $category->id === $news->category_id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
+                                    {{ $category->id === $news->category_id ? 'selected' : '' }} value="{{ $category->id }}">
+                                    {{ $category->name }}
+                                </option>
                             @endforeach
                         </select>
                         @error('category')
@@ -81,16 +83,17 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">{{ __('admin.meta_title') }}</label>
+                        <label for="meta_title">{{ __('admin.meta_title') }}</label>
                         <input name="meta_title" value="{{ $news->meta_title }}" type="text" class="form-control"
-                               id="name">
+                               id="meta_title">
                         @error('meta_title')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">{{ __('admin.meta_description') }}</label>
-                        <textarea name="meta_description" class="form-control">{{ $news->meta_description }}</textarea>
+                        <label for="meta_description">{{ __('admin.meta_description') }}</label>
+                        <textarea name="meta_description" class="form-control"
+                                  id="meta_description">{{ $news->meta_description }}</textarea>
                         @error('meta_description')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -106,47 +109,38 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="control-label">{{ __('admin.is_approved') }}</div>
-                                <label class="custom-switch mt-2">
-                                    <input {{ $news->is_approved === 1 ? 'checked' : '' }} value="1" type="checkbox"
-                                           name="is_approved" class="custom-switch-input">
-                                    <span class="custom-switch-indicator"></span>
-                                </label>
+                        @if (canAccess(['news status', 'news all-access']))
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="control-label">{{ __('admin.is_breaking_news') }}</div>
+                                    <label class="custom-switch mt-2">
+                                        <input {{ $news->is_breaking_news == 1 ? 'checked' : '' }} value="1"
+                                               type="checkbox" name="is_breaking_news" class="custom-switch-input">
+                                        <span class="custom-switch-indicator"></span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="control-label">{{ __('admin.is_breaking_news') }}</div>
-                                <label class="custom-switch mt-2">
-                                    <input {{ $news->is_breaking_news == 1 ? 'checked' : '' }} value="1" type="checkbox"
-                                           name="is_breaking_news" class="custom-switch-input">
-                                    <span class="custom-switch-indicator"></span>
-                                </label>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="control-label">{{ __('admin.show_at_slider') }}</div>
+                                    <label class="custom-switch mt-2">
+                                        <input {{ $news->show_at_slider === 1 ? 'checked' : '' }} value="1"
+                                               type="checkbox" name="show_at_slider" class="custom-switch-input">
+                                        <span class="custom-switch-indicator"></span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="control-label">{{ __('admin.show_at_slider') }}</div>
-                                <label class="custom-switch mt-2">
-                                    <input {{ $news->show_at_slider === 1 ? 'checked' : '' }} value="1" type="checkbox"
-                                           name="show_at_slider" class="custom-switch-input">
-                                    <span class="custom-switch-indicator"></span>
-                                </label>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="control-label">{{ __('admin.show_at_popular') }}</div>
+                                    <label class="custom-switch mt-2">
+                                        <input {{ $news->show_at_popular === 1 ? 'checked' : '' }} value="1"
+                                               type="checkbox" name="show_at_popular" class="custom-switch-input">
+                                        <span class="custom-switch-indicator"></span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-
-                            <div class="form-group">
-                                <div class="control-label">{{ __('admin.show_at_popular') }}</div>
-                                <label class="custom-switch mt-2">
-                                    <input {{ $news->show_at_popular === 1 ? 'checked' : '' }} value="1" type="checkbox"
-                                           name="show_at_popular" class="custom-switch-input">
-                                    <span class="custom-switch-indicator"></span>
-                                </label>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                     <button type="submit" class="btn btn-primary">{{ __('admin.update') }}</button>
                 </form>
@@ -167,20 +161,24 @@
                 let lang = $(this).val();
                 $.ajax({
                     method: 'GET',
-                    url: '{{ route('admin.fetch-news-category') }}',
-                    data: {lang: lang},
+                    url: "{{ route('admin.fetch-news-category') }}",
+                    data: {
+                        lang: lang
+                    },
                     success: function (data) {
-                        $('#category').html('');
-                        $('#category').html(`<option value="">{{ __('admin.select') }}</option>`);
+                        $('#category').html("");
+                        $('#category').html(
+                            `<option value="">{{ __('admin.select') }}</option>`);
                         $.each(data, function (index, data) {
-                            $('#category').append(`<option value="${data.id}">${data.name}</option>`)
+                            $('#category').append(
+                                `<option value="${data.id}">${data.name}</option>`)
                         })
                     },
                     error: function (error) {
                         console.log(error);
                     }
-                })
-            })
-        })
+                });
+            });
+        });
     </script>
 @endpush

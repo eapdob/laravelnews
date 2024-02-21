@@ -25,10 +25,9 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="category">{{ __('admin.category') }}</label>
-                        <select name="category" id="category" class="form-control">
-                            <option value="">{{ __('Select') }}</option>
-                            <option value=""></option>
+                        <label for="">{{ __('admin.category') }}</label>
+                        <select name="category" id="category" class="form-control select2">
+                            <option value="">{{ __('admin.select') }}</option>
                         </select>
                         @error('category')
                         <p class="text-danger">{{ $message }}</p>
@@ -67,7 +66,7 @@
                     </div>
                     <div class="form-group">
                         <label class="tags">{{ __('admin.tags') }}</label>
-                        <input name="tags" type="text" id="tags" class="form-control inputtags">
+                        <input name="tags" type="text" class="form-control inputtags" id="tags">
                         @error('tags')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -80,8 +79,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">{{ __('admin.meta_description') }}</label>
-                        <textarea name="meta_description" class="form-control"></textarea>
+                        <label for="meta_description">{{ __('admin.meta_description') }}</label>
+                        <textarea name="meta_description" class="form-control" id="meta_description"></textarea>
                         @error('meta_description')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -96,87 +95,72 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="control-label">{{ __('admin.is_approved') }}</div>
-                                <label class="custom-switch mt-2">
-                                    <input type="checkbox" name="is_approved" class="custom-switch-input" value="1" checked>
-                                    <span class="custom-switch-indicator"></span>
-                                </label>
+                        @if (canAccess(['news status', 'news all-access']))
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="control-label">{{ __('admin.is_breaking_news') }}</div>
+                                    <label class="custom-switch mt-2">
+                                        <input value="1" type="checkbox" name="is_breaking_news"
+                                               class="custom-switch-input" checked>
+                                        <span class="custom-switch-indicator"></span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="control-label">{{ __('admin.is_breaking_news') }}</div>
-                                <label class="custom-switch mt-2">
-                                    <input type="checkbox" name="is_breaking_news" class="custom-switch-input" value="1"
-                                           checked>
-                                    <span class="custom-switch-indicator"></span>
-                                </label>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="control-label">{{ __('admin.show_at_slider') }}</div>
+                                    <label class="custom-switch mt-2">
+                                        <input value="1" type="checkbox" name="show_at_slider"
+                                               class="custom-switch-input" checked>
+                                        <span class="custom-switch-indicator"></span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="control-label">{{ __('admin.show_at_slider') }}</div>
-                                <label class="custom-switch mt-2">
-                                    <input type="checkbox" name="show_at_slider" class="custom-switch-input" value="1"
-                                           checked>
-                                    <span class="custom-switch-indicator"></span>
-                                </label>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="control-label">{{ __('admin.show_at_popular') }}</div>
+                                    <label class="custom-switch mt-2">
+                                        <input value="1" type="checkbox" name="show_at_popular"
+                                               class="custom-switch-input" checked>
+                                        <span class="custom-switch-indicator"></span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="control-label">{{ __('admin.show_at_popular') }}</div>
-                                <label class="custom-switch mt-2">
-                                    <input type="checkbox" name="show_at_popular" class="custom-switch-input" value="1"
-                                           checked>
-                                    <span class="custom-switch-indicator"></span>
-                                </label>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                     <button type="submit" class="btn btn-primary">{{ __('admin.create') }}</button>
                 </form>
             </div>
         </div>
     </section>
-
-    @push('scripts')
-        <script src="{{ asset('admin/modules/upload-preview/assets/js/jquery.uploadPreview.js') }}"></script>
-        <script>
-            $.uploadPreview({
-                input_field: "#image-upload",   // Default: .image-upload
-                preview_box: "#image-preview",  // Default: .image-preview
-                label_field: "#image-label",    // Default: .image-label
-                label_default: "Choose File",   // Default: Choose File
-                label_selected: "Change File",  // Default: Change File
-                no_label: false,                // Default: false
-                success_callback: null          // Default: null
-            });
-        </script>
-
-        <script>
-            $(document).ready(function () {
-                $('#language-select').on('change', function () {
-                    let lang = $(this).val();
-                    $.ajax({
-                        method: 'GET',
-                        url: '{{ route('admin.fetch-news-category') }}',
-                        data: {lang: lang},
-                        success: function (data) {
-                            $('#category').html('');
-                            $('#category').html('<option value="">{{ __('admin.select') }}</option>');
-                            $.each(data, function (index, data) {
-                                $('#category').append(`<option value="${data.id}">${data.name}</option>`);
-                            });
-                        },
-                        error: function (error) {
-                            console.log(error);
-                        }
-                    })
-                })
-            })
-        </script>
-    @endpush
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('#language-select').on('change', function () {
+                let lang = $(this).val();
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('admin.fetch-news-category') }}",
+                    data: {
+                        lang: lang
+                    },
+                    success: function (data) {
+                        $('#category').html("");
+                        $('#category').html(
+                            `<option value="">{{ __('admin.select') }}</option>`);
+
+                        $.each(data, function (index, data) {
+                            $('#category').append(
+                                `<option value="${data.id}">${data.name}</option>`)
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

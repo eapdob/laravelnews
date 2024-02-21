@@ -21,10 +21,11 @@ class NewsController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:news index,admin'])->only(['index', 'toggleNewsStatus', 'copyNews']);
+        $this->middleware(['permission:news index,admin'])->only(['index', 'copyNews']);
         $this->middleware(['permission:news create,admin'])->only(['create', 'store']);
         $this->middleware(['permission:news update,admin'])->only(['edit', 'update']);
         $this->middleware(['permission:news delete,admin'])->only(['destroy']);
+        $this->middleware(['permission:news all-access,admin'])->only(['toggleNewsStatus']);
     }
 
     /**
@@ -96,6 +97,13 @@ class NewsController extends Controller
     {
         $languages = Language::all();
         $news = News::findOrFail($id);
+
+        if (!canAccess(['news all-access'])) {
+            if ($news->author_id != auth()->guard('admin')->user()->id) {
+                return abort(404);
+            }
+        }
+
         $categories = Category::where('language', $news->language)->get();
 
         return view('admin.news.edit', compact('languages', 'news', 'categories'));
@@ -107,6 +115,10 @@ class NewsController extends Controller
     public function update(AdminNewsUpdateRequest $request, string $id)
     {
         $news = News::findOrFail($id);
+
+        if ($news->author_id != auth()->guard('admin')->user()->id || getRole() != 'Super Admin') {
+            return abort(404);
+        }
 
         $imagePath = $this->handleFileUpload($request, 'image');
 
