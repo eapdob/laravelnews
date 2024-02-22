@@ -220,5 +220,8 @@ return [
     'pending_news' => 'Pending News',
     'all_pending' => 'All Pending',
     'approve' => 'Approve',
-    'sidebar' => 'Sidebar'
+    'sidebar' => 'Sidebar',
+    'localization' => 'Localization',
+    'generate_settings' => 'Generate Settings',
+    'translate_settings' => 'Translate Settings',
 ];

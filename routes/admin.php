@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\FooterGridTwoController;
 use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\HomeSectionSettingController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RolePermissionController;
@@ -84,4 +85,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
     Route::delete('role/{id}/destroy', [RolePermissionController::class, 'destroy'])->name('role.destroy');
     Route::delete('role/{id}/destroy', [RolePermissionController::class, 'destroy'])->name('role.destroy');
     Route::resource('role-users', RoleUserController::class);
+    Route::get('localization', [LocalizationController::class, 'index'])->name('localization.index');
 });
