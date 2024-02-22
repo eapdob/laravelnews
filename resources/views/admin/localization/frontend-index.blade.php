@@ -18,7 +18,8 @@
                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
                     @foreach ($languages as $language)
                         <li class="nav-item">
-                            <a class="nav-link {{ $loop->index === 0 ? 'active' : '' }}" id="home-tab2" data-toggle="tab"
+                            <a class="nav-link {{ $loop->index === 0 ? 'active' : '' }}" id="home-tab2"
+                               data-toggle="tab"
                                href="#home-{{ $language->lang }}" role="tab" aria-controls="home"
                                aria-selected="true">
                                 {{ $language->name }}
@@ -34,8 +35,17 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <button class="btn btn-primary mx-3">{{ __('admin.generate_strings') }}</button>
-                                            <button class="btn btn-dark mx-3">{{ __('admin.translate_strings') }}</button>
+                                            <form method="POST" action="{{ route('admin.extract-localize-strings') }}">
+                                                @csrf
+                                                <input type="hidden" name="directory"
+                                                       value="{{ resource_path('views/frontend') }}">
+                                                <input type="hidden" name="language_code" value="{{ $language->lang }}">
+                                                <input type="hidden" name="file_name" value="frontend">
+                                                <button type="submit"
+                                                        class="btn btn-primary mx-3">{{ __('admin.generate_strings') }}</button>
+                                            </form>
+                                            <button
+                                                class="btn btn-dark mx-3">{{ __('admin.translate_strings') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -44,13 +54,44 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="table-{{ $language->lang }}">
                                         <thead>
-                                            <tr>
-                                                <th class="text-center">
-                                                    #
-                                                </th>
-                                            </tr>
+                                        <tr>
+                                            <th class="text-center">
+                                                #
+                                            </th>
+                                            <th class="text-center">
+                                                {{ __('admin.string') }}
+                                            </th>
+                                            <th class="text-center">
+                                                {{ __('admin.translation') }}
+                                            </th>
+                                            <th class="text-center">
+                                                {{ __('admin.action') }}
+                                            </th>
+                                        </tr>
                                         </thead>
                                         <tbody>
+                                        @php
+                                            $translatedValues = trans('frontend', [], $language->lang);
+                                        @endphp
+                                        @foreach ($translatedValues as $key => $value)
+                                            <tr>
+                                                <td>{{ ++$loop->index }}</td>
+                                                <td>{{ $key }}</td>
+                                                <td>{{ $value }}</td>
+                                                <td>
+                                                    <button
+                                                        data-langcode="{{ $language->lang }}"
+                                                        data-key="{{ $key }}"
+                                                        data-value="{{ $value }}"
+                                                        data-filename="frontend"
+                                                        type="button" class="btn btn-primary modal_btn"
+                                                        data-toggle="modal"
+                                                        data-target="#exampleModal">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -61,6 +102,38 @@
             </div>
         </div>
     </section>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('admin.value') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('admin.update-lang-string') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="">{{ __('admin.value') }}</label>
+                            <input type="text" name="value" class="form-control" value="">
+                            <input type="hidden" name="lang_code" class="form-control" value="">
+                            <input type="hidden" name="key" class="form-control" value="">
+                            <input type="hidden" name="file_name" class="form-control" value="">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">{{ __('admin.close') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('admin.save_changes') }}</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
@@ -68,10 +141,25 @@
         @foreach ($languages as $language)
         $("#table-{{ $language->lang }}").dataTable({
             "columnDefs": [{
-                "sortable": false,
-                "targets": [2, 3]
+                "sortable": false
             }]
         });
         @endforeach
+        $(document).ready(function () {
+            $('.modal_btn').on('click', function () {
+                let langCode = $(this).data('langcode');
+                let key = $(this).data('key');
+                let value = $(this).data('value');
+                let filename = $(this).data('filename');
+                $('input[name="lang_code"]').val("")
+                $('input[name="key"]').val("")
+                $('input[name="value"]').val("")
+                $('input[name="file_name"]').val("")
+                $('input[name="lang_code"]').val(langCode)
+                $('input[name="key"]').val(key)
+                $('input[name="value"]').val(value)
+                $('input[name="file_name"]').val(filename)
+            });
+        });
     </script>
 @endpush

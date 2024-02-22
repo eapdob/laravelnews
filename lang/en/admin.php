@@ -224,8 +224,10 @@ return [
     'localization' => 'Localization',
     'generate_strings' => 'Generate Strings',
     'translate_strings' => 'Translate Strings',
-    'frontend' => 'Frontend',
-    'admin' => 'Admin',
+    'frontend_lang' => 'Frontend Lang',
+    'admin_lang' => 'Admin Lang',
     'frontend_localization' => 'Frontend Localization',
     'all_strings' => 'All Strings',
+    'string' => 'String',
+    'translation' => 'Translation'
 ];

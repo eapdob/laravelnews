@@ -204,12 +204,12 @@
                 <ul class="dropdown-menu">
                     <li class="{{ setSidebarActive(['admin.frontend-localization.index']) }}">
                         <a class="nav-link" href="{{ route('admin.frontend-localization.index') }}">
-                            <span>{{ __('admin.frontend') }}</span>
+                            <span>{{ __('admin.frontend_lang') }}</span>
                         </a>
                     </li>
                     <li class="{{ setSidebarActive(['admin.admin-localization.index']) }}">
                         <a class="nav-link" href="{{ route('admin.admin-localization.index') }}">
-                            <span>{{ __('admin.admin') }}</span>
+                            <span>{{ __('admin.admin_lang') }}</span>
                         </a>
                     </li>
                 </ul>
