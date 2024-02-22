@@ -229,5 +229,7 @@ return [
     'frontend_localization' => 'Frontend Localization',
     'all_strings' => 'All Strings',
     'string' => 'String',
-    'translation' => 'Translation'
+    'translation' => 'Translation',
+    'value' => 'Value',
+    'translation_is_completed' => 'Translation is completed'
 ];

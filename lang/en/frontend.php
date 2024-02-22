@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'By' => 'By By',
+  'By' => 'By',
   'Recent post' => 'Recent post',
   'Popular post' => 'Popular post',
   'Most viewed' => 'Most viewed',

@@ -44,8 +44,13 @@
                                                 <button type="submit"
                                                         class="btn btn-primary mx-3">{{ __('admin.generate_strings') }}</button>
                                             </form>
-                                            <button
-                                                class="btn btn-dark mx-3">{{ __('admin.translate_strings') }}</button>
+                                            <form class="translate-from" method="POST"
+                                                  action="{{ route('admin.translate-string') }}">
+                                                <input type="hidden" name="language_code" value="{{ $language->lang }}">
+                                                <input type="hidden" name="file_name" value="frontend">
+                                                <button type="submit"
+                                                        class="btn btn-dark mx-3 translate-button">{{ __('admin.translate_strings') }}</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -79,14 +84,11 @@
                                                 <td>{{ $key }}</td>
                                                 <td>{{ $value }}</td>
                                                 <td>
-                                                    <button
-                                                        data-langcode="{{ $language->lang }}"
-                                                        data-key="{{ $key }}"
-                                                        data-value="{{ $value }}"
-                                                        data-filename="frontend"
-                                                        type="button" class="btn btn-primary modal_btn"
-                                                        data-toggle="modal"
-                                                        data-target="#exampleModal">
+                                                    <button data-langcode="{{ $language->lang }}"
+                                                            data-key="{{ $key }}"
+                                                            data-value="{{ $value }}" data-filename="frontend"
+                                                            type="button" class="btn btn-primary modal_btn"
+                                                            data-toggle="modal" data-target="#exampleModal">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                 </td>
@@ -159,6 +161,32 @@
                 $('input[name="key"]').val(key)
                 $('input[name="value"]').val(value)
                 $('input[name="file_name"]').val(filename)
+            });
+            $('.translate-from').on('submit', function (e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('admin.translate-string') }}",
+                    data: formData,
+                    beforeSend: function () {
+                        $('.translate-button').text("Translating Please Wait...")
+                        $('.translate-button').prop('disabled', true);
+                    },
+                    success: function (data) {
+                        if (data.status == 'success') {
+                            Swal.fire(
+                                'Done!',
+                                data.message,
+                                'success'
+                            )
+                            window.location.reload();
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
             });
         });
     </script>
