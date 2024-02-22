@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-8">
                     <div class="wrapper__list__article">
-                        <h4 class="border_section">{{ __('frontend.recent_post') }}</h4>
+                        <h4 class="border_section">{{ __('Recent post') }}</h4>
                     </div>
                     <div class="row ">
                         @foreach ($recentNews as $news)
@@ -30,7 +30,7 @@
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item">
                                                             <a href="{{ route('news-details', $news->slug) }}">
-                                                                {{ __('frontend.by') }} {{ $news->author->name }}
+                                                                {{ __('By') }} {{ $news->author->name }}
                                                             </a>
                                                         </li>
                                                         <li class="list-inline-item">
@@ -65,7 +65,7 @@
                                                             <ul class="list-inline">
                                                                 <li class="list-inline-item">
                                                                     <span class="text-primary">
-                                                                        {{ __('frontend.by') }} {{ $news->author->name }}
+                                                                        {{ __('By') }} {{ $news->author->name }}
                                                                     </span>
                                                                 </li>
                                                                 <li class="list-inline-item">
@@ -107,7 +107,7 @@
                                                             <ul class="list-inline">
                                                                 <li class="list-inline-item">
                                                                     <span class="text-primary">
-                                                                        {{ __('frontend.by') }} {{ $news->author->name }}
+                                                                        {{ __('By') }} {{ $news->author->name }}
                                                                     </span>
                                                                 </li>
                                                                 <li class="list-inline-item">
@@ -136,7 +136,7 @@
                 </div>
                 <div class="col-md-12 col-lg-4">
                     <aside class="wrapper__list__article">
-                        <h4 class="border_section">{{ __('frontend.popular_post') }}</h4>
+                        <h4 class="border_section">{{ __('Popular post') }}</h4>
                         <div class="wrapper__list-number">
                             @foreach ($popularNews as $popularNew)
                                 <div class="card__post__list">
@@ -187,7 +187,7 @@
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
                                         <span class="text-primary">
-                                            {{ __('frontend.by') }} {{ $sectionOneNews->author->name }}
+                                            {{ __('By') }} {{ $sectionOneNews->author->name }}
                                         </span>
                                         </li>
                                         <li class="list-inline-item">
@@ -232,7 +232,7 @@
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
                                         <span class="text-primary">
-                                            {{ __('frontend.by') }} {{ $sectionTwoNews->author->name }}
+                                            {{ __('By') }} {{ $sectionTwoNews->author->name }}
                                         </span>
                                         </li>
                                         <li class="list-inline-item">
@@ -278,7 +278,7 @@
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item">
                                                     <span class="text-primary">
-                                                        {{ __('frontend.by') }} {{ $sectionThreeNews->author->name }}
+                                                        {{ __('By') }} {{ $sectionThreeNews->author->name }}
                                                     </span>
                                                         </li>
                                                         <li class="list-inline-item">
@@ -314,7 +314,7 @@
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item">
                                                     <span class="text-primary">
-                                                        {{ __('frontend.by') }} {{ $sectionThreeNews->author->name }}
+                                                        {{ __('By') }} {{ $sectionThreeNews->author->name }}
                                                     </span>
                                                         </li>
                                                         <li class="list-inline-item">
@@ -372,7 +372,7 @@
                                                         <ul class="list-inline">
                                                             <li class="list-inline-item">
                                                             <span class="text-primary">
-                                                                {{ __('frontend.by') }} {{ $sectionFourNews->author->name }}
+                                                                {{ __('By') }} {{ $sectionFourNews->author->name }}
                                                             </span>
                                                             </li>
                                                             <li class="list-inline-item">
@@ -404,7 +404,7 @@
                 <div class="col-md-4">
                     <div class="sticky-top">
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.most_viewed') }}</h4>
+                            <h4 class="border_section">{{ __('Most viewed') }}</h4>
                             <div class="wrapper__list__article-small">
                                 @foreach ($mostViewedPosts as $mostViewedPost)
                                     @if ($loop->index === 0)
@@ -422,7 +422,7 @@
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
                                                         <span class="text-primary">
-                                                            {{ __('frontend.by') }} {{ $mostViewedPost->author->name }}
+                                                            {{ __('By') }} {{ $mostViewedPost->author->name }}
                                                         </span>
                                                     </li>
                                                     <li class="list-inline-item">
@@ -441,7 +441,7 @@
                                                 </p>
                                                 <a href="{{ route('news-details', $mostViewedPost->slug) }}"
                                                    class="btn btn-outline-primary mb-4 text-capitalize">
-                                                    {{ __('frontend.read_more') }}
+                                                    {{ __('Read more') }}
                                                 </a>
                                             </div>
                                         </div>
@@ -463,7 +463,7 @@
                                                             <ul class="list-inline">
                                                                 <li class="list-inline-item">
                                                                 <span class="text-primary">
-                                                                    {{ __('frontend.by') }} {{ $mostViewedPost->author->name }}
+                                                                    {{ __('By') }} {{ $mostViewedPost->author->name }}
                                                                 </span>
                                                                 </li>
                                                                 <li class="list-inline-item">
@@ -489,7 +489,7 @@
                             </div>
                         </aside>
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.stay_connected') }}</h4>
+                            <h4 class="border_section">{{ __('Stay connected') }}</h4>
                             <div class="wrap__social__media">
                                 @foreach ($socialCounts as $socialCount)
                                     <a href="{{ $socialCount->url }}" target="_blank">
@@ -510,7 +510,7 @@
                             </div>
                         </aside>
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.tags') }}</h4>
+                            <h4 class="border_section">{{ __('Tags') }}</h4>
                             <div class="blog-tags p-0">
                                 <ul class="list-inline">
                                     @foreach ($mostCommonTags as $tag)
@@ -525,7 +525,7 @@
                         </aside>
                         @if ($ad->side_bar_ad_status == 1)
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.advertise') }}</h4>
+                            <h4 class="border_section">{{ __('Advertise') }}</h4>
                             <a href="{{ $ad->side_bar_ad_url }}">
                                 <figure>
                                     <img src="{{ asset($ad->side_bar_ad) }}" alt="" class="img-fluid">
@@ -534,20 +534,20 @@
                         </aside>
                         @endif
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.newsletter') }}</h4>
+                            <h4 class="border_section">{{ __('Newsletter') }}</h4>
                             <div class="widget__form-subscribe bg__card-shadow">
                                 <h6>
-                                    {{ __('frontend.the_most_important_world_news') }}
+                                    {{ __('The most important world news') }}
                                 </h6>
-                                <p><small>{{ __('frontend.newsletter_text_alt') }}</small></p>
+                                <p><small>{{ __('Get magzrenvi daily newsletter on your inbox.') }}</small></p>
                                 <form action="" class="newsletter-form">
                                     <div class="input-group ">
                                         <input type="text" name="email" class="form-control"
-                                               placeholder="{{ __('frontend.your_email_address') }}">
+                                               placeholder="{{ __('Your email address') }}">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary newsletter-button"
                                                     type="submit">
-                                                {{ __('frontend.sign_up') }}
+                                                {{ __('Sign up') }}
                                             </button>
                                         </div>
                                     </div>

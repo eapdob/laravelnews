@@ -9,11 +9,11 @@
                     <ul class="breadcrumbs bg-light mb-4">
                         <li class="breadcrumbs__item">
                             <a href="{{ url('/') }}" class="breadcrumbs__url">
-                                <i class="fa fa-home"></i> {{ __('frontend.home') }}
+                                <i class="fa fa-home"></i> {{ __('Home') }}
                             </a>
                         </li>
                         <li class="breadcrumbs__item">
-                            <a href="javascript:void(0);" class="breadcrumbs__url"> {{ __('frontend.news') }}</a>
+                            <a href="javascript:void(0);" class="breadcrumbs__url"> {{ __('News') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -26,12 +26,12 @@
                         <form action="{{ route('news') }}" method="GET">
                             <div class="row">
                                 <div class="col-lg-5">
-                                    <input type="text" placeholder="{{ __('frontend.type_here') }}"
+                                    <input type="text" placeholder="{{ __('Type here') }}"
                                            value="{{ request()->search }}" name="search">
                                 </div>
                                 <div class="col-lg-4">
                                     <select name="category">
-                                        <option value="">{{ __('frontend.all') }}</option>
+                                        <option value="">{{ __('All') }}</option>
                                         @foreach ($categories as $category)
                                             <option
                                                 {{ $category->slug === request()->category ? 'selected' : '' }} value="{{ $category->slug }}">{{ $category->name }}
@@ -40,14 +40,14 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-3">
-                                    <button type="submit">{{ __('frontend.search') }}</button>
+                                    <button type="submit">{{ __('Search') }}</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <aside class="wrapper__list__article ">
                         @if (request()->has('category'))
-                            <h4 class="border_section">{{ __('frontend.category') }}: {{ request()->category }}</h4>
+                            <h4 class="border_section">{{ __('Category') }}: {{ request()->category }}</h4>
                         @endif
                         <div class="row">
                             @foreach ($news as $new)
@@ -65,7 +65,7 @@
                                             <ul class="list-inline">
                                                 <li class="list-inline-item">
                                             <span class="text-primary">
-                                                {{ __('frontend.by') }} {{ $new->author->name }}
+                                                {{ __('By') }} {{ $new->author->name }}
                                             </span>
                                                 </li>
                                                 <li class="list-inline-item">
@@ -83,14 +83,14 @@
                                                 {!! truncate($new->content, 100) !!}
                                             </p>
                                             <a href="{{ route('news-details', $new->slug) }}"
-                                               class="btn btn-outline-primary mb-4 text-capitalize">{{ __('frontend.read_more') }}</a>
+                                               class="btn btn-outline-primary mb-4 text-capitalize">{{ __('Read more') }}</a>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
                             @if (count($news) === 0)
                                 <div class="text-center w-100">
-                                    <h4>{{ __('frontend.no_news_found') }}</h4>
+                                    <h4>{{ __('No news found') }}</h4>
                                 </div>
                             @endif
                         </div>
@@ -119,7 +119,7 @@
                                                             <ul class="list-inline">
                                                                 <li class="list-inline-item">
                                                                     <span class="text-primary">
-                                                                        {{ __('frontend.by') }} {{ $new->author->name }}
+                                                                        {{ __('By') }} {{ $new->author->name }}
                                                                     </span>
                                                                 </li>
                                                                 <li class="list-inline-item">
@@ -157,7 +157,7 @@
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
                                                         <span class="text-primary">
-                                                            {{ __('frontend.by') }} {{ $new->author->name }}
+                                                            {{ __('By') }} {{ $new->author->name }}
                                                         </span>
                                                     </li>
                                                     <li class="list-inline-item">
@@ -176,7 +176,7 @@
                                                 </p>
                                                 <a href="{{ route('news-details', $new->slug) }}"
                                                    class="btn btn-outline-primary mb-4 text-capitalize">
-                                                    {{ __('frontend.read_more') }}
+                                                    {{ __('Read more') }}
                                                 </a>
                                             </div>
                                         </div>
@@ -185,7 +185,7 @@
                             </div>
                         </aside>
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.tags') }}</h4>
+                            <h4 class="border_section">{{ __('Tags') }}</h4>
                             <div class="blog-tags p-0">
                                 <ul class="list-inline">
                                     @foreach ($mostCommonTags as $tag)
@@ -199,20 +199,20 @@
                             </div>
                         </aside>
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.newsletter') }}</h4>
+                            <h4 class="border_section">{{ __('Newsletter') }}</h4>
                             <div class="widget__form-subscribe bg__card-shadow">
                                 <h6>
-                                    {{ __('frontend.newsletter_text') }}
+                                    {{ __('Newsletter text') }}
                                 </h6>
-                                <p><small>{{ __('frontend.newsletter_text_alt') }}</small></p>
+                                <p><small>{{ __('Get magzrenvi daily newsletter on your inbox.') }}</small></p>
                                 <form action="" class="newsletter-form">
                                     <div class="input-group ">
                                         <input type="text" name="email" class="form-control"
-                                               placeholder="{{ __('frontend.your_email_address') }}">
+                                               placeholder="{{ __('Your email address') }}">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary"
                                                     type="submit">
-                                                {{ __('frontend.sign_up') }}
+                                                {{ __('Sign up') }}
                                             </button>
                                         </div>
                                     </div>
@@ -221,7 +221,7 @@
                         </aside>
                         @if ($ad->side_bar_ad_status == 1)
                             <aside class="wrapper__list__article">
-                                <h4 class="border_section">{{ __('frontend.advertise') }}</h4>
+                                <h4 class="border_section">{{ __('Advertise') }}</h4>
                                 <a href="{{ $ad->side_bar_ad_url }}">
                                     <figure>
                                         <img src="{{ asset($ad->side_bar_ad) }}" alt="" class="img-fluid">

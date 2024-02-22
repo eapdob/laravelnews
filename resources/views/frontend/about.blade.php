@@ -8,10 +8,10 @@
                     <ul class="breadcrumbs bg-light mb-4">
                         <li class="breadcrumbs__item">
                             <a href="{{ url('/') }}" class="breadcrumbs__url">
-                                <i class="fa fa-home"></i> {{ __('frontend.home') }}</a>
+                                <i class="fa fa-home"></i> {{ __('Home') }}</a>
                         </li>
                         <li class="breadcrumbs__item">
-                            <a href="javascript:void(0);" class="breadcrumbs__url">{{ __('frontend.about') }}</a>
+                            <a href="javascript:void(0);" class="breadcrumbs__url">{{ __('About') }}</a>
                         </li>
                     </ul>
                     <div class="wrap__about-us">
