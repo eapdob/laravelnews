@@ -8,8 +8,13 @@ use Illuminate\Contracts\View\View;
 
 class LocalizationController extends Controller
 {
-    function index() : View {
+    function adminIndex() : View {
         $languages = Language::all();
-        return view('admin.localization.index', compact('languages'));
+        return view('admin.localization.admin-index', compact('languages'));
+    }
+
+    function frontendIndex() : View {
+        $languages = Language::all();
+        return view('admin.localization.frontend-index', compact('languages'));
     }
 }

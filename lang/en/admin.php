@@ -222,6 +222,10 @@ return [
     'approve' => 'Approve',
     'sidebar' => 'Sidebar',
     'localization' => 'Localization',
-    'generate_settings' => 'Generate Settings',
-    'translate_settings' => 'Translate Settings',
+    'generate_strings' => 'Generate Strings',
+    'translate_strings' => 'Translate Strings',
+    'frontend' => 'Frontend',
+    'admin' => 'Admin',
+    'frontend_localization' => 'Frontend Localization',
+    'all_strings' => 'All Strings',
 ];

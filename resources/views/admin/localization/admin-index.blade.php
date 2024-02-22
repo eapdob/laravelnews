@@ -32,8 +32,8 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <button class="btn btn-primary mx-3">{{ __('admin.generate_settings') }}</button>
-                                            <button class="btn btn-dark mx-3">{{ __('admin.translate_settings') }}</button>
+                                            <button class="btn btn-primary mx-3">{{ __('admin.generate_strings') }}</button>
+                                            <button class="btn btn-dark mx-3">{{ __('admin.translate_strings') }}</button>
 
                                         </div>
                                     </div>

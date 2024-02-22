@@ -192,11 +192,27 @@
                     </a>
                 </li>
             @endif
-            <li class="{{ setSidebarActive(['admin.localization.*']) }}">
-                <a class="nav-link" href="{{ route('admin.localization.index') }}">
-                    <i class="far fa-square"></i>
+            <li class="dropdown
+                {{ setSidebarActive([
+                    'admin.frontend-localization.index',
+                    'admin.admin-localization.index'
+                ]) }}
+            ">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i>
                     <span>{{ __('admin.localization') }}</span>
                 </a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setSidebarActive(['admin.frontend-localization.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.frontend-localization.index') }}">
+                            <span>{{ __('admin.frontend') }}</span>
+                        </a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.admin-localization.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.admin-localization.index') }}">
+                            <span>{{ __('admin.admin') }}</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </aside>
