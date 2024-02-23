@@ -44,6 +44,8 @@ return array (
   'Yes delete it' => 'Так, видалити',
   'Deleted' => 'Видалено',
   'Error' => 'Помилка',
+  'Login' => 'Вхід',
+  'Register' => 'Реєстрація',
   'Contact' => 'Контакти',
   'Loading' => 'Завантаження',
   'Contact us' => 'Зв\'яжіться з нами',
