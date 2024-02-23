@@ -49,7 +49,7 @@ class FooterGridOneController extends Controller
         $footer->status = $request->status;
         $footer->save();
 
-        toast(__('Created successfully!'), 'success');
+        toast(__('admin.Created successfully!'), 'success');
 
         return redirect()->route('admin.footer-grid-one.index');
     }
@@ -76,7 +76,7 @@ class FooterGridOneController extends Controller
         $footerGridOne->status = $request->status;
         $footerGridOne->save();
 
-        toast(__('Updated successfully!'), 'success');
+        toast(__('admin.Updated successfully!'), 'success');
 
         return redirect()->route('admin.footer-grid-one.index');
     }
@@ -87,7 +87,7 @@ class FooterGridOneController extends Controller
     public function destroy(string $id)
     {
         FooterGridOne::findOrFail($id)->delete();
-        return response(['status' => 'success', 'message' => __('Deleted successfully!')]);
+        return response(['status' => 'success', 'message' => __('admin.Deleted successfully!')]);
     }
 
     public function handleTitle(Request $request)
@@ -105,7 +105,7 @@ class FooterGridOneController extends Controller
             'value' => $request->title
         ]);
 
-        toast(__('Updated successfully!'), 'success');
+        toast(__('admin.Updated successfully!'), 'success');
 
         return redirect()->back();
 

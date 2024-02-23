@@ -47,7 +47,7 @@ class LanguageController extends Controller
         $language->status = $request->status;
         $language->save();
 
-        toast(__('Updated successfully!'), 'success')->width('400');
+        toast(__('admin.Updated successfully!'), 'success')->width('400');
 
         return redirect()->route('admin.language.index');
     }
@@ -74,7 +74,7 @@ class LanguageController extends Controller
         $language->status = $request->status;
         $language->save();
 
-        toast(__('Updated successfully!'), 'success')->width('400');
+        toast(__('admin.Updated successfully!'), 'success')->width('400');
 
         return redirect()->route('admin.language.index');
     }
@@ -87,12 +87,12 @@ class LanguageController extends Controller
         try {
             $language = Language::findOrFail($id);
             if ($language->lang === 'en') {
-                return response(['status' => 'error', 'message' => __('Can\'t delete this one!')]);
+                return response(['status' => 'error', 'message' => __('admin.Can\'t delete this one!')]);
             }
             $language->delete();
-            return response(['status' => 'success', 'message' => __('Deleted successfully!')]);
+            return response(['status' => 'success', 'message' => __('admin.Deleted successfully!')]);
         } catch (\Throwable $th) {
-            return response(['status' => 'error', 'message' => __('Something went wrong!')]);
+            return response(['status' => 'error', 'message' => __('admin.Something went wrong!')]);
         }
     }
 }

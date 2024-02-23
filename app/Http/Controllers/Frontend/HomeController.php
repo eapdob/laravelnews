@@ -224,7 +224,7 @@ class HomeController extends Controller
         $comment->comment = $request->comment;
         $comment->save();
 
-        toast(__('Comment added successfully!'), 'success');
+        toast(__('frontend.Comment added successfully!'), 'success');
 
         return redirect()->back();
     }

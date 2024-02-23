@@ -3,18 +3,18 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('Roles and permissions') }}</h1>
+            <h1>{{ __('admin.Roles and permissions') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('Update role') }}</h4>
+                <h4>{{ __('admin.Update role') }}</h4>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.role.update', $role->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="role">{{ __('Role name') }}</label>
+                        <label for="role">{{ __('admin.Role name') }}</label>
                         <input type="text" class="form-control" name="role" value="{{ $role->name }}" id="role">
                         @error('role')
                             <p class="text-danger">{{ $message }}</p>
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                     @endforeach
-                    <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('admin.Update') }}</button>
                 </form>
             </div>
         </div>

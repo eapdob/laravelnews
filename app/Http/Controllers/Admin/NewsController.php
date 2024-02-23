@@ -85,7 +85,7 @@ class NewsController extends Controller
 
         $news->tags()->attach($tagIds);
 
-        toast(__('Created successfully!'), 'success')->width('400');
+        toast(__('admin.Created successfully!'), 'success')->width('400');
 
         return redirect()->route('admin.news.index');
     }
@@ -154,7 +154,7 @@ class NewsController extends Controller
 
         $news->tags()->attach($tagIds);
 
-        toast(__('Updated successfully!'), 'success')->width('400');
+        toast(__('admin.Updated successfully!'), 'success')->width('400');
 
         return redirect()->route('admin.news.index');
     }
@@ -169,7 +169,7 @@ class NewsController extends Controller
         $news->tags()->delete();
         $news->delete();
 
-        return response(['status' => 'success', 'message' => __('Deleted successfully!')]);
+        return response(['status' => 'success', 'message' => __('admin.Deleted successfully!')]);
     }
 
     /**
@@ -191,7 +191,7 @@ class NewsController extends Controller
             $news->{$request->name} = $request->status;
             $news->save();
 
-            return response(['status' => 'success', 'message' => __('Updated successfully!')]);
+            return response(['status' => 'success', 'message' => __('admin.Updated successfully!')]);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -206,7 +206,7 @@ class NewsController extends Controller
         $copyNews = $news->replicate();
         $copyNews->save();
 
-        toast(__('Copied successfully!'), 'success');
+        toast(__('admin.Copied successfully!'), 'success');
 
         return redirect()->back();
     }
@@ -223,6 +223,6 @@ class NewsController extends Controller
         $news->is_approved = $request->is_approve;
         $news->save();
 
-        return response(['status' => 'success', 'message' => __('Updated successfully!')]);
+        return response(['status' => 'success', 'message' => __('admin.Updated successfully!')]);
     }
 }

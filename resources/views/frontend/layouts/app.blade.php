@@ -80,7 +80,7 @@
                 url: "{{ route('subscribe-newsletter') }}",
                 data: $(this).serialize(),
                 beforeSend: function () {
-                    $('.newsletter-button').text('{{ __('Loading') }}');
+                    $('.newsletter-button').text('{{ __('frontend.Loading') }}');
                     $('.newsletter-button').attr('disabled', true);
                 },
                 success: function (data) {
@@ -90,12 +90,12 @@
                             title: data.message
                         })
                         $('.newsletter-form')[0].reset();
-                        $('.newsletter-button').text('{{ __('Sign up') }}');
+                        $('.newsletter-button').text('{{ __('frontend.Sign up') }}');
                         $('.newsletter-button').attr('disabled', false);
                     }
                 },
                 error: function (data) {
-                    $('.newsletter-button').text('{{ __('Sign up') }}');
+                    $('.newsletter-button').text('{{ __('frontend.Sign up') }}');
                     $('.newsletter-button').attr('disabled', false);
                     if (data.status === 422) {
                         let errors = data.responseJSON.errors;

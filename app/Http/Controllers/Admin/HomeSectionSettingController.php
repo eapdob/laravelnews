@@ -31,7 +31,7 @@ class HomeSectionSettingController extends Controller
                 'category_section_four' => $request->category_section_four,
             ]
         );
-        toast(__('Updated successfully!'), 'success');
+        toast(__('admin.Updated successfully!'), 'success');
         return redirect()->back();
     }
 }

@@ -78,7 +78,7 @@
                                 <li><a class="dropdown-item" href="404.html"> 404 Error </a>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">{{ __('frontend.Contact') }}</a></li>
                     </ul>
                     <!-- Search bar.// -->
                     <ul class="navbar-nav ">

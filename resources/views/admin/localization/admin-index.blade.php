@@ -3,14 +3,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('Admin Localization') }}</h1>
+            <h1>{{ __('admin.Admin Localization') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('All strings') }}</h4>
+                <h4>{{ __('admin.All strings') }}</h4>
                 <div class="card-header-action">
                     <a href="{{ route('admin.category.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> {{ __('Create new') }}
+                        <i class="fas fa-plus"></i> {{ __('admin.Create new') }}
                     </a>
                 </div>
             </div>
@@ -39,14 +39,14 @@
                                                 <input type="hidden" name="language_code" value="{{ $language->lang }}">
                                                 <input type="hidden" name="file_name" value="admin">
                                                 <button type="submit"
-                                                        class="btn btn-primary mx-3">{{ __('Generate strings') }}</button>
+                                                        class="btn btn-primary mx-3">{{ __('admin.Generate strings') }}</button>
                                             </form>
                                             <form class="translate-from" method="POST"
                                                   action="{{ route('admin.translate-string') }}">
                                                 <input type="hidden" name="language_code" value="{{ $language->lang }}">
                                                 <input type="hidden" name="file_name" value="admin">
                                                 <button type="submit"
-                                                        class="btn btn-dark mx-3 translate-button">{{ __('Translate strings') }}</button>
+                                                        class="btn btn-dark mx-3 translate-button">{{ __('admin.Translate strings') }}</button>
                                             </form>
                                         </div>
                                     </div>
@@ -61,13 +61,13 @@
                                                 #
                                             </th>
                                             <th class="text-center">
-                                                {{ __('String') }}
+                                                {{ __('admin.String') }}
                                             </th>
                                             <th class="text-center">
-                                                {{ __('Translation') }}
+                                                {{ __('admin.Translation') }}
                                             </th>
                                             <th class="text-center">
-                                                {{ __('Action') }}
+                                                {{ __('admin.Action') }}
                                             </th>
                                         </tr>
                                         </thead>
@@ -108,7 +108,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Value') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('admin.Value') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -117,7 +117,7 @@
                     <form action="{{ route('admin.update-lang-string') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="">{{ __('Value') }}</label>
+                            <label for="">{{ __('admin.Value') }}</label>
                             <input type="text" name="value" class="form-control" value="">
                             <input type="hidden" name="lang_code" class="form-control" value="">
                             <input type="hidden" name="key" class="form-control" value="">
@@ -126,8 +126,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"
-                                    data-dismiss="modal">{{ __('Close') }}</button>
-                            <button type="submit" class="btn btn-primary">{{ __('Save changes') }}</button>
+                                    data-dismiss="modal">{{ __('admin.Close') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('admin.Save changes') }}</button>
                         </div>
                     </form>
                 </div>

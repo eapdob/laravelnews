@@ -335,10 +335,10 @@
                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <p>{{ __('Hey there') }}</p>
-                                        <p>{{ __('This is your login credentials') }}</p>
-                                        <p>{{ __('Email') }}: {{ $mail }}</p>
-                                        <p>{{ __('Password') }}: {{ $password }}</p>
+                                        <p>{{ __('frontend.Hey there') }}</p>
+                                        <p>{{ __('frontend.This is your login credentials') }}</p>
+                                        <p>{{ __('frontend.Email') }}: {{ $mail }}</p>
+                                        <p>{{ __('frontend.Password') }}: {{ $password }}</p>
                                     </td>
                                 </tr>
                             </table>

@@ -45,7 +45,7 @@ class SocialLinkController extends Controller
         $social->status = $request->status;
         $social->save();
 
-        toast(__('Created successfully!'), 'success');
+        toast(__('admin.Created successfully!'), 'success');
 
         return redirect()->route('admin.social-link.index');
     }
@@ -70,7 +70,7 @@ class SocialLinkController extends Controller
         $social->status = $request->status;
         $social->save();
 
-        toast(__('Updated successfully!'), 'success');
+        toast(__('admin.Updated successfully!'), 'success');
 
         return redirect()->route('admin.social-link.index');
     }
@@ -82,8 +82,8 @@ class SocialLinkController extends Controller
     {
         SocialLink::findOrFail($id)->delete();
 
-        toast(__('Deleted successfully!'), 'success');
+        toast(__('admin.Deleted successfully!'), 'success');
 
-        return response(['status' => 'success', 'message' => __('Deleted successfully!')]);
+        return response(['status' => 'success', 'message' => __('admin.Deleted successfully!')]);
     }
 }

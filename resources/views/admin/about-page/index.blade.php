@@ -3,11 +3,11 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('About page') }}</h1>
+            <h1>{{ __('admin.About page') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('About page') }}</h4>
+                <h4>{{ __('admin.About page') }}</h4>
             </div>
             <div class="card-body">
                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
@@ -32,12 +32,12 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
-                                        <label for="">{{ __('About content') }}</label>
+                                        <label for="">{{ __('admin.About content') }}</label>
                                         <textarea name="content" class="summernote-{{ $language->lang }}" id=""
                                                   cols="30" rows="10">{!! $about->content ?? '' !!}</textarea>
                                         <input type="hidden" name="language" value="{{ $language->lang }}">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('admin.Save') }}</button>
                                 </form>
                             </div>
                         </div>

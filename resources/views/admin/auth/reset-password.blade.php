@@ -11,7 +11,7 @@
                     </div>
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>{{ __('Reset password') }}</h4>
+                            <h4>{{ __('admin.Reset password') }}</h4>
                         </div>
                         <div class="card-body">
                             <form method="POST" action="{{ route('admin.reset-password.send') }}"
@@ -20,19 +20,19 @@
                                 @csrf
                                 <input type="hidden" name="token" value="{{ $token }}">
                                 <div class="form-group">
-                                    <label for="email">{{ __('Email') }}</label>
+                                    <label for="email">{{ __('admin.Email') }}</label>
                                     <input id="email" type="email" class="form-control" name="email" tabindex="1"
                                            required autofocus value="{{ request()->email }}">
                                     @error('email')
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        {{ __('Invalid email') }}
+                                        {{ __('admin.Invalid email') }}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="d-block">
-                                        <label for="password" class="control-label">{{ __('New password') }}</label>
+                                        <label for="password" class="control-label">{{ __('admin.New password') }}</label>
                                     </div>
                                     <input id="password" type="password" class="form-control" name="password"
                                            tabindex="2" required>
@@ -40,12 +40,12 @@
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        {{ __('Invalid password') }}
+                                        {{ __('admin.Invalid password') }}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="d-block">
-                                        <label for="password" class="control-label">{{ __('Confirm password') }}</label>
+                                        <label for="password" class="control-label">{{ __('admin.Confirm password') }}</label>
                                     </div>
                                     <input id="password" type="password" class="form-control"
                                            name="password_confirmation"
@@ -54,12 +54,12 @@
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        {{ __('Invalid confirm password') }}
+                                        {{ __('admin.Invalid confirm password') }}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                        {{ __('Send link') }}
+                                        {{ __('admin.Send link') }}
                                     </button>
                                 </div>
                             </form>

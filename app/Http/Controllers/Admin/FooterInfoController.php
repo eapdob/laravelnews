@@ -58,7 +58,7 @@ class FooterInfoController extends Controller
             'copyright' => $request->copyright
         ]);
 
-        toast(__('Updated successfully!'), 'success');
+        toast(__('admin.Updated successfully!'), 'success');
 
         return redirect()->back();
     }
