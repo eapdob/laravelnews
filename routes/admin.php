@@ -90,4 +90,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
     Route::post('extract-localize-strings', [LocalizationController::class, 'extractLocalizationStrings'])->name('extract-localize-strings');
     Route::post('update-lang-string', [LocalizationController::class, 'updateLangString'])->name('update-lang-string');
     Route::post('translate-string', [LocalizationController::class, 'translateString'])->name('translate-string');
+    Route::put('microsoft-api-setting', [SettingController::class, 'updateMicrosoftApiSetting'])->name('microsoft-api-setting.update');
 });

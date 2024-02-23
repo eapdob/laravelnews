@@ -168,7 +168,7 @@
                 </li>
             @endif
             @if (canAccess(['access management index']))
-                <li class="dropdown {{ setSidebarActive(['admin.role.*']) }}">
+                <li class="dropdown {{ setSidebarActive(['admin.role.*', 'admin.role-user.*']) }}">
                     <a href="#" class="nav-link has-dropdown">
                         <i class="fas fa-user-shield"></i>
                         <span>{{ __('admin.Access management') }}</span>

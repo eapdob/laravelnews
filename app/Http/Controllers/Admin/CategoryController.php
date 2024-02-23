@@ -7,6 +7,7 @@ use App\Http\Requests\AdminCategoryCreateRequest;
 use App\Http\Requests\AdminCategoryUpdateRequest;
 use App\Models\Category;
 use App\Models\Language;
+use App\Models\News;
 
 class CategoryController extends Controller
 {
@@ -85,7 +86,7 @@ class CategoryController extends Controller
         $category->status = $request->status;
         $category->save();
 
-        toast(__('admin.Updated successfully!'),'success')->width('400');
+        toast(__('admin.Updated successfully!'), 'success')->width('400');
 
         return redirect()->route('admin.category.index');
     }
@@ -97,6 +98,10 @@ class CategoryController extends Controller
     {
         try {
             $category = Category::findOrFail($id);
+            $news = News::where('category_id', $category->id)->get();
+            foreach ($news as $item) {
+                $item->tags()->delete();
+            }
             $category->delete();
             return response(['status' => 'success', 'message' => __('admin.Deleted successfully!')]);
         } catch (\Throwable $th) {

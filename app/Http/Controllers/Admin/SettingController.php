@@ -57,7 +57,8 @@ class SettingController extends Controller
         return redirect()->back();
     }
 
-    function updateSeoSetting(AdminSeoSettingUpdateRequest $request) : RedirectResponse {
+    function updateSeoSetting(AdminSeoSettingUpdateRequest $request): RedirectResponse
+    {
         Setting::updateOrCreate(
             ['key' => 'site_seo_title'],
             ['value' => $request->site_seo_title]
@@ -81,7 +82,8 @@ class SettingController extends Controller
         return redirect()->back();
     }
 
-    function updateAppearanceSetting(Request $request): RedirectResponse {
+    function updateAppearanceSetting(Request $request): RedirectResponse
+    {
         $request->validate([
             'site_color' => ['required', 'max:200']
         ]);
@@ -89,6 +91,28 @@ class SettingController extends Controller
         Setting::updateOrCreate(
             ['key' => 'site_color'],
             ['value' => $request->site_color]
+        );
+
+        toast(__('admin.Updated successfully!'), 'success');
+
+        return redirect()->back();
+    }
+
+    function updateMicrosoftApiSetting(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'site_microsoft_api_host' => ['required'],
+            'site_microsoft_api_key' => ['required'],
+        ]);
+
+        Setting::updateOrCreate(
+            ['key' => 'site_microsoft_api_host'],
+            ['value' => $request->site_microsoft_api_host]
+        );
+
+        Setting::updateOrCreate(
+            ['key' => 'site_microsoft_api_key'],
+            ['value' => $request->site_microsoft_api_key]
         );
 
         toast(__('admin.Updated successfully!'), 'success');
