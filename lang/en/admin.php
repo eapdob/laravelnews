@@ -231,5 +231,6 @@ return [
     'string' => 'String',
     'translation' => 'Translation',
     'value' => 'Value',
-    'translation_is_completed' => 'Translation is completed'
+    'translation_is_completed' => 'Translation is completed',
+    'generated_successfully' => 'Generated Successfully!'
 ];

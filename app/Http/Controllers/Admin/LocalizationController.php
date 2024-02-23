@@ -28,36 +28,47 @@ class LocalizationController extends Controller
 
     function extractLocalizationStrings(Request $request)
     {
-        $directory = $request->directory;
+        $directories = explode(',', $request->directory);
         $languageCode = $request->language_code;
         $fileName = $request->file_name;
         $localizationStrings = [];
 
-        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
-        foreach ($files as $file) {
-            if ($file->isDir()) {
-                continue;
-            }
 
-            $contents = file_get_contents($file->getPathname());
+        foreach ($directories as $directory) {
 
-            preg_match_all('/__\([\'"](.+?)[\'"]\)/', $contents, $matches);
+            $directory = trim($directory);
 
+            $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
 
-            if (!empty($matches[1])) {
-                foreach ($matches[1] as $match) {
-                    $localizationStrings[$match] = $match;
+            foreach ($files as $file) {
+                if ($file->isDir()) {
+                    continue;
+                }
+
+                $contents = file_get_contents($file->getPathname());
+
+                preg_match_all('/__\([\'"](.+?)[\'"]\)/', $contents, $matches);
+
+                if (!empty($matches[1])) {
+                    foreach ($matches[1] as $match) {
+                        $localizationStrings[$match] = $match;
+                    }
                 }
             }
-
-            $phpArray = "<?php\n\nreturn " . var_export($localizationStrings, true) . ";\n";
-
-            if (!File::isDirectory(lang_path($languageCode))) {
-                File::makeDirectory(lang_path($languageCode), 0755, true);
-            }
-
-            file_put_contents(lang_path($languageCode . '/' . $fileName . '.php'), $phpArray);
         }
+
+
+        $phpArray = "<?php\n\nreturn " . var_export($localizationStrings, true) . ";\n";
+
+        if (!File::isDirectory(lang_path($languageCode))) {
+            File::makeDirectory(lang_path($languageCode), 0755, true);
+        }
+
+        file_put_contents(lang_path($languageCode . '/' . $fileName . '.php'), $phpArray);
+
+        toast(__('admin.generated_successfully'), 'success');
+
+        return redirect()->back();
     }
 
     function updateLangString(Request $request): RedirectResponse
