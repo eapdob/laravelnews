@@ -102,7 +102,7 @@
                 <div class="col-md-4">
                     <div class="sidebar-sticky">
                         <aside class="wrapper__list__article ">
-                            <h4 class="border_section">{{ __('admin.sidebar') }}</h4>
+                            <h4 class="border_section">{{ __('Sidebar') }}</h4>
                             <div class="wrapper__list__article-small">
                                 @foreach ($recentNews as $new)
                                     @if ($loop->index <= 2)

@@ -3,39 +3,39 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.subscribers') }}</h1>
+            <h1>{{ __('Subscribers') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.send_mail_to_subscribers') }}</h4>
+                <h4>{{ __('Send mail to subscribers') }}</h4>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.subscriber.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="">{{ __('admin.subject') }}</label>
+                        <label for="">{{ __('Subject') }}</label>
                         <input type="text" class="form-control" name="subject">
                         @error('subject')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">{{ __('admin.message') }}</label>
+                        <label for="">{{ __('Message') }}</label>
                         <textarea name="message" class="summernote" id="" cols="30" rows="10"></textarea>
                         @error('message')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">{{ __('admin.send') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Send') }}</button>
                 </form>
             </div>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.all_subscribers') }}</h4>
+                <h4>{{ __('All subscribers') }}</h4>
                 <div class="card-header-action">
                     <a href="{{ route('admin.subscriber.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> {{ __('admin.create_new') }}
+                        <i class="fas fa-plus"></i> {{ __('Create new') }}
                     </a>
                 </div>
             </div>
@@ -47,8 +47,8 @@
                             <th class="text-center">
                                 #
                             </th>
-                            <th>{{ __('admin.email') }}</th>
-                            <th>{{ __('admin.action') }}</th>
+                            <th>{{ __('Email') }}</th>
+                            <th>{{ __('Action') }}</th>
                         </tr>
                         </thead>
                         <tbody>

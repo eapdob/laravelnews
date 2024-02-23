@@ -3,11 +3,11 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.footer_info') }}</h1>
+            <h1>{{ __('Footer info') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.footer_info') }}</h4>
+                <h4>{{ __('Footer info') }}</h4>
             </div>
             <div class="card-body">
                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
@@ -33,21 +33,21 @@
                                     @csrf
                                     <div class="form-group">
                                         <img src="{{ asset($footerInfo->logo ?? '') }}" width="100px" alt=""><br>
-                                        <label for="">{{ __('admin.logo') }}</label>
+                                        <label for="">{{ __('Logo') }}</label>
                                         <input type="file" name="logo" class="form-control">
                                         <input type="hidden" name="language" value="{{ $language->lang }}"
                                                class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="">{{ __('admin.short_description') }}</label>
+                                        <label for="">{{ __('Short description') }}</label>
                                         <textarea name="description" class="form-control" id="" cols="30"
                                                   rows="10">{{ $footerInfo->description ?? '' }}</textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">{{ __('admin.copyright_text') }}</label>
+                                        <label for="">{{ __('Copyright text') }}</label>
                                         <input type="text" name="copyright" class="form-control" value="{{ $footerInfo->copyright ?? '' }}">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">{{ __('admin.save') }}</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                                 </form>
                             </div>
                         </div>

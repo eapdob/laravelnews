@@ -3,14 +3,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.contact_messages') }}</h1>
+            <h1>{{ __('Contact messages') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.all_messages') }}</h4>
+                <h4>{{ __('All messages') }}</h4>
                 <div class="card-header-action">
                     <a href="{{ route('admin.social-link.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> {{ __('admin.create_new') }}
+                        <i class="fas fa-plus"></i> {{ __('Create new') }}
                     </a>
                 </div>
             </div>
@@ -22,10 +22,10 @@
                             <th class="text-center">
                                 #
                             </th>
-                            <th>{{ __('admin.email') }}</th>
-                            <th>{{ __('admin.subject') }}</th>
-                            <th>{{ __('admin.message') }}</th>
-                            <th>{{ __('admin.action') }}</th>
+                            <th>{{ __('Email') }}</th>
+                            <th>{{ __('Subject') }}</th>
+                            <th>{{ __('Message') }}</th>
+                            <th>{{ __('Action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -55,8 +55,8 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="messageModalLabel">{{ __('admin.reply_to') }}: {{ $message->email }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('admin.close') }}">
+                        <h5 class="modal-title" id="messageModalLabel">{{ __('Reply to') }}: {{ $message->email }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -64,7 +64,7 @@
                         <form action="{{ route('admin.contact.send-reply') }}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <label for="subject">{{ __('admin.subject') }}</label>
+                                <label for="subject">{{ __('Subject') }}</label>
                                 <input type="hidden" name="message_id" value="{{ $message->id }}">
                                 <input type="hidden" name="email" value="{{ $message->email }}">
                                 <input type="text" name="subject" id="subject" class="form-control">
@@ -73,7 +73,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="message">{{ __('admin.message') }}</label>
+                                <label for="message">{{ __('Message') }}</label>
                                 <textarea name="message" class="form-control" style="height: 200px !important;" id="message"></textarea>
                                 @error('message')
                                 <p class="text-danger">{{ $message }}</p>
@@ -81,8 +81,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">{{ __('admin.close') }}</button>
-                                <button type="submit" class="btn btn-primary">{{ __('admin.send') }}</button>
+                                        data-dismiss="modal">{{ __('Close') }}</button>
+                                <button type="submit" class="btn btn-primary">{{ __('Send') }}</button>
                             </div>
                         </form>
                     </div>

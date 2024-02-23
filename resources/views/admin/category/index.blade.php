@@ -3,14 +3,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.categories') }}</h1>
+            <h1>{{ __('Categories') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.all_categories') }}</h4>
+                <h4>{{ __('All categories') }}</h4>
                 <div class="card-header-action">
                     <a href="{{ route('admin.category.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> {{ __('admin.create_new') }}
+                        <i class="fas fa-plus"></i> {{ __('Create new') }}
                     </a>
                 </div>
             </div>
@@ -41,12 +41,12 @@
                                     <table class="table table-striped" id="table-{{ $language->lang }}">
                                         <thead>
                                         <tr>
-                                            <th class="text-center">{{ __('admin.id') }}</th>
-                                            <th>{{ __('admin.name') }}</th>
-                                            <th>{{ __('admin.code') }}</th>
-                                            <th>{{ __('admin.in_nav') }}</th>
-                                            <th>{{ __('admin.status') }}</th>
-                                            <th>{{ __('admin.action') }}</th>
+                                            <th class="text-center">{{ __('Id') }}</th>
+                                            <th>{{ __('Name') }}</th>
+                                            <th>{{ __('Code') }}</th>
+                                            <th>{{ __('In nav') }}</th>
+                                            <th>{{ __('Status') }}</th>
+                                            <th>{{ __('Action') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -57,17 +57,17 @@
                                                 <td>{{ $category->language }}</td>
                                                 <td>
                                                     @if ($category->show_at_nav == 1)
-                                                        <span class="badge badge-primary">{{ __('admin.yes') }}</span>
+                                                        <span class="badge badge-primary">{{ __('Yes') }}</span>
                                                     @else
-                                                        <span class="badge badge-danger">{{ __('admin.no') }}</span>
+                                                        <span class="badge badge-danger">{{ __('No') }}</span>
                                                     @endif
 
                                                 </td>
                                                 <td>
                                                     @if ($category->status == 1)
-                                                        <span class="badge badge-success">{{ __('admin.yes') }}</span>
+                                                        <span class="badge badge-success">{{ __('Yes') }}</span>
                                                     @else
-                                                        <span class="badge badge-danger">{{ __('admin.no') }}</span>
+                                                        <span class="badge badge-danger">{{ __('No') }}</span>
                                                     @endif
                                                 </td>
                                                 <td>

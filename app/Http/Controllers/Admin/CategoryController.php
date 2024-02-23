@@ -49,7 +49,7 @@ class CategoryController extends Controller
         $category->status = $request->status;
         $category->save();
 
-        toast(__('admin.created_successfully'), 'success')->width('400');
+        toast(__('Created successfully!'), 'success')->width('400');
 
         return redirect()->route('admin.category.index');
     }
@@ -85,7 +85,7 @@ class CategoryController extends Controller
         $category->status = $request->status;
         $category->save();
 
-        toast(__('admin.updated_successfully'),'success')->width('400');
+        toast(__('Updated successfully!'),'success')->width('400');
 
         return redirect()->route('admin.category.index');
     }
@@ -98,9 +98,9 @@ class CategoryController extends Controller
         try {
             $category = Category::findOrFail($id);
             $category->delete();
-            return response(['status' => 'success', 'message' => __('admin.deleted_successfully')]);
+            return response(['status' => 'success', 'message' => __('Deleted successfully!')]);
         } catch (\Throwable $th) {
-            return response(['status' => 'error', 'message' => __('admin.something_went_wrong')]);
+            return response(['status' => 'error', 'message' => __('Something went wrong!')]);
         }
     }
 }

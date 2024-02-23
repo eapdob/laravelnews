@@ -40,7 +40,7 @@ class ContactController extends Controller
             ]
         );
 
-        toast(__('admin.updated_successfully'), 'success');
+        toast(__('Updated successfully!'), 'success');
 
         return redirect()->back();
     }

@@ -3,14 +3,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.roles_and_permissions') }}</h1>
+            <h1>{{ __('Roles and permissions') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.roles_and_permissions') }}</h4>
+                <h4>{{ __('Roles and permissions') }}</h4>
                 <div class="card-header-action">
                     <a href="{{ route('admin.role.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> {{ __('admin.create_new') }}
+                        <i class="fas fa-plus"></i> {{ __('Create new') }}
                     </a>
                 </div>
             </div>
@@ -22,9 +22,9 @@
                             <th class="text-center">
                                 #
                             </th>
-                            <th>{{ __('admin.role_name') }}</th>
-                            <th>{{ __('admin.permissions') }}</th>
-                            <th>{{ __('admin.action') }}</th>
+                            <th>{{ __('Role name') }}</th>
+                            <th>{{ __('Permissions') }}</th>
+                            <th>{{ __('Action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,7 +37,7 @@
                                         <span class="badge bg-primary text-light">{{ $permission->name }}</span>
                                     @endforeach
                                     @if ($role->name === 'Super Admin')
-                                        <span class="badge bg-danger text-light">{{ __('admin.all_permissions') }} *</span>
+                                        <span class="badge bg-danger text-light">{{ __('All permissions') }} *</span>
                                     @endif
                                 </td>
                                 <td>

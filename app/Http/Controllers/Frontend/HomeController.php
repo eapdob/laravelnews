@@ -224,7 +224,7 @@ class HomeController extends Controller
         $comment->comment = $request->comment;
         $comment->save();
 
-        toast(__('frontend.comment_added_successfully'), 'success');
+        toast(__('Comment added successfully!'), 'success');
 
         return redirect()->back();
     }
@@ -242,7 +242,7 @@ class HomeController extends Controller
         $comment->comment = $request->reply;
         $comment->save();
 
-        toast(__('frontend.comment_added_successfully'), 'success');
+        toast(__('Comment added successfully!'), 'success');
 
         return redirect()->back();
     }
@@ -252,10 +252,10 @@ class HomeController extends Controller
         $comment = Comment::findOrFail($request->id);
         if (Auth::user()->id === $comment->user_id) {
             $comment->delete();
-            return response(['status' => 'success', 'message' => __('frontend.deleted_successfully')]);
+            return response(['status' => 'success', 'message' => __('Deleted successfully!')]);
         }
 
-        return response(['status' => 'error', 'message' => __('frontend.cant_delete_not_your_own_comment')]);
+        return response(['status' => 'error', 'message' => __('Can\'t delete not your own comment!')]);
     }
 
     public function SubscribeNewsletter(Request $request)
@@ -270,7 +270,7 @@ class HomeController extends Controller
                 ]
             ],
             [
-                'email.unique' => __('frontend.email_is_already_subscribed')
+                'email.unique' => __('Email is already subscribed!')
             ]
         );
 
@@ -280,7 +280,7 @@ class HomeController extends Controller
 
         return response([
             'status' => 'success',
-            'message' => __('frontend.subscribed_successfully')
+            'message' => __('Subscribed successfully!')
         ]);
     }
 
@@ -318,7 +318,7 @@ class HomeController extends Controller
             toast(__($e->getMessage()));
         }
 
-        toast(__('frontend.message_sent_successfully'), 'success');
+        toast(__('Message sent successfully!'), 'success');
 
         return redirect()->back();
     }

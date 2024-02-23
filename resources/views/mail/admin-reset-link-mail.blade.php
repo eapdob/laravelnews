@@ -347,8 +347,8 @@
                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <p>{{ __('admin.hi_there') }}</p>
-                                        <p>{{ __('admin.here_is_your_password_link') }}</p>
+                                        <p>{{ __('Hi there') }}</p>
+                                        <p>{{ __('Here is your password link') }}</p>
                                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                                             <tbody>
                                             <tr>
@@ -357,7 +357,7 @@
                                                         <tbody>
                                                         <tr>
                                                             <td>
-                                                                <a href="{{ route('admin.reset-password', ['token' => $token, 'email' => $email]) }}" target="_blank">{{ __('admin.click_here_to_reset') }}</a>
+                                                                <a href="{{ route('admin.reset-password', ['token' => $token, 'email' => $email]) }}" target="_blank">{{ __('Click here to reset') }}</a>
                                                             </td>
                                                         </tr>
                                                         </tbody>

@@ -3,14 +3,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.social_links') }}</h1>
+            <h1>{{ __('Social links') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.all_links') }}</h4>
+                <h4>{{ __('All links') }}</h4>
                 <div class="card-header-action">
                     <a href="{{ route('admin.social-link.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus"></i>{{ __('admin.create_new') }}
+                        <i class="fas fa-plus"></i>{{ __('Create new') }}
                     </a>
                 </div>
             </div>
@@ -20,10 +20,10 @@
                         <thead>
                         <tr>
                             <th class="text-center">#</th>
-                            <th>{{ __('admin.icon') }}</th>
-                            <th>{{ __('admin.url') }}</th>
-                            <th>{{ __('admin.status') }}</th>
-                            <th>{{ __('admin.action') }}</th>
+                            <th>{{ __('Icon') }}</th>
+                            <th>{{ __('Url') }}</th>
+                            <th>{{ __('Status') }}</th>
+                            <th>{{ __('Action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -34,9 +34,9 @@
                                 <td>{{ $socialLink->url }}</td>
                                 <td>
                                     @if($socialLink->status === 1)
-                                        <span class="badge badge-success">{{ __('admin.yes') }}</span>
+                                        <span class="badge badge-success">{{ __('Yes') }}</span>
                                     @else
-                                        <span class="badge badge-danger">{{ __('admin.no') }}</span>
+                                        <span class="badge badge-danger">{{ __('No') }}</span>
                                     @endif
                                 </td>
                                 <td>

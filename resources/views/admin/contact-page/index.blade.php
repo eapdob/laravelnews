@@ -3,11 +3,11 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.contact_page') }}</h1>
+            <h1>{{ __('Contact page') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.contact_page') }}</h4>
+                <h4>{{ __('Contact page') }}</h4>
             </div>
             <div class="card-body">
                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
@@ -32,20 +32,20 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
-                                        <label for="">{{ __('admin.address') }}</label>
+                                        <label for="">{{ __('Address') }}</label>
                                         <input type="text" class="form-control" name="address" value="{{ $contact->address ?? '' }}">
                                         <input type="hidden" class="form-control" name="language"
                                                value="{{ $language->lang }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="">{{ __('admin.phone') }}</label>
+                                        <label for="">{{ __('Phone') }}</label>
                                         <input type="text" class="form-control" name="phone" value="{{ $contact->phone ?? '' }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="">{{ __('admin.email') }}</label>
+                                        <label for="">{{ __('Email') }}</label>
                                         <input type="text" class="form-control" name="email" value="{{ $contact->email ?? '' }}">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">{{ __('admin.save') }}</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                                 </form>
                             </div>
                         </div>

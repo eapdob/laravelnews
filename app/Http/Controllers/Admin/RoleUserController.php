@@ -56,7 +56,7 @@ class RoleUserController extends Controller
             $user->save();
             $user->assignRole($request->role);
             Mail::to($request->email)->send(new RoleUserCreateMail($request->email, $request->password));
-            toast(__('admin.created_successfully'), 'success');
+            toast(__('Created successfully!'), 'success');
             return redirect()->route('admin.role-users.index');
         } catch (\Throwable $th) {
             throw $th;
@@ -91,7 +91,7 @@ class RoleUserController extends Controller
         }
         $user->save();
         $user->syncRoles($request->role);
-        toast(__('admin.update_successfully'), 'success');
+        toast(__('Update successfully!'), 'success');
         return redirect()->route('admin.role-users.index');
     }
 
@@ -102,10 +102,10 @@ class RoleUserController extends Controller
     {
         $user = Admin::findOrFail($id);
         if($user->getRoleNames()->first() === 'Super Admin'){
-            return response(['status' => 'error', 'message' => __('admin.cant_delete_the_super_admin')]);
+            return response(['status' => 'error', 'message' => __('Can\'t delete the super admin!')]);
         }
         $user->delete();
 
-        return response(['status' => 'success', 'message' => __('admin.deleted_successfully')]);
+        return response(['status' => 'success', 'message' => __('Deleted successfully!')]);
     }
 }

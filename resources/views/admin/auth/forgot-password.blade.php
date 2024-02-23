@@ -11,10 +11,10 @@
                     </div>
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>{{ __('admin.forgot_password') }}</h4>
+                            <h4>{{ __('Forgot password') }}</h4>
                         </div>
                         <div class="card-body">
-                            <p>{{ __('admin.forgot_password_content') }}</p>
+                            <p>{{ __('Forgot password content') }}</p>
                             @if (session()->has('success'))
                                 <br>
                                 <i><b style="color:green;">{{ session()->get('success') }}</b></i>
@@ -24,20 +24,20 @@
                                   novalidate="">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="email">{{ __('admin.email') }}</label>
+                                    <label for="email">{{ __('Email') }}</label>
                                     <input id="email" type="email" class="form-control" name="email" tabindex="1"
                                            required autofocus>
                                     @error('email')
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        {{ __('admin.invalid_email') }}
+                                        {{ __('Invalid email') }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                        {{ __('admin.send_link') }}
+                                        {{ __('Send link') }}
                                     </button>
                                 </div>
                             </form>

@@ -3,11 +3,11 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.pending_news') }}</h1>
+            <h1>{{ __('Pending news') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.all_pending') }}</h4>
+                <h4>{{ __('All pending') }}</h4>
             </div>
             @php
                 if(canAccess(['news all-access'])){
@@ -31,11 +31,11 @@
                                 <th class="text-center">
                                     #
                                 </th>
-                                <th>{{ __('admin.image') }}</th>
-                                <th>{{ __('admin.title') }}</th>
-                                <th>{{ __('admin.category') }}</th>
-                                <th>{{ __('admin.approve') }}</th>
-                                <th>{{ __('admin.action') }}</th>
+                                <th>{{ __('Image') }}</th>
+                                <th>{{ __('Title') }}</th>
+                                <th>{{ __('Category') }}</th>
+                                <th>{{ __('Approve') }}</th>
+                                <th>{{ __('Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,8 +52,8 @@
                                             <input type="hidden" name="id" value="{{ $item->id }}">
                                             <div class="form-group">
                                                 <select name="is_approve" class="form-control" id="approve-input">
-                                                    <option value="0">{{ __('admin.pending') }}</option>
-                                                    <option value="1">{{ __('admin.approved') }}</option>
+                                                    <option value="0">{{ __('Pending') }}</option>
+                                                    <option value="1">{{ __('Approved') }}</option>
                                                 </select>
                                             </div>
                                         </form>

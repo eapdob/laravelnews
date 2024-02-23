@@ -3,16 +3,16 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.profile') }}</h1>
+            <h1>{{ __('Profile') }}</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">{{ __('admin.dashboard') }}</a></div>
-                <div class="breadcrumb-item">{{ __('admin.profile') }}</div>
+                <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                <div class="breadcrumb-item">{{ __('Profile') }}</div>
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">{{ __('admin.hi') }}{{ Auth::guard('admin')->user()->name }}!</h2>
+            <h2 class="section-title">{{ __('Hi') }}{{ Auth::guard('admin')->user()->name }}!</h2>
             <p class="section-lead">
-                {{ __('admin.change_some_information') }}
+                {{ __('Change some information') }}
             </p>
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-6">
@@ -21,12 +21,12 @@
                             @csrf
                             @method('PUT')
                             <div class="card-header">
-                                <h4>{{ __('admin.edit_profile') }}</h4>
+                                <h4>{{ __('Edit profile') }}</h4>
                             </div>
                             <div class="card-body">
                                 <div class="col-12">
                                     <div id="image-preview">
-                                        <label for="image-upload" id="image-label">{{ __('admin.choose_file') }}</label>
+                                        <label for="image-upload" id="image-label">{{ __('Choose file') }}</label>
                                         <input type="file" name="image" id="image-upload" />
                                         <input type="hidden" name="old_image" value="{{ $user->image }}" />
                                     </div>
@@ -37,10 +37,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6 col-12">
-                                    <label>{{ __('admin.name') }}</label>
+                                    <label>{{ __('Name') }}</label>
                                     <input type="text" class="form-control" value="{{ $user->name }}" required="" name="name">
                                     <div class="invalid-feedback">
-                                        {{ __('admin.invalid_name') }}
+                                        {{ __('Invalid name') }}
                                     </div>
                                     @error('name')
                                         <p class="invalid-feedback">
@@ -49,10 +49,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6 col-12">
-                                    <label>{{ __('admin.email') }}</label>
+                                    <label>{{ __('Email') }}</label>
                                     <input type="email" class="form-control" value="{{ $user->email }}" required="" name="email">
                                     <div class="invalid-feedback">
-                                        {{ __('admin.invalid_email') }}
+                                        {{ __('Invalid email') }}
                                     </div>
                                     @error('email')
                                         <p class="invalid-feedback">
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <button class="btn btn-primary">{{ __('admin.save_changes') }}</button>
+                                <button class="btn btn-primary">{{ __('Save changes') }}</button>
                             </div>
                         </form>
                     </div>
@@ -73,14 +73,14 @@
                             @csrf
                             @method('PUT')
                             <div class="card-header">
-                                <h4>{{ __('admin.update_password') }}</h4>
+                                <h4>{{ __('Update password') }}</h4>
                             </div>
                             <div class="card-body">
                                 <div class="form-group col-md-6 col-12">
-                                    <label>{{ __('admin.old_password') }}</label>
+                                    <label>{{ __('Old password') }}</label>
                                     <input type="password" class="form-control" required="" name="current_password">
                                     <div class="invalid-feedback">
-                                        {{ __('admin.invalid_old_password') }}
+                                        {{ __('Invalid old password') }}
                                     </div>
                                     @error('current_password')
                                         <p class="text-danger">
@@ -89,10 +89,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6 col-12">
-                                    <label>{{ __('admin.new_password') }}</label>
+                                    <label>{{ __('New password') }}</label>
                                     <input type="password" class="form-control" value="" required="" name="password">
                                     <div class="invalid-feedback">
-                                        {{ __('admin.invalid_new_password') }}
+                                        {{ __('Invalid new password') }}
                                     </div>
                                     @error('password')
                                         <p class="text-danger">
@@ -101,15 +101,15 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6 col-12">
-                                    <label>{{ __('admin.confirm_password') }}</label>
+                                    <label>{{ __('Confirm password') }}</label>
                                     <input type="password" class="form-control" value="" required="" name="password_confirmation">
                                     <div class="invalid-feedback">
-                                        {{ __('admin.invalid_confirm_password') }}
+                                        {{ __('Invalid confirm password') }}
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <button class="btn btn-primary">{{ __('admin.save_changes') }}</button>
+                                <button class="btn btn-primary">{{ __('Save changes') }}</button>
                             </div>
                         </form>
                     </div>

@@ -3,14 +3,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.role_users') }}</h1>
+            <h1>{{ __('Role users') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.all_role_users') }}</h4>
+                <h4>{{ __('All role users') }}</h4>
                 <div class="card-header-action">
                     <a href="{{ route('admin.role-users.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> {{ __('admin.create_new') }}
+                        <i class="fas fa-plus"></i> {{ __('Create new') }}
                     </a>
                 </div>
             </div>
@@ -22,10 +22,10 @@
                             <th class="text-center">
                                 #
                             </th>
-                            <th>{{ __('admin.name') }}</th>
-                            <th>{{ __('admin.email') }}</th>
-                            <th>{{ __('admin.role') }}</th>
-                            <th>{{ __('admin.action') }}</th>
+                            <th>{{ __('Name') }}</th>
+                            <th>{{ __('Email') }}</th>
+                            <th>{{ __('Role') }}</th>
+                            <th>{{ __('Action') }}</th>
                         </tr>
                         </thead>
                         <tbody>

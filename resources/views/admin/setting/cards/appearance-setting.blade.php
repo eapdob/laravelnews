@@ -4,7 +4,7 @@
             @csrf
             @method('PUT')
             <div class="form-group">
-                <label>{{ __('admin.pick_your_color') }}</label>
+                <label>{{ __('Pick your color') }}</label>
                 <div class="input-group colorpickerinput">
                     <input value="{{ $settings['site_color'] ?? '' }}" name="site_color" type="text"
                            class="form-control">
@@ -18,7 +18,7 @@
                     @enderror
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">{{ __('admin.save') }}</button>
+            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
         </form>
     </div>
 </div>

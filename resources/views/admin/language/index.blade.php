@@ -3,14 +3,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('admin.language') }}</h1>
+            <h1>{{ __('Language') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('admin.all_languages') }}</h4>
+                <h4>{{ __('All languages') }}</h4>
                 <div class="card-header-action">
                     <a href="{{ route('admin.language.create') }}" class="btn btn-primary fa fa-plus">
-                        {{ __('admin.create_new') }}
+                        {{ __('Create new') }}
                     </a>
                 </div>
             </div>
@@ -19,12 +19,12 @@
                     <table class="table table-striped" id="table-1">
                         <thead>
                         <tr>
-                            <th class="text-center">{{ __('admin.id') }}</th>
-                            <th>{{ __('admin.name') }}</th>
-                            <th>{{ __('admin.code') }}</th>
-                            <th>{{ __('admin.default') }}</th>
-                            <th>{{ __('admin.status') }}</th>
-                            <th>{{ __('admin.action') }}</th>
+                            <th class="text-center">{{ __('Id') }}</th>
+                            <th>{{ __('Name') }}</th>
+                            <th>{{ __('Code') }}</th>
+                            <th>{{ __('Default') }}</th>
+                            <th>{{ __('Status') }}</th>
+                            <th>{{ __('Action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,17 +38,17 @@
 
                                 <td>
                                     @if ($language->default == 1)
-                                        <span class="badge badge-primary">{{ __('admin.default') }}</span>
+                                        <span class="badge badge-primary">{{ __('Default') }}</span>
                                     @else
-                                        <span class="badge badge-warning">{{ __('admin.no') }}</span>
+                                        <span class="badge badge-warning">{{ __('No') }}</span>
                                     @endif
 
                                 </td>
                                 <td>
                                     @if ($language->status == 1)
-                                        <span class="badge badge-success">{{ __('admin.active') }}</span>
+                                        <span class="badge badge-success">{{ __('Active') }}</span>
                                     @else
-                                        <span class="badge badge-danger">{{ __('admin.inactive') }}</span>
+                                        <span class="badge badge-danger">{{ __('Inactive') }}</span>
                                     @endif
                                 </td>
 

@@ -7,7 +7,7 @@
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('All Strings') }}</h4>
+                <h4>{{ __('All strings') }}</h4>
                 <div class="card-header-action">
                     <a href="{{ route('admin.category.create') }}" class="btn btn-primary">
                         <i class="fas fa-plus"></i> {{ __('Create new') }}
@@ -32,21 +32,21 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <form method="POST" action="{{ route('admin.extract-localize-string') }}">
+                                            <form method="POST" action="{{ route('admin.extract-localize-strings') }}">
                                                 @csrf
                                                 <input type="hidden" name="directory"
                                                        value="{{ resource_path('views/admin') }},{{ app_path('Http/Controllers/Admin') }}">
                                                 <input type="hidden" name="language_code" value="{{ $language->lang }}">
                                                 <input type="hidden" name="file_name" value="admin">
                                                 <button type="submit"
-                                                        class="btn btn-primary mx-3">{{ __('Generate Strings') }}</button>
+                                                        class="btn btn-primary mx-3">{{ __('Generate strings') }}</button>
                                             </form>
                                             <form class="translate-from" method="POST"
                                                   action="{{ route('admin.translate-string') }}">
                                                 <input type="hidden" name="language_code" value="{{ $language->lang }}">
                                                 <input type="hidden" name="file_name" value="admin">
                                                 <button type="submit"
-                                                        class="btn btn-dark mx-3 translate-button">{{ __('Translate Strings') }}</button>
+                                                        class="btn btn-dark mx-3 translate-button">{{ __('Translate strings') }}</button>
                                             </form>
                                         </div>
                                     </div>

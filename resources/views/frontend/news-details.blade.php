@@ -310,7 +310,7 @@
                     @else
                         <div class="card my-5">
                             <div class="card-body">
-                                <h5 class="p-0">{!!  __('frontend.comment_unlogged_text',['route' => route('login')]) !!}</h5>
+                                <h5 class="p-0">{!!  __('Comment unlogged text',['route' => route('login')]) !!}</h5>
                             </div>
                         </div>
                     @endauth

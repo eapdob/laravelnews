@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
-    <title>{{ __('admin.dashboard_title') }}</title>
+    <title>{{ __('Dashboard title') }}</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('admin/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -106,13 +106,13 @@
         $('.delete-item').on('click', function (e) {
             e.preventDefault();
             Swal.fire({
-                title: '{{ __('admin.are_you_sure') }}',
-                text: '{{ __('admin.you_wont_be_able_to_revert_this') }}',
+                title: '{{ __('Are you sure') }}',
+                text: '{{ __('You wont be able to revert this') }}',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: '{{ __('admin.yes_delete_it') }}'
+                confirmButtonText: '{{ __('Yes delete it') }}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     let url = $(this).attr('href');
@@ -123,14 +123,14 @@
                         success: function (data) {
                             if (data.status === 'success') {
                                 Swal.fire(
-                                    '{{ __('admin.deleted') }}',
+                                    '{{ __('Deleted') }}',
                                     data.message,
                                     'success'
                                 )
                                 window.location.reload();
                             } else if (data.status === 'error') {
                                 Swal.fire(
-                                    '{{ __('admin.error') }}',
+                                    '{{ __('Error') }}',
                                     data.message,
                                     'error'
                                 )
