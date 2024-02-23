@@ -29,19 +29,21 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group form-group-name">
-                                    <label for="email">{{ __('frontend.Your email') }} <span class="required"></span></label>
+                                    <label for="email">{{ __('frontend.Your email') }} <span
+                                            class="required"></span></label>
                                     <input type="email" id="email" class="form-control" name="email" required="">
                                     @error('email')
-                                        <p class="text-danger">{{ $message }}</p>
+                                    <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-group-name">
-                                    <label for="subject">{{ __('frontend.Subject') }} <span class="required"></span></label>
+                                    <label for="subject">{{ __('frontend.Subject') }} <span
+                                            class="required"></span></label>
                                     <input type="text" id="subject" class="form-control" name="subject" required="">
                                     @error('subject')
-                                        <p class="text-danger">{{ $message }}</p>
+                                    <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
@@ -50,7 +52,7 @@
                                     <label for="message">{{ __('frontend.Message') }} </label>
                                     <textarea id="message" class="form-control" rows="8" name="message"></textarea>
                                     @error('subject')
-                                        <p class="text-danger">{{ $message }}</p>
+                                    <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group mb-4">
@@ -86,31 +88,14 @@
                         <div class="social__media">
                             <h5>{{ __('frontend.Find us') }}</h5>
                             <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-social rounded text-white facebook">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-social rounded text-white twitter">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-social rounded text-white whatsapp">
-                                        <i class="fa fa-whatsapp"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-social rounded text-white telegram">
-                                        <i class="fa fa-telegram"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-social rounded text-white linkedin">
-                                        <i class="fa fa-linkedin"></i>
-                                    </a>
-                                </li>
+                                @foreach ($socials as $social)
+                                    <li class="list-inline-item-contact mx-1">
+                                        <a href="https://www.linkedin.com/"
+                                           class="btn btn-social rounded text-white facebook">
+                                            <i class="{{ $social->icon }}"></i>
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
