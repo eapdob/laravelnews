@@ -60,7 +60,7 @@
                     @foreach ($languages as $language)
                         <li class="nav-item">
                             <a class="nav-link {{ $loop->index === 0 ? 'active' : '' }}" id="home-tab2" data-toggle="tab"
-                               href="#home-{{ $language->lang }}" role="tab" aria-controls="home"
+                               href="#dtable-{{ $language->lang }}" role="tab" aria-controls="home"
                                aria-selected="true">
                                 {{ $language->name }}
                             </a>
@@ -73,7 +73,7 @@
                             $footerGridOnes = \App\Models\FooterGridOne::where('language', $language->lang)->get();
                         @endphp
                         <div class="tab-pane fade show {{ $loop->index === 0 ? 'active' : '' }}"
-                             id="home-{{ $language->lang }}" role="tabpanel" aria-labelledby="home-tab2">
+                             id="dtable-{{ $language->lang }}" role="tabpanel" aria-labelledby="home-tab2">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="table-{{ $language->lang }}">

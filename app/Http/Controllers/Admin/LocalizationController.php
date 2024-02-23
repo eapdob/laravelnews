@@ -94,24 +94,27 @@ class LocalizationController extends Controller
         $langCode = $request->language_code;
         $languageStrings = trans($request->file_name, [], $request->language_code);
         $keyStrings = array_keys($languageStrings);
-        $text = implode(' || ', $keyStrings);
+        $text = implode(' | ', $keyStrings);
+        try {
+            $response = Http::withHeaders([
+                'X-RapidAPI-Host' => getSetting('site_microsoft_api_host'),
+                'X-RapidAPI-Key' => getSetting('site_microsoft_api_key'),
+                'content-type' => 'application/json',
+            ])->post("https://microsoft-translator-text.p.rapidapi.com/translate?api-version=3.0&to%5B0%5D=$langCode&textType=plain&profanityAction=NoAction", [
+                [
+                    "Text" => $text
+                ]
+            ]);
 
-        $response = Http::withHeaders([
-            'X-RapidAPI-Host' => getSetting('site_microsoft_api_host'),
-            'X-RapidAPI-Key' => getSetting('site_microsoft_api_key'),
-            'content-type' => 'application/json',
-        ])->post("https://microsoft-translator-text.p.rapidapi.com/translate?api-version=3.0&to%5B0%5D=$langCode&textType=plain&profanityAction=NoAction", [
-            [
-                "Text" => $text
-            ]
-        ]);
+            $translatedText = json_decode($response->body())[0]->translations[0]->text;
+            $translatedValues = explode(' | ', $translatedText);
+            $updatedArray = array_combine($keyStrings, $translatedValues);
+            $phpArray = "<?php\n\nreturn " . var_export($updatedArray, true) . ";\n";
+            file_put_contents(lang_path($langCode . '/' . $request->file_name . '.php'), $phpArray);
 
-        $translatedText = json_decode($response->body())[0]->translations[0]->text;
-        $translatedValues = explode(' || ', $translatedText);
-        $updatedArray = array_combine($keyStrings, $translatedValues);
-        $phpArray = "<?php\n\nreturn " . var_export($updatedArray, true) . ";\n";
-        file_put_contents(lang_path($langCode . '/' . $request->file_name . '.php'), $phpArray);
-
-        return response(['status' => 'success', __('admin.Translation is completed!')]);
+            return response(['status' => 'success', __('admin.Translation is completed!')]);
+        } catch (\Throwable $th) {
+            return response(['status' => 'error', $th->getMessage()]);
+        }
     }
 }

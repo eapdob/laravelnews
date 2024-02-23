@@ -18,7 +18,8 @@
                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
                     @foreach ($languages as $language)
                         <li class="nav-item">
-                            <a class="nav-link {{ $loop->index === 0 ? 'active' : '' }}" id="home-tab2" data-toggle="tab"
+                            <a class="nav-link {{ $loop->index === 0 ? 'active' : '' }}" id="home-tab2"
+                               data-toggle="tab"
                                href="#home-{{ $language->lang }}" role="tab" aria-controls="home"
                                aria-selected="true">{{ $language->name }}</a>
                         </li>
@@ -146,8 +147,8 @@
         });
         @endforeach
 
-        $(document).ready(function() {
-            $('.modal_btn').on('click', function() {
+        $(document).ready(function () {
+            $('.modal_btn').on('click', function () {
                 let langCode = $(this).data('langcode');
                 let key = $(this).data('key');
                 let value = $(this).data('value');
@@ -164,18 +165,18 @@
                 $('input[name="file_name"]').val(filename)
             });
 
-            $('.translate-from').on('submit', function(e) {
+            $('.translate-from').on('submit', function (e) {
                 e.preventDefault();
                 let formData = $(this).serialize();
                 $.ajax({
                     method: 'POST',
                     url: "{{ route('admin.translate-string') }}",
                     data: formData,
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $('.translate-button').text("Translating Please Wait...")
                         $('.translate-button').prop('disabled', true);
                     },
-                    success: function(data) {
+                    success: function (data) {
                         if (data.status == 'success') {
                             Swal.fire(
                                 'Done!',
@@ -183,9 +184,15 @@
                                 'success'
                             )
                             window.location.reload();
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                data.message,
+                                'error'
+                            )
                         }
                     },
-                    error: function(data) {
+                    error: function (data) {
                         console.log(data);
                     }
                 });

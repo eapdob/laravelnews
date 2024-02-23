@@ -475,8 +475,8 @@
                                                         </div>
                                                         <div class="card__post__title">
                                                             <h6>
-                                                                <a href="{{ route('news-details', $mostViewedPost->slug) }}">
-                                                                    {!! truncate($mostViewedPost->title) !!}
+                                                                <a href="{{ route('news-details', $mostViewedNews->slug) }}" class="btn btn-outline-primary mb-4 text-capitalize">
+                                                                    {{ __('frontend.Read more')}}
                                                                 </a>
                                                             </h6>
                                                         </div>

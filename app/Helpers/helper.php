@@ -35,7 +35,7 @@ function setLanguage(string $code): void
     session(['language' => $code]);
 }
 
-function truncate(string $text, int $limit = 50): string
+function truncate(string $text, int $limit = 45): string
 {
     return \Str::limit($text, $limit, '...');
 }
