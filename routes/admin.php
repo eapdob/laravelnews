@@ -84,7 +84,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
     Route::put('role/{id}/edit', [RolePermissionController::class, 'update'])->name('role.update');
     Route::delete('role/{id}/destroy', [RolePermissionController::class, 'destroy'])->name('role.destroy');
     Route::delete('role/{id}/destroy', [RolePermissionController::class, 'destroy'])->name('role.destroy');
-    Route::resource('role-users', RoleUserController::class);
+    Route::resource('role-user', RoleUserController::class);
     Route::get('admin-localization', [LocalizationController::class, 'adminIndex'])->name('admin-localization.index');
     Route::get('frontend-localization', [LocalizationController::class, 'frontendIndex'])->name('frontend-localization.index');
     Route::post('extract-localize-strings', [LocalizationController::class, 'extractLocalizationStrings'])->name('extract-localize-strings');

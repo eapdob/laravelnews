@@ -10,7 +10,7 @@
                 <h4>{{ __('admin.Create user with role') }}</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.role-users.store') }}" method="POST">
+                <form action="{{ route('admin.role-user.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="">{{ __('admin.User name') }}</label>

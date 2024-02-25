@@ -57,7 +57,7 @@ class RoleUserController extends Controller
             $user->assignRole($request->role);
             Mail::to($request->email)->send(new RoleUserCreateMail($request->email, $request->password));
             toast(__('admin.Created successfully!'), 'success');
-            return redirect()->route('admin.role-users.index');
+            return redirect()->route('admin.role-user.index');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -92,7 +92,7 @@ class RoleUserController extends Controller
         $user->save();
         $user->syncRoles($request->role);
         toast(__('admin.Update successfully!'), 'success');
-        return redirect()->route('admin.role-users.index');
+        return redirect()->route('admin.role-user.index');
     }
 
     /**

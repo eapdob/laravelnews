@@ -12,7 +12,7 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">{{ __('admin.Dashboard') }}</li>
-            <li class="active">
+            <li class="{{ setSidebarActive(['admin.dashboard']) }}">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link">
                     <i class="fas fa-fire"></i><span>{{ __('admin.Dashboard') }}</span>
                 </a>
@@ -101,14 +101,6 @@
                     </a>
                 </li>
             @endif
-            @if (canAccess(['languages index']))
-                <li class="{{ setSidebarActive(['admin.language.*']) }}">
-                    <a class="nav-link" href="{{ route('admin.language.index') }}">
-                        <i class="far fa-square"></i>
-                        <span>{{ __('admin.Languages') }}</span>
-                    </a>
-                </li>
-            @endif
             @if (canAccess(['subscribers index']))
                 <li class="{{ setSidebarActive(['admin.subscriber.*']) }}">
                     <a class="nav-link" href="{{ route('admin.subscriber.index') }}">
@@ -168,14 +160,14 @@
                 </li>
             @endif
             @if (canAccess(['access management index']))
-                <li class="dropdown {{ setSidebarActive(['admin.role.*', 'admin.role-user.*']) }}">
+                <li class="dropdown {{ setSidebarActive(['admin.role-user.*', 'admin.role.*']) }}">
                     <a href="#" class="nav-link has-dropdown">
                         <i class="fas fa-user-shield"></i>
                         <span>{{ __('admin.Access management') }}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="{{ setSidebarActive(['admin.role-user.*']) }}"><a class="nav-link"
-                                                                                     href="{{ route('admin.role-users.index') }}">{{ __('admin.Role users') }}</a>
+                        <li class="{{ setSidebarActive(['admin.role-user.*']) }}">
+                            <a class="nav-link" href="{{ route('admin.role-user.index') }}">{{ __('admin.Role users') }}</a>
                         </li>
                         <li class="{{ setSidebarActive(['admin.role.*']) }}">
                             <a class="nav-link"
@@ -195,6 +187,7 @@
             @if (canAccess(['languages index']))
                 <li class="dropdown
                     {{ setSidebarActive([
+                        'admin.language.*',
                         'admin.frontend-localization.index',
                         'admin.admin-localization.index'
                     ]) }}

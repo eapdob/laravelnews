@@ -9,7 +9,7 @@
             <div class="card-header">
                 <h4>{{ __('admin.All role users') }}</h4>
                 <div class="card-header-action">
-                    <a href="{{ route('admin.role-users.create') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.role-user.create') }}" class="btn btn-primary">
                         <i class="fas fa-plus"></i> {{ __('admin.Create new') }}
                     </a>
                 </div>
@@ -39,10 +39,10 @@
                                 </td>
                                 <td>
                                     @if ($admin->getRoleNames()->first() != 'Super Admin')
-                                        <a href="{{ route('admin.role-users.edit', $admin->id) }}"
+                                        <a href="{{ route('admin.role-user.edit', $admin->id) }}"
                                            class="btn btn-primary"><i class="fas fa-edit"></i></a>
 
-                                        <a href="{{ route('admin.role-users.destroy', $admin->id) }}"
+                                        <a href="{{ route('admin.role-user.destroy', $admin->id) }}"
                                            class="btn btn-danger delete-item"><i
                                                 class="fas fa-trash-alt"></i></a>
                                     @endif

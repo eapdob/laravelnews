@@ -10,7 +10,7 @@
                 <h4>{{ __('admin.Update user') }}</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.role-users.update', $user->id) }}" method="POST">
+                <form action="{{ route('admin.role-user.update', $user->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
