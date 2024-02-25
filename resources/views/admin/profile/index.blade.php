@@ -5,7 +5,7 @@
         <div class="section-header">
             <h1>{{ __('admin.Profile') }}</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">{{ __('admin.Dashboard') }}</a></div>
+                <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">{{ __('admin.Dashboard') }}</a></div>
                 <div class="breadcrumb-item">{{ __('admin.Profile') }}</div>
             </div>
         </div>
