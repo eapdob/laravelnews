@@ -88,7 +88,7 @@ return array (
   'Profile' => 'Profile',
   'Dashboard' => 'Dashboard',
   'Hi' => 'Hi',
-  'Change some information' => 'Change some information',
+  'Change profile information' => 'Change profile information',
   'Edit profile' => 'Edit profile',
   'Invalid name' => 'Invalid name',
   'Invalid email' => 'Invalid email',
@@ -193,7 +193,7 @@ return array (
   'Forgot password' => 'Forgot password',
   'Invalid password' => 'Invalid password',
   'Remember me' => 'Remember me',
-  'Forgot password content' => 'Forgot password content',
+  'Forgot password content' => 'Please enter your email to receive a password reset link',
   'Send link' => 'Send link',
   'Reset password' => 'Reset password',
   'Mail sent successfully!' => 'Mail sent successfully!',
@@ -210,5 +210,6 @@ return array (
   'Copied successfully!' => 'Copied successfully!',
   'Can\'t delete this one!' => 'Can\'t delete this one!',
   'Admin Password Reset Notification' => 'Admin Password Reset Notification',
-  'Welcome to ' => 'Welcome to '
+  'Welcome to ' => 'Welcome to ',
+  'Invalid token' => 'Invalid token'
 );

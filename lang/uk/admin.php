@@ -88,7 +88,7 @@ return array (
   'Profile' => 'Профіль',
   'Dashboard' => 'Інформаційна панель',
   'Hi' => 'Привіт',
-  'Change some information' => 'Змінити деяку інформацію',
+  'Change profile information' => 'Змінити інформацію у профілі',
   'Edit profile' => 'Редагувати профіль',
   'Invalid name' => 'Неприпустиме ім\'я',
   'Invalid email' => 'Неприпустима електронна адреса',
@@ -193,7 +193,7 @@ return array (
   'Forgot password' => 'Забули пароль',
   'Invalid password' => 'Невірний пароль',
   'Remember me' => 'Запам\'ятати мене',
-  'Forgot password content' => 'Забули вміст пароля',
+  'Forgot password content' => 'Будь ласка, введіть свою електронну адресу для отримання посилань на сброс пароля',
   'Send link' => 'Надіслати посилання',
   'Reset password' => 'Скинути пароль',
   'Mail sent successfully!' => 'Пошту успішно надіслано!',
@@ -210,5 +210,6 @@ return array (
   'Copied successfully!' => 'Успішно скопійовано!',
   'Can\'t delete this one!' => 'Не можу видалити цей!',
   'Admin Password Reset Notification' => 'Сповіщення про скидання пароля адміністратора',
-  'Welcome to ' => 'Ласкаво просимо до '
+  'Welcome to ' => 'Ласкаво просимо до ',
+  'Invalid token' => 'Неприпустимий токен'
 );

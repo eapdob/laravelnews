@@ -68,7 +68,7 @@ class AdminAuthenticationController extends Controller
         ])->first();
 
         if (!$admin) {
-            return back()->with('error', 'admin.invalid_token');
+            return back()->with('error', __('admin.Invalid token'));
         }
 
         $admin->password = bcrypt($request->password);

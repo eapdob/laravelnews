@@ -48,7 +48,5 @@
                 </div>
             </div>
         </div>
-        </form>
-        </x-guest-layout>
     </section>
 @endsection

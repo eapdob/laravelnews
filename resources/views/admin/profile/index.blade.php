@@ -11,9 +11,9 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">{{ __('admin.Hi') }}{{ Auth::guard('admin')->user()->name }}!</h2>
+            <h2 class="section-title">{{ __('admin.Hi') }}, {{ Auth::guard('admin')->user()->name }}!</h2>
             <p class="section-lead">
-                {{ __('admin.Change some information') }}
+                {{ __('admin.Change profile information') }}
             </p>
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-6">

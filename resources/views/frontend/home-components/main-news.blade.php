@@ -169,7 +169,7 @@
         <div class="row">
             <div class="col-md-12">
                 <aside class="wrapper__list__article">
-                    <h4 class="border_section">{{ $categorySectionOne->first()->category->name }}</h4>
+                    <h4 class="border_section">{{ $categorySectionOne->first()->category->name??'' }}</h4>
                 </aside>
             </div>
             <div class="col-md-12">
@@ -212,7 +212,7 @@
         <div class="row">
             <div class="col-md-12">
                 <aside class="wrapper__list__article">
-                    <h4 class="border_section">{{ $categorySectionTwo->first()->category->name }}</h4>
+                    <h4 class="border_section">{{ $categorySectionTwo->first()->category->name??'' }}</h4>
                 </aside>
             </div>
             <div class="col-md-12">
@@ -256,7 +256,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <aside class="wrapper__list__article mb-0">
-                        <h4 class="border_section">{{ $categorySectionThree->first()->category->name }}</h4>
+                        <h4 class="border_section">{{ $categorySectionThree->first()->category->name??'' }}</h4>
                         <div class="row">
                             <div class="col-md-6">
                                 @foreach ($categorySectionThree as $sectionThreeNews)
