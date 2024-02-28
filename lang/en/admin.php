@@ -162,11 +162,11 @@ return array (
   'Pages' => 'Pages',
   'Advertisement' => 'Advertisement',
   'Home section setting' => 'Home section setting',
-  'Languages' => 'Languages',
   'Footer setting' => 'Footer setting',
   'Footer info' => 'Footer info',
   'Access management' => 'Access management',
   'Localization' => 'Localization',
+  'Languages' => 'Languages',
   'Frontend lang' => 'Frontend lang',
   'Admin lang' => 'Admin lang',
   'Category section one' => 'Category section one',
@@ -209,4 +209,6 @@ return array (
   'Something went wrong!' => 'Something went wrong!',
   'Copied successfully!' => 'Copied successfully!',
   'Can\'t delete this one!' => 'Can\'t delete this one!',
+  'Admin Password Reset Notification' => 'Admin Password Reset Notification',
+  'Welcome to ' => 'Welcome to '
 );

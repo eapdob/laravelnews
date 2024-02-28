@@ -31,7 +31,7 @@ class AdminSendResetLinkMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: __('admin.admin_send_link_title'),
+            subject: __('admin.Admin Password Reset Notification'),
         );
     }
 
