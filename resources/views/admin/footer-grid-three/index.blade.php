@@ -10,7 +10,8 @@
                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
                     @foreach ($languages as $language)
                         <li class="nav-item">
-                            <a class="nav-link {{ $loop->index === 0 ? 'active' : '' }}" id="home-tab2" data-toggle="tab"
+                            <a class="nav-link {{ $loop->index === 0 ? 'active' : '' }}" id="home-tab2"
+                               data-toggle="tab"
                                href="#home-{{ $language->lang }}" role="tab" aria-controls="home"
                                aria-selected="true">
                                 {{ $language->name }}
@@ -30,8 +31,10 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="">{{ __('admin.Footer title') }}</label>
-                                        <input type="text" class="form-control" name="title" value="{{ $footerTitle->value ?? '' }}">
-                                        <input type="hidden" value="{{ $language->lang }}" class="form-control" name="language">
+                                        <input type="text" class="form-control" name="title"
+                                               value="{{ $footerTitle->value ?? '' }}">
+                                        <input type="hidden" value="{{ $language->lang }}" class="form-control"
+                                               name="language">
                                         @error('title')
                                         <p class="text-danger">{{ $message }}</p>
                                         @enderror

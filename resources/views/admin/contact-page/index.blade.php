@@ -33,17 +33,20 @@
                                     @method('PUT')
                                     <div class="form-group">
                                         <label for="">{{ __('admin.Address') }}</label>
-                                        <input type="text" class="form-control" name="address" value="{{ $contact->address ?? '' }}">
+                                        <input type="text" class="form-control" name="address"
+                                               value="{{ $contact->address ?? '' }}">
                                         <input type="hidden" class="form-control" name="language"
                                                value="{{ $language->lang }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="">{{ __('admin.Phone') }}</label>
-                                        <input type="text" class="form-control" name="phone" value="{{ $contact->phone ?? '' }}">
+                                        <input type="text" class="form-control" name="phone"
+                                               value="{{ $contact->phone ?? '' }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="">{{ __('admin.Email') }}</label>
-                                        <input type="text" class="form-control" name="email" value="{{ $contact->email ?? '' }}">
+                                        <input type="text" class="form-control" name="email"
+                                               value="{{ $contact->email ?? '' }}">
                                     </div>
                                     <button type="submit" class="btn btn-primary">{{ __('admin.Save') }}</button>
                                 </form>

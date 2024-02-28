@@ -9,8 +9,7 @@
                                 <figure class="image-logo">
                                     <img src="{{ asset($footerInfo->logo??'') }}" alt="" class="logo-footer">
                                 </figure>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius magnam harum iure
-                                    officia laudantium impedit voluptatem.</p>
+                                <p>{{ @$footerInfo->description }}</p>
                                 <div class="social__media mt-4">
                                     <ul class="list-inline">
                                         @foreach ($socialLinks as $link)

@@ -16,28 +16,28 @@
                         <label for="">{{ __('admin.User name') }}</label>
                         <input type="text" class="form-control" name="name">
                         @error('name')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="">{{ __('admin.Email') }}</label>
                         <input type="text" class="form-control" name="email">
                         @error('email')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="">{{ __('admin.Password') }}</label>
                         <input type="password" class="form-control" name="password">
                         @error('password')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="">{{ __('admin.Confirm password') }}</label>
                         <input type="password" class="form-control" name="password_confirmation">
                         @error('password_confirmation')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -49,7 +49,7 @@
                             @endforeach
                         </select>
                         @error('role')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">{{ __('admin.Create') }}</button>

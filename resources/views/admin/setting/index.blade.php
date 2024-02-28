@@ -15,7 +15,8 @@
                         <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab4" data-toggle="tab" href="#home4" role="tab"
-                                   aria-controls="home" aria-selected="true" style="min-width: 154px;">{{ __('admin.General settings') }}</a>
+                                   aria-controls="home" aria-selected="true"
+                                   style="min-width: 154px;">{{ __('admin.General settings') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab4" data-toggle="tab" href="#profile4" role="tab"
@@ -26,7 +27,8 @@
                                    aria-controls="contact" aria-selected="false">{{ __('admin.Appearance') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#contact5" role="tab" aria-controls="contact" aria-selected="false">
+                                <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#contact5" role="tab"
+                                   aria-controls="contact" aria-selected="false">
                                     {{ __('admin.Microsoft Api Settings') }}
                                 </a>
                             </li>

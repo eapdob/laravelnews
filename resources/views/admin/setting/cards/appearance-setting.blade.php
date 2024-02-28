@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     @error('site_color')
-                        <p class="text-danger">{{ $message }}</p>
+                    <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
             </div>

@@ -7,7 +7,7 @@
                 <label for="">{{ __('admin.Site name') }}</label>
                 <input type="text" name="site_name" class="form-control" value="{{ $settings['site_name'] }}">
                 @error('site_name')
-                    <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group">
@@ -15,7 +15,7 @@
                 <label for="">{{ __('admin.Site logo') }}</label>
                 <input type="file" name="site_logo" class="form-control">
                 @error('site_logo')
-                    <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group">
@@ -23,7 +23,7 @@
                 <label for="">{{ __('admin.Site favicon') }}</label>
                 <input type="file" name="site_favicon" class="form-control">
                 @error('site_favicon')
-                    <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <button type="submit" class="btn btn-primary">{{ __('admin.Save') }}</button>

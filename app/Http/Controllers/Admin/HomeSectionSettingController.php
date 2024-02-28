@@ -14,6 +14,7 @@ class HomeSectionSettingController extends Controller
         $this->middleware(['permission:home section index,admin'])->only(['index']);
         $this->middleware(['permission:home section update,admin'])->only(['update']);
     }
+
     public function index()
     {
         $languages = Language::all();
@@ -22,15 +23,13 @@ class HomeSectionSettingController extends Controller
 
     public function update(AdminHomeSectionSettingUpdateRequest $request)
     {
-        HomeSectionSetting::updateOrCreate(
-            ['language' => $request->language],
-            [
-                'category_section_one' => $request->category_section_one,
-                'category_section_two' => $request->category_section_two,
-                'category_section_three' => $request->category_section_three,
-                'category_section_four' => $request->category_section_four,
-            ]
-        );
+        HomeSectionSetting::updateOrCreate([
+            'language' => $request->language,
+            'category_section_one' => $request->category_section_one,
+            'category_section_two' => $request->category_section_two,
+            'category_section_three' => $request->category_section_three,
+            'category_section_four' => $request->category_section_four
+        ]);
         toast(__('admin.Updated successfully!'), 'success');
         return redirect()->back();
     }

@@ -5,7 +5,6 @@
 @endphp
 
 <header class="bg-light">
-    <!-- Navbar  Top-->
     <div class="topbar d-none d-sm-block">
         <div class="container ">
             <div class="row">
@@ -58,9 +57,6 @@
             </div>
         </div>
     </div>
-    <!-- End Navbar Top  -->
-    <!-- Navbar  -->
-    <!-- Navbar menu  -->
     <div class="navigation-wrap navigation-shadow bg-white">
         <nav class="navbar navbar-hover navbar-expand-lg navbar-soft">
             <div class="container">
@@ -71,15 +67,16 @@
                 </div>
                 <figure class="mb-0 mx-auto">
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset($settings['site_logo']) }}" alt="{{ asset($settings['site_name']) }}" class="img-fluid logo">
+                        <img src="{{ asset($settings['site_logo']) }}" alt="{{ asset($settings['site_name']) }}"
+                             class="img-fluid logo">
                     </a>
                 </figure>
-
                 <div class="collapse navbar-collapse justify-content-between" id="main_nav99">
                     <ul class="navbar-nav ml-auto ">
                         @foreach ($featuredCategories as $category)
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('news', ['category' => $category->slug]) }}">{{ $category->name }}</a>
+                                <a class="nav-link active"
+                                   href="{{ route('news', ['category' => $category->slug]) }}">{{ $category->name }}</a>
                             </li>
                         @endforeach
                         @if (count($categories) > 0)
@@ -90,7 +87,8 @@
                                 <ul class="dropdown-menu animate fade-up">
                                     @foreach ($categories as $category)
                                         <li>
-                                            <a class="dropdown-item icon-arrow" href="{{ route('news', ['category' => $category->slug]) }}">
+                                            <a class="dropdown-item icon-arrow"
+                                               href="{{ route('news', ['category' => $category->slug]) }}">
                                                 {{ $category->name }}
                                             </a>
                                         </li>
@@ -108,14 +106,12 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- Search bar.// -->
                     <ul class="navbar-nav ">
                         <li class="nav-item search hidden-xs hidden-sm "><a class="nav-link" href="#">
                                 <i class="fa fa-search"></i>
                             </a>
                         </li>
                     </ul>
-                    <!-- Search content bar.// -->
                     <div class="top-search navigation-shadow">
                         <div class="container">
                             <div class="input-group ">
@@ -136,13 +132,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Search content bar.// -->
-                </div> <!-- navbar-collapse.// -->
+                </div>
             </div>
         </nav>
     </div>
-    <!-- End Navbar menu  -->
-    <!-- Navbar sidebar menu  -->
     <div id="modal_aside_right" class="modal fixed-left fade" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-aside" role="document">
             <div class="modal-content">
@@ -155,7 +148,8 @@
                                            placeholder="Search">
                                 </div>
                                 <div class="col-auto">
-                                    <button type="submit" class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right">
+                                    <button type="submit"
+                                            class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
@@ -179,13 +173,15 @@
                             @endforeach
                             @if (count($categories) > 0)
                                 <li class="nav-item">
-                                    <a class="nav-link active dropdown-toggle  text-dark" href="#" data-toggle="dropdown">
+                                    <a class="nav-link active dropdown-toggle  text-dark" href="#"
+                                       data-toggle="dropdown">
                                         {{ __('frontend.More') }}
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-left">
                                         @foreach ($categories as $category)
                                             <li>
-                                                <a class="dropdown-item" href="{{ route('news', ['category' => $category->slug]) }}">
+                                                <a class="dropdown-item"
+                                                   href="{{ route('news', ['category' => $category->slug]) }}">
                                                     {{ $category->name }}
                                                 </a>
                                             </li>

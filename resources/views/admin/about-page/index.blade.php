@@ -51,19 +51,19 @@
 @push('scripts')
     <script>
         @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                Toast.fire({
-                    icon: 'error',
-                    title: "{{ $error }}"
-                });
-            @endforeach
-        @endif
+        @foreach ($errors->all() as $error)
+        Toast.fire({
+            icon: 'error',
+            title: "{{ $error }}"
+        });
+        @endforeach
+            @endif
         if (jQuery().summernote) {
             @foreach ($languages as $language)
-                $(".summernote-{{ $language->lang }}").summernote({
-                    dialogsInBody: true,
-                    minHeight: 250,
-                });
+            $(".summernote-{{ $language->lang }}").summernote({
+                dialogsInBody: true,
+                minHeight: 250,
+            });
             @endforeach
         }
     </script>

@@ -11,16 +11,19 @@
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="{{ __('frontend.Email') }}" type="text" name="email">
+                                    <input class="form-control" placeholder="{{ __('frontend.Email') }}" type="text"
+                                           name="email">
                                     @error('email')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="{{ __('frontend.Password') }}" type="password" name="password">
+                                    <input class="form-control" placeholder="{{ __('frontend.Password') }}"
+                                           type="password" name="password">
                                 </div>
                                 <div class="form-group">
-                                    <a href="{{ route('password.request') }}" class="float-right">{{ __('frontend.Forgot password?') }}</a>
+                                    <a href="{{ route('password.request') }}"
+                                       class="float-right">{{ __('frontend.Forgot password?') }}</a>
                                     <label class="float-left custom-control custom-checkbox">
                                         <input type="checkbox" name="remember"
                                                class="custom-control-input">
@@ -28,12 +31,14 @@
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block"> {{ __('frontend.Login') }} </button>
+                                    <button type="submit"
+                                            class="btn btn-primary btn-block"> {{ __('frontend.Login') }} </button>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <p class="text-center mt-4 mb-0">{{ __('frontend.Don\'t have account?') }} <a href="{{ route('register') }}">{{ __('frontend.Sign up') }}</a></p>
+                    <p class="text-center mt-4 mb-0">{{ __('frontend.Don\'t have account?') }} <a
+                            href="{{ route('register') }}">{{ __('frontend.Sign up') }}</a></p>
                 </div>
             </div>
         </div>

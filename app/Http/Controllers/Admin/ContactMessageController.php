@@ -22,6 +22,8 @@ class ContactMessageController extends Controller
      */
     public function index()
     {
+        ReceiveMail::query()->update(['seen' => 1]);
+
         $messages = ReceiveMail::all();
         return view('admin.contact-message.index', compact('messages'));
     }
@@ -36,7 +38,7 @@ class ContactMessageController extends Controller
         try {
             $contact = Contact::where('language', 'en')->first();
 
-            Mail::to($request->email)->send( new ContactMail($request->subject, $request->message, $contact->email));
+            Mail::to($request->email)->send(new ContactMail($request->subject, $request->message, $contact->email));
 
             $makeReplied = ReceiveMail::find($request->message_id);
             $makeReplied->replied = 1;

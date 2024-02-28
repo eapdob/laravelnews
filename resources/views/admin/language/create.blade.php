@@ -20,21 +20,21 @@
                             @endforeach
                         </select>
                         @error('lang')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="name">{{ __('admin.Name') }}</label>
                         <input readonly name="name" type="text" id="name" class="form-control">
                         @error('name')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="slug">{{ __('admin.Slug') }}</label>
                         <input readonly name="slug" type="text" id="slug" class="form-control">
                         @error('slug')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -44,7 +44,7 @@
                             <option value="1">{{ __('admin.Yes') }}</option>
                         </select>
                         @error('default')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -54,7 +54,7 @@
                             <option value="0">{{ __('admin.Inactive') }}</option>
                         </select>
                         @error('status')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">{{ __('admin.Create') }}</button>
@@ -75,5 +75,4 @@
             });
         });
     </script>
-
 @endpush

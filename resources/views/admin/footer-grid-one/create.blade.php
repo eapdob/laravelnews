@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">{{ __('admin.Url') }}</label>
-                        <input name="url" type="text" class="form-control" >
+                        <input name="url" type="text" class="form-control">
                         @error('url')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror

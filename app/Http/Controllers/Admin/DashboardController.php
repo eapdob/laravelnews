@@ -17,7 +17,6 @@ class DashboardController extends Controller
 {
     public function index(): View
     {
-        return view('admin.dashboard.index');
         $publishedNews = News::where(['status' => 1, 'is_approved' => 1])->count();
         $pendingNews = News::where(['status' => 1, 'is_approved' => 0])->count();
         $categories = Category::count();

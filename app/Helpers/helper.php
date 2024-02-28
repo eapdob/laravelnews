@@ -3,14 +3,11 @@
 use App\Models\Language;
 use App\Models\Setting;
 
-/** format news tags */
-
 function formatTags(array $tags): string
 {
     return implode(',', $tags);
 }
 
-/** get selected language from session */
 function getLanguage(): string
 {
     if (session()->has('language')) {
@@ -29,7 +26,6 @@ function getLanguage(): string
     }
 }
 
-/** set language code in session */
 function setLanguage(string $code): void
 {
     session(['language' => $code]);
@@ -40,7 +36,6 @@ function truncate(string $text, int $limit = 45): string
     return \Str::limit($text, $limit, '...');
 }
 
-/** Convert a number in K format */
 function convertToKFormat(int $number): string
 {
     if ($number < 1000) {

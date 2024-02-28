@@ -167,7 +167,8 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li class="{{ setSidebarActive(['admin.role-user.*']) }}">
-                            <a class="nav-link" href="{{ route('admin.role-user.index') }}">{{ __('admin.Role users') }}</a>
+                            <a class="nav-link"
+                               href="{{ route('admin.role-user.index') }}">{{ __('admin.Role users') }}</a>
                         </li>
                         <li class="{{ setSidebarActive(['admin.role.*']) }}">
                             <a class="nav-link"

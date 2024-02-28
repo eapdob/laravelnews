@@ -1,5 +1,4 @@
 <section>
-    <!-- Popular news  header-->
     <div class="popular__news-header">
         <div class="container">
             <div class="row no-gutters">
@@ -8,7 +7,6 @@
                         @foreach ($heroSlider as $slider)
                             @if ($loop->index <= 4)
                                 <div class="item">
-                                    <!-- Post Article -->
                                     <div class="card__post">
                                         <div class="card__post__body">
                                             <a href="{{ route('news-details', $slider->slug) }}">
@@ -49,7 +47,6 @@
                 </div>
                 <div class="col-md-4">
                     <div class="popular__news-right">
-                        <!-- Post Article -->
                         @foreach ($heroSlider as $slider)
                             @if ($loop->index > 4 && $loop->index <= 6)
                                 <div class="card__post ">
@@ -92,5 +89,4 @@
             </div>
         </div>
     </div>
-    <!-- End Popular news header-->
 </section>

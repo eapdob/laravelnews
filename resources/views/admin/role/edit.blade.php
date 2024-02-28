@@ -17,7 +17,7 @@
                         <label for="role">{{ __('admin.Role name') }}</label>
                         <input type="text" class="form-control" name="role" value="{{ $role->name }}" id="role">
                         @error('role')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <hr>
@@ -30,9 +30,11 @@
                                         <label class="custom-switch mt-2">
                                             <input
                                                 {{ in_array($item->name, $rolesPermissions) ? 'checked' : '' }}
-                                                value="{{ $item->name }}" type="checkbox" name="permissions[]" class="custom-switch-input">
+                                                value="{{ $item->name }}" type="checkbox" name="permissions[]"
+                                                class="custom-switch-input">
                                             <span class="custom-switch-indicator"></span>
-                                            <span class="custom-switch-description text-primary">{{ $item->name }}</span>
+                                            <span
+                                                class="custom-switch-description text-primary">{{ $item->name }}</span>
                                         </label>
 
                                     </div>

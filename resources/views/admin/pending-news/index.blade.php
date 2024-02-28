@@ -27,48 +27,48 @@
                 <div class="table-responsive">
                     <table class="table table-striped" id="table">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    #
-                                </th>
-                                <th>{{ __('admin.Image') }}</th>
-                                <th>{{ __('admin.Title') }}</th>
-                                <th>{{ __('admin.Category') }}</th>
-                                <th>{{ __('admin.Approve') }}</th>
-                                <th>{{ __('admin.Action') }}</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                #
+                            </th>
+                            <th>{{ __('admin.Image') }}</th>
+                            <th>{{ __('admin.Title') }}</th>
+                            <th>{{ __('admin.Category') }}</th>
+                            <th>{{ __('admin.Approve') }}</th>
+                            <th>{{ __('admin.Action') }}</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            @foreach ($news as $item)
-                                <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>
-                                        <img src="{{ asset($item->image) }}" width="100" alt="">
-                                    </td>
-                                    <td>{{ $item->title }}</td>
-                                    <td>{{ $item->category->name }}</td>
-                                    <td>
-                                        <form action="" id="approve_form">
-                                            <input type="hidden" name="id" value="{{ $item->id }}">
-                                            <div class="form-group">
-                                                <select name="is_approve" class="form-control" id="approve-input">
-                                                    <option value="0">{{ __('admin.Pending') }}</option>
-                                                    <option value="1">{{ __('admin.Approved') }}</option>
-                                                </select>
-                                            </div>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('admin.news.edit', $item->id) }}"
-                                           class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ route('admin.news.destroy', $item->id) }}"
-                                           class="btn btn-danger delete-item"><i
-                                                class="fas fa-trash-alt"></i></a>
-                                        <a href="{{ route('admin.news-copy', $item->id) }}"
-                                           class="btn btn-primary"><i class="fas fa-copy"></i></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach ($news as $item)
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>
+                                    <img src="{{ asset($item->image) }}" width="100" alt="">
+                                </td>
+                                <td>{{ $item->title }}</td>
+                                <td>{{ $item->category->name }}</td>
+                                <td>
+                                    <form action="" id="approve_form">
+                                        <input type="hidden" name="id" value="{{ $item->id }}">
+                                        <div class="form-group">
+                                            <select name="is_approve" class="form-control" id="approve-input">
+                                                <option value="0">{{ __('admin.Pending') }}</option>
+                                                <option value="1">{{ __('admin.Approved') }}</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.news.edit', $item->id) }}"
+                                       class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('admin.news.destroy', $item->id) }}"
+                                       class="btn btn-danger delete-item"><i
+                                            class="fas fa-trash-alt"></i></a>
+                                    <a href="{{ route('admin.news-copy', $item->id) }}"
+                                       class="btn btn-primary"><i class="fas fa-copy"></i></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -90,11 +90,11 @@
                 [0, 'desc']
             ]
         });
-        $(document).ready(function(){
-            $('#approve-input').on('change', function(){
+        $(document).ready(function () {
+            $('#approve-input').on('change', function () {
                 $('#approve_form').submit();
             });
-            $('#approve_form').on('submit', function(e){
+            $('#approve_form').on('submit', function (e) {
                 e.preventDefault();
                 let data = $(this).serialize();
                 $.ajax({

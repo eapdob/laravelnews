@@ -177,8 +177,7 @@ class NewsController extends Controller
      */
     public function fetchCategory(Request $request)
     {
-        $categories = Category::where('language', $request->lang)->get();
-        return $categories;
+        return Category::where('language', $request->lang)->get();
     }
 
     /**

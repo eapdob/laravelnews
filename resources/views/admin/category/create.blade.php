@@ -21,14 +21,14 @@
                             @endforeach
                         </select>
                         @error('language')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="">{{ __('admin.Name') }}</label>
                         <input name="name" type="text" class="form-control" id="name">
                         @error('name')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -38,7 +38,7 @@
                             <option value="1">{{ __('admin.Yes') }}</option>
                         </select>
                         @error('show_at_nav')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -48,7 +48,7 @@
                             <option value="0">{{ __('admin.Inactive') }}</option>
                         </select>
                         @error('status')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">{{ __('admin.Create') }}</button>

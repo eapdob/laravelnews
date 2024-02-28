@@ -33,7 +33,6 @@ class LocalizationController extends Controller
         $fileName = $request->file_name;
         $localizationStrings = [];
 
-
         foreach ($directories as $directory) {
 
             $directory = trim($directory);
@@ -58,7 +57,6 @@ class LocalizationController extends Controller
                 }
             }
         }
-
 
         $phpArray = "<?php\n\nreturn " . var_export($localizationStrings, true) . ";\n";
 

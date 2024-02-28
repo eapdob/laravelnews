@@ -5,7 +5,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- Breadcrumb -->
                     <ul class="breadcrumbs bg-light mb-4">
                         <li class="breadcrumbs__item">
                             <a href="{{ url('/') }}" class="breadcrumbs__url">

@@ -141,370 +141,377 @@
                             </figure>
                             <div class="wrap__profile-author-detail">
                                 <div class="author-wrapper">
-                                    <div class="wrap__profile-author-detail-name">{{ $news->author->getRoleNames()->first() }}</div>
-                                <h4>{{ $news->author->name }}</h4>
+                                    <div
+                                        class="wrap__profile-author-detail-name">{{ $news->author->getRoleNames()->first() }}</div>
+                                    <h4>{{ $news->author->name }}</h4>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @auth
-                        <div id="comments" class="comments-area">
-                            <h3 class="comments-title">{{ $news->comments()->count() }} {{ __('frontend.Comments') }}</h3>
-                            <ol class="comment-list">
-                                @foreach ($news->comments()->whereNull('parent_id')->get() as $comment)
-                                    <li class="comment">
-                                        <aside class="comment-body">
-                                            <div class="comment-meta">
-                                                <div class="comment-author vcard">
-                                                    <img src="{{ asset('frontend/assets/images/avatar.png') }}"
-                                                         class="avatar" alt="image">
-                                                    <b class="fn">{{ $comment->user->name }}</b>
-                                                    <span class="says">{{ __('frontend.Says') }}</span>
-                                                </div>
+                        @auth
+                            <div id="comments" class="comments-area">
+                                <h3 class="comments-title">{{ $news->comments()->count() }} {{ __('frontend.Comments') }}</h3>
+                                <ol class="comment-list">
+                                    @foreach ($news->comments()->whereNull('parent_id')->get() as $comment)
+                                        <li class="comment">
+                                            <aside class="comment-body">
+                                                <div class="comment-meta">
+                                                    <div class="comment-author vcard">
+                                                        <img src="{{ asset('frontend/assets/images/avatar.png') }}"
+                                                             class="avatar" alt="image">
+                                                        <b class="fn">{{ $comment->user->name }}</b>
+                                                        <span class="says">{{ __('frontend.Says') }}</span>
+                                                    </div>
 
-                                                <div class="comment-metadata">
-                                                    <a href="javascript:void(0);">
-                                                        <span>{{ date('M, d, Y H:i', strtotime($comment->created_at)) }}</span>
-                                                    </a>
+                                                    <div class="comment-metadata">
+                                                        <a href="javascript:void(0);">
+                                                            <span>{{ date('M, d, Y H:i', strtotime($comment->created_at)) }}</span>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="comment-content">
-                                                <p>
-                                                    {{ $comment->comment }}
-                                                </p>
-                                            </div>
-                                            <div class="reply">
-                                                <a href="#" class="comment-reply-link" data-toggle="modal"
-                                                   data-target="#exampleModal-{{ $comment->id }}">{{ __('frontend.Reply') }}
-                                                </a>
-                                                <span class="delete-msg" data-id="{{ $comment->id }}">
+                                                <div class="comment-content">
+                                                    <p>
+                                                        {{ $comment->comment }}
+                                                    </p>
+                                                </div>
+                                                <div class="reply">
+                                                    <a href="#" class="comment-reply-link" data-toggle="modal"
+                                                       data-target="#exampleModal-{{ $comment->id }}">{{ __('frontend.Reply') }}
+                                                    </a>
+                                                    <span class="delete-msg" data-id="{{ $comment->id }}">
                                                     <i class="fa fa-trash"></i>
                                                 </span>
-                                            </div>
-                                        </aside>
-                                        @if ($comment->reply()->count() > 0)
-                                            @foreach ($comment->reply as $reply)
-                                                <ol class="children">
-                                                    <li class="comment">
-                                                        <aside class="comment-body">
-                                                            <div class="comment-meta">
-                                                                <div class="comment-author vcard">
-                                                                    <img
-                                                                        src="{{ asset('frontend/assets/images/avatar.png') }}"
-                                                                        class="avatar" alt="image">
-                                                                    <b class="fn">{{ $reply->user->name }}</b>
-                                                                    <span class="says">{{ __('frontend.Says') }}</span>
+                                                </div>
+                                            </aside>
+                                            @if ($comment->reply()->count() > 0)
+                                                @foreach ($comment->reply as $reply)
+                                                    <ol class="children">
+                                                        <li class="comment">
+                                                            <aside class="comment-body">
+                                                                <div class="comment-meta">
+                                                                    <div class="comment-author vcard">
+                                                                        <img
+                                                                            src="{{ asset('frontend/assets/images/avatar.png') }}"
+                                                                            class="avatar" alt="image">
+                                                                        <b class="fn">{{ $reply->user->name }}</b>
+                                                                        <span
+                                                                            class="says">{{ __('frontend.Says') }}</span>
+                                                                    </div>
+                                                                    <div class="comment-metadata">
+                                                                        <a href="javascript:void(0);">
+                                                                            <span>{{ date('M, d, Y H:i', strtotime($reply->created_at)) }}</span>
+                                                                        </a>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="comment-metadata">
-                                                                    <a href="javascript:void(0);">
-                                                                        <span>{{ date('M, d, Y H:i', strtotime($reply->created_at)) }}</span>
-                                                                    </a>
+                                                                <div class="comment-content">
+                                                                    <p>{{ $reply->comment }}</p>
                                                                 </div>
-                                                            </div>
-                                                            <div class="comment-content">
-                                                                <p>{{ $reply->comment }}</p>
-                                                            </div>
-                                                            <div class="reply">
-                                                                @if ($loop->last)
-                                                                    <a href="#" class="comment-reply-link"
-                                                                       data-toggle="modal"
-                                                                       data-target="#exampleModal-{{ $comment->id }}">
-                                                                        {{ __('frontend.Reply') }}
-                                                                    </a>
-                                                                @endif
-                                                                <span class="delete-msg" style="margin-left: auto;"
-                                                                      data-id="{{ $reply->id }}">
+                                                                <div class="reply">
+                                                                    @if ($loop->last)
+                                                                        <a href="#" class="comment-reply-link"
+                                                                           data-toggle="modal"
+                                                                           data-target="#exampleModal-{{ $comment->id }}">
+                                                                            {{ __('frontend.Reply') }}
+                                                                        </a>
+                                                                    @endif
+                                                                    <span class="delete-msg" style="margin-left: auto;"
+                                                                          data-id="{{ $reply->id }}">
                                                                     <i class="fa fa-trash"></i>
                                                                 </span>
-                                                            </div>
-                                                        </aside>
-                                                    </li>
-                                                </ol>
-                                            @endforeach
-                                        @endif
-                                    </li>
-                                    <div class="comment_modal">
-                                        <div class="modal fade" id="exampleModal-{{ $comment->id }}" tabindex="-1"
-                                             aria-labelledby="exampleModalLabel"
-                                             aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title"
-                                                            id="exampleModalLabel">{{ __('frontend.Write your comment') }}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="{{ route('news-comment-reply') }}" method="POST">
-                                                            @csrf
-                                                            <textarea name="reply" cols="30" rows="7"
-                                                                      placeholder="{{ __('frontend.Type') }}"></textarea>
-                                                            <input type="hidden" name="news_id" value="{{ $news->id }}">
-                                                            <input type="hidden" name="parent_id"
-                                                                   value="{{ $comment->id }}">
-                                                            <button type="submit">{{ __('frontend.Submit') }}</button>
-                                                        </form>
+                                                                </div>
+                                                            </aside>
+                                                        </li>
+                                                    </ol>
+                                                @endforeach
+                                            @endif
+                                        </li>
+                                        <div class="comment_modal">
+                                            <div class="modal fade" id="exampleModal-{{ $comment->id }}" tabindex="-1"
+                                                 aria-labelledby="exampleModalLabel"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title"
+                                                                id="exampleModalLabel">{{ __('frontend.Write your comment') }}</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ route('news-comment-reply') }}"
+                                                                  method="POST">
+                                                                @csrf
+                                                                <textarea name="reply" cols="30" rows="7"
+                                                                          placeholder="{{ __('frontend.Type') }}"></textarea>
+                                                                <input type="hidden" name="news_id"
+                                                                       value="{{ $news->id }}">
+                                                                <input type="hidden" name="parent_id"
+                                                                       value="{{ $comment->id }}">
+                                                                <button
+                                                                    type="submit">{{ __('frontend.Submit') }}</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                            </ol>
-                            <div class="comment-respond">
-                                <h3 class="comment-reply-title">{{ __('frontend.Leave a reply') }}</h3>
-                                <form action="{{ route('news-comment') }}" method="POST" class="comment-form">
-                                    @csrf
-                                    <p class="comment-notes">
+                                    @endforeach
+                                </ol>
+                                <div class="comment-respond">
+                                    <h3 class="comment-reply-title">{{ __('frontend.Leave a reply') }}</h3>
+                                    <form action="{{ route('news-comment') }}" method="POST" class="comment-form">
+                                        @csrf
+                                        <p class="comment-notes">
                                         <span
                                             id="email-notes">{{ __('frontend.Your email address will not be published') }}</span>
-                                        {{ __('frontend.Required fields are marked') }}
-                                        <span class="required">*</span>
-                                    </p>
-                                    <p class="comment-form-comment">
-                                        <label for="comment">{{ __('frontend.Comment') }}</label>
-                                        <textarea name="comment" id="comment" cols="45" rows="5" maxlength="65525"
-                                                  required="required"></textarea>
-                                    </p>
-                                    <input type="hidden" name="news_id" value="{{ $news->id }}">
-                                    <input type="hidden" name="parent_id" value="">
-                                    @error('comment')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                    <p class="form-submit mb-0">
-                                        <input type="submit" name="submit" id="submit" class="submit"
-                                               value="{{ __('frontend.Post comment') }}">
-                                    </p>
-                                </form>
+                                            {{ __('frontend.Required fields are marked') }}
+                                            <span class="required">*</span>
+                                        </p>
+                                        <p class="comment-form-comment">
+                                            <label for="comment">{{ __('frontend.Comment') }}</label>
+                                            <textarea name="comment" id="comment" cols="45" rows="5" maxlength="65525"
+                                                      required="required"></textarea>
+                                        </p>
+                                        <input type="hidden" name="news_id" value="{{ $news->id }}">
+                                        <input type="hidden" name="parent_id" value="">
+                                        @error('comment')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                        <p class="form-submit mb-0">
+                                            <input type="submit" name="submit" id="submit" class="submit"
+                                                   value="{{ __('frontend.Post comment') }}">
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        @else
+                            <div class="card my-5">
+                                <div class="card-body">
+                                    <h5 class="p-0">{!!  __('frontend.Comment unlogged text',['route' => route('login')]) !!}</h5>
+                                </div>
+                            </div>
+                        @endauth
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="single_navigation-prev">
+                                    @if ($previousPost)
+                                        <a href="{{ route('news-details', $previousPost->slug) }}">
+                                            <span>{{ __('frontend.Previous post') }}</span>
+                                            {!! truncate($previousPost->title) !!}
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single_navigation-next text-left text-md-right">
+                                    @if ($nextPost)
+                                        <a href="{{ route('news-details', $nextPost->slug) }}">
+                                            <span>{{ __('frontend.Next post') }}</span>
+                                            {!! truncate($nextPost->title) !!}
+                                        </a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    @else
-                        <div class="card my-5">
-                            <div class="card-body">
-                                <h5 class="p-0">{!!  __('frontend.Comment unlogged text',['route' => route('login')]) !!}</h5>
-                            </div>
-                        </div>
-                    @endauth
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="single_navigation-prev">
-                                @if ($previousPost)
-                                    <a href="{{ route('news-details', $previousPost->slug) }}">
-                                        <span>{{ __('frontend.Previous post') }}</span>
-                                        {!! truncate($previousPost->title) !!}
+                        @if ($ad->view_page_ad_status == 1)
+                            <div class="small_add_banner mb-5 pb-4">
+                                <div class="small_add_banner_img">
+                                    <a href="{{ $ad->view_page_ad_url }}">
+                                        <img src="{{ asset($ad->view_page_ad) }}" alt="adds">
                                     </a>
-                                @endif
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="single_navigation-next text-left text-md-right">
-                                @if ($nextPost)
-                                    <a href="{{ route('news-details', $nextPost->slug) }}">
-                                        <span>{{ __('frontend.Next post') }}</span>
-                                        {!! truncate($nextPost->title) !!}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    @if ($ad->view_page_ad_status == 1)
-                        <div class="small_add_banner mb-5 pb-4">
-                            <div class="small_add_banner_img">
-                                <a href="{{ $ad->view_page_ad_url }}">
-                                    <img src="{{ asset($ad->view_page_ad) }}" alt="adds">
-                                </a>
-                            </div>
-                        </div>
-                    @endif
-                    <div class="clearfix"></div>
-                    @if (count($relatedPosts) > 0)
-                        <div class="related-article">
-                            <h4>
-                                {{ __('frontend.You may also like') }}
-                            </h4>
-                            <div class="article__entry-carousel-three">
-                                @foreach ($relatedPosts as $post)
-                                    <div class="item">
-                                        <div class="article__entry">
-                                            <div class="article__image">
-                                                <a href="{{ route('news-details', $post->slug) }}">
-                                                    <img src="{{ asset($post->image) }}" alt="" class="img-fluid">
-                                                </a>
-                                            </div>
-                                            <div class="article__content">
-                                                <ul class="list-inline">
-                                                    <li class="list-inline-item">
+                        @endif
+                        <div class="clearfix"></div>
+                        @if (count($relatedPosts) > 0)
+                            <div class="related-article">
+                                <h4>
+                                    {{ __('frontend.You may also like') }}
+                                </h4>
+                                <div class="article__entry-carousel-three">
+                                    @foreach ($relatedPosts as $post)
+                                        <div class="item">
+                                            <div class="article__entry">
+                                                <div class="article__image">
+                                                    <a href="{{ route('news-details', $post->slug) }}">
+                                                        <img src="{{ asset($post->image) }}" alt="" class="img-fluid">
+                                                    </a>
+                                                </div>
+                                                <div class="article__content">
+                                                    <ul class="list-inline">
+                                                        <li class="list-inline-item">
                                                          <span class="text-primary">
                                                             {{ __('frontend.frontend.by_name', ['name' => $post->author->name]) }}
                                                         </span>
-                                                    </li>
-                                                    <li class="list-inline-item">
+                                                        </li>
+                                                        <li class="list-inline-item">
                                                         <span>
                                                             {{ date('M d, Y', strtotime($post->created_at)) }}
                                                         </span>
-                                                    </li>
-                                                </ul>
-                                                <h5>
-                                                    <a href="{{ route('news-details', $post->slug) }}">
-                                                        {!! truncate($post->title) !!}
-                                                    </a>
-                                                </h5>
+                                                        </li>
+                                                    </ul>
+                                                    <h5>
+                                                        <a href="{{ route('news-details', $post->slug) }}">
+                                                            {!! truncate($post->title) !!}
+                                                        </a>
+                                                    </h5>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                    @endif
-                </div>
-                <div class="col-md-4">
-                    <div class="sticky-top">
-                        <aside class="wrapper__list__article">
-                            <div class="wrapper__list__article-small">
-                                @foreach ($recentNews as $news)
-                                    @if ($loop->index <= 2)
-                                        <div class="mb-3">
-                                            <div class="card__post card__post-list">
-                                                <div class="image-sm">
-                                                    <a href="{{ route('news-details', $news->slug) }}">
-                                                        <img src="{{ asset($news->image) }}" class="img-fluid" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="card__post__body ">
-                                                    <div class="card__post__content">
-                                                        <div class="card__post__author-info mb-2">
-                                                            <ul class="list-inline">
-                                                                <li class="list-inline-item">
+                        @endif
+                    </div>
+                    <div class="col-md-4">
+                        <div class="sticky-top">
+                            <aside class="wrapper__list__article">
+                                <div class="wrapper__list__article-small">
+                                    @foreach ($recentNews as $news)
+                                        @if ($loop->index <= 2)
+                                            <div class="mb-3">
+                                                <div class="card__post card__post-list">
+                                                    <div class="image-sm">
+                                                        <a href="{{ route('news-details', $news->slug) }}">
+                                                            <img src="{{ asset($news->image) }}" class="img-fluid"
+                                                                 alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="card__post__body ">
+                                                        <div class="card__post__content">
+                                                            <div class="card__post__author-info mb-2">
+                                                                <ul class="list-inline">
+                                                                    <li class="list-inline-item">
                                                                     <span class="text-primary">
                                                                         {{ __('frontend.By') }} {{ $news->author->name }}
                                                                     </span>
-                                                                </li>
-                                                                <li class="list-inline-item">
+                                                                    </li>
+                                                                    <li class="list-inline-item">
                                                                     <span class="text-dark text-capitalize">
 
                                                                         {{ date('M d, Y', strtotime($news->created_at)) }}
                                                                     </span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="card__post__title">
-                                                            <h6>
-                                                                <a href="{{ route('news-details', $news->slug) }}">
-                                                                    {!! truncate($news->title) !!}
-                                                                </a>
-                                                            </h6>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="card__post__title">
+                                                                <h6>
+                                                                    <a href="{{ route('news-details', $news->slug) }}">
+                                                                        {!! truncate($news->title) !!}
+                                                                    </a>
+                                                                </h6>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endif
-                                    @if ($loop->index === 3)
-                                        <div class="article__entry">
-                                            <div class="article__image">
-                                                <a href="{{ route('news-details', $news->slug) }}">
-                                                    <img src="{{ asset($news->image) }}" alt="" class="img-fluid">
-                                                </a>
-                                            </div>
-                                            <div class="article__content">
-                                                <div class="article__category">
-                                                    {{ $news->category->name }}
+                                        @endif
+                                        @if ($loop->index === 3)
+                                            <div class="article__entry">
+                                                <div class="article__image">
+                                                    <a href="{{ route('news-details', $news->slug) }}">
+                                                        <img src="{{ asset($news->image) }}" alt="" class="img-fluid">
+                                                    </a>
                                                 </div>
-                                                <ul class="list-inline">
-                                                    <li class="list-inline-item">
+                                                <div class="article__content">
+                                                    <div class="article__category">
+                                                        {{ $news->category->name }}
+                                                    </div>
+                                                    <ul class="list-inline">
+                                                        <li class="list-inline-item">
                                                         <span class="text-primary">
                                                             {{ __('frontend.By') }} {{ $news->author->name }}
                                                         </span>
-                                                    </li>
-                                                    <li class="list-inline-item">
+                                                        </li>
+                                                        <li class="list-inline-item">
                                                         <span class="text-dark text-capitalize">
                                                             {{ date('M d, Y', strtotime($news->created_at)) }}
                                                         </span>
-                                                    </li>
-                                                </ul>
-                                                <h5>
-                                                    <a href="{{ route('news-details', $news->slug) }}">
-                                                        {!! truncate($news->title) !!}
-                                                    </a>
-                                                </h5>
-                                                <p>
-                                                    {!! truncate($news->content, 160) !!}
-                                                </p>
-                                                <a href="{{ route('news-details', $news->slug) }}"
-                                                   class="btn btn-outline-primary mb-4 text-capitalize"> {{ __('frontend.Read more') }}</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h5>
+                                                        <a href="{{ route('news-details', $news->slug) }}">
+                                                            {!! truncate($news->title) !!}
+                                                        </a>
+                                                    </h5>
+                                                    <p>
+                                                        {!! truncate($news->content, 160) !!}
+                                                    </p>
+                                                    <a href="{{ route('news-details', $news->slug) }}"
+                                                       class="btn btn-outline-primary mb-4 text-capitalize"> {{ __('frontend.Read more') }}</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    @endif
-                                @endforeach
-                            </div>
-                        </aside>
-                        <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.Stay connected') }}</h4>
-                            <div class="wrap__social__media">
-                                @foreach ($socialCounts as $socialCount)
-                                    <a href="{{ $socialCount->url }}" target="_blank">
-                                        <div class="social__media__widget mt-2"
-                                             style="background-color:{{ $socialCount->color }}">
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </aside>
+                            <aside class="wrapper__list__article">
+                                <h4 class="border_section">{{ __('frontend.Stay connected') }}</h4>
+                                <div class="wrap__social__media">
+                                    @foreach ($socialCounts as $socialCount)
+                                        <a href="{{ $socialCount->url }}" target="_blank">
+                                            <div class="social__media__widget mt-2"
+                                                 style="background-color:{{ $socialCount->color }}">
                                             <span class="social__media__widget-icon">
                                                 <i class="{{ $socialCount->icon }}"></i>
                                             </span>
-                                            <span class="social__media__widget-counter">
+                                                <span class="social__media__widget-counter">
                                                 {{ $socialCount->fan_count }} {{ $socialCount->fan_type }}
                                             </span>
-                                            <span class="social__media__widget-name">
+                                                <span class="social__media__widget-name">
                                                 {{ $socialCount->button_text }}
                                             </span>
-                                        </div>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </aside>
-                        <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.Tags') }}</h4>
-                            <div class="blog-tags p-0">
-                                @foreach ($mostCommonTags as $tag)
-                                    <li class="list-inline-item">
-                                        <a href="{{ route('news', ['tag' => $tag->name]) }}">
-                                            #{{ $tag->name }} ({{ $tag->count }})
+                                            </div>
                                         </a>
-                                    </li>
-                                @endforeach
-                            </div>
-                        </aside>
-                        <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.Newsletter') }}</h4>
-                            <div class="widget__form-subscribe bg__card-shadow">
-                                <h6>
-                                    {{ __('frontend.The most important world news') }}
-                                </h6>
-                                <p><small>{{ __('frontend.Get daily newsletter on our inbox') }}</small></p>
-                                <form action="" class="newsletter-form">
-                                    <div class="input-group ">
-                                        <input type="text" name="email" class="form-control" placeholder="Your email address">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary"
-                                                    type="submit">{{ __('frontend.Sign up') }}</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </aside>
-                        @if ($ad->side_bar_ad_status == 1)
-                            <aside class="wrapper__list__article">
-                                <h4 class="border_section">{{ __('frontend.Advertise') }}</h4>
-                                <a href="{{ $ad->side_bar_ad_url }}">
-                                    <figure>
-                                        <img src="{{ asset($ad->side_bar_ad) }}" alt="" class="img-fluid">
-                                    </figure>
-                                </a>
+                                    @endforeach
+                                </div>
                             </aside>
-                        @endif
+                            <aside class="wrapper__list__article">
+                                <h4 class="border_section">{{ __('frontend.Tags') }}</h4>
+                                <div class="blog-tags p-0">
+                                    @foreach ($mostCommonTags as $tag)
+                                        <li class="list-inline-item">
+                                            <a href="{{ route('news', ['tag' => $tag->name]) }}">
+                                                #{{ $tag->name }} ({{ $tag->count }})
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </div>
+                            </aside>
+                            <aside class="wrapper__list__article">
+                                <h4 class="border_section">{{ __('frontend.Newsletter') }}</h4>
+                                <div class="widget__form-subscribe bg__card-shadow">
+                                    <h6>
+                                        {{ __('frontend.The most important world news') }}
+                                    </h6>
+                                    <p><small>{{ __('frontend.Get daily newsletter on our inbox') }}</small></p>
+                                    <form action="" class="newsletter-form">
+                                        <div class="input-group ">
+                                            <input type="text" name="email" class="form-control"
+                                                   placeholder="Your email address">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary"
+                                                        type="submit">{{ __('frontend.Sign up') }}</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </aside>
+                            @if ($ad->side_bar_ad_status == 1)
+                                <aside class="wrapper__list__article">
+                                    <h4 class="border_section">{{ __('frontend.Advertise') }}</h4>
+                                    <a href="{{ $ad->side_bar_ad_url }}">
+                                        <figure>
+                                            <img src="{{ asset($ad->side_bar_ad) }}" alt="" class="img-fluid">
+                                        </figure>
+                                    </a>
+                                </aside>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 @endsection
 

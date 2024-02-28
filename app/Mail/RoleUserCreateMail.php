@@ -31,7 +31,7 @@ class RoleUserCreateMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Welcome to '. getSetting('site_name'),
+            subject: __('admin.Welcome to ') . getSetting('site_name'),
         );
     }
 

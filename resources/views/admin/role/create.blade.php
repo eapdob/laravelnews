@@ -16,7 +16,7 @@
                         <label for="role">{{ __('admin.Role name') }}</label>
                         <input type="text" class="form-control" name="role" id="role">
                         @error('role')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <hr>
@@ -30,16 +30,18 @@
                                         @foreach ($permission as $item)
                                             <div class="col-md-2">
                                                 <label class="custom-switch mt-2">
-                                                    <input value="{{ $item->name }}" type="checkbox" name="permissions[]" class="custom-switch-input">
+                                                    <input value="{{ $item->name }}" type="checkbox"
+                                                           name="permissions[]" class="custom-switch-input">
                                                     <span class="custom-switch-indicator"></span>
-                                                    <span class="custom-switch-description text-primary">{{ $item->name }}</span>
+                                                    <span
+                                                        class="custom-switch-description text-primary">{{ $item->name }}</span>
                                                 </label>
                                             </div>
                                         @endforeach
                                     </div>
                                 </div>
-                        @endforeach
-                    </div>
+                            @endforeach
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">{{ __('admin.Create') }}</button>
                 </form>

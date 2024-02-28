@@ -17,14 +17,14 @@
                         <label for="">{{ __('admin.User name') }}</label>
                         <input type="text" class="form-control" name="name" value="{{ $user->name }}">
                         @error('name')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="">{{ __('admin.Email') }}</label>
                         <input type="text" class="form-control" name="email" value="{{ $user->email }}">
                         @error('email')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -46,11 +46,12 @@
                         <select name="role" id="" class="select2 form-control">
                             <option value="">--{{ __('admin.Select') }}--</option>
                             @foreach ($roles as $role)
-                                <option {{ $role->name === $user->getRoleNames()->first() ? 'selected' : '' }} value="{{ $role->name }}">{{ $role->name }}</option>
+                                <option
+                                    {{ $role->name === $user->getRoleNames()->first() ? 'selected' : '' }} value="{{ $role->name }}">{{ $role->name }}</option>
                             @endforeach
                         </select>
                         @error('role')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">{{ __('admin.Update') }}</button>

@@ -147,7 +147,6 @@ class HomeController extends Controller
 
     public function news(Request $request)
     {
-
         $news = News::query();
 
         $news->when($request->has('tag') && !empty($request->tag), function ($query) use ($request) {
@@ -301,6 +300,7 @@ class HomeController extends Controller
 
     public function contact()
     {
+        $contact = Contact::where('language', getLanguage())->first();
         $socials = SocialLink::where('status', 1)->get();
         return view('frontend.contact', compact('contact', 'socials'));
     }

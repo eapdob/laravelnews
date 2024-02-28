@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -20,19 +20,19 @@ class RolePermissionController extends Controller
         $this->middleware(['permission:access management destroy,admin'])->only(['destroy']);
     }
 
-    function index() : View
+    function index(): View
     {
         $roles = Role::all();
         return view('admin.role.index', compact('roles'));
     }
 
-    function create() : View
+    function create(): View
     {
         $permissions = Permission::all()->groupBy('group_name');
         return view('admin.role.create', compact('permissions'));
     }
 
-    function store(Request $request) : RedirectResponse
+    function store(Request $request): RedirectResponse
     {
         $request->validate([
             'role' => ['required', 'max:50', 'unique:permissions,name']
@@ -47,7 +47,7 @@ class RolePermissionController extends Controller
         return redirect()->route('admin.role.index');
     }
 
-    function edit(string $id) : View
+    function edit(string $id): View
     {
         $permissions = Permission::all()->groupBy('group_name');
         $role = Role::findOrFail($id);
@@ -56,7 +56,8 @@ class RolePermissionController extends Controller
         return view('admin.role.edit', compact('permissions', 'role', 'rolesPermissions'));
     }
 
-    function update(Request $request, string $id) : RedirectResponse {
+    function update(Request $request, string $id): RedirectResponse
+    {
         $request->validate([
             'role' => ['required', 'max:50', 'unique:permissions,name']
         ]);
@@ -71,10 +72,11 @@ class RolePermissionController extends Controller
         return redirect()->route('admin.role.index');
     }
 
-    function destroy(string $id) : Response {
+    function destroy(string $id): Response
+    {
         $role = Role::findOrFail($id);
 
-        if($role->name === 'Super Admin'){
+        if ($role->name === 'Super Admin') {
             return response([
                 'status' => 'error',
                 'message' => __('admin.Can\'t delete the super admin!')

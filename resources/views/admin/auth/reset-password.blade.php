@@ -32,7 +32,8 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="d-block">
-                                        <label for="password" class="control-label">{{ __('admin.New password') }}</label>
+                                        <label for="password"
+                                               class="control-label">{{ __('admin.New password') }}</label>
                                     </div>
                                     <input id="password" type="password" class="form-control" name="password"
                                            tabindex="2" required>
@@ -45,7 +46,8 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="d-block">
-                                        <label for="password" class="control-label">{{ __('admin.Confirm password') }}</label>
+                                        <label for="password"
+                                               class="control-label">{{ __('admin.Confirm password') }}</label>
                                     </div>
                                     <input id="password" type="password" class="form-control"
                                            name="password_confirmation"

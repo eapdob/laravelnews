@@ -5,7 +5,8 @@
         <div class="section-header">
             <h1>{{ __('admin.Profile') }}</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">{{ __('admin.Dashboard') }}</a></div>
+                <div class="breadcrumb-item active"><a
+                        href="{{ route('admin.dashboard') }}">{{ __('admin.Dashboard') }}</a></div>
                 <div class="breadcrumb-item">{{ __('admin.Profile') }}</div>
             </div>
         </div>
@@ -17,7 +18,9 @@
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-6">
                     <div class="card">
-                        <form method="POST" action="{{ route('admin.profile.update', auth()->guard('admin')->user()->id) }}" class="needs-validation" novalidate="" enctype="multipart/form-data">
+                        <form method="POST"
+                              action="{{ route('admin.profile.update', auth()->guard('admin')->user()->id) }}"
+                              class="needs-validation" novalidate="" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card-header">
@@ -27,37 +30,39 @@
                                 <div class="col-12">
                                     <div id="image-preview">
                                         <label for="image-upload" id="image-label">{{ __('admin.Choose file') }}</label>
-                                        <input type="file" name="image" id="image-upload" />
-                                        <input type="hidden" name="old_image" value="{{ $user->image }}" />
+                                        <input type="file" name="image" id="image-upload"/>
+                                        <input type="hidden" name="old_image" value="{{ $user->image }}"/>
                                     </div>
                                     @error('image')
-                                        <p class="text-danger">
-                                            {{ $message }}
-                                        <p/>
+                                    <p class="text-danger">
+                                    {{ $message }}
+                                    <p/>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>{{ __('admin.Name') }}</label>
-                                    <input type="text" class="form-control" value="{{ $user->name }}" required="" name="name">
+                                    <input type="text" class="form-control" value="{{ $user->name }}" required=""
+                                           name="name">
                                     <div class="invalid-feedback">
                                         {{ __('admin.Invalid name') }}
                                     </div>
                                     @error('name')
-                                        <p class="invalid-feedback">
-                                            {{ $message }}
-                                        <p/>
+                                    <p class="invalid-feedback">
+                                    {{ $message }}
+                                    <p/>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>{{ __('admin.Email') }}</label>
-                                    <input type="email" class="form-control" value="{{ $user->email }}" required="" name="email">
+                                    <input type="email" class="form-control" value="{{ $user->email }}" required=""
+                                           name="email">
                                     <div class="invalid-feedback">
                                         {{ __('admin.Invalid email') }}
                                     </div>
                                     @error('email')
-                                        <p class="invalid-feedback">
-                                            {{ $message }}
-                                        <p/>
+                                    <p class="invalid-feedback">
+                                    {{ $message }}
+                                    <p/>
                                     @enderror
                                 </div>
                             </div>
@@ -69,7 +74,9 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="card">
-                        <form method="post" action="{{ route('admin.profile-password-update', auth()->guard('admin')->user()->id) }}" class="needs-validation" novalidate="">
+                        <form method="post"
+                              action="{{ route('admin.profile-password-update', auth()->guard('admin')->user()->id) }}"
+                              class="needs-validation" novalidate="">
                             @csrf
                             @method('PUT')
                             <div class="card-header">
@@ -83,9 +90,9 @@
                                         {{ __('admin.Invalid old password') }}
                                     </div>
                                     @error('current_password')
-                                        <p class="text-danger">
-                                            {{ $message }}
-                                        <p/>
+                                    <p class="text-danger">
+                                    {{ $message }}
+                                    <p/>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6 col-12">
@@ -95,14 +102,15 @@
                                         {{ __('admin.Invalid new password') }}
                                     </div>
                                     @error('password')
-                                        <p class="text-danger">
-                                            {{ $message }}
-                                        <p/>
+                                    <p class="text-danger">
+                                    {{ $message }}
+                                    <p/>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>{{ __('admin.Confirm password') }}</label>
-                                    <input type="password" class="form-control" value="" required="" name="password_confirmation">
+                                    <input type="password" class="form-control" value="" required=""
+                                           name="password_confirmation">
                                     <div class="invalid-feedback">
                                         {{ __('admin.Invalid confirm password') }}
                                     </div>
@@ -130,7 +138,7 @@
                 no_label: false,                // Default: false
                 success_callback: null          // Default: null
             });
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#image-preview').css({
                     "background-image": "url({{ asset($user->image) }})",
                     "background-size": "cover"

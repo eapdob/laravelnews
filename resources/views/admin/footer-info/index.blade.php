@@ -45,7 +45,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">{{ __('admin.Copyright text') }}</label>
-                                        <input type="text" name="copyright" class="form-control" value="{{ $footerInfo->copyright ?? '' }}">
+                                        <input type="text" name="copyright" class="form-control"
+                                               value="{{ $footerInfo->copyright ?? '' }}">
                                     </div>
                                     <button type="submit" class="btn btn-primary">{{ __('admin.Save') }}</button>
                                 </form>
@@ -61,12 +62,12 @@
 @push('scripts')
     <script>
         @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                Toast.fire({
-                    icon: 'error',
-                    title: "{{ $error }}"
-                });
-            @endforeach
-       @endif
+        @foreach ($errors->all() as $error)
+        Toast.fire({
+            icon: 'error',
+            title: "{{ $error }}"
+        });
+        @endforeach
+        @endif
     </script>
 @endpush

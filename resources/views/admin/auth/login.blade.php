@@ -51,7 +51,8 @@
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" name="remember" class="custom-control-input" tabindex="3"
                                                id="remember-me">
-                                        <label class="custom-control-label" for="remember-me">{{ __('admin.Remember me') }}</label>
+                                        <label class="custom-control-label"
+                                               for="remember-me">{{ __('admin.Remember me') }}</label>
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -2,14 +2,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style>
-        /* -------------------------------------
-            GLOBAL RESETS
-        ------------------------------------- */
-
-        /*All the styling goes here*/
-
         img {
             border: none;
             -ms-interpolation-mode: bicubic;
@@ -32,23 +26,20 @@
             border-collapse: separate;
             mso-table-lspace: 0pt;
             mso-table-rspace: 0pt;
-            width: 100%; }
+            width: 100%;
+        }
+
         table td {
             font-family: sans-serif;
             font-size: 14px;
             vertical-align: top;
         }
 
-        /* -------------------------------------
-            BODY & CONTAINER
-        ------------------------------------- */
-
         .body {
             background-color: #f6f6f6;
             width: 100%;
         }
 
-        /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
         .container {
             display: block;
             margin: 0 auto !important;
@@ -58,7 +49,6 @@
             width: 580px;
         }
 
-        /* This should also be a block element, so that it will fill 100% of the .container */
         .content {
             box-sizing: border-box;
             display: block;
@@ -67,9 +57,6 @@
             padding: 10px;
         }
 
-        /* -------------------------------------
-            HEADER, FOOTER, MAIN
-        ------------------------------------- */
         .main {
             background: #ffffff;
             border-radius: 3px;
@@ -92,6 +79,7 @@
             text-align: center;
             width: 100%;
         }
+
         .footer td,
         .footer p,
         .footer span,
@@ -101,9 +89,6 @@
             text-align: center;
         }
 
-        /* -------------------------------------
-            TYPOGRAPHY
-        ------------------------------------- */
         h1,
         h2,
         h3,
@@ -132,6 +117,7 @@
             margin: 0;
             margin-bottom: 15px;
         }
+
         p li,
         ul li,
         ol li {
@@ -144,22 +130,25 @@
             text-decoration: underline;
         }
 
-        /* -------------------------------------
-            BUTTONS
-        ------------------------------------- */
         .btn {
             box-sizing: border-box;
-            width: 100%; }
+            width: 100%;
+        }
+
         .btn > tbody > tr > td {
-            padding-bottom: 15px; }
+            padding-bottom: 15px;
+        }
+
         .btn table {
             width: auto;
         }
+
         .btn table td {
             background-color: #ffffff;
             border-radius: 5px;
             text-align: center;
         }
+
         .btn a {
             background-color: #ffffff;
             border: solid 1px #3498db;
@@ -186,9 +175,6 @@
             color: #ffffff;
         }
 
-        /* -------------------------------------
-            OTHER STYLES THAT MIGHT BE USEFUL
-        ------------------------------------- */
         .last {
             margin-bottom: 0;
         }
@@ -244,14 +230,12 @@
             margin: 20px 0;
         }
 
-        /* -------------------------------------
-            RESPONSIVE AND MOBILE FRIENDLY STYLES
-        ------------------------------------- */
         @media only screen and (max-width: 620px) {
             table.body h1 {
                 font-size: 28px !important;
                 margin-bottom: 10px !important;
             }
+
             table.body p,
             table.body ul,
             table.body ol,
@@ -260,28 +244,35 @@
             table.body a {
                 font-size: 16px !important;
             }
+
             table.body .wrapper,
             table.body .article {
                 padding: 10px !important;
             }
+
             table.body .content {
                 padding: 0 !important;
             }
+
             table.body .container {
                 padding: 0 !important;
                 width: 100% !important;
             }
+
             table.body .main {
                 border-left-width: 0 !important;
                 border-radius: 0 !important;
                 border-right-width: 0 !important;
             }
+
             table.body .btn table {
                 width: 100% !important;
             }
+
             table.body .btn a {
                 width: 100% !important;
             }
+
             table.body .img-responsive {
                 height: auto !important;
                 max-width: 100% !important;
@@ -289,13 +280,11 @@
             }
         }
 
-        /* -------------------------------------
-            PRESERVE THESE STYLES IN THE HEAD
-        ------------------------------------- */
         @media all {
             .ExternalClass {
                 width: 100%;
             }
+
             .ExternalClass,
             .ExternalClass p,
             .ExternalClass span,
@@ -304,6 +293,7 @@
             .ExternalClass div {
                 line-height: 100%;
             }
+
             .apple-link a {
                 color: inherit !important;
                 font-family: inherit !important;
@@ -312,6 +302,7 @@
                 line-height: inherit !important;
                 text-decoration: none !important;
             }
+
             #MessageViewBody a {
                 color: inherit;
                 text-decoration: none;
@@ -320,15 +311,16 @@
                 font-weight: inherit;
                 line-height: inherit;
             }
+
             .btn-primary table td:hover {
                 background-color: #34495e !important;
             }
+
             .btn-primary a:hover {
                 background-color: #34495e !important;
                 border-color: #34495e !important;
             }
         }
-
     </style>
 </head>
 <body>
@@ -337,11 +329,7 @@
         <td>&nbsp;</td>
         <td class="container">
             <div class="content">
-
-                <!-- START CENTERED WHITE CONTAINER -->
                 <table role="presentation" class="main">
-
-                    <!-- START MAIN CONTENT AREA -->
                     <tr>
                         <td class="wrapper">
                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
@@ -349,15 +337,18 @@
                                     <td>
                                         <p>{{ __('frontend.Hi there') }}</p>
                                         <p>{{ __('frontend.Here is your password link') }}</p>
-                                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                                        <table role="presentation" border="0" cellpadding="0" cellspacing="0"
+                                               class="btn btn-primary">
                                             <tbody>
                                             <tr>
                                                 <td align="left">
-                                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                                    <table role="presentation" border="0" cellpadding="0"
+                                                           cellspacing="0">
                                                         <tbody>
                                                         <tr>
                                                             <td>
-                                                                <a href="{{ route('admin.reset-password', ['token' => $token, 'email' => $email]) }}" target="_blank">{{ __('frontend.Click here to reset') }}</a>
+                                                                <a href="{{ route('admin.reset-password', ['token' => $token, 'email' => $email]) }}"
+                                                                   target="_blank">{{ __('frontend.Click here to reset') }}</a>
                                                             </td>
                                                         </tr>
                                                         </tbody>
@@ -371,10 +362,7 @@
                             </table>
                         </td>
                     </tr>
-
-                    <!-- END MAIN CONTENT AREA -->
                 </table>
-                <!-- END CENTERED WHITE CONTAINER -->
             </div>
         </td>
         <td>&nbsp;</td>

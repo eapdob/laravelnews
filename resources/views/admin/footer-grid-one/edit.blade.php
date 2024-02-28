@@ -18,7 +18,8 @@
                         <select name="language" id="language-select" class="form-control select2">
                             <option value="">--{{ __('admin.Select') }}--</option>
                             @foreach ($languages as $lang)
-                                <option {{ $footerGridOne->language == $lang->lang ? 'selected' : '' }} value="{{ $lang->lang }}">{{ $lang->name }}</option>
+                                <option
+                                    {{ $footerGridOne->language == $lang->lang ? 'selected' : '' }} value="{{ $lang->lang }}">{{ $lang->name }}</option>
                             @endforeach
                         </select>
                         @error('language')
@@ -27,14 +28,15 @@
                     </div>
                     <div class="form-group">
                         <label for="">{{ __('admin.Name') }}</label>
-                        <input name="name" type="text" class="form-control" id="name" value="{{ $footerGridOne->name }}">
+                        <input name="name" type="text" class="form-control" id="name"
+                               value="{{ $footerGridOne->name }}">
                         @error('name')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="">{{ __('admin.Url') }}</label>
-                        <input name="url" value="{{ $footerGridOne->url }}" type="text" class="form-control" >
+                        <input name="url" value="{{ $footerGridOne->url }}" type="text" class="form-control">
                         @error('url')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -42,8 +44,10 @@
                     <div class="form-group">
                         <label for="">{{ __('admin.Status') }}</label>
                         <select name="status" id="" class="form-control">
-                            <option {{ $footerGridOne->status == 1 ? 'selected' : '' }} value="1">{{ __('admin.Active') }}</option>
-                            <option {{ $footerGridOne->status == 0 ? 'selected' : '' }} value="0">{{ __('admin.Inactive') }}</option>
+                            <option
+                                {{ $footerGridOne->status == 1 ? 'selected' : '' }} value="1">{{ __('admin.Active') }}</option>
+                            <option
+                                {{ $footerGridOne->status == 0 ? 'selected' : '' }} value="0">{{ __('admin.Inactive') }}</option>
                         </select>
                         @error('status')
                         <p class="text-danger">{{ $message }}</p>
