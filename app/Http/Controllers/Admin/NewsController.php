@@ -33,8 +33,56 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $languages = Language::all();
-        return view('admin.news.index', compact('languages'));
+        if (canAccess(['news all-access'])) {
+            $news = News::leftJoin('news_description', 'news.id', '=', 'news_description.news_id')
+                ->leftJoin('categories', 'news.category_id', '=', 'categories.id')
+                ->leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+                ->select(
+                    'news.id as id',
+                    'news.author_id as author_id',
+                    'news.image as image',
+                    'news.slug as slug',
+                    'news.is_breaking_news as is_breaking_news',
+                    'news.show_at_slider as show_at_slider',
+                    'news.show_at_popular as show_at_popular',
+                    'news.is_approved as is_approved',
+                    'news.status as status',
+                    'news_description.language_id as language_id',
+                    'news_description.title as title',
+                    'categories_description.name as category_name'
+                )
+                ->where('news_description.language_id', getLanguageId())
+                ->where('categories_description.language_id', getLanguageId())
+                ->where('news.is_approved', 1)
+                ->orderByDesc('news.id')
+                ->get();
+        } else {
+            $news = News::leftJoin('news_description', 'news.id', '=', 'news_description.news_id')
+                ->leftJoin('categories', 'news.category_id', '=', 'categories.id')
+                ->leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+                ->select(
+                    'news.id as id',
+                    'news.author_id as author_id',
+                    'news.image as image',
+                    'news.slug as slug',
+                    'news.is_breaking_news as is_breaking_news',
+                    'news.show_at_slider as show_at_slider',
+                    'news.show_at_popular as show_at_popular',
+                    'news.is_approved as is_approved',
+                    'news.status as status',
+                    'news_description.language_id as language_id',
+                    'news_description.title as title',
+                    'categories_description.name as category_name'
+                )
+                ->where('news_description.language_id', getLanguageId())
+                ->where('categories_description.language_id', getLanguageId())
+                ->where('news.is_approved', 1)
+                ->where('news.author_id', auth()->guard('admin')->user()->id)
+                ->orderByDesc('news.id')
+                ->get();
+        }
+
+        return view('admin.news.index', compact('news'));
     }
 
     /**
@@ -43,7 +91,15 @@ class NewsController extends Controller
     public function create()
     {
         $languages = Language::all();
-        return view('admin.news.create', compact('languages'));
+        $categories = Category::leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+            ->select(
+                'categories.id as id',
+                'categories_description.name as name'
+            )
+            ->where('categories_description.language_id', getLanguageId())
+            ->orderByDesc('categories.id')
+            ->get();
+        return view('admin.news.create', compact('languages', 'categories'));
     }
 
     /**
@@ -51,39 +107,38 @@ class NewsController extends Controller
      */
     public function store(AdminNewsCreateRequest $request)
     {
-        /** Handle image */
-        $imagePath = $this->handleFileUpload($request, 'image');
-
         $news = new News();
-        $news->language = $request->language;
-        $news->category_id = $request->category;
+        $news->category_id = $request->category_id;
         $news->author_id = Auth::guard('admin')->user()->id;
-        $news->image = $imagePath;
-        $news->title = $request->title;
-        $news->slug = \Str::slug($request->title);
-        $news->content = $request->content;
-        $news->meta_title = $request->meta_title;
-        $news->meta_description = $request->meta_description;
+        $imagePath = $this->handleFileUpload($request, 'image', $request->old_image);
+        $news->image = !empty($imagePath) ? $imagePath : $request->old_image;
+        $news->slug = $request->slug;
         $news->is_breaking_news = $request->is_breaking_news == 1 ? 1 : 0;
         $news->show_at_slider = $request->show_at_slider == 1 ? 1 : 0;
         $news->show_at_popular = $request->show_at_popular == 1 ? 1 : 0;
         $news->status = $request->status == 1 ? 1 : 0;
         $news->is_approved = (getRole() == 'Super Admin' || checkPermission('news all-access')) ? 1 : 0;
         $news->save();
-
-        $tags = explode(',', $request->tags);
-        $tagIds = [];
-
-        foreach ($tags as $tag) {
-            $item = new Tag();
-            $item->name = $tag;
-            $item->language = $news->language;
-            $item->save();
-
-            $tagIds[] = $item->id;
+        foreach ($request->description as $description) {
+            $news->description()
+                ->create([
+                    'language_id' => $description['language_id'],
+                    'title' => $description['title'],
+                    'content' => $description['content'],
+                    'meta_title' => $description['meta_title'],
+                    'meta_description' => $description['meta_description']
+                ]);
+            $tags = explode(',', $description['tags']);
+            $tagIds = [];
+            foreach ($tags as $tag) {
+                $item = new Tag();
+                $item->name = $tag;
+                $item->language_id = $description['language_id'];
+                $item->save();
+                $tagIds[] = $item->id;
+            }
+            $news->tags()->attach($tagIds);
         }
-
-        $news->tags()->attach($tagIds);
 
         toast(__('admin.Created successfully!'), 'success')->width('400');
 
@@ -96,15 +151,44 @@ class NewsController extends Controller
     public function edit(string $id)
     {
         $languages = Language::all();
-        $news = News::findOrFail($id);
+        $news = [];
+        $categories = Category::leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+            ->select(
+                'categories.id as id',
+                'categories_description.name as name'
+            )
+            ->where('categories_description.language_id', getLanguageId())
+            ->orderByDesc('categories.id')
+            ->get();
+        foreach ($languages as $language) {
+            $news[$language->id] = News::leftJoin('news_description', 'news.id', '=', 'news_description.news_id')
+                ->select(
+                    'news.id as id',
+                    'news.category_id as category_id',
+                    'news.image as image',
+                    'news.slug as slug',
+                    'news.is_breaking_news as is_breaking_news',
+                    'news.show_at_slider as show_at_slider',
+                    'news.show_at_popular as show_at_popular',
+                    'news.is_approved as is_approved',
+                    'news.status as status',
+                    'news.views as views',
+                    'news_description.language_id as language_id',
+                    'news_description.title as title',
+                    'news_description.content as content',
+                    'news_description.meta_title as meta_title',
+                    'news_description.meta_description as meta_description',
+                )
+                ->where('news.id', $id)
+                ->where('news_description.language_id', $language->id)
+                ->first();
+        }
 
         if (!canAccess(['news all-access'])) {
-            if ($news->author_id != auth()->guard('admin')->user()->id) {
+            if (current($news)->author_id != auth()->guard('admin')->user()->id) {
                 return abort(404);
             }
         }
-
-        $categories = Category::where('language', $news->language)->get();
 
         return view('admin.news.edit', compact('languages', 'news', 'categories'));
     }
@@ -115,44 +199,49 @@ class NewsController extends Controller
     public function update(AdminNewsUpdateRequest $request, string $id)
     {
         $news = News::findOrFail($id);
-
         if ($news->author_id != auth()->guard('admin')->user()->id || getRole() != 'Super Admin') {
             return abort(404);
         }
-
-        $imagePath = $this->handleFileUpload($request, 'image');
-
-        $news->language = $request->language;
-        $news->category_id = $request->category;
-        $news->image = !empty($imagePath) ? $imagePath : $news->image;
-        $news->title = $request->title;
-        $news->slug = \Str::slug($request->title);
-        $news->content = $request->content;
-        $news->meta_title = $request->meta_title;
-        $news->meta_description = $request->meta_description;
+        $news->category_id = $request->category_id;
+        $imagePath = $this->handleFileUpload($request, 'image', $request->old_image);
+        $news->image = !empty($imagePath) ? $imagePath : $request->old_image;
+        $news->slug = $request->slug;
         $news->is_breaking_news = $request->is_breaking_news == 1 ? 1 : 0;
         $news->show_at_slider = $request->show_at_slider == 1 ? 1 : 0;
         $news->show_at_popular = $request->show_at_popular == 1 ? 1 : 0;
         $news->status = $request->status == 1 ? 1 : 0;
-        $news->is_approved = (getRole() == 'Super Admin' || checkPermission('news all-access')) ? ($request->is_approved == 1) ? 1 : 0 : 0;
+        $news->is_approved = (getRole() == 'Super Admin' || checkPermission('news all-access')) ? 1 : 0;
         $news->save();
-
-        $tags = explode(',', $request->tags);
-        $tagIds = [];
-
-        $news->tags()->delete();
-        $news->tags()->detach($news->tags);
-
-        foreach ($tags as $tag) {
-            $item = new Tag();
-            $item->name = $tag;
-            $item->language = $news->language;
-            $item->save();
-
-            $tagIds[] = $item->id;
+        foreach ($request->description as $description) {
+            $news->description()
+                ->where('news_id', $news->id)
+                ->where('language_id', $description['language_id'])
+                ->updateOrCreate(
+                    [
+                        'news_id' => $news->id,
+                        'language_id' => $description['language_id'],
+                    ],
+                    [
+                        'language_id' => $description['language_id'],
+                        'title' => $description['title'],
+                        'content' => $description['content'],
+                        'meta_title' => $description['meta_title'],
+                        'meta_description' => $description['meta_description']
+                    ]
+                );
+            $news->tags()->where('language_id', $description['language_id'])->delete();
+            $news->tags()->where('language_id', $description['language_id'])->detach($news->tags);
+            $tags = explode(',', $description['tags']);
+            $tagIds = [];
+            foreach ($tags as $tag) {
+                $item = new Tag();
+                $item->name = $tag;
+                $item->language_id = $description['language_id'];
+                $item->save();
+                $tagIds[] = $item->id;
+            }
+            $news->tags()->attach($tagIds);
         }
-
-        $news->tags()->attach($tagIds);
 
         toast(__('admin.Updated successfully!'), 'success')->width('400');
 
@@ -213,7 +302,48 @@ class NewsController extends Controller
     public function pendingNews(): View
     {
         $languages = Language::all();
-        return view('admin.pending-news.index', compact('languages'));
+        if (canAccess(['news all-access'])) {
+            $news = News::leftJoin('news_description', 'news.id', '=', 'news_description.news_id')
+                ->leftJoin('categories', 'news.category_id', '=', 'categories.id')
+                ->leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+                ->select(
+                    'news.id as id',
+                    'news.author_id as author_id',
+                    'news.image as image',
+                    'news.slug as slug',
+                    'news.is_approved as is_approved',
+                    'news_description.language_id as language_id',
+                    'news_description.title as title',
+                    'categories_description.name as category_name'
+                )
+                ->where('news_description.language_id', getLanguageId())
+                ->where('categories_description.language_id', getLanguageId())
+                ->where('news.is_approved', 0)
+                ->orderByDesc('news.id')
+                ->get();
+        } else {
+            $news = News::leftJoin('news_description', 'news.id', '=', 'news_description.news_id')
+                ->leftJoin('categories', 'news.category_id', '=', 'categories.id')
+                ->leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+                ->select(
+                    'news.id as id',
+                    'news.author_id as author_id',
+                    'news.image as image',
+                    'news.slug as slug',
+                    'news.is_approved as is_approved',
+                    'news_description.language_id as language_id',
+                    'news_description.title as title',
+                    'categories_description.name as category_name'
+                )
+                ->where('news_description.language_id', getLanguageId())
+                ->where('categories_description.language_id', getLanguageId())
+                ->where('news.is_approved', 0)
+                ->where('news.author_id', auth()->guard('admin')->user()->id)
+                ->orderByDesc('news.id')
+                ->get();
+        }
+
+        return view('admin.news.index', compact('news'));
     }
 
     function approveNews(Request $request): Response

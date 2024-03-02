@@ -1,0 +1,116 @@
+# php artisan
+
+php artisan migrate:reset && php artisan op:clear && php artisan route:clear && php artisan config:clear && php artisan cache:clear
+php artisan migrate
+php artisan db:seed
+
+# sql
+INSERT INTO `admins` (`id`, `image`, `name`, `email`, `email_verified_at`, `password`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2,	'',	'test',	'eapdob1@gmail.com',	NULL,	'$2y$10$NGZXcT3fdfoTPgEwaKF.u.CMRm8fy6jl8QZAs9uAe1xPYeptaXIMa',	1,	NULL,	'2024-03-02 12:24:05',	'2024-03-02 12:24:05');
+
+INSERT INTO `categories` (`id`, `parent_id`, `slug`, `show_at_nav`, `status`, `created_at`, `updated_at`) VALUES
+(25,	NULL,	'testcategory2',	1,	1,	'2024-03-01 17:47:20',	'2024-03-01 17:47:20'),
+(26,	25,	'testcategory3',	1,	1,	'2024-03-01 17:48:24',	'2024-03-01 17:48:24'),
+(27,	NULL,	'testcategory4',	1,	1,	'2024-03-02 11:10:30',	'2024-03-02 11:10:30');
+
+INSERT INTO `categories_description` (`id`, `category_id`, `language_id`, `name`, `created_at`, `updated_at`) VALUES
+(52,	25,	1,	'testcategoryen2',	'2024-03-01 17:47:20',	'2024-03-01 17:47:20'),
+(53,	25,	2,	'testcategoryuk2',	'2024-03-01 17:47:20',	'2024-03-01 17:47:20'),
+(54,	26,	1,	'testcategoryen3',	'2024-03-01 17:48:24',	'2024-03-01 17:48:24'),
+(55,	26,	2,	'testcategoryuk3',	'2024-03-01 17:48:24',	'2024-03-01 17:48:24'),
+(56,	27,	1,	'testcategoryen45',	'2024-03-02 11:10:30',	'2024-03-02 11:11:03'),
+(57,	27,	2,	'testcategoryuk4',	'2024-03-02 11:10:30',	'2024-03-02 11:10:30');
+
+INSERT INTO `languages` (`id`, `lang`, `name`, `slug`, `default`, `status`, `created_at`, `updated_at`) VALUES
+(2,	'uk',	'Ukrainian',	'uk',	0,	1,	'2023-12-29 17:37:02',	'2023-12-29 17:37:02');
+
+
+INSERT INTO `news` (`id`, `category_id`, `author_id`, `image`, `slug`, `is_breaking_news`, `show_at_slider`, `show_at_popular`, `is_approved`, `status`, `views`, `created_at`, `updated_at`) VALUES
+(1,	25,	1,	'uploads/nVxBrPbGX6NKRqhGZuGQQRCtX0uJOq.png',	'testnewsen11',	1,	1,	1,	1,	1,	0,	'2024-03-02 11:33:48',	'2024-03-02 12:52:42'),
+(2,	25,	2,	'uploads/jY15Hyeti5CegcdyMOetNuuUuZxyza.jpeg',	'testcontent1',	0,	0,	0,	1,	1,	0,	'2024-03-02 12:25:03',	'2024-03-02 12:57:31');
+
+INSERT INTO `news_description` (`id`, `news_id`, `language_id`, `title`, `content`, `meta_title`, `meta_description`, `created_at`, `updated_at`) VALUES
+(1,	1,	1,	'testnewsen11',	'testnewsen11',	'testnewsen1',	'testnewsen1',	'2024-03-02 11:33:48',	'2024-03-02 12:14:08'),
+(2,	1,	2,	'testnewsuk11',	'testnewsuk11',	'testnewsuk1',	'testnewsuk1',	'2024-03-02 11:33:48',	'2024-03-02 12:14:08'),
+(3,	2,	1,	'testcontenten1',	'testcontenten1',	'testcontenten1',	'testcontenten1',	'2024-03-02 12:25:03',	'2024-03-02 12:25:03'),
+(4,	2,	2,	'testcontentuk1',	'testcontentuk1',	'testcontentuk1',	'testcontentuk1',	'2024-03-02 12:25:03',	'2024-03-02 12:25:03');
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `created_at`, `updated_at`) VALUES
+(42,	'category index',	'admin',	'Category Permissions',	'2024-02-28 13:43:22',	'2024-02-28 13:43:22'),
+(43,	'category create',	'admin',	'Category Permissions',	'2024-02-28 13:43:22',	'2024-02-28 13:43:22'),
+(44,	'category update',	'admin',	'Category Permissions',	'2024-02-28 13:43:22',	'2024-02-28 13:43:22'),
+(45,	'category delete',	'admin',	'Category Permissions',	'2024-02-28 13:43:22',	'2024-02-28 13:43:22'),
+(46,	'news index',	'admin',	'News Permissions',	'2024-02-28 13:43:22',	'2024-02-28 13:43:22'),
+(47,	'news create',	'admin',	'News Permissions',	'2024-02-28 13:43:23',	'2024-02-28 13:43:23'),
+(48,	'news update',	'admin',	'News Permissions',	'2024-02-28 13:43:23',	'2024-02-28 13:43:23'),
+(49,	'news delete',	'admin',	'News Permissions',	'2024-02-28 13:43:23',	'2024-02-28 13:43:23'),
+(50,	'news status',	'admin',	'News Permissions',	'2024-02-28 13:43:23',	'2024-02-28 13:43:23'),
+(51,	'news all-access',	'admin',	'News Permissions',	'2024-02-28 13:43:24',	'2024-02-28 13:43:24'),
+(52,	'about index',	'admin',	'About Permissions',	'2024-02-28 13:43:24',	'2024-02-28 13:43:24'),
+(53,	'about update',	'admin',	'About Permissions',	'2024-02-28 13:43:24',	'2024-02-28 13:43:24'),
+(54,	'contact index',	'admin',	'Contact Permissions',	'2024-02-28 13:43:24',	'2024-02-28 13:43:24'),
+(55,	'contact update',	'admin',	'Contact Permissions',	'2024-02-28 13:43:25',	'2024-02-28 13:43:25'),
+(56,	'social count index',	'admin',	'Social Count Permissions',	'2024-02-28 13:43:25',	'2024-02-28 13:43:25'),
+(57,	'social count create',	'admin',	'Social Count Permissions',	'2024-02-28 13:43:25',	'2024-02-28 13:43:25'),
+(58,	'social count update',	'admin',	'Social Count Permissions',	'2024-02-28 13:43:25',	'2024-02-28 13:43:25'),
+(59,	'social count delete',	'admin',	'Social Count Permissions',	'2024-02-28 13:43:26',	'2024-02-28 13:43:26'),
+(60,	'contact message index',	'admin',	'Contact Message Permissions',	'2024-02-28 13:43:26',	'2024-02-28 13:43:26'),
+(61,	'contact message delete',	'admin',	'Contact Message Permissions',	'2024-02-28 13:43:26',	'2024-02-28 13:43:26'),
+(62,	'home section index',	'admin',	'Home Section Setting Permissions',	'2024-02-28 13:43:26',	'2024-02-28 13:43:26'),
+(63,	'home section update',	'admin',	'Home Section Setting Permissions',	'2024-02-28 13:43:27',	'2024-02-28 13:43:27'),
+(64,	'advertisement index',	'admin',	'Advertisement Permissions',	'2024-02-28 13:43:27',	'2024-02-28 13:43:27'),
+(65,	'advertisement update',	'admin',	'Advertisement Permissions',	'2024-02-28 13:43:27',	'2024-02-28 13:43:27'),
+(66,	'languages index',	'admin',	'Languages Permissions',	'2024-02-28 13:43:27',	'2024-02-28 13:43:27'),
+(67,	'languages create',	'admin',	'Languages Permissions',	'2024-02-28 13:43:28',	'2024-02-28 13:43:28'),
+(68,	'languages update',	'admin',	'Languages Permissions',	'2024-02-28 13:43:28',	'2024-02-28 13:43:28'),
+(69,	'languages delete',	'admin',	'Languages Permissions',	'2024-02-28 13:43:28',	'2024-02-28 13:43:28'),
+(70,	'subscribers index',	'admin',	'Subscribers Permissions',	'2024-02-28 13:43:28',	'2024-02-28 13:43:28'),
+(71,	'subscribers delete',	'admin',	'Subscribers Permissions',	'2024-02-28 13:43:29',	'2024-02-28 13:43:29'),
+(72,	'footer index',	'admin',	'Footer Permissions',	'2024-02-28 13:43:29',	'2024-02-28 13:43:29'),
+(73,	'footer create',	'admin',	'Footer Permissions',	'2024-02-28 13:43:29',	'2024-02-28 13:43:29'),
+(74,	'footer update',	'admin',	'Footer Permissions',	'2024-02-28 13:43:29',	'2024-02-28 13:43:29'),
+(75,	'footer delete',	'admin',	'Footer Permissions',	'2024-02-28 13:43:30',	'2024-02-28 13:43:30'),
+(76,	'access management index',	'admin',	'Access Management Permissions',	'2024-02-28 13:43:30',	'2024-02-28 13:43:30'),
+(77,	'access management create',	'admin',	'Access Management Permissions',	'2024-02-28 13:43:30',	'2024-02-28 13:43:30'),
+(78,	'access management update',	'admin',	'Access Management Permissions',	'2024-02-28 13:43:30',	'2024-02-28 13:43:30'),
+(79,	'access management delete',	'admin',	'Access Management Permissions',	'2024-02-28 13:43:31',	'2024-02-28 13:43:31'),
+(80,	'setting index',	'admin',	'Settings Permissions',	'2024-02-28 13:43:31',	'2024-02-28 13:43:31'),
+(81,	'setting update',	'admin',	'Settings Permissions',	'2024-02-28 13:45:02',	'2024-02-28 13:45:02');
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(8,	'Super Admin',	'admin',	'2024-02-21 10:45:57',	'2024-02-21 10:45:57'),
+(9,	'editor',	'admin',	'2024-02-28 11:50:50',	'2024-02-28 11:50:50'),
+(10,	'content',	'admin',	'2024-02-28 17:57:21',	'2024-02-28 17:57:21');
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(8,	'App\\Models\\Admin',	1),
+(9,	'App\\Models\\Admin',	2);
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(46,	9),
+(47,	9),
+(48,	9),
+(49,	9),
+(42,	10),
+(43,	10),
+(44,	10),
+(46,	10),
+(47,	10),
+(48,	10),
+(50,	10),
+(51,	10),
+(52,	10),
+(53,	10),
+(57,	10),
+(58,	10),
+(62,	10),
+(63,	10),
+(64,	10),
+(65,	10),
+(66,	10),
+(67,	10),
+(68,	10),
+(70,	10),
+(72,	10),
+(73,	10),
+(74,	10);

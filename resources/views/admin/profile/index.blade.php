@@ -130,19 +130,19 @@
         <script src="{{ asset('admin/modules/upload-preview/assets/js/jquery.uploadPreview.js') }}"></script>
         <script>
             $.uploadPreview({
-                input_field: "#image-upload",   // Default: .image-upload
-                preview_box: "#image-preview",  // Default: .image-preview
-                label_field: "#image-label",    // Default: .image-label
-                label_default: "Choose File",   // Default: Choose File
-                label_selected: "Change File",  // Default: Change File
-                no_label: false,                // Default: false
-                success_callback: null          // Default: null
+                input_field: "#image-upload",
+                preview_box: "#image-preview",
+                label_field: "#image-label",
+                label_default: "{{ __('admin.Choose file') }}",
+                label_selected: "{{ __('admin.Choose file') }}",
+                no_label: false,
+                success_callback: null
             });
             $(document).ready(function () {
                 $('#image-preview').css({
                     "background-image": "url({{ asset($user->image) }})",
                     "background-size": "cover"
-                })
+                });
             });
         </script>
     @endpush

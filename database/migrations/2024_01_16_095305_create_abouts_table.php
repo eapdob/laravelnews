@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->string('language');
+            $table->unsignedBigInteger('language_id');
             $table->timestamps();
         });
     }

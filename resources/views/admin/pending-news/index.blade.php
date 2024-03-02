@@ -9,20 +9,6 @@
             <div class="card-header">
                 <h4>{{ __('admin.All pending') }}</h4>
             </div>
-            @php
-                if(canAccess(['news all-access'])){
-                    $news = \App\Models\News::with('category')
-                    ->where('is_approved', 0)
-                    ->orderBy('id', 'DESC')
-                    ->get();
-                }else {
-                    $news = \App\Models\News::with('category')
-                    ->where('is_approved', 0)
-                    ->where('auther_id', auth()->guard('admin')->user()->id)
-                    ->orderBy('id', 'DESC')
-                    ->get();
-                }
-            @endphp
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped" id="table">
@@ -34,6 +20,7 @@
                             <th>{{ __('admin.Image') }}</th>
                             <th>{{ __('admin.Title') }}</th>
                             <th>{{ __('admin.Category') }}</th>
+                            <th>{{ __('admin.Slug') }}</th>
                             <th>{{ __('admin.Approve') }}</th>
                             <th>{{ __('admin.Action') }}</th>
                         </tr>
@@ -46,7 +33,8 @@
                                     <img src="{{ asset($item->image) }}" width="100" alt="">
                                 </td>
                                 <td>{{ $item->title }}</td>
-                                <td>{{ $item->category->name }}</td>
+                                <td>{{ $item->category_name }}</td>
+                                <td>{{ $item->slug }}</td>
                                 <td>
                                     <form action="" id="approve_form">
                                         <input type="hidden" name="id" value="{{ $item->id }}">

@@ -31,6 +31,27 @@ function setLanguage(string $code): void
     session(['language' => $code]);
 }
 
+function getLanguageId(): string
+{
+    if (session()->has('language_id')) {
+        return session('language_id');
+    } else {
+        try {
+            $language = Language::where('default', 1)->first();
+            setLanguageId($language->id);
+            return $language->id;
+        } catch (\Throwable $th) {
+            setLanguageId(1);
+            return $language->id;
+        }
+    }
+}
+
+function setLanguageId(string $language_id): void
+{
+    session(['language_id' => $language_id]);
+}
+
 function truncate(string $text, int $limit = 45): string
 {
     return \Str::limit($text, $limit, '...');
@@ -59,8 +80,9 @@ function setSidebarActive(array $routes): ?string
 
 function getSetting($key)
 {
-    $data = Setting::where('key', $key)->first();
-    return $data->value;
+//    $data = Setting::where('key', $key)->first();
+//    return $data->value;
+    return null;
 }
 
 function canAccess(array $permissions)

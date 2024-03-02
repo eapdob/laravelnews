@@ -5,14 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class About extends Model
+class ContactDescription extends Model
 {
     use HasFactory;
 
-    protected $table = 'abouts';
+    protected $table = 'contacts_description';
 
     protected $fillable = [
-        'content',
+        'address',
         'language_id'
     ];
+
+    public function contact()
+    {
+        return $this->belongsTo(Contact::class);
+    }
 }

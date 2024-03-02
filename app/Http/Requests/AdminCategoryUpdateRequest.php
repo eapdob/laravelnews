@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AdminCategoryUpdateRequest extends FormRequest
 {
@@ -23,10 +24,33 @@ class AdminCategoryUpdateRequest extends FormRequest
     {
         $categoryId = $this->route('category');
         return [
-            'language' => ['required'],
-            'name' => ['required', 'max:255', 'unique:categories,name,' . $categoryId],
+            'description.*.language_id' => 'digits:1,100',
+            'description.*.name' => ['required', 'max:255'],
+            'parent_id' => [
+                'nullable',
+                Rule::exists('categories', 'id')
+            ],
+            'slug' => [
+                'required',
+                'alpha_dash',
+                'max:255',
+                'unique:categories,slug,' . $categoryId
+            ],
             'show_at_nav' => ['required', 'boolean'],
             'status' => ['required', 'boolean']
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes(): array
+    {
+        return [
+            'description.*.language_id' => 'Language ID',
+            'description.*.name' => 'Categories Name',
         ];
     }
 }

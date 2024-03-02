@@ -9,10 +9,15 @@ class Contact extends Model
 {
     use HasFactory;
 
+    protected $table = 'contacts';
+
     protected $fillable = [
-        'language',
-        'address',
         'phone',
         'email'
     ];
+
+    public function description()
+    {
+        return $this->hasMany(ContactDescription::class);
+    }
 }

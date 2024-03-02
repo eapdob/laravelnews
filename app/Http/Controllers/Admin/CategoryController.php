@@ -24,8 +24,20 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $languages = Language::all();
-        return view('admin.category.index', compact('languages'));
+        $categories = Category::leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+            ->select(
+                'categories.id as id',
+                'categories.slug as slug',
+                'categories.show_at_nav as show_at_nav',
+                'categories.status as status',
+                'categories_description.language_id as language_id',
+                'categories_description.name as name'
+            )
+            ->where('categories_description.language_id', getLanguageId())
+            ->orderByDesc('id')
+            ->get();
+
+        return view('admin.category.index', compact('categories'));
     }
 
     /**
@@ -34,7 +46,15 @@ class CategoryController extends Controller
     public function create()
     {
         $languages = Language::all();
-        return view('admin.category.create', compact('languages'));
+        $categories = Category::leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+            ->select(
+                'categories.id as id',
+                'categories_description.name as name'
+            )
+            ->where('categories_description.language_id', getLanguageId())
+            ->orderByDesc('id')
+            ->get();
+        return view('admin.category.create', compact('languages', 'categories'));
     }
 
     /**
@@ -43,12 +63,18 @@ class CategoryController extends Controller
     public function store(AdminCategoryCreateRequest $request)
     {
         $category = new Category();
-        $category->name = $request->name;
-        $category->slug = \Str::slug($request->name);
-        $category->language = $request->language;
+        $category->parent_id = $request->parent_id;
+        $category->slug = $request->slug;
         $category->show_at_nav = $request->show_at_nav;
         $category->status = $request->status;
         $category->save();
+        foreach ($request->description as $description) {
+            $category->description()
+                ->create([
+                    'language_id' => $description['language_id'],
+                    'name' => $description['name']
+                ]);
+        }
 
         toast(__('admin.Created successfully!'), 'success')->width('400');
 
@@ -61,8 +87,32 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $languages = Language::all();
-        $category = Category::findOrFail($id);
-        return view('admin.category.edit', compact('languages', 'category'));
+        $category = [];
+        $categories = Category::leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+            ->select(
+                'categories.id as id',
+                'categories_description.name as name'
+            )
+            ->where('categories_description.language_id', getLanguageId())
+            ->orderByDesc('id')
+            ->get();
+        foreach ($languages as $language) {
+            $category[$language->id] = Category::leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+                ->select(
+                    'categories.id as id',
+                    'categories.parent_id as parent_id',
+                    'categories.slug as slug',
+                    'categories.show_at_nav as show_at_nav',
+                    'categories.status as status',
+                    'categories_description.language_id as language_id',
+                    'categories_description.name as name'
+                )
+                ->where('categories.id', $id)
+                ->where('categories_description.language_id', $language->id)
+                ->first();
+        }
+
+        return view('admin.category.edit', compact('languages', 'category', 'categories'));
     }
 
     /**
@@ -71,12 +121,26 @@ class CategoryController extends Controller
     public function update(AdminCategoryUpdateRequest $request, string $id)
     {
         $category = Category::findOrFail($id);
-        $category->name = $request->name;
-        $category->slug = \Str::slug($request->name);
-        $category->language = $request->language;
+        $category->parent_id = $request->parent_id;
+        $category->slug = $request->slug;
         $category->show_at_nav = $request->show_at_nav;
         $category->status = $request->status;
         $category->save();
+        foreach ($request->description as $description) {
+            $category->description()
+                ->where('category_id', $category->id)
+                ->where('language_id', $description['language_id'])
+                ->updateOrCreate(
+                    [
+                        'category_id' => $category->id,
+                        'language_id' => $description['language_id'],
+                    ],
+                    [
+                        'language_id' => $description['language_id'],
+                        'name' => $description['name']
+                    ]
+                );
+        }
 
         toast(__('admin.Updated successfully!'), 'success')->width('400');
 

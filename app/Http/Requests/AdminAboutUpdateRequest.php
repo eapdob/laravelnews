@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminContactUpdateRequest extends FormRequest
+class AdminAboutUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,9 @@ class AdminContactUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'description.*.language_id' => 'digits:1,100',
-            'description.*.address' => ['required', 'max:500'],
-            'phone' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'max:255']
+            'about.*.language_id' => 'digits:1,100',
+            'about.*.content' => ['required', 'max:3000'],
         ];
-
     }
 
     /**
@@ -38,8 +35,8 @@ class AdminContactUpdateRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'description.*.language_id' => 'Contact Language ID',
-            'description.*.address' => 'Contact Address',
+            'about.*.language_id' => 'About Language ID',
+            'about.*.content' => 'About Content',
         ];
     }
 }

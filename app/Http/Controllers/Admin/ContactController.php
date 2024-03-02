@@ -21,7 +21,18 @@ class ContactController extends Controller
     public function index()
     {
         $languages = Language::all();
-        return view('admin.contact-page.index', compact('languages'));
+        $contact = Contact::all()->first();
+        $contacts = [];
+        foreach ($languages as $language) {
+            $contacts[$language->id] = Contact::leftJoin('contacts_description', 'contacts.id', '=', 'contacts_description.contact_id')
+                ->select(
+                    'contacts.id as id',
+                    'contacts_description.address as address',
+                )
+                ->where('contacts_description.language_id', $language->id)
+                ->first();
+        }
+        return view('admin.contact-page.index', compact('languages', 'contact', 'contacts'));
     }
 
     /**
@@ -29,16 +40,38 @@ class ContactController extends Controller
      */
     public function update(AdminContactUpdateRequest $request)
     {
-        Contact::updateOrCreate(
-            [
-                'language' => $request->language
-            ],
-            [
-                'address' => $request->address,
-                'phone' => $request->phone,
-                'email' => $request->email
-            ]
-        );
+        if (!empty($request->id)) {
+            $contact = Contact::updateOrCreate(
+                [
+                    'id' => $request->id,
+                    'phone' => $request->phone,
+                    'email' => $request->email
+                ],
+            );
+        } else {
+            $contact = Contact::updateOrCreate(
+                [
+                    'phone' => $request->phone,
+                    'email' => $request->email
+                ]
+            );
+        }
+
+        foreach ($request->description as $description) {
+            $contact->description()
+                ->where('contact_id', $contact->id)
+                ->where('language_id', $description['language_id'])
+                ->updateOrCreate(
+                    [
+                        'contact_id' => $contact->id,
+                        'language_id' => $description['language_id'],
+                    ],
+                    [
+                        'language_id' => $description['language_id'],
+                        'address' => $description['address']
+                    ]
+                );
+        }
 
         toast(__('admin.Updated successfully!'), 'success');
 
