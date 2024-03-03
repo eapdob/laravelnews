@@ -9,10 +9,14 @@ class FooterInfo extends Model
 {
     use HasFactory;
 
+    protected $table = 'footer_infos';
+
     protected $fillable = [
-        'language',
-        'logo',
-        'description',
-        'copyright'
+        'logo'
     ];
+
+    public function description()
+    {
+        return $this->hasMany(FooterInfoDescription::class);
+    }
 }

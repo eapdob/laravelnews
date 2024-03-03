@@ -23,11 +23,27 @@ class AdminSocialCountStoreRequest extends FormRequest
     {
         return [
             'icon' => ['required'],
-            'fan_count' => ['required', 'max:255'],
-            'fan_type' => ['required', 'max:255'],
-            'button_text' => ['required', 'max:255'],
+            'description.*.language_id' => 'digits:1,100',
+            'description.*.fan_count' => ['required', 'max:255'],
+            'description.*.fan_type' => ['required', 'max:255'],
+            'description.*.button_text' => ['required', 'max:255'],
             'color' => ['required', 'max:255'],
             'url' => ['required']
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes(): array
+    {
+        return [
+            'description.*.language_id' => 'Language ID',
+            'description.*.fan_count' => 'Fan Count',
+            'description.*.fan_type' => 'Fan Type',
+            'description.*.button_text' => 'Button Text',
         ];
     }
 }

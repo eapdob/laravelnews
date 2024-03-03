@@ -64,7 +64,7 @@
                                         <div class="form-group">
                                             <label for="description-tags-{{ $language->id }}">{{ __('admin.Tags') }}</label>
                                             <input name="description[{{ $language->id }}][tags]" type="text" class="form-control inputtags" id="description-tags-{{ $language->id }}" value="{{ old('description.' . $language->id . '.tags') ? old('description.' . $language->id . '.tags') : (formatTags($news[$language->id]->tags()->where('language_id', $language->id)->pluck('name')->toArray())) }}">
-                                            @error('tags')
+                                            @error('description.*.tags')
                                             <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>

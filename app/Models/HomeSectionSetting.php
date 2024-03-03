@@ -12,10 +12,10 @@ class HomeSectionSetting extends Model
     protected $table = 'home_section_settings';
 
     protected $fillable = [
+        'language_id',
         'category_section_one',
         'category_section_two',
         'category_section_three',
         'category_section_four',
-        'language'
     ];
 }

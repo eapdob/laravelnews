@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminSocialCountUpdateRequest extends FormRequest
+class AdminFooterInfoUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,10 @@ class AdminSocialCountUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'icon' => ['required'],
+            'logo' => ['nullable', 'image', 'max:3000'],
             'description.*.language_id' => 'digits:1,100',
-            'description.*.fan_count' => ['required', 'max:255'],
-            'description.*.fan_type' => ['required', 'max:255'],
-            'description.*.button_text' => ['required', 'max:255'],
-            'color' => ['required', 'max:255'],
-            'url' => ['required']
+            'description.*.description' => ['required', 'max:300'],
+            'description.*.copyright' => ['required', 'max:255']
         ];
     }
 
@@ -40,10 +37,9 @@ class AdminSocialCountUpdateRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'description.*.language_id' => 'Language ID',
-            'description.*.fan_count' => 'Fan Count',
-            'description.*.fan_type' => 'Fan Type',
-            'description.*.button_text' => 'Button Text',
+            'description.*.language_id' => 'Footer Info Language ID',
+            'description.*.description' => 'Footer Info description',
+            'description.*.copyright' => 'Footer Info copyright'
         ];
     }
 }
