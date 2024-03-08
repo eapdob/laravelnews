@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminFooterGridOneSaveRequest;
+use App\Http\Requests\AdminFooterTitleUpdateRequest;
 use App\Models\FooterGridOne;
 use App\Models\FooterTitle;
 use App\Models\Language;
@@ -25,6 +26,10 @@ class FooterGridOneController extends Controller
     public function index()
     {
         $languages = Language::all();
+        $abouts = [];
+        foreach ($languages as $language) {
+            $abouts[$language->id] = About::where('language_id', $language->id)->first();
+        }
         return view('admin.footer-grid-one.index', compact('languages'));
     }
 
@@ -90,20 +95,32 @@ class FooterGridOneController extends Controller
         return response(['status' => 'success', 'message' => __('admin.Deleted successfully!')]);
     }
 
-    public function handleTitle(Request $request)
+    public function handleTitle(AdminFooterTitleUpdateRequest $request)
     {
-        $request->validate([
-            'title' => [
-                'required',
-                'max:255'
-            ]
-        ]);
-
-        FooterTitle::updateOrCreate([
-            'key' => 'grid_one_title',
-            'language' => $request->language,
-            'value' => $request->title
-        ]);
+        foreach ($request->footerTitles as $footerTitle) {
+            if (!empty($aboutItem->id)) {
+                FooterTitle::updateOrCreate(
+                    [
+                        'id' => $footerTitle['id'],
+                        'footer_grid' => $footerTitle['footer_grid'],
+                        'language_id' => $footerTitle['language_id']
+                    ],
+                    [
+                        'title' => $footerTitle['content']
+                    ]
+                );
+            } else {
+                FooterTitle::updateOrCreate(
+                    [
+                        'footer_grid' => $footerTitle['footer_grid'],
+                        'language_id' => $footerTitle['language_id']
+                    ],
+                    [
+                        'content' => $footerTitle['content']
+                    ]
+                );
+            }
+        }
 
         toast(__('admin.Updated successfully!'), 'success');
 

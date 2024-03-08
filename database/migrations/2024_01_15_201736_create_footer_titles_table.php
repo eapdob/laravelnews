@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('footer_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('key');
-            $table->string('value');
-            $table->string('language');
+            $table->string('footer_grid');
+            $table->string('title');
+            $table->unsignedBigInteger('language_id');
             $table->timestamps();
         });
     }

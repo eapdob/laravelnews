@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('footer_grid_ones', function (Blueprint $table) {
             $table->id();
-            $table->string('language');
+            $table->unsignedBigInteger('language_id');
             $table->string('name');
             $table->text('url');
             $table->boolean('status');
