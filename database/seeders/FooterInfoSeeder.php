@@ -13,11 +13,11 @@ class FooterInfoSeeder extends Seeder
      */
     public function run(): void
     {
-        FooterInfo::updateOrCreate([
-            'language' => 'en',
-            'logo' => '/test',
-            'description' => 'test',
-            'copyright' => 'test'
-        ]);
+//        FooterInfo::updateOrCreate([
+//            'language' => 'en',
+//            'logo' => '/test',
+//            'description' => 'test',
+//            'copyright' => 'test'
+//        ]);
     }
 }

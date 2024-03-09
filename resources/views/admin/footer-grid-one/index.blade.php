@@ -8,6 +8,7 @@
         <div class="card card-primary">
             <div class="card-body">
                 <form action="{{ route('admin.footer-grid-one-title') }}" method="POST">
+                    @csrf
                     <ul class="nav nav-tabs" role="tablist">
                         @foreach ($languages as $language)
                             <li class="nav-item">
@@ -28,7 +29,7 @@
                                             <label for="footer-title-{{ $language->id }}">{{ __('admin.Footer title') }}</label>
                                             <input name="footerTitles[{{ $language->id }}][language_id]" type="hidden" value="{{ $language->id }}">
                                             <input name="footerTitles[{{ $language->id }}][id]" type="hidden" value="{{ $footerTitles[$language->id]->id ?? '' }}">
-                                            <input name="footerTitles[{{ $language->id }}][footer_grid]" type="hidden" value="{{ $footerTitles[$language->id]->footer_grid ?? '' }}">
+                                            <input name="footerTitles[{{ $language->id }}][footer_grid]" type="hidden" value="{{ $footerTitles[$language->id]->footer_grid ?? 'footer_grid_one' }}">
                                             <input name="footerTitles[{{ $language->id }}][title]" class="form-control" id="footer-title-{{ $language->id }}" value="{{ $footerTitles[$language->id]->title ?? '' }}">
                                             @error('footerTitles.*.title')
                                             <p class="text-danger">{{ $message }}</p>
@@ -64,7 +65,6 @@
                                 #
                             </th>
                             <th>{{ __('admin.Name') }}</th>
-                            <th>{{ __('admin.Language code') }}</th>
                             <th>{{ __('admin.Status') }}</th>
                             <th>{{ __('admin.Action') }}</th>
                         </tr>
@@ -74,7 +74,6 @@
                             <tr>
                                 <td>{{ $footerGridOne->id }}</td>
                                 <td>{{ $footerGridOne->name }}</td>
-                                <td>{{ $footerGridOne->language }}</td>
                                 <td>
                                     @if ($footerGridOne->status == 1)
                                         <span class="badge badge-success">{{ __('admin.Yes') }}</span>
@@ -102,13 +101,11 @@
 
 @push('scripts')
     <script>
-        @foreach ($languages as $language)
-        $("#table-{{ $language->lang }}").dataTable({
+        $("#table").dataTable({
             "columnDefs": [{
                 "sortable": false,
                 "targets": [2, 3]
             }]
         });
-        @endforeach
     </script>
 @endpush

@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('footer_grid_ones', function (Blueprint $table) {
+        Schema::create('footer_grid_ones_description', function (Blueprint $table) {
             $table->id();
-            $table->text('url');
-            $table->boolean('status');
+            $table->foreignId('footer_grid_one_id')->constrained('footer_grid_ones')->onDelete('cascade');
+            $table->unsignedBigInteger('language_id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('footer_grid_ones');
+        Schema::dropIfExists('footer_grid_ones_description');
     }
 };

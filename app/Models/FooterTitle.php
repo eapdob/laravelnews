@@ -9,9 +9,11 @@ class FooterTitle extends Model
 {
     use HasFactory;
 
+    protected $table = 'footer_titles';
+
     protected $fillable = [
-        'key',
-        'value',
-        'language'
+        'footer_grid',
+        'title',
+        'language_id'
     ];
 }
