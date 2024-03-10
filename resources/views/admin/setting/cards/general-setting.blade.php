@@ -36,19 +36,23 @@
                 </div>
             </div>
             <div class="form-group">
-                <img src="{{ asset($settings['site_logo'] ?? '') }}" alt="" width="150px"> <br>
-                <label for="">{{ __('admin.Site logo') }}</label>
-                <input type="file" name="site_logo" class="form-control">
+                <div id="image-preview-site-logo">
+                    <label for="image-upload-site-logo" id="image-label-site-logo">{{ __('admin.Choose file') }}</label>
+                    <input type="file" name="site_logo" id="image-upload-site-logo"/>
+                    <input type="hidden" name="old_site_logo" value="{{ old('site_logo') ? old('site_logo') : asset($settings['site_logo'] ?? '') }}"/>
+                </div>
                 @error('site_logo')
-                <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger">{{ $message }}<p/>
                 @enderror
             </div>
             <div class="form-group">
-                <img src="{{ asset($settings['site_favicon'] ?? '') }}" alt="" width="150px"> <br>
-                <label for="">{{ __('admin.Site favicon') }}</label>
-                <input type="file" name="site_favicon" class="form-control">
+                <div id="image-preview-site-favicon">
+                    <label for="image-upload-site-favicon" id="image-label-site-favicon">{{ __('admin.Choose file') }}</label>
+                    <input type="file" name="site_favicon" id="image-upload-site-favicon"/>
+                    <input type="hidden" name="old_site_favicon" value="{{ old('site_favicon') ? old('site_favicon') : asset($settings['site_favicon'] ?? '') }}"/>
+                </div>
                 @error('site_favicon')
-                <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger">{{ $message }}<p/>
                 @enderror
             </div>
             <button type="submit" class="btn btn-primary">{{ __('admin.Save') }}</button>

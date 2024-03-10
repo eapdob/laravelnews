@@ -61,27 +61,24 @@ class SettingController extends Controller
 
     function updateGeneralSetting(AdminGeneralSettingUpdateRequest $request): RedirectResponse
     {
-        $logoPath = $this->handleFileUpload($request, 'site_logo');
-        $faviconPath = $this->handleFileUpload($request, 'site_favicon');
+        $logoPath = $this->handleFileUpload($request, 'site_logo', $request->old_site_logo);
+        $logoPath = !empty($logoPath) ? $logoPath : $request->old_site_logo;
+        Setting::updateOrCreate(
+            ['key' => 'site_logo'],
+            ['value' => $logoPath]
+        );
+
+        $faviconPath = $this->handleFileUpload($request, 'site_favicon', $request->old_site_favicon);
+        $faviconPath = !empty($faviconPath) ? $faviconPath : $request->old_site_favicon;
+        Setting::updateOrCreate(
+            ['key' => 'site_favicon'],
+            ['value' => $faviconPath]
+        );
 
         foreach ($request->settings as $setting) {
             Setting::updateOrCreate(
                 ['key' => 'site_name_'. $setting['language_id']],
                 ['value' => $setting['site_name']]
-            );
-        }
-
-        if (!empty($logoPath)) {
-            Setting::updateOrCreate(
-                ['key' => 'site_logo'],
-                ['value' => $logoPath]
-            );
-        }
-
-        if (!empty($faviconPath)) {
-            Setting::updateOrCreate(
-                ['key' => 'site_favicon'],
-                ['value' => $faviconPath]
             );
         }
 

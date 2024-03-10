@@ -6,6 +6,8 @@
  */
 
 #image-preview,
+#image-preview-site-logo,
+#image-preview-site-favicon,
 #callback-preview {
     width: 125px;
     height: 125px;
@@ -16,6 +18,8 @@
 }
 
 #image-preview input,
+#image-preview-site-logo input,
+#image-preview-site-favicon input,
 #callback-preview input {
     line-height: 200px;
     font-size: 200px;
@@ -25,6 +29,8 @@
 }
 
 #image-preview label,
+#image-preview-site-logo label,
+#image-preview-site-favicon label,
 #callback-preview label {
     position: absolute;
     z-index: 5;

@@ -68,4 +68,40 @@
         @endforeach
         @endif
     </script>
+    <script src="{{ asset('admin/modules/upload-preview/assets/js/jquery.uploadPreview.js') }}"></script>
+    <script src="{{ asset('admin/modules/upload-preview/assets/js/jquery.uploadPreview2.js') }}"></script>
+    <script>
+        $.uploadPreview({
+            input_field: "#image-upload-site-logo",
+            preview_box: "#image-preview-site-logo",
+            label_field: "#image-label-site-logo",
+            label_default: "{{ __('admin.Choose file') }}",
+            label_selected: "{{ __('admin.Choose file') }}",
+            no_label: false,
+            success_callback: null
+        });
+        $(document).ready(function () {
+            $('#image-preview-site-logo').css({
+                "background-image": "url({{ asset($settings['site_logo'] ?? '') }})",
+                "background-size": "cover",
+                "background-position": "center center"
+            });
+        });
+        $.uploadPreview2({
+            input_field: "#image-upload-site-favicon",
+            preview_box: "#image-preview-site-favicon",
+            label_field: "#image-label-site-favicon",
+            label_default: "{{ __('admin.Choose file') }}",
+            label_selected: "{{ __('admin.Choose file') }}",
+            no_label: false,
+            success_callback: null
+        });
+        $(document).ready(function () {
+            $('#image-preview-site-favicon').css({
+                "background-image": "url({{ asset($settings['site_favicon'] ?? '') }})",
+                "background-size": "cover",
+                "background-position": "center center"
+            });
+        });
+    </script>
 @endpush
