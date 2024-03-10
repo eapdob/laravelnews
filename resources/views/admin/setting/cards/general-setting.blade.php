@@ -36,6 +36,7 @@
                 </div>
             </div>
             <div class="form-group">
+                <label>{{ __('admin.Site logo') }}</label>
                 <div id="image-preview-site-logo">
                     <label for="image-upload-site-logo" id="image-label-site-logo">{{ __('admin.Choose file') }}</label>
                     <input type="file" name="site_logo" id="image-upload-site-logo"/>
@@ -46,6 +47,7 @@
                 @enderror
             </div>
             <div class="form-group">
+                <label>{{ __('admin.Site favicon') }}</label>
                 <div id="image-preview-site-favicon">
                     <label for="image-upload-site-favicon" id="image-label-site-favicon">{{ __('admin.Choose file') }}</label>
                     <input type="file" name="site_favicon" id="image-upload-site-favicon"/>
