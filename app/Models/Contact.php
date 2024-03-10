@@ -16,6 +16,13 @@ class Contact extends Model
         'email'
     ];
 
+    public function scopeWithLocalize($query)
+    {
+        return $query->whereHas('description', function ($query) {
+            $query->where('language_id', getLanguageId());
+        });
+    }
+
     public function description()
     {
         return $this->hasMany(ContactDescription::class);

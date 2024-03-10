@@ -18,6 +18,20 @@ class Category extends Model
         'status'
     ];
 
+    public function scopeActiveEntries($query)
+    {
+        return $query->where([
+            'status' => 1
+        ]);
+    }
+
+    public function scopeWithLocalize($query)
+    {
+        return $query->whereHas('description', function ($query) {
+            $query->where('language_id', getLanguageId());
+        });
+    }
+
     public function description()
     {
         return $this->hasMany(CategoryDescription::class);

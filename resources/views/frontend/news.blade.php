@@ -75,11 +75,11 @@
                                             </ul>
                                             <h5>
                                                 <a href="{{ route('news-details', $new->slug) }}">
-                                                    {!! truncate($new->title) !!}
+                                                    {!! truncate($new->title ?? '') !!}
                                                 </a>
                                             </h5>
                                             <p>
-                                                {!! truncate($new->content, 100) !!}
+                                                {!! truncate($new->content ?? '', 100) !!}
                                             </p>
                                             <a href="{{ route('news-details', $new->slug) }}"
                                                class="btn btn-outline-primary mb-4 text-capitalize">{{ __('frontend.Read more') }}</a>
@@ -131,7 +131,7 @@
                                                         <div class="card__post__title">
                                                             <h6>
                                                                 <a href="{{ route('news-details', $new->slug) }}">
-                                                                    {!! truncate($new->title) !!}
+                                                                    {!! truncate($new->title ?? '') !!}
                                                                 </a>
                                                             </h6>
                                                         </div>
@@ -167,11 +167,11 @@
                                                 </ul>
                                                 <h5>
                                                     <a href="{{ route('news-details', $new->slug) }}">
-                                                        {!! truncate($new->title) !!}
+                                                        {!! truncate($new->title ?? '') !!}
                                                     </a>
                                                 </h5>
                                                 <p>
-                                                    {!! truncate($new->content, 100) !!}
+                                                    {!! truncate($new->content ?? '', 100) !!}
                                                 </p>
                                                 <a href="{{ route('news-details', $new->slug) }}"
                                                    class="btn btn-outline-primary mb-4 text-capitalize">

@@ -80,9 +80,8 @@ function setSidebarActive(array $routes): ?string
 
 function getSetting($key)
 {
-//    $data = Setting::where('key', $key)->first();
-//    return $data->value;
-    return null;
+    $data = Setting::where('key', $key)->first();
+    return $data->value;
 }
 
 function canAccess(array $permissions)

@@ -19,7 +19,7 @@
                                                 <div class="card__post__title">
                                                     <h2>
                                                         <a href="{{ route('news-details', $slider->slug) }}">
-                                                            {!! truncate($slider->title, 100) !!}
+                                                            {!! truncate($slider->title ?? '', 100) !!}
                                                         </a>
                                                     </h2>
                                                 </div>
@@ -61,7 +61,7 @@
                                             <div class="card__post__title">
                                                 <h5>
                                                     <a href="{{ route('news-details', $slider->slug) }}">
-                                                        {!! truncate($slider->title, 100) !!}
+                                                        {!! truncate($slider->title ?? '', 100) !!}
                                                     </a>
                                                 </h5>
                                             </div>

@@ -9,7 +9,6 @@ class News extends Model
 {
     use HasFactory;
 
-    // scope for active items
     public function scopeActiveEntries($query)
     {
         return $query->where([
@@ -18,12 +17,11 @@ class News extends Model
         ]);
     }
 
-    // scope for check language
     public function scopeWithLocalize($query)
     {
-        return $query->where([
-            'language' => getLanguage()
-        ]);
+        return $query->whereHas('description', function ($query) {
+            $query->where('language_id', getLanguageId());
+        });
     }
 
     public function tags()

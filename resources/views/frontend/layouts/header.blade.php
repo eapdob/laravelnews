@@ -1,9 +1,3 @@
-@php
-    $languages = \App\Models\Language::where('status', 1)->get();
-    $featuredCategories = \App\Models\Category::where(['status' => 1, 'language' => getLanguage(), 'show_at_nav' => 1])->get();
-    $categories = \App\Models\Category::where(['status' => 1, 'language' => getLanguage(), 'show_at_nav' => 0])->get();
-@endphp
-
 <header class="bg-light">
     <div class="topbar d-none d-sm-block">
         <div class="container ">
@@ -67,7 +61,7 @@
                 </div>
                 <figure class="mb-0 mx-auto">
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset($settings['site_logo']) }}" alt="{{ asset($settings['site_name']) }}"
+                        <img src="{{ asset($settings['site_logo'] ?? '') }}" alt="{{ asset($settings['site_name'] ?? '') }}"
                              class="img-fluid logo">
                     </a>
                 </figure>

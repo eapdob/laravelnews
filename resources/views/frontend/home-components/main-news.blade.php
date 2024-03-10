@@ -22,7 +22,7 @@
                                                 <div class="card__post__title">
                                                     <h5>
                                                         <a href="{{ route('news-details', $news->slug) }}">
-                                                            {!! truncate($news->title) !!}
+                                                            {!! truncate($news->title ?? '') !!}
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -78,7 +78,7 @@
                                                         <div class="card__post__title">
                                                             <h6>
                                                                 <a href="{{ route('news-details', $news->slug) }}">
-                                                                    {!! truncate($news->title) !!}
+                                                                    {!! truncate($news->title ?? '') !!}
                                                                 </a>
                                                             </h6>
                                                         </div>
@@ -120,7 +120,7 @@
                                                         <div class="card__post__title">
                                                             <h6>
                                                                 <a href="{{ route('news-details', $news->slug) }}">
-                                                                    {!! truncate($news->title) !!}
+                                                                    {!! truncate($news->title ?? '') !!}
                                                                 </a>
                                                             </h6>
                                                         </div>
@@ -152,7 +152,7 @@
                                         <li class="list-inline-item">
                                             <h5>
                                                 <a href="{{ route('news-details', $popularNew->slug) }}">
-                                                    {!! truncate($popularNew->title) !!}
+                                                    {!! truncate($popularNew->title ?? '') !!}
                                                 </a>
                                             </h5>
                                         </li>
@@ -197,7 +197,7 @@
                                     </ul>
                                     <h5>
                                         <a href="{{ route('news-details', $sectionOneNews->slug) }}">
-                                            {!! truncate($sectionOneNews->title, 40) !!}
+                                            {!! truncate($sectionOneNews->title ?? '', 40) !!}
                                         </a>
                                     </h5>
                                 </div>
@@ -240,7 +240,7 @@
                                     </ul>
                                     <h5>
                                         <a href="{{ route('news-details', $sectionTwoNews->slug) }}">
-                                            {!! truncate($sectionTwoNews->title, 40) !!}
+                                            {!! truncate($sectionTwoNews->title ?? '', 40) !!}
                                         </a>
                                     </h5>
                                 </div>
@@ -285,7 +285,7 @@
                                                     </ul>
                                                     <h5>
                                                         <a href="{{ route('news-details', $sectionThreeNews->slug) }}">
-                                                            {!! truncate($sectionThreeNews->title) !!}
+                                                            {!! truncate($sectionThreeNews->title ?? '') !!}
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -321,7 +321,7 @@
                                                     </ul>
                                                     <h5>
                                                         <a href="{{ route('news-details', $sectionThreeNews->slug) }}">
-                                                            {!! truncate($sectionThreeNews->title) !!}
+                                                            {!! truncate($sectionThreeNews->title ?? '') !!}
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -342,7 +342,7 @@
                         </div>
                     @endif
                     <aside class="wrapper__list__article mt-5">
-                        <h4 class="border_section">{{ $categorySectionFour->first()->category->name }}</h4>
+                        <h4 class="border_section">{{ $categorySectionFour->first()->category->name ?? '' }}</h4>
                         <div class="wrapp__list__article-responsive">
                             @foreach ($categorySectionFour as $sectionFourNews)
                                 <div class="card__post card__post-list card__post__transition mt-30">
@@ -378,11 +378,11 @@
                                                     <div class="card__post__title">
                                                         <h5>
                                                             <a href="{{ route('news-details', $sectionFourNews->slug) }}">
-                                                                {!! truncate($sectionFourNews->title) !!}
+                                                                {!! truncate($sectionFourNews->title ?? '') !!}
                                                             </a>
                                                         </h5>
                                                         <p class="d-none d-lg-block d-xl-block mb-0">
-                                                            {!! truncate($sectionFourNews->content, 100) !!}
+                                                            {!! truncate($sectionFourNews->content ?? '', 100) !!}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -426,11 +426,11 @@
                                                 </ul>
                                                 <h5>
                                                     <a href="{{ route('news-details', $mostViewedPost->slug) }}">
-                                                        {{ truncate($mostViewedPost->title) }}
+                                                        {{ truncate($mostViewedPost->title ?? '') }}
                                                     </a>
                                                 </h5>
                                                 <p>
-                                                    {!! truncate($mostViewedPost->content, 100) !!}
+                                                    {!! truncate($mostViewedPost->content ?? '', 100) !!}
                                                 </p>
                                                 <a href="{{ route('news-details', $mostViewedPost->slug) }}"
                                                    class="btn btn-outline-primary mb-4 text-capitalize">

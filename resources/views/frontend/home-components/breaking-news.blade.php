@@ -30,7 +30,7 @@
                                         <div class="card__post__title">
                                             <h6>
                                                 <a href="{{ route('news-details', $news->slug) }}">
-                                                    {!! truncate($news->title) !!}
+                                                    {!! truncate($news->title ?? '') !!}
                                                 </a>
                                             </h6>
                                         </div>

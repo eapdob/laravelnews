@@ -298,7 +298,7 @@
                                     @if ($previousPost)
                                         <a href="{{ route('news-details', $previousPost->slug) }}">
                                             <span>{{ __('frontend.Previous post') }}</span>
-                                            {!! truncate($previousPost->title) !!}
+                                            {!! truncate($previousPost->title ?? '') !!}
                                         </a>
                                     @endif
                                 </div>
@@ -308,7 +308,7 @@
                                     @if ($nextPost)
                                         <a href="{{ route('news-details', $nextPost->slug) }}">
                                             <span>{{ __('frontend.Next post') }}</span>
-                                            {!! truncate($nextPost->title) !!}
+                                            {!! truncate($nextPost->title ?? '') !!}
                                         </a>
                                     @endif
                                 </div>
@@ -353,7 +353,7 @@
                                                     </ul>
                                                     <h5>
                                                         <a href="{{ route('news-details', $post->slug) }}">
-                                                            {!! truncate($post->title) !!}
+                                                            {!! truncate($post->title ?? '') !!}
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -398,7 +398,7 @@
                                                             <div class="card__post__title">
                                                                 <h6>
                                                                     <a href="{{ route('news-details', $news->slug) }}">
-                                                                        {!! truncate($news->title) !!}
+                                                                        {!! truncate($news->title ?? '') !!}
                                                                     </a>
                                                                 </h6>
                                                             </div>
@@ -432,11 +432,11 @@
                                                     </ul>
                                                     <h5>
                                                         <a href="{{ route('news-details', $news->slug) }}">
-                                                            {!! truncate($news->title) !!}
+                                                            {!! truncate($news->title ?? '') !!}
                                                         </a>
                                                     </h5>
                                                     <p>
-                                                        {!! truncate($news->content, 160) !!}
+                                                        {!! truncate($news->content ?? '', 160) !!}
                                                     </p>
                                                     <a href="{{ route('news-details', $news->slug) }}"
                                                        class="btn btn-outline-primary mb-4 text-capitalize"> {{ __('frontend.Read more') }}</a>

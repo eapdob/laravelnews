@@ -6,11 +6,11 @@
     <title>@hasSection('title')
             @yield('title')
         @else
-            {{ $settings['site_seo_title'] }}
+            {{ $settings['site_seo_title'] ?? '' }}
         @endif </title>
     <meta name="description"
-          content="@hasSection('meta_description') @yield('meta_description') @else {{ $settings['site_seo_description'] }} @endif"/>
-    <meta name="keywords" content="{{ $settings['site_seo_keywords'] }}"/>
+          content="@hasSection('meta_description') @yield('meta_description') @else {{ $settings['site_seo_description'] ?? '' }} @endif"/>
+    <meta name="keywords" content="{{ $settings['site_seo_keywords'] ?? '' }}"/>
     <meta name="og:title" content="@yield('meta_og_title')">
     <meta name="og:description" content="@yield('meta_og_description')">
     <meta name="og:image" content="@yield('meta_og_image')">
@@ -22,21 +22,11 @@
     <link href="{{ asset('frontend/assets/css/styles.css') }}" rel="stylesheet">
     <style>
         :root {
-            --colorPrimary: {{ $settings['site_color'] }};
+            --colorPrimary: {{ $settings['site_color'] ?? '' }};
         }
     </style>
 </head>
 <body>
-@php
-    $socialLinks = \App\Models\SocialLink::where('status', 1)->get();
-    $footerInfo = \App\Models\FooterInfo::where('language', getLanguage())->first();
-    $footerGridOnes = \App\Models\FooterGridOne::where(['status' => 1, 'language' => getLanguage()])->get();
-    $footerGridTwos = \App\Models\FooterGridTwo::where(['status' => 1, 'language' => getLanguage()])->get();
-    $footerGridThrees = \App\Models\FooterGridThree::where(['status' => 1, 'language' => getLanguage()])->get();
-    $footerGridOneTitle = \App\Models\FooterTitle::where(['key' => 'grid_one_title', 'language' => getLanguage()])->first();
-    $footerGridTwoTitle = \App\Models\FooterTitle::where(['key' => 'grid_two_title', 'language' => getLanguage()])->first();
-    $footerGridThreeTitle = \App\Models\FooterTitle::where(['key' => 'grid_three_title', 'language' => getLanguage()])->first();
-@endphp
 @include('frontend.layouts.header')
 @yield('content')
 @include('frontend.layouts.footer')

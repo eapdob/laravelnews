@@ -9,6 +9,11 @@ use App\Models\Ad;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Contact;
+use App\Models\FooterGridOne;
+use App\Models\FooterGridThree;
+use App\Models\FooterGridTwo;
+use App\Models\FooterInfo;
+use App\Models\FooterTitle;
 use App\Models\HomeSectionSetting;
 use App\Models\News;
 use App\Models\ReceiveMail;
@@ -16,12 +21,40 @@ use App\Models\SocialCount;
 use App\Models\SocialLink;
 use App\Models\Subscriber;
 use App\Models\Tag;
+use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $socialLinks = SocialLink::where('status', 1)->get();
+        $footerInfo = FooterInfo::withLocalize()->first();
+        $footerGridOnes = FooterGridOne::activeEntries()->withLocalize()->get();
+        $footerGridTwos = FooterGridTwo::activeEntries()->withLocalize()->get();
+        $footerGridThrees = FooterGridThree::activeEntries()->withLocalize()->get();
+        $footerGridOneTitle = FooterTitle::where(['footer_grid' => 'footer_grid_one', 'language_id' => getLanguageId()])->first();
+        $footerGridTwoTitle = FooterTitle::where(['footer_grid' => 'footer_grid_two', 'language_id' => getLanguageId()])->first();
+        $footerGridThreeTitle = FooterTitle::where(['footer_grid' => 'footer_grid_three', 'language_id' => getLanguageId()])->first();
+        $languages = Language::where('status', 1)->get();
+        $featuredCategories = Category::where(['status' => 1, 'show_at_nav' => 1])->withLocalize()->get();
+        $categories = Category::where(['status' => 1, 'show_at_nav' => 0])->withLocalize()->get();
+        View::share('socialLinks', $socialLinks);
+        View::share('footerInfo', $footerInfo);
+        View::share('footerGridOnes', $footerGridOnes);
+        View::share('footerGridTwos', $footerGridTwos);
+        View::share('footerGridThrees', $footerGridThrees);
+        View::share('footerGridOneTitle', $footerGridOneTitle);
+        View::share('footerGridTwoTitle', $footerGridTwoTitle);
+        View::share('footerGridThreeTitle', $footerGridThreeTitle);
+        View::share('languages', $languages);
+        View::share('featuredCategories', $featuredCategories);
+        View::share('categories', $categories);
+    }
+
     public function index()
     {
         $breakingNews = News::where(['is_breaking_news' => 1])
@@ -37,7 +70,7 @@ class HomeController extends Controller
         $popularNews = News::with(['category'])->where('show_at_popular', 1)
             ->activeEntries()->withLocalize()
             ->orderBy('updated_at', 'DESC')->take(4)->get();
-        $homeSectionSetting = HomeSectionSetting::where('language', getLanguage())->first();
+        $homeSectionSetting = HomeSectionSetting::where('language_id', getLanguageId())->first();
         if ($homeSectionSetting) {
             $categorySectionOne = News::where('category_id', $homeSectionSetting->category_section_one)
                 ->activeEntries()->withLocalize()
@@ -65,16 +98,12 @@ class HomeController extends Controller
             $categorySectionThree = collect();
             $categorySectionFour = collect();
         }
-
         $mostViewedPosts = News::activeEntries()->withLocalize()
             ->orderBy('views', 'DESC')
             ->take(3)
             ->get();
-
-        $socialCounts = SocialCount::where(['status' => 1, 'language' => getLanguage()])->get();
-
+        $socialCounts = SocialCount::activeEntries()->withLocalize()->get();
         $mostCommonTags = $this->mostCommonTags();
-
         $ad = Ad::first();
 
         return view(
@@ -101,33 +130,25 @@ class HomeController extends Controller
         $news = News::with(['author', 'tags', 'comments'])->where('slug', $slug)
             ->activeEntries()->withLocalize()
             ->first();
-
         $recentNews = News::with(['category', 'author'])->where('slug', '!=', $news->slug)
             ->activeEntries()->withLocalize()->orderBy('id', 'DESC')->take(4)->get();
-
         $nextPost = News::where('id', '>', $news->id)
             ->activeEntries()
             ->withLocalize()
             ->orderBy('id', 'asc')->first();
-
         $previousPost = News::where('id', '<', $news->id)
             ->activeEntries()
             ->withLocalize()
             ->orderBy('id', 'desc')->first();
-
         $relatedPosts = News::where('slug', '!=', $news->slug)
             ->where('category_id', $news->category_id)
             ->activeEntries()
             ->withLocalize()
             ->take(5)
             ->get();
-
-        $socialCounts = SocialCount::where(['status' => 1, 'language' => getLanguage()])->get();
-
+        $socialCounts = SocialCount::activeEntries()->withLocalize()->get();
         $mostCommonTags = $this->mostCommonTags();
-
         $this->countView($news);
-
         $ad = Ad::first();
 
         return view(
@@ -148,36 +169,31 @@ class HomeController extends Controller
     public function news(Request $request)
     {
         $news = News::query();
-
         $news->when($request->has('tag') && !empty($request->tag), function ($query) use ($request) {
             $query->whereHas('tags', function ($query) use ($request) {
                 $query->where('name', $request->tag);
             });
         });
-
         $news->when($request->has('category') && !empty($request->category), function ($query) use ($request) {
             $query->whereHas('category', function ($query) use ($request) {
                 $query->where('slug', $request->category);
             });
         });
-
         $news->when($request->has('search') && !empty($request->search), function ($query) use ($request) {
-            $query->where(function ($query) use ($request) {
-                $query->where('title', 'like', '%' . $request->search . '%')
-                    ->orWhere('content', 'like', '%' . $request->search . '%');
-            })->orWhereHas('category', function ($query) use ($request) {
-                $query->where('name', 'like', '%' . $request->search . '%');
+            $query->whereHas('description', function ($query) use ($request) {
+                $query->where([
+                    'language_id' => getLanguageId(),
+                ])->where(function ($query) use ($request) {
+                    $query->where('title', 'like', '%' . $request->search . '%')
+                        ->orWhere('content', 'like', '%' . $request->search . '%');
+                });
             });
         });
-
         $news = $news->activeEntries()->withLocalize()->paginate(20);
-
         $recentNews = News::with(['category', 'author'])
             ->activeEntries()->withLocalize()->orderBy('id', 'DESC')->take(4)->get();
         $mostCommonTags = $this->mostCommonTags();
-
-        $categories = Category::where(['status' => 1, 'language' => getLanguage()])->get();
-
+        $categories = Category::activeEntries()->withLocalize()->get();
         $ad = Ad::first();
 
         return view(
@@ -196,7 +212,6 @@ class HomeController extends Controller
     {
         if (session()->has('viewed_posts')) {
             $postIds = session('viewed_posts');
-
             if (!in_array($news->id, $postIds)) {
                 $postIds[] = $news->id;
                 $news->increment('views');
@@ -204,7 +219,6 @@ class HomeController extends Controller
             session(['viewed_posts' => $postIds]);
         } else {
             session(['viewed_posts' => [$news->id]]);
-
             $news->increment('views');
         }
     }
@@ -212,7 +226,7 @@ class HomeController extends Controller
     public function mostCommonTags()
     {
         return Tag::select('name', \DB::raw('COUNT(*) as count'))
-            ->where('language', getLanguage())
+            ->where('language_id', getLanguageId())
             ->groupBy('name')
             ->orderByDesc('count')
             ->take(15)
@@ -240,7 +254,7 @@ class HomeController extends Controller
     public function handleReply(Request $request)
     {
         $request->validate([
-            'replay' => ['required', 'string', 'max:1000']
+            'reply' => ['required', 'string', 'max:1000']
         ]);
 
         $comment = new Comment();
@@ -294,13 +308,13 @@ class HomeController extends Controller
 
     public function about()
     {
-        $about = About::where('language', getLanguage())->first();
+        $about = About::where('language_id', getLanguageId())->first();
         return view('frontend.about', compact('about'));
     }
 
     public function contact()
     {
-        $contact = Contact::where('language', getLanguage())->first();
+        $contact = Contact::where('language_id', getLanguageId())->first();
         $socials = SocialLink::where('status', 1)->get();
         return view('frontend.contact', compact('contact', 'socials'));
     }
