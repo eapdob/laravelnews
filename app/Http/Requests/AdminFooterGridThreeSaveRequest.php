@@ -22,9 +22,23 @@ class AdminFooterGridThreeSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'language' => ['required'],
-            'name' => ['required', 'max:255'],
-            'url' => ['required']
+            'description.*.language_id' => 'digits:1,100',
+            'description.*.name' => ['required', 'max:255'],
+            'url' => ['required'],
+            'status' => ['boolean']
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes(): array
+    {
+        return [
+            'description.*.language_id' => 'Footer Grid Three Language ID',
+            'description.*.name' => 'Footer Grid Three Name'
         ];
     }
 }

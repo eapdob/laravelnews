@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminFooterGridTwoSaveRequest extends FormRequest
+class AdminFooterGridThreeUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -37,8 +37,8 @@ class AdminFooterGridTwoSaveRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'description.*.language_id' => 'Footer Grid Two Language ID',
-            'description.*.name' => 'Footer Grid Two Name'
+            'description.*.language_id' => 'Footer Grid Three Language ID',
+            'description.*.name' => 'Footer Grid Three Name'
         ];
     }
 }

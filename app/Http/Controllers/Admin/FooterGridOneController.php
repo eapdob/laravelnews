@@ -109,7 +109,7 @@ class FooterGridOneController extends Controller
         foreach ($request->description as $description) {
             $footerGridOne->description()
                 ->where('footer_grid_one_id', $footerGridOne->id)
-                ->where('language_id', $footerGridOne['language_id'])
+                ->where('language_id', $description['language_id'])
                 ->updateOrCreate(
                     [
                         'footer_grid_one_id' => $footerGridOne->id,
@@ -139,7 +139,7 @@ class FooterGridOneController extends Controller
     public function handleTitle(AdminFooterTitleUpdateRequest $request)
     {
         foreach ($request->footerTitles as $footerTitle) {
-            if (!empty($footerTitle->id)) {
+            if (!empty($footerTitle['id'])) {
                 FooterTitle::updateOrCreate(
                     [
                         'id' => $footerTitle['id'],

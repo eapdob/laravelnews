@@ -10,33 +10,44 @@
                 <h4>{{ __('admin.Footer grid three') }}</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.footer-grid-three.update', $footerGridThree->id) }}" method="POST">
+                <form action="{{ route('admin.footer-grid-three.update', current($footerGridThree)->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <div class="form-group">
-                        <label for="">{{ __('admin.Language') }}</label>
-                        <select name="language" id="language-select" class="form-control select2">
-                            <option value="">--{{ __('admin.Select') }}--</option>
-                            @foreach ($languages as $lang)
-                                <option
-                                    {{ $footerGridThree->language == $lang->lang ? 'selected' : '' }} value="{{ $lang->lang }}">{{ $lang->name }}</option>
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            @foreach ($languages as $language)
+                                <li class="nav-item">
+                                    <a class="nav-link {{ $loop->index === 0 ? 'active' : '' }}" id="home-tab2"
+                                       data-toggle="tab"
+                                       href="#home-{{ $language->lang }}" role="tab" aria-controls="home"
+                                       aria-selected="true">{{ $language->name }}</a>
+                                </li>
                             @endforeach
-                        </select>
-                        @error('language')
-                        <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="">{{ __('admin.Name') }}</label>
-                        <input name="name" type="text" class="form-control" id="name"
-                               value="{{ $footerGridThree->name }}">
-                        @error('name')
-                        <p class="text-danger">{{ $message }}</p>
-                        @enderror
+                        </ul>
+                        <div class="tab-content tab-bordered">
+                            @foreach ($languages as $language)
+                                <div class="tab-pane fade show {{ $loop->index === 0 ? 'active' : '' }}"
+                                     id="home-{{ $language->lang }}" role="tabpanel" aria-labelledby="home-tab2">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="description-name-{{ $language->id }}">{{ __('admin.Name') }}</label>
+                                            <input name="description[{{ $language->id }}][language_id]" type="hidden" value="{{ $language->id }}">
+                                            <input name="description[{{ $language->id }}][name]" type="text" class="form-control" id="description-name-{{ $language->id }}" value="{{ old('description.' . $language->id . '.name') ? old('description.' . $language->id . '.name') : ($footerGridThree[$language->id]->name ?? '') }}">
+                                            @error('description.*.name')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                            @error('description.*.language_id')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="">{{ __('admin.Url') }}</label>
-                        <input name="url" value="{{ $footerGridThree->url }}" type="text" class="form-control">
+                        <input name="url" type="text" class="form-control" value="{{ old('url') ? old('url') : (current($footerGridThree)->url ?? '') }}">
                         @error('url')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -44,10 +55,8 @@
                     <div class="form-group">
                         <label for="">{{ __('admin.Status') }}</label>
                         <select name="status" id="" class="form-control">
-                            <option
-                                {{ $footerGridThree->status == 1 ? 'selected' : '' }} value="1">{{ __('admin.Active') }}</option>
-                            <option
-                                {{ $footerGridThree->status == 0 ? 'selected' : '' }} value="0">{{ __('admin.Inactive') }}</option>
+                            <option value="1" {{ old('status') === 1 ? 'selected' : (current($footerGridThree)->status === 1 ? 'selected' : '') }}>{{ __('admin.Active') }}</option>
+                            <option value="0" {{ old('status') === 0 ? 'selected' : (current($footerGridThree)->status === 0 ? 'selected' : '') }}>{{ __('admin.Inactive') }}</option>
                         </select>
                         @error('status')
                         <p class="text-danger">{{ $message }}</p>
@@ -59,3 +68,16 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        Toast.fire({
+            icon: 'error',
+            title: "{{ $error }}"
+        });
+        @endforeach
+        @endif
+    </script>
+@endpush
