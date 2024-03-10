@@ -22,9 +22,23 @@ class AdminGeneralSettingUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'site_name' => ['required', 'max:255'],
+            'settings.*.language_id' => 'digits:1,100',
+            'settings.*.site_name' => ['required', 'max:255'],
             'site_logo' => ['nullable', 'image', 'max:3000'],
             'site_favicon' => ['nullable', 'image', 'max:1000']
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes(): array
+    {
+        return [
+            'settings.*.language_id' => 'Settings Language ID',
+            'settings.*.site_name' => 'Settings Site Name'
         ];
     }
 }

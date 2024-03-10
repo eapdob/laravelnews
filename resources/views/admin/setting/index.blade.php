@@ -56,3 +56,16 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        Toast.fire({
+            icon: 'error',
+            title: "{{ $error }}"
+        });
+        @endforeach
+        @endif
+    </script>
+@endpush

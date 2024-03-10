@@ -22,9 +22,25 @@ class AdminSeoSettingUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'site_seo_title' => ['required', 'max:60'],
-            'site_seo_description' => ['required', 'max:160'],
-            'site_seo_keywords' => ['required']
+            'settings.*.language_id' => 'digits:1,100',
+            'settings.*.site_seo_title' => ['required', 'max:60'],
+            'settings.*.site_seo_description' => ['required', 'max:160'],
+            'settings.*.site_seo_keywords' => ['required']
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes(): array
+    {
+        return [
+            'settings.*.language_id' => 'Settings Language ID',
+            'settings.*.site_seo_title' => 'Settings Site Seo Title',
+            'settings.*.site_seo_description' => 'Settings Site Seo Description',
+            'settings.*.site_seo_keywords' => 'Settings Site Keywords'
         ];
     }
 }
