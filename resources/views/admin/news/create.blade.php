@@ -12,6 +12,28 @@
             <div class="card-body">
                 <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <div class="form-group">
+                        <label for="category_id">{{ __('admin.Category') }}</label>
+                        <select name="category_id" id="category_id" class="form-control select2">
+                            <option value="">--{{ __('admin.Select') }}--</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('category_id')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <div id="image-preview">
+                            <label for="image-upload" id="image-label">{{ __('admin.Choose file') }}</label>
+                            <input type="file" name="image" id="image-upload"/>
+                            <input type="hidden" name="old_image" value="{{ old('image') }}"/>
+                        </div>
+                        @error('image')
+                        <p class="text-danger">{{ $message }}<p/>
+                        @enderror
+                    </div>
                     <div>
                         <ul class="nav nav-tabs" role="tablist">
                             @foreach ($languages as $language)
@@ -41,7 +63,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="description-content-{{ $language->id }}">{{ __('admin.Content') }}</label>
-                                            <input name="description[{{ $language->id }}][content]" type="text" class="form-control" id="description-content-{{ $language->id }}" value="{{ old('description.' . $language->id . '.content') }}">
+                                            <textarea name="description[{{ $language->id }}][content]" class="summernote-simple" id="description-content-{{ $language->id }}">{{ old('description.' . $language->id . '.content') }}</textarea>
                                             @error('description.*.content')
                                             <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -71,28 +93,6 @@
                                 </div>
                             @endforeach
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="category_id">{{ __('admin.Category') }}</label>
-                        <select name="category_id" id="category_id" class="form-control select2">
-                            <option value="">--{{ __('admin.Select') }}--</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('category_id')
-                        <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <div id="image-preview">
-                            <label for="image-upload" id="image-label">{{ __('admin.Choose file') }}</label>
-                            <input type="file" name="image" id="image-upload"/>
-                            <input type="hidden" name="old_image" value="{{ old('image') }}"/>
-                        </div>
-                        @error('image')
-                        <p class="text-danger">{{ $message }}<p/>
-                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="slug">{{ __('admin.Slug') }}</label>
@@ -182,5 +182,13 @@
                 "background-position": "center center"
             });
         });
+        if (jQuery().summernote) {
+            @foreach ($languages as $language)
+            $("#description-content-{{ $language->id }}").summernote({
+                dialogsInBody: true,
+                minHeight: 250,
+            });
+            @endforeach
+        }
     </script>
 @endpush

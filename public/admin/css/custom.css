@@ -8,6 +8,11 @@
 #image-preview,
 #image-preview-site-logo,
 #image-preview-site-favicon,
+#image-preview-top-bar-ad,
+#image-preview-middle-ad,
+#image-preview-news-page-ad,
+#image-preview-view-page-ad,
+#image-preview-side-bar-ad,
 #callback-preview {
     width: 125px;
     height: 125px;
@@ -20,6 +25,11 @@
 #image-preview input,
 #image-preview-site-logo input,
 #image-preview-site-favicon input,
+#image-preview-top-bar-ad input,
+#image-preview-middle-ad input,
+#image-preview-news-page-ad input,
+#image-preview-view-page-ad input,
+#image-preview-side-bar-ad input,
 #callback-preview input {
     line-height: 200px;
     font-size: 200px;
@@ -31,6 +41,11 @@
 #image-preview label,
 #image-preview-site-logo label,
 #image-preview-site-favicon label,
+#image-preview-top-bar-ad label,
+#image-preview-middle-ad label,
+#image-preview-news-page-ad label,
+#image-preview-view-page-ad label,
+#image-preview-side-bar-ad label,
 #callback-preview label {
     position: absolute;
     z-index: 5;

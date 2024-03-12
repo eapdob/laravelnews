@@ -19,24 +19,24 @@ class HomeSectionSettingController extends Controller
     public function index()
     {
         $languages = Language::all();
-        $categories = Category::leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
-            ->select(
-                'categories.id as id',
-                'categories.slug as slug',
-                'categories.show_at_nav as show_at_nav',
-                'categories.status as status',
-                'categories_description.language_id as language_id',
-                'categories_description.name as name'
-            )
-            ->where('categories_description.language_id', getLanguageId())
-            ->orderByDesc('id')
-            ->get();
+        $categoriesToLang = [];
+        foreach ($languages as $language) {
+            $categoriesToLang[$language->id] = Category::leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+                ->select(
+                    'categories.id as id',
+                    'categories_description.name as name'
+                )
+                ->where('categories_description.language_id', $language->id)
+                ->orderByDesc('id')
+                ->get();
+        }
+
         $homeSectionSettings = [];
         foreach ($languages as $language) {
             $homeSectionSettings[$language->id] = HomeSectionSetting::where('language_id', $language->id)->first();
         }
 
-        return view('admin.home-section-setting.index', compact('languages', 'categories', 'homeSectionSettings'));
+        return view('admin.home-section-setting.index', compact('languages', 'categoriesToLang', 'homeSectionSettings'));
     }
 
     public function update(AdminHomeSectionSettingUpdateRequest $request)

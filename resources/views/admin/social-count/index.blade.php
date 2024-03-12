@@ -30,7 +30,7 @@
                         @foreach ($socialCounts as $socialCount)
                             <tr>
                                 <td>{{ $socialCount->id }}</td>
-                                <td>{{ $socialCount->icon }}</td>
+                                <td><i style="font-size:16px" class="{{ $socialCount->icon }}"></i></td>
                                 <td>{{ $socialCount->url }}</td>
                                 <td>
                                     @if ($socialCount->status == 1)

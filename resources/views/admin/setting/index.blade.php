@@ -69,7 +69,6 @@
         @endif
     </script>
     <script src="{{ asset('admin/modules/upload-preview/assets/js/jquery.uploadPreview.js') }}"></script>
-    <script src="{{ asset('admin/modules/upload-preview/assets/js/jquery.uploadPreview2.js') }}"></script>
     <script>
         $.uploadPreview({
             input_field: "#image-upload-site-logo",
@@ -87,7 +86,7 @@
                 "background-position": "center center"
             });
         });
-        $.uploadPreview2({
+        $.uploadPreview({
             input_field: "#image-upload-site-favicon",
             preview_box: "#image-preview-site-favicon",
             label_field: "#image-label-site-favicon",

@@ -35,7 +35,7 @@
                                             <input name="homeSectionSetting[{{ $language->id }}][id]" type="hidden" value="{{ $homeSectionSettings[$language->id]->id ?? '' }}">
                                             <select name="homeSectionSetting[{{ $language->id }}][category_section_one]" id="home-section-setting-one-{{ $language->id }}" class="form-control">
                                                 <option value="">--{{ __('admin.Select') }}--</option>
-                                                @foreach ($categories as $category)
+                                                @foreach ($categoriesToLang[$language->id] as $category)
                                                     <option value="{{ $category->id }}" {{ old('homeSectionSetting.*.category_section_one') == $category->id ? 'selected' : (isset($homeSectionSettings[$language->id]->category_section_one) ? ($homeSectionSettings[$language->id]->category_section_one == $category->id ? 'selected' : '') : '') }}>{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
@@ -52,7 +52,7 @@
                                             <input name="homeSectionSetting[{{ $language->id }}][id]" type="hidden" value="{{ $homeSectionSettings[$language->id]->id ?? '' }}">
                                             <select name="homeSectionSetting[{{ $language->id }}][category_section_two]" id="home-section-setting-two-{{ $language->id }}" class="form-control">
                                                 <option value="">--{{ __('admin.Select') }}--</option>
-                                                @foreach ($categories as $category)
+                                                @foreach ($categoriesToLang[$language->id] as $category)
                                                     <option value="{{ $category->id }}" {{ old('homeSectionSetting.*.category_section_two') == $category->id ? 'selected' : (isset($homeSectionSettings[$language->id]->category_section_two) ? ($homeSectionSettings[$language->id]->category_section_two == $category->id ? 'selected' : '') : '') }}>{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
@@ -66,7 +66,7 @@
                                             <input name="homeSectionSetting[{{ $language->id }}][id]" type="hidden" value="{{ $homeSectionSettings[$language->id]->id ?? '' }}">
                                             <select name="homeSectionSetting[{{ $language->id }}][category_section_three]" id="home-section-setting-three-{{ $language->id }}" class="form-control">
                                                 <option value="">--{{ __('admin.Select') }}--</option>
-                                                @foreach ($categories as $category)
+                                                @foreach ($categoriesToLang[$language->id] as $category)
                                                     <option value="{{ $category->id }}" {{ old('homeSectionSetting.*.category_section_three') == $category->id ? 'selected' : (isset($homeSectionSettings[$language->id]->category_section_three) ? ($homeSectionSettings[$language->id]->category_section_three == $category->id ? 'selected' : '') : '') }}>{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
@@ -80,7 +80,7 @@
                                             <input name="homeSectionSetting[{{ $language->id }}][id]" type="hidden" value="{{ $homeSectionSettings[$language->id]->id ?? '' }}">
                                             <select name="homeSectionSetting[{{ $language->id }}][category_section_four]" id="home-section-setting-four-{{ $language->id }}" class="form-control">
                                                 <option value="">--{{ __('admin.Select') }}--</option>
-                                                @foreach ($categories as $category)
+                                                @foreach ($categoriesToLang[$language->id] as $category)
                                                     <option value="{{ $category->id }}" {{ old('homeSectionSetting.*.category_section_four') == $category->id ? 'selected' : (isset($homeSectionSettings[$language->id]->category_section_four) ? ($homeSectionSettings[$language->id]->category_section_four == $category->id ? 'selected' : '') : '') }}>{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
