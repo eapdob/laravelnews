@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'By' => 'За',
+    'By' => 'Автор',
     'Recent post' => 'Останній пост',
     'Popular post' => 'Популярний пост',
     'Most viewed' => 'Найбільше переглядається',
