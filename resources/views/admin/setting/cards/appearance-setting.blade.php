@@ -6,7 +6,7 @@
             <div class="form-group">
                 <label>{{ __('admin.Pick your color') }}</label>
                 <div class="input-group colorpickerinput">
-                    <input value="{{ $settings['site_color'] ?? '' }}" name="site_color" type="text"
+                    <input value="{{ $settingsApp['site_color'] ?? '' }}" name="site_color" type="text"
                            class="form-control">
                     <div class="input-group-append">
                         <div class="input-group-text">

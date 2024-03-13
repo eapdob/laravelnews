@@ -1,4 +1,11 @@
 <nav class="navbar navbar-expand-lg main-navbar">
+    <ul class="navbar-nav navbar-right mr-auto">
+        <li class="dropdown dropdown-custom-menu">
+            <a href="javascript:void(0);" class="nav-link nav-link-lg custom-mobile-menu">
+                <i class="fas fa-list"></i>
+            </a>
+        </li>
+    </ul>
     <ul class="navbar-nav navbar-right ml-auto">
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">

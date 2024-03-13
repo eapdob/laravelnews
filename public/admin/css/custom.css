@@ -81,4 +81,18 @@
     text-transform: uppercase;
 }
 
+body.sidebar-gone .main-sidebar.main-sidebar-open {
+    left: 0;
+}
+
+.dropdown-custom-menu {
+    display: none;
+}
+
+@media screen and (max-width: 1025px) {
+    .dropdown-custom-menu {
+        display: block;
+    }
+}
+
 /*# sourceMappingURL=custom.css.map */

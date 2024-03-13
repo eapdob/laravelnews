@@ -70,7 +70,7 @@
                                 <span>
                                     <i class="fa fa-home"></i>
                                 </span>
-                                {{ $contact->address }}
+                                {{ $contact->description->first()->address ?? '' }}
                             </li>
                             <li>
                                 <span>

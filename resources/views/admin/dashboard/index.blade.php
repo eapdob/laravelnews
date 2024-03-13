@@ -16,7 +16,7 @@
                             <h4>{{ __('admin.Total News') }}</h4>
                         </div>
                         <div class="card-body">
-                            {{ $publishedNews??'' }}
+                            {{ $publishedNews ?? '' }}
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                             <h4>{{ __('admin.Pending News') }}</h4>
                         </div>
                         <div class="card-body">
-                            {{ $pendingNews??'' }}
+                            {{ $pendingNews ?? '' }}
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                             <h4>{{ __('admin.Total Categories') }}</h4>
                         </div>
                         <div class="card-body">
-                            {{ $categories??'' }}
+                            {{ $categories ?? '' }}
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                             <h4>{{ __('admin.Total Languages') }}</h4>
                         </div>
                         <div class="card-body">
-                            {{ $languages??'' }}
+                            {{ $languages ?? '' }}
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                             <h4>{{ __('admin.Total Roles') }}</h4>
                         </div>
                         <div class="card-body">
-                            {{ $roles??'' }}
+                            {{ $roles ?? '' }}
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                             <h4>{{ __('admin.Total Permissions') }}</h4>
                         </div>
                         <div class="card-body">
-                            {{ $permissions??'' }}
+                            {{ $permissions ?? '' }}
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                             <h4>{{ __('admin.Total Socials') }}</h4>
                         </div>
                         <div class="card-body">
-                            {{ $socials??'' }}
+                            {{ $socials ?? '' }}
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                             <h4>{{ __('admin.Total Subscribers') }}</h4>
                         </div>
                         <div class="card-body">
-                            {{ $subscribers??'' }}
+                            {{ $subscribers ?? '' }}
                         </div>
                     </div>
                 </div>

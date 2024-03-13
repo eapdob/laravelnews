@@ -27,9 +27,10 @@ class SocialCount extends Model
 
     public function scopeWithLocalize($query)
     {
-        return $query->whereHas('description', function ($query) {
-            $query->where('language_id', getLanguageId());
-        });
+        $languageId = getLanguageId();
+        return $query->with(['description' => function ($query) use ($languageId) {
+            $query->where('language_id', $languageId);
+        }]);
     }
 
     public function description()

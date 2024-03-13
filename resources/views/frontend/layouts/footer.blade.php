@@ -7,12 +7,12 @@
                         <div class="col-md-4">
                             <div class="widget__footer">
                                 <figure class="image-logo">
-                                    <img src="{{ asset($footerInfo->logo??'') }}" alt="" class="logo-footer">
+                                    <img src="{{ asset($footerInfoApp->logo ?? '') }}" alt="" class="logo-footer">
                                 </figure>
-                                <p>{{ @$footerInfo->description }}</p>
+                                <p>{{ $footerInfoApp->description->first()->description ?? '' }}</p>
                                 <div class="social__media mt-4">
                                     <ul class="list-inline">
-                                        @foreach ($socialLinks as $link)
+                                        @foreach ($socialLinksApp as $link)
                                             <li class="list-inline-item">
                                                 <a href="{{ $link->url }}" class="btn btn-social rounded text-white">
                                                     <i class="{{ $link->icon }}"></i>
@@ -27,15 +27,15 @@
                             <div class="widget__footer">
                                 <div class="dropdown-footer">
                                     <h4 class="footer-title">
-                                        {{ $footerGridOneTitle->value }}
+                                        {{ $footerGridOneTitleApp->value ?? '' }}
                                         <span class="fa fa-angle-down"></span>
                                     </h4>
                                 </div>
                                 <ul class="list-unstyled option-content is-hidden">
-                                    @foreach ($footerGridOnes as $footerGridOne)
+                                    @foreach ($footerGridOnesApp as $footerGridOne)
                                         <li>
-                                            <a href="{{ $footerGridOne->url }}">
-                                                {{ $footerGridOne->name }}
+                                            <a href="{{ $footerGridOne->url ?? '' }}">
+                                                {{ $footerGridOne->description->first()->name }}
                                             </a>
                                         </li>
                                     @endforeach
@@ -46,14 +46,16 @@
                             <div class="widget__footer">
                                 <div class="dropdown-footer">
                                     <h4 class="footer-title">
-                                        {{ $footerGridTwoTitle->value }}
+                                        {{ $footerGridTwoTitleApp->value ?? '' }}
                                         <span class="fa fa-angle-down"></span>
                                     </h4>
                                 </div>
                                 <ul class="list-unstyled option-content is-hidden">
-                                    @foreach ($footerGridTwos as $footerGridTwo)
+                                    @foreach ($footerGridTwosApp as $footerGridTwo)
                                         <li>
-                                            <a href="{{ $footerGridTwo->url }}">{{ $footerGridTwo->name }}</a>
+                                            <a href="{{ $footerGridTwo->url ?? '' }}">
+                                                {{ $footerGridTwo->description->first()->name ?? '' }}
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -63,14 +65,16 @@
                             <div class="widget__footer">
                                 <div class="dropdown-footer">
                                     <h4 class="footer-title">
-                                        {{ $footerGridThreeTitle->value }}
+                                        {{ $footerGridThreeTitleApp->value ?? '' }}
                                         <span class="fa fa-angle-down"></span>
                                     </h4>
                                 </div>
                                 <ul class="list-unstyled option-content is-hidden">
-                                    @foreach ($footerGridThrees as $footerGridThree)
+                                    @foreach ($footerGridThreesApp as $footerGridThree)
                                         <li>
-                                            <a href="{{ $footerGridThree->url }}">{{ $footerGridThree->name }}</a>
+                                            <a href="{{ $footerGridThree->url ?? '' }}">
+                                                {{ $footerGridThree->description->first()->name ?? '' }}
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -85,7 +89,7 @@
                         <div class="col-md-12">
                             <div class="border-top-1 bg__footer-bottom-section">
                                 <p class="text-white text-center">
-                                    {{ $footerInfo->copyright??'' }}
+                                    {{ $footerInfoApp->description->first()->copyright ?? '' }}
                                 </p>
                             </div>
                         </div>

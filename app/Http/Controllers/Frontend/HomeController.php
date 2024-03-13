@@ -29,32 +29,6 @@ use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
-    public function __construct()
-    {
-        $socialLinks = SocialLink::where('status', 1)->get();
-        $footerInfo = FooterInfo::withLocalize()->first();
-        $footerGridOnes = FooterGridOne::activeEntries()->withLocalize()->get();
-        $footerGridTwos = FooterGridTwo::activeEntries()->withLocalize()->get();
-        $footerGridThrees = FooterGridThree::activeEntries()->withLocalize()->get();
-        $footerGridOneTitle = FooterTitle::where(['footer_grid' => 'footer_grid_one', 'language_id' => getLanguageId()])->first();
-        $footerGridTwoTitle = FooterTitle::where(['footer_grid' => 'footer_grid_two', 'language_id' => getLanguageId()])->first();
-        $footerGridThreeTitle = FooterTitle::where(['footer_grid' => 'footer_grid_three', 'language_id' => getLanguageId()])->first();
-        $languages = Language::where('status', 1)->get();
-        $featuredCategories = Category::where(['status' => 1, 'show_at_nav' => 1])->withLocalize()->get();
-        $categories = Category::where(['status' => 1, 'show_at_nav' => 0])->withLocalize()->get();
-        View::share('socialLinks', $socialLinks);
-        View::share('footerInfo', $footerInfo);
-        View::share('footerGridOnes', $footerGridOnes);
-        View::share('footerGridTwos', $footerGridTwos);
-        View::share('footerGridThrees', $footerGridThrees);
-        View::share('footerGridOneTitle', $footerGridOneTitle);
-        View::share('footerGridTwoTitle', $footerGridTwoTitle);
-        View::share('footerGridThreeTitle', $footerGridThreeTitle);
-        View::share('languages', $languages);
-        View::share('featuredCategories', $featuredCategories);
-        View::share('categories', $categories);
-    }
-
     public function index()
     {
         $breakingNews = News::where(['is_breaking_news' => 1])
@@ -107,7 +81,7 @@ class HomeController extends Controller
         $ad = Ad::first();
 
         return view(
-            'frontend.home.index',
+            'frontend.home',
             compact(
                 'breakingNews',
                 'heroSlider',
@@ -168,6 +142,16 @@ class HomeController extends Controller
 
     public function news(Request $request)
     {
+        $categories = Category::leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+            ->select(
+                'categories.id as id',
+                'categories.slug as slug',
+                'categories_description.name as name'
+            )
+            ->where('categories_description.language_id', getLanguageId())
+            ->orderByDesc('id')
+            ->get();
+        $ad = Ad::first();
         $news = News::query();
         $news->when($request->has('tag') && !empty($request->tag), function ($query) use ($request) {
             $query->whereHas('tags', function ($query) use ($request) {
@@ -175,7 +159,7 @@ class HomeController extends Controller
             });
         });
         $news->when($request->has('category') && !empty($request->category), function ($query) use ($request) {
-            $query->whereHas('category', function ($query) use ($request) {
+            $query->whereHas('categorySearch', function ($query) use ($request) {
                 $query->where('slug', $request->category);
             });
         });
@@ -193,8 +177,6 @@ class HomeController extends Controller
         $recentNews = News::with(['category', 'author'])
             ->activeEntries()->withLocalize()->orderBy('id', 'DESC')->take(4)->get();
         $mostCommonTags = $this->mostCommonTags();
-        $categories = Category::activeEntries()->withLocalize()->get();
-        $ad = Ad::first();
 
         return view(
             'frontend.news',
@@ -314,7 +296,7 @@ class HomeController extends Controller
 
     public function contact()
     {
-        $contact = Contact::where('language_id', getLanguageId())->first();
+        $contact = Contact::withLocalize()->first();
         $socials = SocialLink::where('status', 1)->get();
         return view('frontend.contact', compact('contact', 'socials'));
     }

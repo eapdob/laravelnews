@@ -7,8 +7,8 @@
                         <div class="item">
                             <div class="card__post card__post-list">
                                 <div class="image-sm">
-                                    <a href="{{ route('news-details', $news->slug) }}">
-                                        <img src="{{ asset($news->image) }}" class="img-fluid" alt="">
+                                    <a href="{{ route('news-details', $news->slug ?? '') }}">
+                                        <img src="{{ asset($news->image ?? '') }}" class="img-fluid" alt="">
                                     </a>
                                 </div>
                                 <div class="card__post__body ">
@@ -17,20 +17,20 @@
                                             <ul class="list-inline">
                                                 <li class="list-inline-item">
                                                     <span class="text-primary">
-                                                        {{ __('frontend.By') }} {{ $news->author->name }}
+                                                        {{ __('frontend.By') }} {{ $news->author->name ?? '' }}
                                                     </span>
                                                 </li>
                                                 <li class="list-inline-item">
                                                     <span class="text-dark text-capitalize">
-                                                        {{ date('M d, Y', strtotime($news->created_at)) }}
+                                                        {{ format_date(strtotime($news->created_at ?? ''), '%b %e, %Y') }}
                                                     </span>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="card__post__title">
                                             <h6>
-                                                <a href="{{ route('news-details', $news->slug) }}">
-                                                    {!! truncate($news->title ?? '') !!}
+                                                <a href="{{ route('news-details', $news->slug ?? '') }}">
+                                                    {!! truncate($news->description->first()->title ?? '') !!}
                                                 </a>
                                             </h6>
                                         </div>

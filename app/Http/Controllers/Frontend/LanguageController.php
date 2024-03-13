@@ -9,7 +9,7 @@ class LanguageController extends Controller
 {
     public function __invoke(Request $request)
     {
-        session(['language' => $request->language_code]);
+        session(['language_id' => $request->language_id]);
 
         return response(['status' => 'success']);
     }

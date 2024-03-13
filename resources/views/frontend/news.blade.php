@@ -33,7 +33,7 @@
                                         <option value="">{{ __('frontend.All') }}</option>
                                         @foreach ($categories as $category)
                                             <option
-                                                {{ $category->slug === request()->category ? 'selected' : '' }} value="{{ $category->slug }}">{{ $category->name }}
+                                                {{ $category->slug === request()->category ? 'selected' : '' }} value="{{ $category->slug }}">{{ $category->description->first()->name }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -53,35 +53,35 @@
                                 <div class="col-lg-6">
                                     <div class="article__entry">
                                         <div class="article__image">
-                                            <a href="{{ route('news-details', $new->slug) }}">
-                                                <img src="{{ asset($new->image) }}" alt="" class="img-fluid">
+                                            <a href="{{ route('news-details', $new->slug ?? '') }}">
+                                                <img src="{{ asset($new->image ?? '') }}" alt="" class="img-fluid">
                                             </a>
                                         </div>
                                         <div class="article__content">
                                             <div class="article__category">
-                                                {{ $new->category->name }}
+                                                {{ $new->category()->first()->name ?? '' }}
                                             </div>
                                             <ul class="list-inline">
                                                 <li class="list-inline-item">
                                             <span class="text-primary">
-                                                {{ __('frontend.By') }} {{ $new->author->name }}
+                                                {{ __('frontend.By') }} {{ $new->author->name ?? '' }}
                                             </span>
                                                 </li>
                                                 <li class="list-inline-item">
                                             <span class="text-dark text-capitalize">
-                                                {{ date('M d, Y', strtotime($new->created_at)) }}
+                                                {{ format_date(strtotime($new->created_at ?? ''), '%b %e, %Y') }}
                                             </span>
                                                 </li>
                                             </ul>
                                             <h5>
-                                                <a href="{{ route('news-details', $new->slug) }}">
-                                                    {!! truncate($new->title ?? '') !!}
+                                                <a href="{{ route('news-details', $new->slug ?? '') }}">
+                                                    {!! truncate($new->description->first()->title ?? '') !!}
                                                 </a>
                                             </h5>
                                             <p>
                                                 {!! truncate($new->content ?? '', 100) !!}
                                             </p>
-                                            <a href="{{ route('news-details', $new->slug) }}"
+                                            <a href="{{ route('news-details', $new->slug ?? '') }}"
                                                class="btn btn-outline-primary mb-4 text-capitalize">{{ __('frontend.Read more') }}</a>
                                         </div>
                                     </div>
@@ -108,8 +108,9 @@
                                         <div class="mb-3">
                                             <div class="card__post card__post-list">
                                                 <div class="image-sm">
-                                                    <a href="{{ route('news-details', $new->slug) }}">
-                                                        <img src="{{ asset($new->image) }}" class="img-fluid" alt="">
+                                                    <a href="{{ route('news-details', $new->slug ?? '') }}">
+                                                        <img src="{{ asset($new->image ?? '') }}" class="img-fluid"
+                                                             alt="">
                                                     </a>
                                                 </div>
                                                 <div class="card__post__body ">
@@ -118,20 +119,20 @@
                                                             <ul class="list-inline">
                                                                 <li class="list-inline-item">
                                                                     <span class="text-primary">
-                                                                        {{ __('frontend.By') }} {{ $new->author->name }}
+                                                                        {{ __('frontend.By') }} {{ $new->author->name ?? '' }}
                                                                     </span>
                                                                 </li>
                                                                 <li class="list-inline-item">
                                                                     <span class="text-dark text-capitalize">
-                                                                        {{ date('M d, Y', strtotime($new->created_at)) }}
+                                                                        {{ format_date(strtotime($new->created_at ?? ''), '%b %e, %Y') }}
                                                                     </span>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                         <div class="card__post__title">
                                                             <h6>
-                                                                <a href="{{ route('news-details', $new->slug) }}">
-                                                                    {!! truncate($new->title ?? '') !!}
+                                                                <a href="{{ route('news-details', $new->slug ?? '') }}">
+                                                                    {!! truncate($new->description->first()->title ?? '') !!}
                                                                 </a>
                                                             </h6>
                                                         </div>
@@ -145,35 +146,35 @@
                                     @if ($loop->index > 2)
                                         <div class="article__entry">
                                             <div class="article__image">
-                                                <a href="{{ route('news-details', $new->slug) }}">
-                                                    <img src="{{ asset($new->image) }}" alt="" class="img-fluid">
+                                                <a href="{{ route('news-details', $new->slug ?? '') }}">
+                                                    <img src="{{ asset($new->image ?? '') }}" alt="" class="img-fluid">
                                                 </a>
                                             </div>
                                             <div class="article__content">
                                                 <div class="article__category">
-                                                    {{ $new->category->name }}
+                                                    {{ $new->category()->first()->name ?? '' }}
                                                 </div>
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
                                                         <span class="text-primary">
-                                                            {{ __('frontend.By') }} {{ $new->author->name }}
+                                                            {{ __('frontend.By') }} {{ $new->author->name ?? '' }}
                                                         </span>
                                                     </li>
                                                     <li class="list-inline-item">
                                                         <span class="text-dark text-capitalize">
-                                                            {{ date('M d, Y', strtotime($new->created_at)) }}
+                                                            {{ format_date(strtotime($new->created_at), '%A, %B %e, %Y') }}
                                                         </span>
                                                     </li>
                                                 </ul>
                                                 <h5>
-                                                    <a href="{{ route('news-details', $new->slug) }}">
-                                                        {!! truncate($new->title ?? '') !!}
+                                                    <a href="{{ route('news-details', $new->slug ?? '') }}">
+                                                        {!! truncate($new->description->first()->title ?? '') !!}
                                                     </a>
                                                 </h5>
                                                 <p>
-                                                    {!! truncate($new->content ?? '', 100) !!}
+                                                    {!! truncate($new->description->first()->content ?? '', 100) !!}
                                                 </p>
-                                                <a href="{{ route('news-details', $new->slug) }}"
+                                                <a href="{{ route('news-details', $new->slug ?? '') }}"
                                                    class="btn btn-outline-primary mb-4 text-capitalize">
                                                     {{ __('frontend.Read more') }}
                                                 </a>
@@ -189,8 +190,8 @@
                                 <ul class="list-inline">
                                     @foreach ($mostCommonTags as $tag)
                                         <li class="list-inline-item">
-                                            <a href="{{ route('news', ['tag' => $tag->name]) }}">
-                                                #{{ $tag->name }} ({{ $tag->count }})
+                                            <a href="{{ route('news', ['tag' => $tag->name ?? '']) }}">
+                                                #{{ $tag->name ?? '' }} ({{ $tag->count() ?? 0 }})
                                             </a>
                                         </li>
                                     @endforeach
@@ -218,12 +219,12 @@
                                 </form>
                             </div>
                         </aside>
-                        @if ($ad->side_bar_ad_status == 1)
+                        @if (isset($ad->side_bar_ad_status) && $ad->side_bar_ad_status == 1)
                             <aside class="wrapper__list__article">
                                 <h4 class="border_section">{{ __('frontend.Advertise') }}</h4>
-                                <a href="{{ $ad->side_bar_ad_url }}">
+                                <a href="{{ $ad->side_bar_ad_url ?? '' }}">
                                     <figure>
-                                        <img src="{{ asset($ad->side_bar_ad) }}" alt="" class="img-fluid">
+                                        <img src="{{ asset($ad->side_bar_ad ?? '') }}" alt="" class="img-fluid">
                                     </figure>
                                 </a>
                             </aside>
@@ -233,14 +234,14 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-        @if ($ad->news_page_ad_status == 1)
+        @if (isset($ad->news_page_ad_status) && $ad->news_page_ad_status == 1)
             <div class="large_add_banner mb-4">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="large_add_banner_img">
-                                <a href="{{ $ad->news_page_ad_url }}">
-                                    <img src="{{ asset($ad->news_page_ad) }}" alt="adds">
+                                <a href="{{ $ad->news_page_ad_url ?? '' }}">
+                                    <img src="{{ asset($ad->news_page_ad ?? '') }}" alt="adds">
                                 </a>
                             </div>
                         </div>

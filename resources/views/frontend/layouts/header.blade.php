@@ -5,7 +5,7 @@
                 <div class="col-sm-6 col-md-8">
                     <div class="topbar-left topbar-right d-flex">
                         <ul class="topbar-sosmed p-0">
-                            @foreach ($socialLinks as $link)
+                            @foreach ($socialLinksApp as $link)
                                 <li>
                                     <a href="{{ $link->url }}">
                                         <i class="{{ $link->icon }}"></i>
@@ -14,7 +14,7 @@
                             @endforeach
                         </ul>
                         <div class="topbar-text">
-                            {{ date('l, F j, Y') }}
+                            {{ format_date(strtotime('now'), '%A, %B %e, %Y') }}
                         </div>
                     </div>
                 </div>
@@ -22,9 +22,9 @@
                     <div class="list-unstyled topbar-right d-flex align-items-center justify-content-end">
                         <div class="topbar_language">
                             <select id="site-language">
-                                @foreach ($languages as $language)
+                                @foreach ($languagesApp as $language)
                                     <option
-                                        value="{{ $language->lang }}" {{ getLanguageId() === $language->id ? 'selected' : '' }}>{{ $language->name }}</option>
+                                        value="{{ $language->id }}" {{ getLanguageId() == $language->id ? 'selected' : '' }}>{{ $language->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -61,29 +61,30 @@
                 </div>
                 <figure class="mb-0 mx-auto">
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset($settings['site_logo'] ?? '') }}" alt="{{ asset($settings['site_name'] ?? '') }}"
+                        <img src="{{ asset($settingsApp['site_logo'] ?? '') }}"
+                             alt="{{ asset($settingsApp['site_name'] ?? '') }}"
                              class="img-fluid logo">
                     </a>
                 </figure>
                 <div class="collapse navbar-collapse justify-content-between" id="main_nav99">
                     <ul class="navbar-nav ml-auto ">
-                        @foreach ($featuredCategories as $category)
+                        @foreach ($featuredCategoriesApp as $category)
                             <li class="nav-item">
                                 <a class="nav-link active"
-                                   href="{{ route('news', ['category' => $category->slug]) }}">{{ $category->name }}</a>
+                                   href="{{ route('news', ['category' => $category->slug ?? '']) }}">{{ $category->description->first()->name ?? '' }}</a>
                             </li>
                         @endforeach
-                        @if (count($categories) > 0)
+                        @if (count($categoriesApp) > 0)
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                     {{ __('frontend.More') }}
                                 </a>
                                 <ul class="dropdown-menu animate fade-up">
-                                    @foreach ($categories as $category)
+                                    @foreach ($categoriesApp as $category)
                                         <li>
                                             <a class="dropdown-item icon-arrow"
-                                               href="{{ route('news', ['category' => $category->slug]) }}">
-                                                {{ $category->name }}
+                                               href="{{ route('news', ['category' => $category->slug ?? '']) }}">
+                                                {{ $category->description->first()->name ?? '' }}
                                             </a>
                                         </li>
                                     @endforeach
@@ -157,26 +158,26 @@
                 <div class="modal-body">
                     <nav class="list-group list-group-flush">
                         <ul class="navbar-nav ">
-                            @foreach ($featuredCategories as $category)
+                            @foreach ($featuredCategoriesApp as $category)
                                 <li class="nav-item">
                                     <a class="nav-link active text-dark"
-                                       href="{{ route('news', ['category' => $category->slug]) }}">
-                                        {{ $category->name }}
+                                       href="{{ route('news', ['category' => $category->slug ?? '']) }}">
+                                        {{ $category->description->first()->name ?? '' }}
                                     </a>
                                 </li>
                             @endforeach
-                            @if (count($categories) > 0)
+                            @if (count($categoriesApp) > 0)
                                 <li class="nav-item">
                                     <a class="nav-link active dropdown-toggle  text-dark" href="#"
                                        data-toggle="dropdown">
                                         {{ __('frontend.More') }}
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-left">
-                                        @foreach ($categories as $category)
+                                        @foreach ($categoriesApp as $category)
                                             <li>
                                                 <a class="dropdown-item"
-                                                   href="{{ route('news', ['category' => $category->slug]) }}">
-                                                    {{ $category->name }}
+                                                   href="{{ route('news', ['category' => $category->slug ?? '']) }}">
+                                                    {{ $category->description->first()->name ?? '' }}
                                                 </a>
                                             </li>
                                         @endforeach

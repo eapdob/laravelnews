@@ -9,17 +9,17 @@
                                 <div class="item">
                                     <div class="card__post">
                                         <div class="card__post__body">
-                                            <a href="{{ route('news-details', $slider->slug) }}">
-                                                <img src="{{ asset($slider->image) }}" class="img-fluid" alt="">
+                                            <a href="{{ route('news-details', $slider->slug ?? '') }}">
+                                                <img src="{{ asset($slider->image ?? '') }}" class="img-fluid" alt="">
                                             </a>
                                             <div class="card__post__content bg__post-cover">
                                                 <div class="card__post__category">
-                                                    {{ $slider->category->name }}
+                                                    {{ $slider->category()->first()->name ?? '' }}
                                                 </div>
                                                 <div class="card__post__title">
                                                     <h2>
                                                         <a href="{{ route('news-details', $slider->slug) }}">
-                                                            {!! truncate($slider->title ?? '', 100) !!}
+                                                            {!! truncate($slider->description->first()->title ?? '', 100) !!}
                                                         </a>
                                                     </h2>
                                                 </div>
@@ -27,12 +27,12 @@
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item">
                                                             <a href="javascript:void(0);">
-                                                                {{ __('frontend.By') }} {{ $slider->author->name }}
+                                                                {{ __('frontend.By') }} {{ $slider->author->name ?? '' }}
                                                             </a>
                                                         </li>
                                                         <li class="list-inline-item">
                                                         <span>
-                                                            {{ date('M d, Y', strtotime($slider->created_at)) }}
+                                                            {{ format_date(strtotime($slider->created_at ?? ''), '%b %e, %Y') }}
                                                         </span>
                                                         </li>
                                                     </ul>
@@ -51,17 +51,17 @@
                             @if ($loop->index > 4 && $loop->index <= 6)
                                 <div class="card__post ">
                                     <div class="card__post__body card__post__transition">
-                                        <a href="{{ route('news-details', $slider->slug) }}">
-                                            <img src="{{ asset($slider->image) }}" class="img-fluid" alt="">
+                                        <a href="{{ route('news-details', $slider->slug ?? '') }}">
+                                            <img src="{{ asset($slider->image ?? '') }}" class="img-fluid" alt="">
                                         </a>
                                         <div class="card__post__content bg__post-cover">
                                             <div class="card__post__category">
-                                                {{ $slider->category->name }}
+                                                {{ $slider->category()->first()->name ?? '' }}
                                             </div>
                                             <div class="card__post__title">
                                                 <h5>
-                                                    <a href="{{ route('news-details', $slider->slug) }}">
-                                                        {!! truncate($slider->title ?? '', 100) !!}
+                                                    <a href="{{ route('news-details', $slider->slug ?? '') }}">
+                                                        {!! truncate($slider->description->first()->title ?? '', 100) !!}
                                                     </a>
                                                 </h5>
                                             </div>
@@ -69,12 +69,12 @@
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
                                                         <a href="javascript:void(0);">
-                                                            by {{ $slider->author->name }}
+                                                            by {{ $slider->author->name ?? '' }}
                                                         </a>
                                                     </li>
                                                     <li class="list-inline-item">
                                                 <span>
-                                                    {{ date('M d, Y', strtotime($slider->created_at)) }}
+                                                    {{ format_date(strtotime($slider->created_at ?? ''), '%b %e, %Y') }}
                                                 </span>
                                                     </li>
                                                 </ul>

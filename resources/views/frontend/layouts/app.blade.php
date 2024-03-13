@@ -6,11 +6,11 @@
     <title>@hasSection('title')
             @yield('title')
         @else
-            {{ $settings['site_seo_title'] ?? '' }}
+            {{ $settingsApp['site_seo_title'] ?? '' }}
         @endif </title>
     <meta name="description"
-          content="@hasSection('meta_description') @yield('meta_description') @else {{ $settings['site_seo_description'] ?? '' }} @endif"/>
-    <meta name="keywords" content="{{ $settings['site_seo_keywords'] ?? '' }}"/>
+          content="@hasSection('meta_description') @yield('meta_description') @else {{ $settingsApp['site_seo_description'] ?? '' }} @endif"/>
+    <meta name="keywords" content="{{ $settingsApp['site_seo_keywords'] ?? '' }}"/>
     <meta name="og:title" content="@yield('meta_og_title')">
     <meta name="og:description" content="@yield('meta_og_description')">
     <meta name="og:image" content="@yield('meta_og_image')">
@@ -18,15 +18,29 @@
     <meta name="twitter:description" content="@yield('meta_tw_description')">
     <meta name="twitter:image" content="@yield('meta_tw_image')">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{{ $settingsApp['site_favicon'] ?? '' }}"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link href="{{ asset('frontend/assets/css/styles.css') }}" rel="stylesheet">
     <style>
         :root {
-            --colorPrimary: {{ $settings['site_color'] ?? '' }};
+            --colorPrimary: {{ $settingsApp['site_color'] ?? '' }};
         }
     </style>
 </head>
 <body>
+@php
+    $socialLinksApp = \App\Models\SocialLink::where('status', 1)->get();
+    $footerInfoApp = \App\Models\FooterInfo::withLocalize()->first();
+    $footerGridOnesApp = \App\Models\FooterGridOne::activeEntries()->withLocalize()->get();
+    $footerGridTwosApp = \App\Models\FooterGridTwo::activeEntries()->withLocalize()->get();
+    $footerGridThreesApp = \App\Models\FooterGridThree::activeEntries()->withLocalize()->get();
+    $footerGridOneTitleApp = \App\Models\FooterTitle::where(['footer_grid' => 'footer_grid_one', 'language_id' => getLanguageId()])->first();
+    $footerGridTwoTitleApp = \App\Models\FooterTitle::where(['footer_grid' => 'footer_grid_two', 'language_id' => getLanguageId()])->first();
+    $footerGridThreeTitleApp = \App\Models\FooterTitle::where(['footer_grid' => 'footer_grid_three', 'language_id' => getLanguageId()])->first();
+    $languagesApp = \App\Models\Language::where('status', 1)->get();
+    $featuredCategoriesApp = \App\Models\Category::where(['status' => 1, 'show_at_nav' => 1])->withLocalize()->get();
+    $categoriesApp = \App\Models\Category::where(['status' => 1, 'show_at_nav' => 0])->withLocalize()->get();
+@endphp
 @include('frontend.layouts.header')
 @yield('content')
 @include('frontend.layouts.footer')
@@ -48,11 +62,11 @@
     });
     $(document).ready(function () {
         $('#site-language').on('change', function () {
-            let languageCode = $(this).val();
+            let languageId = $(this).val();
             $.ajax({
                 method: 'GET',
                 url: "{{ route('language') }}",
-                data: {language_code: languageCode},
+                data: {language_id: languageId},
                 success: function (data) {
                     if (data.status === 'success') {
                         window.location.href = "{{ url('/') }}";

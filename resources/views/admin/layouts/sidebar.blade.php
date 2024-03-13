@@ -11,7 +11,6 @@
             <a href="{{ route('admin.dashboard') }}">{{ __('admin.Dashboard') }}</a>
         </div>
         <ul class="sidebar-menu">
-            <li class="menu-header">{{ __('admin.Dashboard') }}</li>
             <li class="{{ setSidebarActive(['admin.dashboard']) }}">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link">
                     <i class="fas fa-fire"></i><span>{{ __('admin.Dashboard') }}</span>

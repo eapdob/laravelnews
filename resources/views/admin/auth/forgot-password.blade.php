@@ -14,7 +14,7 @@
                             <h4>{{ __('admin.Forgot password') }}</h4>
                         </div>
                         <div class="card-body">
-                            <p>{{ __('admin.Forgot password content') }}</p>
+                            <p>{{ __('admin.Please enter your email to receive a password reset link') }}</p>
                             @if (session()->has('success'))
                                 <br>
                                 <i><b style="color:green;">{{ session()->get('success') }}</b></i>

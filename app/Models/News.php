@@ -19,9 +19,10 @@ class News extends Model
 
     public function scopeWithLocalize($query)
     {
-        return $query->whereHas('description', function ($query) {
-            $query->where('language_id', getLanguageId());
-        });
+        $languageId = getLanguageId();
+        return $query->with(['description' => function ($query) use ($languageId) {
+            $query->where('language_id', $languageId);
+        }]);
     }
 
     public function tags()
@@ -31,7 +32,21 @@ class News extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class)->leftJoin('categories_description', 'categories.id', '=', 'categories_description.category_id')
+            ->select(
+                'categories.id as id',
+                'categories.slug as slug',
+                'categories.show_at_nav as show_at_nav',
+                'categories.status as status',
+                'categories_description.language_id as language_id',
+                'categories_description.name as name'
+            )
+            ->where('categories_description.language_id', getLanguageId());
+    }
+
+    public function categorySearch()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
     public function author()

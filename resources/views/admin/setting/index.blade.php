@@ -81,7 +81,7 @@
         });
         $(document).ready(function () {
             $('#image-preview-site-logo').css({
-                "background-image": "url({{ asset($settings['site_logo'] ?? '') }})",
+                "background-image": "url({{ asset($settingsApp['site_logo'] ?? '') }})",
                 "background-size": "cover",
                 "background-position": "center center"
             });
@@ -97,7 +97,7 @@
         });
         $(document).ready(function () {
             $('#image-preview-site-favicon').css({
-                "background-image": "url({{ asset($settings['site_favicon'] ?? '') }})",
+                "background-image": "url({{ asset($settingsApp['site_favicon'] ?? '') }})",
                 "background-size": "cover",
                 "background-position": "center center"
             });
